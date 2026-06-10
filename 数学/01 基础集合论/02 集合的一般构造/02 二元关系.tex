@@ -1,0 +1,315 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+% 久违的轻松.
+% 2026.04.02
+
+\section{二元关系的定义}
+
+对任意的\href{01 集合的简单运算#nameddest=sec:定义2.2}{有序对}
+$p=(x,y)$, 这里记$x=p_L,y=p_R$, 记$p^\mathrm{C}=(y,x)$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (二元关系)}
+
+给定集合$r$, 如果任意的$p\in r$都是有序对, 那么称$r$是\textbf{二元关系}.
+
+进一步, 如果$r\subset a\times b$, 称$r$是从$a$到$b$的二元关系;
+如果$r\subset a\times a$, 称$r$是$a$上的二元关系.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (定义域与值域)}
+
+给定二元关系$r$, 定义
+\[
+    \mathrm{Dom}\,r\overset{\mathrm{def}}{=}\{p_L\mid p\in r\},\quad
+    \mathrm{Ran}\,r\overset{\mathrm{def}}{=}\{p_R\mid p\in r\},
+\]
+分别称为$r$的\textbf{定义域}和\textbf{值域}.
+
+显然对任意的$x$, $x\in\mathrm{Dom}\,r$当且仅当$\exists y:(x,y)\in r$;
+
+对任意的$y$, $y\in\mathrm{Ran}\,r$当且仅当$\exists x:(x,y)\in r$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+给定二元关系$r$,
+\begin{enumerate}
+    \item $r\subset\mathrm{Dom}\,r\times\mathrm{Ran}\,r$,
+    \item 如果$r\subset a\times b$,
+    那么$\mathrm{Dom}\,r\subset a$, $\mathrm{Ran}\,r\subset b$.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 对任意的$p\in r$, $p_L\in\mathrm{Dom}\,r$且$p_R\in\mathrm{Ran}\,r$,
+    所以$p=(p_L,p_R)\in\mathrm{Dom}\,r\times\mathrm{Ran}\,r$.
+    \item 假设$r\subset a\times b$. 对任意的$x\in\mathrm{Dom}\,r$,
+    存在$y$使得$(x,y)\in r$, 从而$x\in a$;
+
+    \hspace{2.17em}
+    对任意的$y\in\mathrm{Ran}\,r$, 存在$x$使得$(x,y)\in r$, 从而$y\in b$.
+    \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+给定二元关系$r,s$,
+\begin{enumerate}
+    \item 如果$r\subset s$, 那么$\mathrm{Dom}\,r\subset\mathrm{Dom}\,s$,
+    $\mathrm{Ran}\,r\subset\mathrm{Ran}\,s$,
+    \item $\mathrm{Dom}(r\cup s)=\mathrm{Dom}\,r\cup\mathrm{Dom}\,s$,
+    $\mathrm{Ran}(r\cup s)=\mathrm{Ran}\,r\cup\mathrm{Ran}\,s$.
+    \item $\mathrm{Dom}(r\cap s)\subset\mathrm{Dom}\,r\cap\mathrm{Dom}\,s$,
+    $\mathrm{Ran}(r\cap s)\subset\mathrm{Ran}\,r\cap\mathrm{Ran}\,s$.
+    \item $\mathrm{Dom}(r\setminus s)\supset
+    \mathrm{Dom}\,r\setminus\mathrm{Dom}\,s$,
+    $\mathrm{Ran}(r\setminus s)\supset\mathrm{Ran}\,r\setminus\mathrm{Ran}\,s$.
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.3}{}
+\noindent\textbf{定义1.3 (逆关系)}
+
+给定二元关系$r$, 定义它的\textbf{逆关系}为
+$r^{-1}\overset{\mathrm{def}}{=}\{p^\mathrm{C}\mid p\in r\}$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.3}{}
+\noindent\textbf{定理1.3}
+
+给定二元关系$r,s$,
+\begin{enumerate}
+    \item $(r^{-1})^{-1}=r$,
+    \item $\mathrm{Dom}\,r^{-1}=\mathrm{Ran}\,r$,
+    $\mathrm{Ran}\,r^{-1}=\mathrm{Dom}\,r$,
+    \item 如果$r\subset s$, 那么$r^{-1}\subset s^{-1}$,
+    \item $(r\cup s)^{-1}=r^{-1}\cup s^{-1}$, $(r\cap s)^{-1}=r^{-1}\cap s^{-1}$,
+    $(r\setminus s)^{-1}=r^{-1}\setminus s^{-1}$.
+\end{enumerate}
+
+
+
+
+
+\newpage
+
+\section{二元关系的限制}
+
+\hypertarget{sec:定义2.1}{}
+\noindent\textbf{定义2.1 (二元关系的限制)}
+
+给定二元关系$r$和集合$a$, 定义$r$在$a$上的\textbf{限制}
+\[
+    r\!\restriction_a\overset{\mathrm{def}}{=}\{p\in r\mid p_L\in a\}.
+\]
+显然$r\!\restriction_a$是$r$的子集, 也是一个二元关系.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1}
+
+给定二元关系$r$和集合$a,b$,
+\begin{enumerate}
+    \item 如果$a\subset b$, 那么$r\!\restriction_a\,\subset r\!\restriction_b$,
+    \item $r\!\restriction_{a\cup b}\,=r\!\restriction_a\cup\,r\!\restriction_b$,
+    $r\!\restriction_{a\cap b}\,=r\!\restriction_a\cap\,r\!\restriction_b$,
+    $r\!\restriction_{a\setminus b}\,=r\!\restriction_a\setminus\,r\!\restriction_b$.
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定义2.2}{}
+\noindent\textbf{定义2.2 (像与原像)}
+
+给定二元关系$r$和集合$a$, 定义
+\[
+    r[a]\overset{\mathrm{def}}{=}\mathrm{Ran}\,r\!\restriction_a,
+\]
+称为$a$在$r$下的\textbf{像}.
+
+进一步, 再给定集合$b$, 称$r^{-1}[b]$为$b$在$r$下的\textbf{原像}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.2}{}
+\noindent\textbf{定理2.2}
+
+给定二元关系$r$和集合$a$,
+\begin{enumerate}
+    \item $\mathrm{Dom}\,r\!\restriction_a=a\cap\mathrm{Dom}\,r$,
+    \item 对任意的$y$, $y\in r[a]$当且仅当$\exists x\in a:(x,y)\in r$.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 对任意的$x$, $x\in\mathrm{Dom}\,r\!\restriction_a\iff
+    \exists y:(x,y)\in r\!\restriction_a\iff
+    \exists y:((x,y)\in r\land x\in a)\iff x\in\mathrm{Dom}\,r\land x\in a$.
+    \item 对任意的$y$, $y\in r[a]\iff y\in\mathrm{Ran}\,r\!\restriction_a\iff
+    \exists x:(x,y)\in r\!\restriction_a\iff\exists x:((x,y)\in r\land x\in a)$.
+    \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.3}{}
+\noindent\textbf{定理2.3}
+
+给定二元关系$r$和集合$a,b$,
+\begin{enumerate}
+    \item 如果$a\subset b$, 那么$r[a]\subset r[b]$,
+    \item $r[a\cup b]=r[a]\cup r[b]$,
+    \item $r[a\cap b]\subset r[a]\cap r[b]$,
+    \item $r[a\setminus b]\supset r[a]\setminus r[b]$,
+    \item $r^{-1}[r[a]]\supset a\cap\mathrm{Dom}\,r$.
+\end{enumerate}
+
+
+
+
+
+\newpage
+
+\section{二元关系的复合}
+
+\hypertarget{sec:定义3.1}{}
+\noindent\textbf{定义3.1 (二元关系的复合)}
+
+给定二元关系$r$和$s$, 定义它们的\textbf{复合}
+\[
+    s\circ r\overset{\mathrm{def}}{=}
+    \{(x,z)\in\mathrm{Dom}\,r\times\mathrm{Ran}\,s\mid
+    \exists y:((x,y)\in r\land(y,z)\in s)\}.
+\]
+显然$s\circ r$是从$\mathrm{Dom}\,r$到$\mathrm{Ran}\,s$的二元关系.
+
+显然对任意的$x,z$, $(x,z)\in s\circ r$当且仅当存在$y$使得
+$(x,y)\in r$且$(y,z)\in s$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理3.1}{}
+\noindent\textbf{定理3.1}
+
+给定二元关系$r,r',s,s'$和集合$a$,
+\begin{enumerate}
+    \item 如果$r\subset r',s\subset s'$, 那么$s\circ r\subset s'\circ r'$,
+    \item $(s\circ r)^{-1}=r^{-1}\circ s^{-1}$,
+    \item $\mathrm{Ran}(s\circ r)=s[\,\mathrm{Ran}\,r\,]$,
+    $\mathrm{Dom}(s\circ r)=r^{-1}[\,\mathrm{Dom}\,s\,]$,
+    \item $(s\circ r)\!\restriction_a=s\circ r\!\restriction_a$,
+    $(s\circ r)[a]=s[r[a]]$.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 如果$r\subset r',s\subset s'$, 那么对任意的$(x,z)\in s\circ r$,
+    存在$y$使得
+    \[
+        (x,y)\in r\land(y,z)\in s\quad\implies\quad
+        (x,y)\in r'\land(y,z)\in s',
+    \]
+    所以$(x,z)\in s'\circ r'$.
+
+    \item 对任意的$(z,x)\in(s\circ r)^{-1}$, 有$(x,z)\in s\circ r$,
+    即存在$y$使得
+    \[
+        (x,y)\in r\land(y,z)\in s\quad\implies\quad
+        (z,y)\in s^{-1}\land(y,x)\in r^{-1},
+    \]
+    所以$(z,x)\in r^{-1}\circ s^{-1}$,
+    即$(s\circ r)^{-1}\subset r^{-1}\circ s^{-1}$.
+
+    \hspace{2.17em}
+    据此有$(r^{-1}\circ s^{-1})^{-1}\subset s\circ r$,
+    于是$r^{-1}\circ s^{-1}\subset(s\circ r)^{-1}$.
+
+    \item 对任意的$z$,
+    \[\begin{aligned}
+        z\in\mathrm{Ran}(s\circ r)\iff&\exists x:(x,z)\in s\circ r\iff
+        \exists x\,\exists y:((x,y)\in r\land(y,z)\in s)\\[-3pt]
+        \iff&\exists y\in\mathrm{Ran}\,r:(y,z)\in s\iff
+        z\in s[\,\mathrm{Ran}\,r\,].\\[1pt]
+    \end{aligned}\]
+    进一步, $\mathrm{Dom}(s\circ r)=\mathrm{Ran}(s\circ r)^{-1}=
+    \mathrm{Ran}(r^{-1}\circ s^{-1})=r^{-1}[\,\mathrm{Ran}\,s^{-1}\,]=
+    r^{-1}[\,\mathrm{Dom}\,s\,]$.
+
+    \item 对任意的$(x,z)$, 有
+    \[
+        (x,z)\in(s\circ r)\!\restriction_a\iff
+        x\in a\land\exists y:(x,y)\in r\land(y,z)\in s\iff
+        (x,z)\in s\circ r\!\restriction_a.
+    \]
+    于是$(s\circ r)\!\restriction_a=s\circ r\!\restriction_a$,
+    从而$(s\circ r)[a]=s[r[a]]$. \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理3.2}{}
+\noindent\textbf{定理3.2 (复合的结合律)}
+
+给定二元关系$r,s,t$, $(t\circ s)\circ r=t\circ(s\circ r)$.
+
+\noindent{\kaishu 证明.}
+
+对任意的$x,w$,
+\begin{equation*}\begin{aligned}
+    &(x,w)\in(t\circ s)\circ r\\
+    \iff&\exists y:\quad(x,y)\in r\land(y,w)\in t\circ s\\
+    \iff&\exists y\,\exists z:\quad(x,y)\in r\land(y,z)\in s\land(z,w)\in t\\
+    \iff&\exists z:\quad(x,z)\in s\circ r\land(z,w)\in t\\
+    \iff&(x,w)\in t\circ(s\circ r).
+\end{aligned}\tag*{\qedsymbol}\end{equation*}
+
+\end{document}

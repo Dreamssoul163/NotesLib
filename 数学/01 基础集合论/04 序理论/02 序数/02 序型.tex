@@ -1,0 +1,128 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{序型}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (序型)}
+
+给定\href{../01 序关系/04 良序关系#nameddest=sec:定义1.1}{良序结构} $(a,\leqslant_a)$
+和\href{01 序数#nameddest=sec:定义1.1}{序数} $\alpha$. 如果
+\[
+    (a,<_a)\cong(\alpha,\in),
+\]
+就称$\alpha$是$(a,\leqslant_a)$的\textbf{序型}, 记作$\mathrm{Type}(a,\leqslant_a)$.
+在不产生歧义的情况下简记为$\mathrm{Type}(a)$.
+
+显然良序结构的序型是唯一的.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1 (序型定理)}
+
+任意的良序结构都有序型.
+
+\noindent{\kaishu 证明.}
+
+对任意的良序结构$(a,\leqslant_a)$, 取$a$中前段有序型的那些元素
+\[
+    b=\{x\in a\mid(a_x,\leqslant_a)\text{\,有序型\,}\},
+\]
+然后收集这些前段的序型
+\[
+    \alpha=\{\mathrm{Type}(a_x,\leqslant_a)\mid x\in b\}.
+\]
+
+首先, 如果$\gamma\in\beta\in\alpha$, 那么存在$x\in b$使得
+\[
+    \beta=\mathrm{Type}(a_x,\leqslant_a)\quad\implies\quad
+    \exists f:(\beta,\in)\cong(a_x,<_a),
+\]
+进一步, $f\!\restriction_\gamma:(\gamma,\in)\cong(a_{f(\gamma)},<_a)$,
+从而$\gamma\in\alpha$. 即$\alpha$是传递集. 从而$\alpha$是序数.
+
+\vspace{3pt}
+接下来, 根据良序集基本定理, 有以下的情况:
+
+\begin{enumerate}
+    \item 如果$a\cong\alpha$, 则$\alpha$是$(a,\leqslant_a)$的序型;
+    \item 如果存在$x\in a$使得$a_x\cong\alpha$, 那么
+    $\alpha\in\alpha$, 矛盾;
+    \item 如果存在$\beta\in\alpha$使得$a\cong\beta$,
+    那么存在$x\in a$使得$a_x\cong\beta\cong a$, 矛盾. \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+任给良序结构$(a,\leqslant_a)$和$b\subset a$,
+有$\mathrm{Type}(b)\leqslant\mathrm{Type}(a)$.
+
+\noindent{\kaishu 证明.}
+
+分别记$a,b$的序型为$\alpha,\beta$, 有序同构$f:\alpha\cong a$和$g:\beta\cong b$.
+
+对$\gamma<\beta$归纳证明$\gamma\leqslant f^{-1}(g(\gamma))$.
+任取$\gamma<\beta$, 假设对任意的$\delta<\gamma$
+有$\delta\leqslant f^{-1}(g(\delta))$, 所以
+\[
+    g(\delta)<g(\gamma)\quad\implies\quad f^{-1}(g(\delta))<f^{-1}(g(\gamma))
+    \quad\implies\quad \delta<f^{-1}(g(\gamma)),
+\]
+从而$\gamma\leqslant f^{-1}(g(\gamma))$.
+
+接下来假设$\alpha<\beta$则有$\alpha\leqslant f^{-1}(g(\alpha))$,
+但是$\mathrm{Dom}\,f=\alpha$, 矛盾. 所以$\beta\leqslant\alpha$. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.3}{}
+\noindent\textbf{定理1.3}
+
+任给某个良序结构的一族前段$S$, 有
+$\displaystyle\mathrm{Type}\left(\bigcup S\right)=\sup_{s\in S}\mathrm{Type}(s)$.
+
+\noindent{\kaishu 证明.}
+
+取序同构$\displaystyle f:\bigcup S\cong\mathrm{Type}\left(\bigcup S\right)$, 则
+\begin{equation*}
+    \mathrm{Type}\left(\bigcup S\right)=f\left[\,\bigcup S\,\right]=
+    \bigcup_{s\in S}f[s]=\sup_{s\in S}\mathrm{Type}(s).
+\tag*{\qedsymbol}\end{equation*}
+
+\end{document}

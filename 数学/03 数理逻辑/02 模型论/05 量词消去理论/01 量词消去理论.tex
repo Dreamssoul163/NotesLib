@@ -1,0 +1,136 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{量词消去理论}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (理论下等价)}
+
+给定一阶语言$\mathcal{L}$, $\mathcal{L}$-理论$T$和公式$\varphi,\psi$.
+如果$T\models(\varphi\leftrightarrow\psi)$, 就称$\varphi,\psi$在$T$下等价,
+记作$\varphi\overset{T}{\leftrightarrow}\psi$.
+
+\vspace{10pt}
+
+依定义, $\varphi\overset{T}{\leftrightarrow}\psi$即: 对$T$的任意模型$A$
+和$A$上任意的变元赋值$\sigma$, 有
+\[
+    (A,\sigma)\models\varphi\leftrightarrow(A,\sigma)\models\psi.
+\]
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+给定一阶语言$\mathcal{L}$和$\mathcal{L}$-理论$T$, 如上定义的
+$\overset{T}{\leftrightarrow}$是($F^{\mathcal{L}}$上的)等价关系.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (量词消去理论)}
+
+给定一阶语言$\mathcal{L}$和$\mathcal{L}$-理论$T$, 称$T$是\textbf{量词消去理论}, 如果:
+
+对任意的公式$\varphi$, 存在无量词公式$\psi$与之在$T$下等价.
+
+\vspace{10pt}
+
+如果$T'$是$T$的扩充理论(即$T\subset T'$), 显然在$T$下等价蕴含在$T'$下等价,
+于是当$T$是量词消去理论的时候, $T'$也是量词消去理论.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+给定一阶语言$\mathcal{L}$和$\mathcal{L}$-理论$T$, $T$是量词消去理论当且仅当:
+
+对任意的无量词公式$\varphi$和变元$x$, 存在无量词公式$\psi$与$\exists x\varphi$
+在$T$下等价.
+
+\noindent{\kaishu 证明.}
+
+\noindent{\kaishu 必要性.} 显然.
+
+\noindent{\kaishu 充分性.}
+
+证明$T$量词可消去, 即对所有的公式$\varphi$归纳证明存在无量词公式$\psi$与之在$T$下等价.
+
+\begin{enumerate}
+    \item 如果$\varphi$是原子公式, 那么$\varphi$本身无量词并且
+    $\varphi\overset{T}{\leftrightarrow}\varphi$.
+
+    \item 如果有无量词公式$\psi_1$使得$\varphi_1\overset{T}{\leftrightarrow}\psi_1$,
+    考虑$\varphi=\neg\varphi_1$. 此时公式$\neg\psi_1$无量词并且
+    对任意的环境$\mathfrak{J}\models T$有
+    \[
+        \mathfrak{J}\models\varphi\iff\mathfrak{J}\not\models\varphi_1\iff
+        \mathfrak{J}\not\models\psi_1\iff\mathfrak{J}\models\neg\psi_1,
+    \]
+    即$\varphi\overset{T}{\leftrightarrow}\neg\psi_1$.
+
+    \item 如果有无量词公式$\psi_1,\psi_2$使得
+    $\varphi_1\overset{T}{\leftrightarrow}\psi_1$,
+    $\varphi_2\overset{T}{\leftrightarrow}\psi_2$,
+    考虑$\varphi=(\varphi_1\to\varphi_2)$. 此时公式$(\psi_1\to\psi_2)$无量词并且
+    对任意的环境$\mathfrak{J}\models T$有
+    \[
+        \mathfrak{J}\models\varphi\iff
+        \mathfrak{J}\models\varphi_1\to\mathfrak{J}\models\varphi_2\iff
+        \mathfrak{J}\models\psi_1\to\mathfrak{J}\models\psi_2\iff
+        \mathfrak{J}\models(\psi_1\to\psi_2),
+    \]
+    即$\varphi\overset{T}{\leftrightarrow}(\psi_1\to\psi_2)$.
+
+    \item 对任意的变元$x$, 如果有无量词公式$\psi_1$使得
+    $\varphi_1\overset{T}{\leftrightarrow}\psi_1$, 考虑$\varphi=\exists x\varphi_1$.
+
+    \hspace{2.17em}
+    此时对任意的环境$(A,\sigma)\models T$ (即$A\models T$)有
+    \vspace{3pt}
+    \[
+        (A,\sigma)\models\varphi\iff
+        \exists a\in A:\left(A,\sigma\frac{a}{x}\right)\models\varphi_1\iff
+        \exists a\in A:\left(A,\sigma\frac{a}{x}\right)\models\psi_1\iff
+        (A,\sigma)\models\exists x\psi_1,\\[3pt]
+    \]
+    即$\varphi\overset{T}{\leftrightarrow}\exists x\psi_1$. 再根据假设,
+    有无量词公式$\psi$使得$\exists x\psi_1\overset{T}{\leftrightarrow}\psi$,
+    从而$\varphi\overset{T}{\leftrightarrow}\psi$. \hfill $\qedsymbol$
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,192 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{一阶语言的结构}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (一阶语言的结构)}
+
+给定\href{../../01 一阶语言/01 一阶语言#nameddest=sec:定义1.1}{一阶语言}
+$\mathcal{L}=
+(\mathcal{V},\mathcal{C},(n_f)_{f\in\mathcal{F}},(n_r)_{r\in\mathcal{R}})$,
+称$(A,(c^A)_{c\in\mathcal{C}},(f^A)_{f\in\mathcal{F}},(r^A)_{r\in\mathcal{R}})$
+是一个$\mathcal{L}$-\textbf{结构}, 如果:
+\begin{enumerate}
+    \item $A$是非空集合,
+    \item 对任意的常元$c$, $c^A\in A$,
+    \item 对任意的函数符号$f$, $f^A$是$A$上的一个$n_f$元运算,
+    \item 对任意的关系符号$r$, $r^A$是$A$上的一个$n_r$元关系.
+\end{enumerate}
+称$A$为结构的论域, 称$e^A$($e\in\mathcal{C}\cup\mathcal{F}\cup\mathcal{R}$)
+为结构对$e$的解释.
+
+\vspace{10pt}
+
+在不产生歧义的情况下, 简称$A$是一个$\mathcal{L}$-结构.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (变元赋值)}
+
+给定一阶语言$\mathcal{L}$和$\mathcal{L}$-结构$A$,
+称映射$\sigma:\mathcal{V}\to A$为$A$的一个\textbf{变元赋值}.
+通常把$\sigma(x)$记成$x^{\sigma}$.
+
+进一步, 称$\mathfrak{J}=(A,\sigma)$为一个$\mathcal{L}$-\textbf{环境}.
+
+\vspace{10pt}
+
+此时再给定变元$x$和$a\in A$, 定义变元赋值$\sigma$的单点修改
+$\displaystyle\sigma\frac{a}{x}$如下:
+\[\forall y\in\mathcal{V}:\quad\sigma\frac{a}{x}(y)=\left\{\begin{aligned}
+    &a,\quad&&y=x,\\[-3pt]
+    &\sigma(y),\quad&&y\neq x.
+\end{aligned}\right.\]
+即把$\sigma$对$x$的赋值修改成$a$, 得到的新的赋值. 定义$\displaystyle
+(A,\sigma)\frac{a}{x}=\left(A,\sigma\frac{a}{x}\right)$.
+
+
+
+
+
+\newpage
+
+\section{结构的语义}
+
+\hypertarget{sec:定义2.1}{}
+\noindent\textbf{定义2.1 (项的赋值)}
+
+给定一阶语言$\mathcal{L}$和$\mathcal{L}$-环境$\mathfrak{J}=(A,\sigma)$.
+在$A$中定义项的映射$\mathrm{Assignment}_{\mathfrak{J}}:t\mapsto t^{\mathfrak{J}}$:
+\begin{enumerate}
+  \item 对任意的常元$c$, $c^{\mathfrak{J}}=c^A$,
+  \item 对任意的变元$x$, $x^{\mathfrak{J}}=x^{\sigma}$,
+  \item 对任意的$n$元函数符号$f$和项$t_1,\cdots,t_n$, $(ft_1\cdots t_n)^{\mathfrak{J}}
+  =f^{A}(t_1^{\mathfrak{J}},\cdots,t_n^{\mathfrak{J}})$.
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定义2.2}{}
+\noindent\textbf{定义2.2 (公式的可满足性)}
+
+给定一阶语言$\mathcal{L}$和$\mathcal{L}$-结构$A$,
+(同时对所有变元赋值$\sigma$)定义公式的命题$\mathrm{Sat}^{(A,\sigma)}$:
+\begin{enumerate}
+  \item 对任意的项$t_1,t_2$,
+  $\mathrm{Sat}^{(A,\sigma)}(t_1\equiv t_2)\overset{\mathrm{def}}{\leftrightarrow}
+  t_1^{(A,\sigma)}=t_2^{(A,\sigma)}$,
+  \item 对任意的$n$元关系符号$r$和项$t_1,\cdots,t_n$,
+  $\mathrm{Sat}^{(A,\sigma)}(rt_1\cdots t_n)\overset{\mathrm{def}}{\leftrightarrow}
+  (t_1^{(A,\sigma)},\cdots,t_n^{(A,\sigma)})\in r^A$,
+  \item 对任意的公式$\varphi$,
+  $\mathrm{Sat}^{(A,\sigma)}(\neg\varphi)\overset{\mathrm{def}}{\leftrightarrow}
+  \neg\,\mathrm{Sat}^{(A,\sigma)}(\varphi)$,
+  \item 对任意的公式$\varphi,\psi$,
+  $\mathrm{Sat}^{(A,\sigma)}((\varphi\to\psi))\overset{\mathrm{def}}{\leftrightarrow}
+  \mathrm{Sat}^{(A,\sigma)}(\varphi)\to\mathrm{Sat}^{(A,\sigma)}(\psi)$,
+  \vspace{3pt}
+  \item 对任意的变元$x$和公式$\varphi$,
+  $\mathrm{Sat}^{(A,\sigma)}(\exists x\varphi)\overset{\mathrm{def}}{\leftrightarrow}
+  \exists a\in A:\mathrm{Sat}^{(A,\sigma)a/x}(\varphi)$.
+\end{enumerate}
+通常把$\mathrm{Sat}^{(A,\sigma)}(\varphi)$记作$(A,\sigma)\models\varphi$,
+称为$(A,\sigma)$满足$\varphi$.
+
+\vspace{10pt}
+
+如果$\Gamma$是一族公式, 那么$\mathfrak{J}\models\Gamma$表示
+$\mathfrak{J}$满足$\Gamma$中的所有公式.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义2.3}{}
+\noindent\textbf{定义2.3}
+
+给定一阶语言$\mathcal{L}$和一族公式$\Gamma$.
+如果存在$\mathcal{L}$-环境$\mathfrak{J}$满足$\mathfrak{J}\models\Gamma$,
+就称$\Gamma$是\textbf{一致的}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义2.4}{}
+\noindent\textbf{定义2.4 (语义推理)}
+
+给定一阶语言$\mathcal{L}$, 一族公式$\Gamma_1$和一族公式$\Gamma_2$.
+如果对任意的$\mathcal{L}$-环境$\mathfrak{J}$有
+\[
+    \mathfrak{J}\models\Gamma_1\to\mathfrak{J}\models\Gamma_2,
+\]
+就称$\Gamma_2$中的公式是$\Gamma_1$的\textbf{语义推论},
+或$\Gamma_1$\textbf{语义蕴含}$\Gamma_2$, 记作$\Gamma_1\models\Gamma_2$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1}
+
+语义蕴含关系是预序关系, 任意一族公式可以语义蕴含它的子集.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.2}{}
+\noindent\textbf{定理2.2}
+
+给定一阶语言$\mathcal{L}$. 对任意的一族公式$\Gamma$和公式$\varphi$,
+\begin{enumerate}
+    \item $\Gamma\models\varphi$当且仅当$\Gamma\cup\{\neg\varphi\}$不一致,
+    \item $\Gamma\models\neg\varphi$当且仅当$\Gamma\cup\{\varphi\}$不一致.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 假设$\Gamma\models\varphi$. 再假设有环境满足
+    $\Gamma\cup\{\neg\varphi\}$, 那么它同时满足$\varphi$和$\neg\varphi$, 矛盾.
+
+    \hspace{2.17em}
+    假设$\Gamma\cup\{\neg\varphi\}$不一致. 再假设$\Gamma\not\models\varphi$,
+    即存在环境满足$\Gamma$但不满足$\varphi$, 矛盾.
+
+    \item 同理. \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+显然如果$\Gamma$不一致, 那么任意公式都是$\Gamma$的语义推论,
+即$\Gamma\models F^{\mathcal{L}}$.
+
+\end{document}

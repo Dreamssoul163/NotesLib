@@ -1,0 +1,68 @@
+#app { box-sizing: border-box; }
+/* prevent global scrollbar; allow internal panels to scroll */
+body, html, #app { height: 100%; margin: 0; overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; }
+#app { display: flex; height: 100vh; }
+.sidebar-placeholder {}
+#sidebar { width: 320px; border-right: 1px solid #e6e6e6; background: linear-gradient(180deg,#ffffff,#fbfbfd); display: flex; flex-direction: column; height: 100%; overflow: auto; font-size: 13px; }
+.header { padding: 16px; font-weight: 600; border-bottom: 1px solid #eee; display:flex; align-items:center; }
+.tree { padding: 12px; overflow: auto; }
+
+/* sidebar uses same font as viewer header */
+#sidebar, #sidebar .tree, #sidebar .label { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; }
+
+/* sidebar toggle button */
+.toggle-sidebar { margin-left: auto; background: transparent; border: none; cursor: pointer; font-size: 14px; padding: 4px 8px; border-radius: 6px; }
+.toggle-sidebar:hover { background: rgba(0,0,0,0.04); }
+
+/* collapsed state: hide sidebar and make viewer fill entire width */
+.collapsed #sidebar { width: 44px; min-width: 44px; overflow: hidden; }
+.collapsed #sidebar .tree { display: none; }
+.collapsed #sidebar .header span { display: none; }
+.collapsed #viewer { flex: 1 1 100%; }
+.collapsed #app { align-items: stretch; }
+.collapsed .content { align-items: center; justify-content: center; }
+.node { margin-left: 8px; }
+.label { display: flex; align-items: center; gap: 6px; padding: 4px 6px; border-radius: 6px; cursor: pointer; }
+.label.dir { color: #0b5fff; }
+.label.file { color: #333; }
+.label:hover { background: rgba(11,95,255,0.06); }
+.label.selected { background: rgba(11,95,255,0.12); }
+/* highlight ancestor directories of the selected file */
+.label.selected-parent { background: rgba(11,95,255,0.08); box-shadow: inset 0 0 0 1px rgba(11,95,255,0.04); }
+/* flash when a collapse is prevented to keep selected file visible */
+.label.keep-visible-flash { animation: keepFlash 0.8s ease; }
+@keyframes keepFlash { 0% { box-shadow: 0 0 0 2px rgba(11,95,255,0.18); } 100% { box-shadow: none; } }
+.toggle { width: 20px; height: 20px; border: none; background: #f0f4ff; border-radius: 4px; cursor: pointer; font-size: 12px; line-height: 18px; padding: 0; display: inline-flex; align-items: center; justify-content: center; }
+.children { margin-left: 14px; display: none; }
+.viewer { }
+#viewer { flex: 1; display: flex; flex-direction: column; min-width: 0; min-height: 0; height: 100%; }
+#viewer .viewer-header { padding: 12px; border-bottom: 1px solid #eee; font-weight: 600; display: flex; align-items: center; justify-content: space-between; position: relative; }
+.viewer-header .title { font-weight: 600; }
+.zoom-controls { display: flex; align-items: center; gap: 8px; }
+.zoom-controls button { background: #f4f6fb; border: 1px solid #e6e9f5; padding: 6px 8px; border-radius: 6px; cursor: pointer; }
+.zoom-controls #zoom-value { min-width: 44px; text-align: center; font-weight: 600; }
+.page-controls { display: flex; align-items: center; gap: 8px; margin-right: 8px; }
+.page-controls button { background: #fff; border: 1px solid #e6e9f5; padding: 6px 10px; border-radius: 6px; cursor: pointer; }
+.page-controls #page-display { min-width: 72px; text-align: center; font-weight: 600; }
+.content { flex: 1; background: #fff; display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; overflow: hidden; }
+
+.content .empty { height: 100%; display: flex; align-items: center; justify-content: center; color: #666; font-size: 15px; }
+
+/* HQ control removed */
+.pdf-frame { width: 100%; height: 100%; border: none; }
+.msg { color: #666; }
+.error { color: #a00; padding: 12px; }
+
+.pdf-container { width: 100%; flex: 1; overflow: auto; padding: 12px; display: flex; flex-direction: column; align-items: center; }
+.pdf-page { width: 100%; display: flex; justify-content: center; margin-bottom: 18px; }
+.pdf-canvas { box-shadow: 0 6px 18px rgba(20,20,40,0.08); border-radius: 4px; max-width: 100%; height: auto; }
+.loading { color: #666; padding: 12px; }
+
+/* annotation overlay: transparent anchors positioned over link areas */
+.annotationLayer { position: absolute; left: 0; top: 0; pointer-events: auto; box-sizing: border-box; }
+.annotationLayer a { display: block; background: transparent; pointer-events: auto; border: none; }
+.annotationLayer a:hover { outline: 2px solid rgba(11,95,255,0.18); }
+/* small navigation buttons (back/forward) positioned center-right in header */
+.nav-controls { position: absolute; right: 220px; top: 50%; transform: translateY(-50%); z-index: 60; display: inline-flex; gap: 8px; }
+.small-nav { display: inline-flex; align-items: center; justify-content: center; padding: 5px 8px; min-height: 27px; border-radius: 6px; background: #f4f6fb; border: 1px solid #e6e9f5; cursor: pointer; font-size: 12px; z-index: 61; }
+.small-nav:disabled { opacity: 0.45; cursor: default; }

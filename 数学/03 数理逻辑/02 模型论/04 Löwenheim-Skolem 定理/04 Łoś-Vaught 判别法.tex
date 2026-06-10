@@ -1,0 +1,89 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{Łoś-Vaught 判别法}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 ($\kappa$-定言)}
+
+给定一阶语言$\mathcal{L}$和$\mathcal{L}$-理论$T$.
+如果$T$的任意两个势为$\kappa$的模型都同构, 那么称$T$是$\kappa$-\textbf{定言}的.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1 (Łoś-Vaught判别法)}
+
+给定一阶语言$\mathcal{L}$和$\mathcal{L}$-理论$T$.
+
+如果$T$的模型都是无限的,
+并且在某个基数$\kappa\geqslant|\mathcal{L}|$上是$\kappa$-定言的, 那么$T$
+是\href{../02 一阶语义/03 一阶理论与模型#nameddest=sec:定义2.1}{完备}的.
+
+\noindent{\kaishu 证明.}
+
+任取$T$的模型$A$, 依假设$A$是无限的.
+\begin{enumerate}
+    \item 如果$|A|<\kappa$,
+    那么根据\href{03 Löwenheim-Skolem 定理#nameddest=sec:定理2.1}
+    {向上Löwenheim-Skolem定理}, 可以取一个结构$A'$使得
+    \[
+        A\preccurlyeq A'\quad\land\quad|A'|=\kappa,
+    \]
+    \item 如果$|A|=\kappa$, 那么令$A'=A$,
+    \item 如果$|A|>\kappa$,
+    那么根据\href{03 Löwenheim-Skolem 定理#nameddest=sec:定理1.1}
+    {向下Löwenheim-Skolem定理}, 可以取一个结构$A'$使得
+    \[
+        A'\preccurlyeq A\quad\land\quad|A'|=\kappa.
+    \]
+\end{enumerate}
+
+综上, 存在结构$A'$使得$A\equiv A'$并且$|A'|=\kappa$. 显然$A'$也是$T$的模型.
+
+同理, 任取$T$的模型$B$, 也存在模型$B'$使得$B\equiv B'$并且$|B'|=\kappa$.
+依假设可知$A'\cong B'$, 于是
+\[
+    A\equiv A'\equiv B'\equiv B.
+\]
+
+% 这里可以看出, 判定的前提只需要势为$\kappa$的模型都初等等价, 不需要同构.
+% 这样写应该是因为很多时候同构虽然更强, 但是更好判定. 于是应用定理比较方便.
+
+所以$T$的模型都初等等价,
+由\href{../02 一阶语义/03 一阶理论与模型#nameddest=sec:定理2.1}{引理}即得
+$T$是完备的. \hfill $\qedsymbol$
+
+\end{document}

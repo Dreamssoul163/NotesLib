@@ -1,0 +1,221 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{单点连续}
+
+研究拓扑空间之间的映射的连续性, 首先描述单点连续的概念.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (单点连续)}
+
+给定\href{../01 拓扑空间的概念/01 拓扑空间#nameddest=sec:定义1.1}{拓扑空间}
+$X$和$X'$. 对任意的映射$f:X\to X'$和点$x\in X$, 如果
+\[
+    \forall N'\in\mathcal{N}_{f(x)}\,\,\exists N\in\mathcal{N}_x:f[N]\subset N',
+\]
+就称(从空间$X$到空间$X'$上) $f$在$x$处\textbf{连续}.
+
+\vspace{10pt}
+
+下面描述单点连续的一些等价定义.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+给定拓扑空间$X,X'$, 映射$f:X\to X'$和点$x\in X$, 以下等价:
+\begin{enumerate}
+    \item $f$在$x$处连续.
+    \item 对任意点集$A\subset X$, 如果$x\in\overline{A}$,
+    那么$f(x)\in\overline{f[A]}$.
+    \item 对任意点集$B\subset X'$, 如果$x\in\overline{f^{-1}[B]}$,
+    那么$f(x)\in\overline{B}$.
+    \item 对任意点集$B\subset X'$, 如果$f(x)\in B^\circ$,
+    那么$x\in f^{-1}[B]^\circ$.
+    \item 对$f(x)$的任意邻域$N'$, $f^{-1}[N']$是$x$的邻域.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\noindent{\kaishu 1 $\to$ 2.}
+
+假设$x\in\overline{A}$但是$f(x)\notin\overline{f[A]}$,
+即$f(x)\in\overline{f[A]}\,^c=(f[A]^c)^\circ$. 由$f$在$x$处连续,
+存在$x$的邻域$N$使得
+\[
+    f[N]\subset f[A]^c\quad\implies\quad f[N]\cap f[A]=\varnothing.
+\]
+但是$x\in\overline{A}$使得$N\cap A$非空, 矛盾. 所以$f(x)\in\overline{f[A]}$.
+
+\noindent{\kaishu 2 $\to$ 3.}
+
+假设2.成立且$x\in\overline{f^{-1}[B]}$. 令$A=f^{-1}[B]$, 则
+$f(x)\in\overline{f[A]}=\overline{f[f^{-1}[B]]}\subset\overline{B}$.
+
+\noindent{\kaishu 3 $\to$ 4.}
+
+假设3.成立且$f(x)\in B^\circ$, 再假设$x\notin f^{-1}[B]^\circ$,
+即$x\in(f^{-1}[B]^\circ)^c=\overline{f^{-1}[B]^c}=\overline{f^{-1}[B^c]}$. 所以
+\[
+    f(x)\in\overline{B^c}=(B^\circ)^c\quad\implies\quad\bot.
+\]
+
+\noindent{\kaishu 4 $\to$ 5.} 显然.
+
+\noindent{\kaishu 5 $\to$ 1.}
+
+假设5.成立, 则任取$f(x)$的邻域$N'$, 注意到$N=f^{-1}[N']$是$x$的邻域并且
+\begin{equation*}
+    f[N]=f[f^{-1}[N']]\subset N'.
+\tag*{\qedsymbol}\end{equation*}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+给定拓扑空间$X,X'$和$X''$, 以及映射$f:X\to X'$和$g:X'\to X''$.
+
+对任意点$x\in X$, 如果$f$在$x$处连续, $g$在$f(x)$处连续, 那么
+$g\circ f$在$x$处连续.
+
+\noindent{\kaishu 证明.}
+
+对任意点集$A\subset X$, 如果$x\in\overline{A}$,
+那么$f(x)\in\overline{f[A]}$, 进一步$g(f(x))\in\overline{g[f[A]]}$.
+\hfill $\qedsymbol$
+
+
+
+
+
+\newpage
+
+\section{连续映射}
+
+\hypertarget{sec:定义2.1}{}
+\noindent\textbf{定义2.1 (连续映射)}
+
+给定拓扑空间$X$和$X'$.
+如果映射$f:X\to X'$在任意点$x\in X$处连续, 就称$f$是\textbf{连续映射}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1}
+
+给定拓扑空间$X,X'$以及映射$f:X\to X'$, 以下等价:
+\begin{enumerate}
+    \item $f$是连续映射.
+    \item 对任意点集$A\subset X$, $f[\,\overline{A}\,]\subset\overline{f[A]}$.
+    \item 对任意点集$B\subset X'$,
+    $\overline{f^{-1}[B]}\subset f^{-1}[\,\overline{B}\,]$.
+    \item 对任意点集$B\subset X'$,
+    $f^{-1}[B^\circ]\subset f^{-1}[B]^\circ$.
+    \item 对$X'$中任意的开集$U$, $f^{-1}[U]$是$X$的开集.
+    \item 对$X'$中任意的闭集$V$, $f^{-1}[V]$是$X$的闭集.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+根据单点连续的等价定义, 这里的前4条恰好是那里的前4条对$x$的全称命题, 所以也等价.
+
+\noindent{\kaishu 4 $\to$ 5.}
+
+假设4.成立且$U$是$X'$的开集, 有$U^\circ=U$, 所以
+\[
+    f^{-1}[U]=f^{-1}[U^\circ]\subset f^{-1}[U]^\circ,
+\]
+即$f^{-1}[U]$是开集.
+
+\noindent{\kaishu 5 $\to$ 6.}
+
+假设5.成立且$V$是$X'$的闭集, 有$V^c$是开集, 于是$f^{-1}[V^c]=f^{-1}[V]^c$是开集,
+即$f^{-1}[V]$是闭集.
+
+\noindent{\kaishu 6 $\to$ 3.}
+
+假设6.成立. 因为$\overline{B}$是闭集, 所以$f^{-1}[\,\overline{B}\,]$也是闭集, 从而
+\begin{equation*}
+    B\subset\overline{B}\quad\implies\quad
+    f^{-1}[B]\subset f^{-1}[\,\overline{B}\,]\quad\implies\quad
+    \overline{f^{-1}[B]}\subset f^{-1}[\,\overline{B}\,].
+\tag*{\qedsymbol}\end{equation*}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.2}{}
+\noindent\textbf{定理2.2}
+
+给定拓扑空间$X,X'$, 映射$f:X\to X'$, 以及$X'$的子基$\mathcal{S}$.
+
+如果$\mathcal{S}$中元素的原像都是$X$的开集, 那么$f$连续.
+
+\noindent{\kaishu 证明.}
+
+对$X'$中任意的开集$U$, 存在$\mathcal{S}$的一族非空有限子集$(\mathcal{R}_i)_{i\in I}$
+使得$\displaystyle U=\bigcup_{i\in I}\bigcap\mathcal{R}_i$, 从而
+\[
+    f^{-1}[U]=f^{-1}\left[\,\bigcup_{i\in I}\bigcap_{S\in\mathcal{R}_i}S\,\right]=
+    \bigcup_{i\in I}\bigcap_{S\in\mathcal{R}_i}f^{-1}[S]
+\]
+也是$X$的开集. 所以$f$连续. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.3}{}
+\noindent\textbf{定理2.3 (复合保持连续)}
+
+给定拓扑空间$X,X'$和$X''$,
+如果映射$f:X\to X'$和$g:X'\to X''$都连续, 那么$g\circ f$也连续.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.4}{}
+\noindent\textbf{定理2.4}
+
+给定集合$X$和$X$上的拓扑$\mathcal{T}_1,\mathcal{T}_2$,
+设$\mathcal{T}_1\subset\mathcal{T}_2$,
+则从空间$(X,\mathcal{T}_2)$到空间$(X,\mathcal{T}_1)$上$\mathrm{id}_X$是连续映射.
+
+也就是说, 从细拓扑到粗拓扑的变换是连续的.
+
+% 健康状况堪忧. 怎么办?
+% 2026.03.22
+
+\end{document}

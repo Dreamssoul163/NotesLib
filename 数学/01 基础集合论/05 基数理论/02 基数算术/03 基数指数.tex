@@ -1,0 +1,129 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{基数指数}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (基数指数)}
+
+对任意的\href{../01 基数/01 基数#nameddest=sec:定义1.1}{基数}
+$\kappa,\lambda$, 定义
+\[
+    \kappa^\lambda\overset{\mathrm{def}}{=}|\,^\lambda\kappa\,|,
+\]
+称之为\textbf{基数指数}.
+
+\noindent{\kaishu 备注.
+基数指数与序数指数不同, 这里的符号都表示基数指数, $+$和$\cdot$也表示基数运算.}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+任给基数$\kappa,\lambda,\mu$,
+\begin{enumerate}
+    \item $\kappa^{\lambda+\mu}=\kappa^\lambda\kappa^\mu$,
+    \item $\kappa^{\lambda\mu}=(\kappa^\lambda)^\mu$,
+    \item 如果$\lambda<\mu$, 那么$\kappa^\lambda\leqslant\kappa^\mu$,
+    \item 如果$\lambda<\mu$, 那么$\lambda^\kappa\leqslant\mu^\kappa$.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item $\kappa^{\lambda+\mu}\approx\,\!^{\lambda+\mu}\kappa\approx
+    \,\!^{\lambda\sqcup\mu}\kappa\approx
+    \,\!^\lambda\kappa\times\,\!^\mu\kappa\approx\kappa^\lambda\kappa^\mu$,
+    \item $\kappa^{\lambda\mu}\approx\,\!^{\lambda\mu}\kappa\approx
+    \,\!^{\mu\times\lambda}\kappa\approx
+    \,\!^\mu(\,\!^\lambda\kappa)\approx(\kappa^\lambda)^\mu$,
+    \item 如果$\lambda<\mu$, 那么$\,\!^\lambda\kappa\preccurlyeq\,\!^\mu\kappa$,
+    \item 如果$\lambda<\mu$, 那么$\,\!^\kappa\lambda\subset\,\!^\kappa\mu$.
+    \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+当$\lambda$有限时, 归纳即得下面的定理.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+任给基数$\kappa,\lambda$,
+\begin{enumerate}
+    \item 如果$\kappa,\lambda$都有限, 那么$\kappa^\lambda$
+    等同于\href{../../03 自然数/02 自然数算术/03 自然数的指数#nameddest=sec:定义1.1}
+    {自然数的指数},
+    \item 如果$\kappa$无限, $\lambda$有限非零, 那么$\kappa^\lambda=\kappa$.
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.3}{}
+\noindent\textbf{定理1.3}
+
+任给基数$\kappa,\lambda$,
+\begin{enumerate}
+    \item $2^\lambda=|\mathcal{P}(\lambda)|$,
+    \item 如果$\lambda$无限且$2\leqslant\kappa\leqslant\lambda$,
+    那么$\kappa^\lambda=2^\lambda$.
+\end{enumerate}
+
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 首先对任意的$p\in\,\!^\lambda2$定义
+    \[
+        f(p)=\{x\in\lambda\mid p(x)=0\},
+    \]
+    显然$f:\,\!^\lambda2\to\mathcal{P}(\lambda)$是双射,
+    从而$2^\lambda=|\mathcal{P}(\lambda)|$.
+    \item 如果$\lambda$无限且$2\leqslant\kappa\leqslant\lambda$, 那么
+    \[
+        \kappa^\lambda\leqslant\lambda^\lambda\approx\,\!^\lambda\lambda
+        \preccurlyeq\mathcal{P}(\lambda\times\lambda)\approx
+        \mathcal{P}(\lambda)\approx 2^\lambda,
+    \]
+    同时$\kappa^\lambda\geqslant 2^\lambda$,
+    所以$\kappa^\lambda=2^\lambda$. \hfill $\qedsymbol$
+\end{enumerate}
+
+% 基数就先到这里, 大概够用了.
+
+\end{document}

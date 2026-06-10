@@ -1,0 +1,227 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{字典序}
+
+字典序是多个序关系的结合.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (字典序)}
+
+给定\href{04 良序关系#nameddest=sec:定义1.1}{良序结构} $(I,\leqslant)$和
+一族集合$(f_i)_{i\in I}$, 再给定每个$f_i$上的序$\leqslant_i$.
+定义$\displaystyle\prod_{i\in I}f_i$上的\textbf{字典序}:
+\[\begin{aligned}
+    &p<_{\mathrm{lex}}q\quad\overset{\mathrm{def}}{\leftrightarrow}\quad&&
+    \exists i\in I:\,\,(\,\,\forall k<i:p(k)=q(k)\,\,\land\,\,p(i)<_iq(i)\,\,).
+    \\[-3pt]
+    &p\leqslant_{\mathrm{lex}}q\quad\overset{\mathrm{def}}{\leftrightarrow}\quad
+    &&p<_{\mathrm{lex}}q\,\,\lor\,\,p=q.
+\end{aligned}\]
+
+\vspace{10pt}
+
+字典序会保持原有的偏序和全序性质.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+给定良序结构$(I,\leqslant)$和一族集合$(f_i)_{i\in I}$,
+再给定每个$f_i$上的序$\leqslant_i$, 记字典序为$\leqslant_{\mathrm{lex}}$.
+
+\begin{enumerate}
+    \item 如果每个$\leqslant_i$都是偏序, 那么$\leqslant_{\mathrm{lex}}$也是偏序,
+    \item 如果每个$\leqslant_i$都是全序, 那么$\leqslant_{\mathrm{lex}}$也是全序.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 反自反性: 显然.
+    
+    \hspace{2.17em}
+    传递性: 如果$p<_{\mathrm{lex}}q$且$q<_{\mathrm{lex}}r$, 那么存在$i,j\in I$使得
+    \vspace{3pt}
+    \[\left\{\begin{aligned}
+        &\forall k<i:p(k)=q(k)&&\quad\land\quad p(i)<_iq(i),\\[-3pt]
+        &\forall k<j:q(k)=r(k)&&\quad\land\quad q(j)<_jr(j),
+    \end{aligned}\right.\]
+    
+    \vspace{3pt}\hspace{2.17em}
+    如果$i<j$, 那么对任意的$k<i$有$p(k)=q(k)=r(k)$,
+    并且$p(i)<_iq(i)=r(i)$, 从而$p<_{\mathrm{lex}}r$ ;
+
+    \hspace{2.17em}
+    如果$i=j$, 那么对任意的$k<i$有$p(k)=q(k)=r(k)$,
+    并且$p(i)<_iq(i)<_ir(i)$, 从而$p<_{\mathrm{lex}}r$ ;
+
+    \hspace{2.17em}
+    如果$i>j$, 那么对任意的$k<j$有$p(k)=q(k)=r(k)$,
+    并且$p(j)=q(j)<_jr(j)$, 从而$p<_{\mathrm{lex}}r$ .
+
+    \item 三歧性: 对任意的$p,q$, 如果$p\neq q$, 那么
+    \[
+        \{i\in I\mid p(i)\neq q(i)\}
+    \]
+    是$I$的非空子集, 记最小元为$i$, 则对任意的$k<i$有$p(k)=q(k)$.
+
+    \hspace{2.17em}
+    此时如果$p(i)<_iq(i)$则$p<_{\mathrm{lex}}q$,
+    如果$p(i)>_iq(i)$则$p>_{\mathrm{lex}}q$. \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+但是字典序未必一定保持良序的性质.
+
+举个例子, 考虑$\displaystyle\prod_{i\in\omega}2=\,\!^\omega2$上的字典序,
+对任意自然数$n$定义
+\vspace{-3pt}
+\[
+    p_n:\omega\to 2,\quad i\mapsto\left\{\begin{aligned}
+        &0,\quad&&i<n,\\[-3pt]
+        &1,\quad&&i\geqslant n.
+    \end{aligned}\right.
+\]
+接下来, 对任意自然数$n$有
+\[
+    \forall i<n:p_{n+1}(i)=0=p_n(i)\quad\land\quad p_{n+1}(n)=0<1=p_n(n),\\[3pt]
+\]
+所以$p_{n+1}<_{\mathrm{lex}}p_n$. 所以$(p_n)_{n\in\omega}$是一个严格递降序列,
+由\href{04 良序关系#nameddest=sec:定理1.2}{引理}可知字典序不是良序.
+
+
+
+
+
+\newpage
+
+有限Descartes积上的字典序就可以保持良序性质.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+给定自然数$n$和一族集合$(f_i)_{i<n}$,
+再给定每个$f_i$上的良序$\leqslant_i$, 那么字典序$\leqslant_{\mathrm{lex}}$也是良序.
+
+\noindent{\kaishu 证明.}
+
+任取$\displaystyle\prod_{i<n}f_i$的非空子集$S$, 下证$S$有最小元.
+显然$n$非零, 对任意的$i\leqslant n$递归定义$S_i$ :
+\vspace{6pt}
+\begin{enumerate}
+    \item $S_0=S$,
+    \item $S_{i+1}=\{p\in S_i\mid\forall\varphi\in S_i:p(i)\leqslant_i\varphi(i)\}$.
+\end{enumerate}
+
+\vspace{5pt}\hspace{-1em}{\kaishu 命题1.} 对任意$i\leqslant n$, $S_i$非空.
+
+\vspace{3pt}
+归纳证明. 首先$S_0=S$非空; 其次任取$i<n$, 假设$S_i$非空, 那么
+\[
+    \{\varphi(i)\mid\varphi\in S_i\}
+\]
+是$f_i$的非空子集, 记最小元为$m$, 则存在$p\in S_i$使得$p(i)=m$, 从而$p\in S_{i+1}$.
+
+\vspace{5pt}\hspace{-1em}{\kaishu 命题2.}
+对任意$i\leqslant n$和$p\in S$,
+$p\in S_i$当且仅当$\forall k<i\,\,\forall\varphi\in S_k:p(k)\leqslant_k\varphi(k)$.
+
+\vspace{3pt}
+归纳证明. 首先$p\in S$和$\forall k<0\cdots$始终成立; 其次任取$i<n$, 假设
+\[
+    p\in S_i\quad\leftrightarrow\quad
+    \forall k<i\,\,\forall\varphi\in S_k:p(k)\leqslant_k\varphi(k),
+\]
+那么
+\[\begin{aligned}
+    p\in S_{i+1}
+    \iff&p\in S_i\,\,\land\,\,\forall\varphi\in S_i:p(i)\leqslant_i\varphi(i)\\[-3pt]
+    \iff&\forall k<i\,\,\forall\varphi\in S_k:p(k)\leqslant_k\varphi(k)
+    \quad\land\quad\forall\varphi\in S_i:p(i)\leqslant_i\varphi(i)\\[-3pt]
+    \iff&\forall k<i+1\,\,\,\forall\varphi\in S_k:p(k)\leqslant_k\varphi(k).
+\end{aligned}\]
+
+\vspace{5pt}\hspace{-1em}{\kaishu 命题3.} $S_n$的元素是$S$的最小元.
+
+\vspace{3pt}
+取$p\in S_n$, 根据命题2可知
+对任意$k<n$和$\varphi\in S_k$有$p(k)\leqslant_k\varphi(k)$.
+
+再任取$q\in S$, 假设$q<_{\mathrm{lex}}p$, 即存在$i<n$使得
+\[
+    \forall k<i:q(k)=p(k)\quad\land\quad q(i)<_ip(i).
+\]
+那么对任意$k<i$和$\varphi\in S_k$有$q(k)=p(k)\leqslant_k\varphi(k)$,
+于是$p,q\in S_i$. 进一步$p(i)\leqslant_iq(i)$, 矛盾. \hfill $\qedsymbol$
+
+
+
+
+
+\vspace{20pt}
+
+\section{有限运算与字典序}
+
+任给序集$a,b$, 把它们的一般Descartes积上的字典序复制到$a\times b$上,
+定义为$a\times b$上的字典序.
+
+对任意的$(x,y),(x',y')\in a\times b$,
+$(x,y)\leqslant_{\mathrm{lex}}(x',y')$当且仅当
+\[
+    x<x'\quad\lor\quad(\,x=x'\quad\land\quad y\leqslant y'\,).
+\]
+
+\vspace{10pt}
+
+\hypertarget{sec:定义2.1}{}
+\noindent\textbf{定义2.1 (有限不交并)}
+
+任给集合$a,b$, 定义$a\sqcup b\overset{\mathrm{def}}{=}
+\{0\}\times a\cup\{1\}\times b$.
+
+如果$a,b$都是序集, 则$a\sqcup b\subset 2\times(a\cup b)$上也有字典序.
+
+\vspace{10pt}
+
+多元的情况依此类推.
+
+\end{document}

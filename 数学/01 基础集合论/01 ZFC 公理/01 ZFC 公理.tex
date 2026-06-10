@@ -1,0 +1,142 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section*{ZFC 公理}
+\addcontentsline{toc}{section}{ZFC 公理}
+
+严格来说, 集论语言是只有一个二元关系符号$\in$ (称作``\textbf{属于}'')的一阶语言,
+ZFC集合论是该语言的一个理论, 即若干一阶语句.
+
+为了美观性与可读性, 这里不完全使用形式写法, 而是掺杂一些自然语言来描述这些公理,
+称所有的变元为\textbf{集合}. 以下的描述方式可以还原成标准的一阶语句,
+其中的英文字母代表不同的变元.
+
+\vspace{10pt}
+
+\noindent{\kaishu 备注.
+把$\forall x\,(x\in a\to\varphi)$简记为$\forall x\in a\,(\varphi)$,
+把$\exists x\,(x\in a\land\varphi)$简记为$\exists x\in a\,(\varphi)$.}
+
+\vspace{10pt}
+
+\hypertarget{sec:外延公理}{}
+\noindent\textbf{外延公理}
+
+对任意的$a,b$, 如果$\forall x\,(x\in a\leftrightarrow x\in b)$, 那么$a=b$.
+
+\vspace{10pt}
+
+\hypertarget{sec:分离公理模式}{}
+\noindent\textbf{分离公理模式}
+
+任取公式$\varphi(p_1,\cdots,p_n,x)$, 以下是一条\textbf{分离公理}:
+
+对任意的$a,p_1,\cdots,p_n$, 存在$b$使得
+$\forall x\,(x\in b\leftrightarrow(x\in a\land\varphi))$.
+
+\vspace{10pt}
+
+\hypertarget{sec:替换公理模式}{}
+\noindent\textbf{替换公理模式}
+
+任取公式$\varphi(p_1,\cdots,p_n,x,y)$, 以下是一条\textbf{替换公理}:
+
+对任意的$a,p_1,\cdots,p_n$, 如果$\forall x\in a\,(\exists!\,y\,\varphi)$,
+那么存在$b$使得$\forall y\,(y\in b\leftrightarrow\exists x\in a\,(\varphi))$.
+
+\vspace{10pt}
+
+\hypertarget{sec:对集公理}{}
+\noindent\textbf{对集公理}
+
+对任意的$a,b$, 存在$c$使得$\forall x\,(x\in c\leftrightarrow x=a\lor x=b)$.
+
+\vspace{10pt}
+
+\hypertarget{sec:并集公理}{}
+\noindent\textbf{并集公理}
+
+对任意的$a$, 存在$b$使得$\forall x\,(x\in b\leftrightarrow\exists y\in a\,(x\in y))$.
+
+\vspace{10pt}
+
+\hypertarget{sec:幂集公理}{}
+\noindent\textbf{幂集公理}
+
+对任意的$a$, 存在$b$使得$\forall x\,(x\in b\leftrightarrow x\subset a)$.
+
+\noindent{\kaishu 备注.
+$\subset$是\href{../02 集合的一般构造/01 集合的简单运算#nameddest=sec:定义1.1}
+{子集}符号, 视为一个扩充的二元关系.}
+
+\vspace{10pt}
+
+\hypertarget{sec:无限公理}{}
+\noindent\textbf{无限公理}
+
+存在$a$使得$a$是归纳集.
+
+\noindent{\kaishu 备注.
+``是\href{../03 自然数/01 自然数/01 自然数#nameddest=sec:定义1.2}{归纳集}''
+视为一个扩充的一元关系.}
+
+\vspace{10pt}
+
+\hypertarget{sec:正则公理}{}
+\noindent\textbf{正则公理}
+
+对任意的$a$, 如果$a$非空, 那么存在$m\in a$使得$m\cap a=\varnothing$.
+
+\noindent{\kaishu 备注.
+$\cap$是\href{../02 集合的一般构造/01 集合的简单运算#nameddest=sec:定义4.3}
+{二元交集}符号, 视为一个扩充的二元函数;
+$\varnothing$是\href{../02 集合的一般构造/01 集合的简单运算#nameddest=sec:定义1.2}
+{空集}符号, 视为一个扩充的常元.}
+
+\vspace{10pt}
+
+\hypertarget{sec:选择公理}{}
+\noindent\textbf{选择公理}
+
+对任意的$a$, 如果$\varnothing\notin a$, 那么存在$f$使得$f$是$a$上的选择函数.
+
+\noindent{\kaishu 备注.
+``是某集合的\href{../02 集合的一般构造/03 映射#nameddest=sec:定义3.1}{选择函数}''
+视为一个扩充的二元关系.}
+
+% 这种写法仍然有点奇怪.
+% 所谓``扩充符号''这里不打算解释了, 希望大家相信它们能够还原成一阶语言.
+
+\end{document}

@@ -1,0 +1,125 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{有限集}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (有限集)}
+
+给定集合$a$, 如果$a\prec\omega$, 就称$a$是\textbf{有限集}, 否则称$a$是\textbf{无限集}.
+
+\vspace{15pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+自然数都是有限集.
+
+\noindent{\kaishu 证明.}
+
+任取自然数$n$, 显然$n\preccurlyeq\omega$.
+假设$n\approx\omega$, 取双射$f:n\to\omega$.
+
+\vspace{3pt}
+下面对$m\leqslant n$归纳证明$\exists M\in\omega\,\,\forall k<m:f(k)\leqslant M$.
+
+\begin{enumerate}
+    \item 首先显然$\exists M\in\omega\,\,\forall k<0:f(k)\leqslant M$;
+    
+    \item 其次, 任取自然数$m$, 假设存在自然数$M$使得$\forall k<m:f(k)\leqslant M$,
+    再假设$m+1\leqslant n$.
+    
+    \hspace{2.17em}
+    那么对任意的$k<m+1$有:
+    \vspace{3pt}
+    \[\left\{\begin{aligned}
+        &k<m\quad\implies\quad f(k)\leqslant M\leqslant M+f(m),\\[-3pt]
+        &k=m\quad\implies\quad f(k)=f(m)\leqslant M+f(m),
+    \end{aligned}\right.\\[3pt]\]
+    所以$\forall k<m+1:f(k)\leqslant M+f(m)$. 归纳完毕.
+\end{enumerate}
+
+\vspace{3pt}
+
+从而存在自然数$M$使得$\forall k<n:f(k)\leqslant M$, 于是
+$M+1=f(f^{-1}(M+1))\leqslant M$, 矛盾. \hfill $\qedsymbol$
+
+\vspace{15pt}
+
+鸽笼原理是有限集最重要的性质.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2 (鸽笼原理)}
+
+有限集不可能与其
+真子集\href{../../02 集合的一般构造/06 势关系#nameddest=sec:定义1.1}{等势}.
+
+\noindent{\kaishu 证明.}
+
+% 下面的证明我觉得很巧妙, 相比于直接归纳(从大双射构造小双射)的做法要自然得多.
+% 只是这里有限集的定义略有不同.
+
+假设有限集$a$与它的真子集$b$等势, 即存在双射$f:a\to b$.
+
+取$x\in a\setminus b$, 然后递归定义$p:\omega\to a$ :
+\[\forall n\in\omega:\quad p(n)=\left\{\begin{aligned}
+    &x,\quad&&n=0,\\[-3pt]
+    &f(p(n-1)),\quad&&n>0.
+\end{aligned}\right.\\[3pt]\]
+下证$p$是单射,
+对$n$归纳证明$\forall k\in\omega:p(k)=p(n)\to k=n$.
+
+首先对任意自然数$k$, 如果$p(k)=p(0)=x$, 假设$k\neq 0$则
+\[
+    x=p(k)=f(p(k-1))\in b,
+\]
+矛盾. 所以$k=0$.
+
+其次任取自然数$n$, 假设$\forall k\in\omega:p(k)=p(n)\to k=n$.
+
+此时对任意自然数$k$, 如果$p(k)=p(n+1)$, 那么$k\neq 0$, 从而
+\[
+    f(p(k-1))=f(p(n))\implies p(k-1)=p(n)\implies k-1=n\implies k=n+1.
+\]
+
+综上$p$是单射, 从而$\omega\preccurlyeq a$, 矛盾. \hfill $\qedsymbol$
+
+% Winter spring summer fall
+% You're the fairest of them all
+% I love you
+
+\end{document}

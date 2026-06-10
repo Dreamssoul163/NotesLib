@@ -1,0 +1,274 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{替换定理}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1 (项的替换定理)}
+
+给定一阶语言$\mathcal{L}$和
+$\mathcal{L}$-\href{../01 一阶语言的结构/01 一阶语言的结构#nameddest=sec:定义1.1}
+{结构} $A$, 对任意的项$t$、替换$\theta$和$A$上的变元赋值$\sigma,\tau$, 如果有条件:
+\[
+    \forall y\in\mathrm{at}(t):y^{(A,\sigma)}=\theta(y)^{(A,\tau)},
+\]
+那么有结论: $t^{(A,\sigma)}=\theta(t)^{(A,\tau)}$.
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 显然原子项$t$的条件和结论相同.
+    \item 对任意的$n$元函数符号$f$, 假设项$t_1,\cdots,t_n$满足命题,
+    再假设$t=ft_1\cdots t_n$满足条件.
+    
+    \hspace{2.17em}
+    因为每个$\mathrm{at}(t_i)\subset\mathrm{at}(t)$,
+    所以$t_i$也满足条件, 依假设有结论$t_i^{(A,\sigma)}=\theta(t_i)^{(A,\tau)}$. 从而
+    \begin{equation*}
+        t^{(A,\sigma)}=f^A(t_1^{(A,\sigma)},\cdots,t_n^{(A,\sigma)})=
+        f^A(\theta(t_1)^{(A,\tau)},\cdots,\theta(t_n)^{(A,\tau)})
+        =(f\theta(t_1)\cdots\theta(t_n))^{(A,\tau)}=\theta(t)^{(A,\tau)}.
+    \tag*{\qedsymbol}\end{equation*}
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2 (公式的替换定理)}
+
+给定一阶语言$\mathcal{L}$和$\mathcal{L}$-结构$A$,
+对任意的公式$\varphi$、替换$\theta$和$A$上的变元赋值$\sigma,\tau$, 如果有条件:
+\[
+    \forall y\in\mathrm{at}(\varphi):
+    y^{(A,\sigma)}=\theta(y)^{(A,\tau)}\quad\land\quad\theta[\varphi],
+\]
+那么有结论: $(A,\sigma)\models\varphi\leftrightarrow
+(A,\tau)\models\theta(\varphi)$.
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 对任意的项$t_1,t_2$, 假设$\varphi=t_1\equiv t_2$满足条件.
+    显然$t_i$都满足条件, 所以$t_i^{(A,\sigma)}=\theta(t_i)^{(A,\tau)}$. 从而
+    \[
+        (A,\sigma)\models\varphi\iff t_1^{(A,\sigma)}=t_2^{(A,\sigma)}\iff
+        \theta(t_1)^{(A,\tau)}=\theta(t_2)^{(A,\tau)}\iff
+        (A,\tau)\models\theta(\varphi).
+    \]
+
+    \item 对任意的$n$元关系符号$r$和项$t_1,\cdots,t_n$,
+    假设$\varphi=rt_1\cdots t_n$满足条件.
+
+    \hspace{2.17em}
+    显然$t_i$都满足条件, 所以$t_i^{(A,\sigma)}=\theta(t_i)^{(A,\tau)}$. 从而
+    \[
+        (A,\sigma)\models\varphi\iff
+        (t_1^{(A,\sigma)},\cdots,t_n^{(A,\sigma)})\in r^A\iff
+        (\theta(t_1)^{(A,\tau)},\cdots,\theta(t_n)^{(A,\tau)})\in r^A\iff
+        (A,\tau)\models\theta(\varphi).
+    \]
+
+    \item 假设$\varphi_1$满足命题, $\varphi=\neg\varphi_1$满足条件.
+    下证$\varphi_1,\theta,\sigma,\tau$满足条件.
+
+    \hspace{2.17em}
+    第一, $\mathrm{at}(\varphi_1)\subset\mathrm{at}(\varphi)$,
+    于是$\varphi_1$满足第一条;
+    
+    \hspace{2.17em}
+    第二, 由\href{../../01 一阶语言/04 一般替换#nameddest=sec:定义1.4}
+    {自由替换}的定义显然$\theta[\varphi_1]$. 于是有结论
+    $(A,\sigma)\models\varphi_1\iff(A,\tau)\models\theta(\varphi_1)$. 由此
+    \[
+        (A,\sigma)\models\varphi\iff(A,\sigma)\not\models\varphi_1\iff
+        (A,\tau)\not\models\theta(\varphi_1)\iff(A,\tau)\models\theta(\varphi).
+    \]
+
+    \item 假设$\varphi_1,\varphi_2$满足命题, $\varphi=(\varphi_1\to\varphi_2)$满足条件.
+    对每个$\varphi_i$, 下证$\varphi_i,\theta,\sigma,\tau$满足条件.
+
+    \hspace{2.17em}
+    第一, 对每个$\varphi_i$, $\mathrm{at}(\varphi_i)\subset\mathrm{at}(\varphi)$,
+    于是$\varphi_i$满足第一条;
+    
+    \hspace{2.17em}
+    第二, 显然$\theta[\varphi_i]$. 于是有结论
+    $(A,\sigma)\models\varphi_i\iff(A,\tau)\models\theta(\varphi_i)$. 由此
+    \[\begin{aligned}
+        &(A,\sigma)\models\varphi\iff
+        (A,\sigma)\models\varphi_1\to(A,\sigma)\models\varphi_2\\[-3pt]
+        \iff&(A,\tau)\models\theta(\varphi_1)\to(A,\tau)\models\theta(\varphi_2)
+        \iff(A,\tau)\models\theta(\varphi).
+    \end{aligned}\]
+
+    \item 对任意的变元$x$, 假设$\varphi_1$满足命题,
+    $\varphi=\exists x\varphi_1$满足条件. 下证$\forall a\in A:
+    \displaystyle\varphi_1,\theta/x,\sigma\frac{a}{x},\tau\frac{a}{x}$满足条件.
+
+    \hspace{2.17em}
+    第一, 任取$y\in\mathrm{at}(\varphi_1)$, 此时若$y=x$则有
+    \[
+        y^{(A,\sigma)a/x}=a=x^{(A,\tau)a/x}=\theta/x(y)^{(A,\tau)a/x},
+    \]
+    若$y\neq x$则$y\in\mathrm{at}(\varphi)$, 可以使用$\varphi$的条件.
+    并且由$\theta[\varphi]$得$x\notin\mathrm{var}\,\theta(y)$, 因此
+    \[
+        y^{(A,\sigma)a/x}=y^{(A,\sigma)}=\theta(y)^{(A,\tau)}
+        =\theta(y)^{(A,\tau)a/x}=\theta/x(y)^{(A,\tau)a/x}.
+    \]
+    综上$\varphi_1$满足第一条. 第二, 显然$\theta/x[\varphi_1]$.
+    于是有结论$\displaystyle\left(A,\sigma\frac{a}{x}\right)\models\varphi_1\iff
+    \left(A,\tau\frac{a}{x}\right)\models\theta/x(\varphi_1)$. 由此
+    \begin{equation*}
+        (A,\sigma)\models\varphi\iff
+        \exists a\in A:\left(A,\sigma\frac{a}{x}\right)\models\varphi_1\iff
+        \exists a\in A:\left(A,\tau\frac{a}{x}\right)\models\theta/x(\varphi_1)\iff
+        (A,\tau)\models\theta(\varphi).
+    \tag*{\qedsymbol}\end{equation*}
+\end{enumerate}
+
+
+
+
+
+\newpage
+
+\section{替换定理的推论}
+
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1 (广义的替换定理)}
+
+给定一阶语言$\mathcal{L}_1\subset\mathcal{L}_2$, 假设二者的变元符号集相同.
+再给定$\mathcal{L}_1$-结构$A_1$和$\mathcal{L}_2$-结构$A_2$, 假设
+它们有相同的论域$A$, $A_2$是$A_1$的解释扩张.
+
+对$A$上任意的变元赋值$\sigma,\tau$、$\mathcal{L}_1$的公式$\varphi$和
+$\mathcal{L}_2$的替换$\theta$, 如果
+\[
+    \forall x\in\mathrm{at}(\varphi):\quad x^{(A_1,\sigma)}=\theta(x)^{(A_2,\tau)}
+\]
+并且有$\theta[\varphi]$, 那么
+$(A_1,\sigma)\models^1\varphi\leftrightarrow(A_2,\tau)\models^2\theta(\varphi)$.
+
+\noindent{\kaishu 证明.}
+
+首先, 由\href{02 语言的限制与扩张#nameddest=sec:定理1.2}{引理}得
+$(A_1,\sigma)\models^1\varphi\leftrightarrow(A_2,\sigma)\models^2\varphi$.
+
+其次, 再由\href{02 语言的限制与扩张#nameddest=sec:定理1.1}{引理}得
+对任意的$x\in\mathrm{at}(\varphi)$都有
+\[
+    x^{(A_2,\sigma)}=x^{(A_1,\sigma)}=\theta(x)^{(A_2,\tau)},
+\]
+从而根据替换定理可得
+$(A_2,\sigma)\models^2\varphi\leftrightarrow(A_2,\tau)\models^2\theta(\varphi)$.
+\hfill $\qedsymbol$
+
+% 愿世界早日和平.
+% 2026.03.01
+
+\vspace{10pt}
+
+如果在此设定下$\theta(\varphi)$是语句, 那么就不需要关心$\tau$的部分.
+反过来也有下面的定理.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.2}{}
+\noindent\textbf{定理2.2}
+
+给定一阶语言$\mathcal{L}_1\subset\mathcal{L}_2$, 假设二者仅有常元符号集不同.
+再给定$\mathcal{L}_1$-结构$A_1$和$\mathcal{L}_2$-结构$A_2$, 假设
+它们有相同的论域$A$, $A_2$是$A_1$的解释扩张.
+
+设$\psi$是$\mathcal{L}_2$的语句. 如果$A_2\models^2\psi$,
+那么存在$A$上的变元赋值$\sigma$、
+$\mathcal{L}_1$的公式$\varphi$和$\mathcal{L}_2$的替换$\theta$使得:
+\begin{enumerate}
+    \item $\psi=\theta(\varphi)$, 并且$\theta[\varphi]$,
+    \item 对任意的$x\in\mathrm{at}(\varphi)$, $\theta(x)\in\mathcal{C}_2$并且
+    $x^{(A_1,\sigma)}=\theta(x)^{A_2}$,
+    \item $(A_1,\sigma)\models^1\varphi$.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+在$\mathcal{V}$中任取与$\mathrm{bnd}(\psi)$不相交的
+子集$W\subset\mathcal{V}$, 使得$|W|=|\mathrm{const}(\psi)|$.
+再任取双射$p:W\to\mathrm{const}(\psi)$.
+
+定义$A$上的变元赋值$\sigma$和$\mathcal{L}_2$的替换$\theta$如下:
+\[\forall x\in\mathcal{V}:\,\sigma(x)=\left\{\begin{aligned}
+    &p(x)^{A_2},\,&&x\in W,\\[-3pt]
+    &-(\text{任意}),\,&&x\notin W,
+\end{aligned}\right.\quad
+\forall x\in\mathcal{V}\cup\mathcal{C}_2:\,\theta(x)=\left\{\begin{aligned}
+    &p(x),\,&&x\in W,\\[-3pt]
+    &p^{-1}(x),\,&&x\in\mathrm{const}(\psi),\\[-3pt]
+    &x,\,&&x\notin W\cup\mathrm{const}(\psi),
+\end{aligned}\right.\]
+然后定义$\varphi=\theta(\psi)$.
+
+对任意的$x\in\mathrm{const}(\psi)$有
+$\mathrm{var}\,\theta(x)=\{p^{-1}(x)\}\subset W$与$\mathrm{bnd}(\psi)$不相交,
+由\href{../../01 一阶语言/05 单点替换#nameddest=sec:定理1.6}{引理}得
+$\theta[\psi]$. 再
+由\href{../../01 一阶语言/04 一般替换#nameddest=sec:定理3.2}{引理}得
+\[
+    \mathrm{at}(\varphi)=
+    \bigcup_{x\in\mathrm{const}(\psi)}\mathrm{at}\,\theta(x)=
+    \{p^{-1}(x)\mid x\in\mathrm{const}(\psi)\}=W,\\[3pt]
+\]
+所以$\varphi$是$\mathcal{L}_1$的公式. 下面证明它们满足命题.
+
+\begin{enumerate}
+    \item 易证$\theta$与自己的复合$\theta\circ\theta=i$, 所以
+    由\href{../../01 一阶语言/04 一般替换#nameddest=sec:定理4.2}{引理}得
+    $\psi=(\theta\circ\theta)(\psi)=\theta(\varphi)$.
+    同时对任意的$x\in\mathrm{at}(\varphi)$有
+    \[
+        x\in W\implies\mathrm{var}\,\theta(x)=\varnothing\implies
+        \mathrm{var}\,\theta(x)\cap\mathrm{bnd}(\varphi)=\varnothing,
+    \]
+    于是也有$\theta[\varphi]$.
+    \item 对任意的$x\in\mathrm{at}(\varphi)=W$,
+    $\theta(x)=p(x)\in\mathrm{const}(\psi)\subset\mathcal{C}_2$并且
+    $x^{(A_1,\sigma)}=x^\sigma=p(x)^{A_2}=\theta(x)^{A_2}$.
+    \item 使用定理2.1即得
+    $(A_1,\sigma)\models^1\varphi\leftrightarrow A_2\models^2\psi$.
+    \hfill $\qedsymbol$
+\end{enumerate}
+
+\end{document}

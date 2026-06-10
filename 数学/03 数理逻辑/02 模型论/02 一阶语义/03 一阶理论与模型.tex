@@ -1,0 +1,165 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{一阶理论与模型}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1}
+
+给定一阶语言$\mathcal{L}$, $\mathcal{L}$-结构$A$和语句$\varphi$.
+
+如果存在$A$上的变元赋值$\sigma$使得$(A,\sigma)\models\varphi$,
+就称结构$A$满足语句$\varphi$, 记作$A\models\varphi$.
+
+\vspace{10pt}
+
+设$T$是一族语句, 用$A\models T$表示$A$满足$T$中的所有语句.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+如果$A\models\varphi$, 那么对$A$上任意的变元赋值$\tau$都有$(A,\tau)\models\varphi$.
+
+\noindent{\kaishu 证明.}
+
+依定义存在$\sigma$使得$(A,\sigma)\models\varphi$. 因为$\varphi$没有自由变元,
+所以根据\href{01 重合引理#nameddest=sec:定理1.2}{重合引理}有
+$(A,\tau)\models\varphi$. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+设$T$是一族语句, $\varphi$是语句, 则显然$T\models\varphi$当且仅当对任意的结构$A$
+有$A\models T\to A\models\varphi$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (一阶理论)}
+
+给定一阶语言$\mathcal{L}$, 称其中的一族语句$T$为一个$\mathcal{L}$-\textbf{理论}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.3}{}
+\noindent\textbf{定义1.3 (一阶模型)}
+
+给定一阶语言$\mathcal{L}$和$\mathcal{L}$-理论$T$, 称满足$T$的结构为$T$的\textbf{模型}.
+
+\vspace{10pt}
+
+任给一阶语言$\mathcal{L}$和$\mathcal{L}$-结构$A$,
+把$\mathcal{L}$中所有被$A$满足的语句的全体记为
+\[
+    \mathrm{Th}_{\mathcal{L}}(A)=\{\varphi\in F^{\mathcal{L}}\mid
+    \varphi\text{\ 是语句\ },A\text{\ 满足\ }\varphi\},
+\]
+称之为$A$的理论. 显然$A$自身是该理论的模型.
+
+
+
+
+
+\newpage
+
+\section{理论的完备性}
+
+\hypertarget{sec:定义2.1}{}
+\noindent\textbf{定义2.1 (理论的完备性)}
+
+给定一阶语言$\mathcal{L}$和$\mathcal{L}$-理论$T$. 如果对任意的语句$\varphi$有
+\[
+    T\models\varphi\quad\lor\quad T\models\neg\varphi,
+\]
+就称$T$是\textbf{完备的}.
+
+\vspace{10pt}
+
+\hypertarget{sec:例2.1}{}
+\noindent\textbf{例2.1}
+
+任给一阶语言$\mathcal{L}$和$\mathcal{L}$-结构$A$,
+$A$的理论$\mathrm{Th}_{\mathcal{L}}(A)$一定是完备的.
+
+\noindent{\kaishu 证明.}
+
+对任意的语句$\varphi$:
+\begin{enumerate}
+    \item 如果$A\models\varphi$, 则$\varphi\in\mathrm{Th}_{\mathcal{L}}(A)$,
+    从而$\mathrm{Th}_{\mathcal{L}}(A)\models\varphi$,
+    \item 如果$A\models\neg\varphi$,
+    同理$\mathrm{Th}_{\mathcal{L}}(A)\models\neg\varphi$. \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1}
+
+给定一阶语言$\mathcal{L}$. 对$\mathcal{L}$的任意的一致理论$T$,
+$T$是完备的当且仅当$T$的所有模型都有相同的理论, 或者说$T$的所有模
+型\href{../04 Löwenheim-Skolem 定理/02 初等等价#nameddest=sec:定义1.1}{初等等价}.
+
+\noindent{\kaishu 证明.}
+
+\noindent{\kaishu 必要性.}
+
+假设$T$完备, 任取$T$的模型$A,B$. 对任意的语句$\varphi$, 不妨设$A\models\varphi$.
+
+此时$T\cup\{\varphi\}$一致, 所以$T\not\models\neg\varphi$,
+由完备性可知$T\models\varphi$, 从而$B\models\varphi$.
+
+\noindent{\kaishu 充分性.}
+
+假设$T$的所有模型初等等价, 任取一个模型$A$. 对任意的语句$\varphi$:
+\begin{enumerate}
+    \item 如果$A\models\varphi$, 那么$T$的模型都满足$\varphi$, 即$T\models\varphi$,
+    \item 如果$A\models\neg\varphi$, 同理$T\models\neg\varphi$. \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.2}{}
+\noindent\textbf{定理2.2}
+
+给定一阶语言$\mathcal{L}$和$\mathcal{L}$-结构$A,B$.
+如果$B\models\mathrm{Th}_{\mathcal{L}}(A)$, 那么$A,B$初等等价.
+
+\noindent{\kaishu 证明.}
+
+因为$\mathrm{Th}_{\mathcal{L}}(A)$完备而$A,B$都是它的模型. \hfill $\qedsymbol$
+
+\end{document}

@@ -1,0 +1,272 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{一阶语言的项}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (一阶语言的项)}
+
+给定\href{01 一阶语言#nameddest=sec:定义1.1}{一阶语言} $\mathcal{L}=
+(\mathcal{V},\mathcal{C},(n_f)_{f\in\mathcal{F}},(n_r)_{r\in\mathcal{R}})$,
+在$\Sigma_{\mathcal{L}}^*$中定义:
+\begin{enumerate}
+    \item 原子项集$T_0=\mathcal{V}\cup\mathcal{C}$,
+    \item 归纳规则(对每个函数符号$f\in\mathcal{F}$):
+    \[
+        \hat{f}:(\Sigma_{\mathcal{L}}^*)^{n_f}\to\Sigma_{\mathcal{L}}^*,
+        \quad(t_1,\cdots,t_{n_f})\mapsto ft_1\cdots t_{n_f}.
+    \]
+\end{enumerate}
+从$T_0$和归纳规则可以\href{01 一阶语言#nameddest=sec:定义A1.1}{归纳定义}\textbf{项集}
+$T^{\mathcal{L}}$, 称其中的字符串为$\mathcal{L}$的\textbf{项}.
+
+\vspace{10pt}
+
+使用\href{01 一阶语言#nameddest=sec:定理A1.2}{归纳证明}显然有以下的定理.
+\begin{itemize}
+    \item 项不是空字符串, 并且只含有$\mathcal{V},\mathcal{C}$或$\mathcal{F}$中的符号;
+    \item 如果项$t$的首字符是常元或变元, 则$t$等于该字符;
+    \item 如果项$t$的首字符是$n$元函数符号$f$, 则存在项$t_1,\cdots,t_n$使得
+    $t=ft_1\cdots t_n$.
+\end{itemize}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+如果两个项有前缀关系(一个是另一个的前缀), 那么它们相同.
+
+\noindent{\kaishu 证明.}
+
+定义命题$P(t)$:
+对任意的项$s$, 如果$t,s$有前缀关系(记作$t\sim s$), 那么$t=s$.
+
+接下来归纳证明即可.
+
+\begin{enumerate}
+    \item 如果$t$是原子项, 假设$t\sim s$, 那么$s$的首字符是$t$, 即$t=s$.
+    \item 对任意的$n$元函数符号$f$, 假设$t_1,\cdots,t_n$满足命题$P$,
+    下证$t=ft_1\cdots t_n$也满足命题$P$.
+    
+    \hspace{2.17em}
+    如果$t=ft_1\cdots t_n\sim s$, 那么存在项$s_1,\cdots,s_n$使得$s=fs_1\cdots s_n$.
+
+    \hspace{2.17em}
+    所以$t_1\cdots t_n\sim s_1\cdots s_n$.
+    依假设, 容易归纳证明所有的$t_i=s_i$, 于是$t=s$. \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+根据此定理, 如果$t_1\cdots t_n=s_1\cdots s_m$,
+那么$n=m$并且各个$t_i=s_i$.
+
+
+
+
+
+\newpage
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2 (项的唯一可读性)}
+
+对任意的项$t$, 下面两条有且只有一条成立:
+\begin{enumerate}
+    \item $t$是常元或变元,
+    \item 存在唯一的函数符号$f$和项$t_1,\cdots,t_n$使得$t=ft_1\cdots t_n$.
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.3}{}
+\noindent\textbf{定理1.3 (项的映射)}
+
+给定集合$D$, 以及:
+\begin{enumerate}
+    \item 对任意的原子项$t$指定一个元素$\mathrm{i}(t)\in D$,
+    \item 对任意的$n$元函数符号$f$和项$t_1,\cdots,t_n$指定一个映射
+    $\mathrm{i}(f,t_1,\cdots,t_n):D^n\to D$,
+\end{enumerate}
+那么存在唯一的映射$I:T^{\mathcal{L}}\to D$使得
+\begin{enumerate}
+    \item 对任意的原子项$t$有$I(t)=\mathrm{i}(t)$,
+    \item 对任意的$n$元函数符号$f$和项$t_1,\cdots,t_n$有
+    \[
+        I(ft_1\cdots t_n)=\mathrm{i}(f,t_1,\cdots,t_n)(I(t_1),\cdots,I(t_n)).
+    \]
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+在集合$T^{\mathcal{L}}\times D$中进行归纳定义.
+\begin{enumerate}
+    \item 初始集$I_0=\{(t,\mathrm{i}(t))\mid t\in T_0\}$,
+    \item 归纳规则(对每个函数符号$f\in\mathcal{F}$):
+    \[\begin{aligned}
+        f_{\mathrm{i}}:\,&(T^{\mathcal{L}}\times D)^n\to T^{\mathcal{L}}\times D,\\
+        &((t_1,d_1),\cdots,(t_n,d_n))
+        \mapsto(ft_1\cdots t_n,\,\mathrm{i}(f,t_1,\cdots,t_n)(d_1,\cdots,d_n)).
+    \end{aligned}\]
+\end{enumerate}
+从$I_0$和归纳规则可以归纳定义$I\subset T^{\mathcal{L}}\times D$.
+下面证明$I$就是要找的映射.
+
+定义命题$P(t)$: $t$在$I$中存在唯一的像. 归纳证明即可.
+
+\begin{enumerate}
+    \item 如果$t$是原子项, 显然它有唯一的像$\mathrm{i}(t)$.
+    \item 对任意的$n$元函数符号$f$, 假设$t_1,\cdots,t_n$满足命题$P$,
+    下证$t=ft_1\cdots t_n$也满足命题$P$.
+
+    \hspace{2.17em}
+    记$t_1,\cdots, t_n$的唯一像分别为$d_1,\cdots,d_n$,
+    那么使用项的唯一可读性易证$t$有唯一的像
+    \[
+        \mathrm{i}(f,t_1,\cdots,t_n)(d_1,\cdots,d_n).
+    \]
+\end{enumerate}
+
+所以$I:T^{\mathcal{L}}\to D$, 易证它满足条件. 唯一性易证. \hfill $\qedsymbol$
+
+
+
+
+
+\newpage
+
+\section{项的相关概念}
+
+给定一阶语言$\mathcal{L}=
+(\mathcal{V},\mathcal{C},(n_f)_{f\in\mathcal{F}},(n_r)_{r\in\mathcal{R}})$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义2.1}{}
+\noindent\textbf{定义2.1 (项的变元集)}
+
+在$\mathcal{P}(\mathcal{V})$中定义项的映射$\mathrm{var}$:
+\begin{enumerate}
+    \item 对任意的常元$c$, $\mathrm{var}(c)=\varnothing$,
+    \item 对任意的变元$x$, $\mathrm{var}(x)=\{x\}$,
+    \item 对任意的$n$元函数符号$f$和项$t_1,\cdots,t_n$,
+    $\mathrm{var}(ft_1\cdots t_n)=\mathrm{var}(t_1)\cup\cdots\cup\mathrm{var}(t_n)$.
+\end{enumerate}
+
+称$\mathrm{var}(t)$为$t$的\textbf{变元集}, 称其中的元素为$t$中出现的变元.
+
+\vspace{10pt}
+
+类似地可以定义项$t$的常元集$\mathrm{const}(t)$,
+记$\mathrm{at}=\mathrm{var}\cup\mathrm{const}$. 易证它们都是有限集.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义2.2}{}
+\noindent\textbf{定义2.2 (子项)}
+
+在$\mathcal{P}(T^{\mathcal{L}})$中定义项的映射$\mathrm{subterm}$:
+\begin{enumerate}
+    \item 对任意的原子项$t$, $\mathrm{subterm}(t)=\{t\}$,
+    \item 对任意的$n$元函数符号$f$和项$t_1,\cdots,t_n$,
+    \[
+        \mathrm{subterm}(ft_1\cdots t_n)=\mathrm{subterm}(t_1)\cup\cdots\cup
+        \mathrm{subterm}(t_n)\cup\{ft_1\cdots t_n\}.
+    \]
+\end{enumerate}
+
+如果$s\in\mathrm{subterm}(t)$, 就称$s$是$t$的\textbf{子项}, 记作$s\leqslant t$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1}
+
+子项关系是偏序关系.
+
+\noindent{\kaishu 证明.}
+
+\noindent{\kaishu 自反性.}
+
+定义命题$P(t)$: $t\leqslant t$. 归纳证明是显然的.
+
+\noindent{\kaishu 传递性.}
+
+定义命题$P(t)$: $\forall t'\leqslant t:
+\mathrm{subterm}(t')\subset\mathrm{subterm}(t)$. 归纳证明即可.
+
+\begin{enumerate}
+    \item 如果$t$是原子项, 显然由$t'\leqslant t$可得$t'=t$,
+    即$\mathrm{subterm}(t')=\mathrm{subterm}(t)$.
+    \item 对任意的$n$元函数符号$f$, 假设$t_1,\cdots,t_n$满足命题$P$,
+    下证$t=ft_1\cdots t_n$也满足命题$P$.
+
+    \hspace{2.17em}
+    假设$t'\leqslant t$, 要证$\mathrm{subterm}(t')\subset\mathrm{subterm}(t)$.
+    依定义有以下两种情形之一.
+
+    \hspace{2.17em}
+    情形一: 存在$t_i$使得$t'\leqslant t_i$. 此时依假设有
+    $\mathrm{subterm}(t')\subset\mathrm{subterm}(t_i)\subset\mathrm{subterm}(t)$.
+
+    \hspace{2.17em}
+    情形二: $t'=ft_1\cdots t_n$, 即$t'=t$, $\mathrm{subterm}(t')=\mathrm{subterm}(t)$.
+\end{enumerate}
+
+所以如果$t_1\leqslant t_2\leqslant t_3$,
+那么$t_1\in\mathrm{subterm}(t_2)\subset\mathrm{subterm}(t_3)$, 即$t_1\leqslant t_3$.
+
+\noindent{\kaishu 反对称性.}
+
+定义命题$P(t)$: $\forall t':
+(t'\leqslant t\land t\leqslant t'\to t'=t)$. 归纳证明即可.
+
+\begin{enumerate}
+    \item 如果$t$是原子项, 显然由$t'\leqslant t$可得$t'=t$.
+    \item 对任意的$n$元函数符号$f$, 假设$t_1,\cdots,t_n$满足命题$P$,
+    下证$t=ft_1\cdots t_n$也满足命题$P$.
+
+    \hspace{2.17em}
+    假设$t'\leqslant t$且$t\leqslant t'$, 要证$t'=t$. 依定义有以下两种情形之一.
+
+    \hspace{2.17em}
+    情形一: 存在$t_i$使得$t'\leqslant t_i$. 由传递性有$t\leqslant t_i$,
+    再依假设即得$t=t_i$, 矛盾.
+
+    \hspace{2.17em}
+    情形二: $t'=ft_1\cdots t_n$, 即$t'=t$. \hfill $\qedsymbol$
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,92 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{良序原理}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1 (良序原理)}
+\vspace{5pt}
+
+任意集合上都有\href{../01 序关系/04 良序关系#nameddest=sec:定义1.1}{良序关系}.
+
+\vspace{7pt}\noindent{\kaishu 证明.}
+
+任取集合$A$, 再取$\mathcal{P}(A)\setminus\{\varnothing\}$上的选择函数$\varphi$,
+即对$A$的任意非空子集$a$, 有$\varphi(a)\in a$.
+
+据此超限递归定义$\mathbf{On}$上的类映射$\mathbf{P}$ :
+\vspace{3pt}
+\[
+    \forall\alpha\in\mathbf{On}:\quad\mathbf{P}(\alpha)=\left\{\begin{aligned}
+        &\varphi\,(A\setminus\mathbf{P}[\alpha]\,),\quad&&
+        \mathbf{P}[\alpha]\text{\,\,是\,\,}A\text{\,\,的真子集\,},\\[-3pt]
+        &A,\quad&&\mathbf{P}[\alpha]\text{\,\,不是\,\,}A\text{\,\,的真子集\,}.
+    \end{aligned}\right.
+\]
+
+\vspace{10pt}\hspace{-1em}\noindent{\kaishu 命题1.}
+任给序数$\alpha,\beta$, 如果$\mathbf{P}[\alpha],\mathbf{P}[\beta]$都是$A$的真子集
+并且$\mathbf{P}(\alpha)=\mathbf{P}(\beta)$, 那么$\alpha=\beta$.
+
+假设$\beta<\alpha$, 则$\mathbf{P}(\alpha)\in A\setminus\mathbf{P}[\alpha]$,
+$\mathbf{P}(\beta)\in\mathbf{P}[\alpha]$, 矛盾.
+
+同理假设$\alpha<\beta$也矛盾. 所以$\alpha=\beta$.
+
+\vspace{7pt}\hspace{-1em}\noindent{\kaishu 命题2.}
+存在序数$\alpha$使得$\mathbf{P}[\alpha]$不是$A$的真子集.
+
+假设$\mathbf{P}[\alpha]$都是$A$的真子集, 则$\mathbf{P}(\alpha)$
+都属于$A$, 同时由命题1得$\mathbf{P}$是单射, 矛盾.
+
+\vspace{7pt}
+把满足命题2的最小序数记作$\mu$, 即:
+\begin{enumerate}
+    \item $\mathbf{P}[\mu]$不是$A$的真子集,
+    \item 对任意的$\beta<\mu$, $\mathbf{P}[\beta]$是$A$的真子集,
+    从而$\mathbf{P}(\beta)\in A$.
+\end{enumerate}
+
+\vspace{7pt}\hspace{-1em}\noindent{\kaishu 命题3.}
+$\mathbf{P}\!\restriction_\mu\,:\mu\to A$是双射.
+
+显然$\mathbf{P}\!\restriction_\mu\,:\mu\to A$, 由命题1得它是单射.
+同时$\mathbf{P}[\mu]$不是$A$的真子集, 所以$\mathbf{P}[\mu]=A$.
+
+\vspace{7pt}
+最后, $\mathbf{P}\!\restriction_\mu$把严格良序结构$(\mu,\in)$复制到$A$上,
+从而$A$上有良序. \hfill $\qedsymbol$
+
+\end{document}

@@ -1,0 +1,25 @@
+# LaTeX 辅助文件
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.lot
+*.nav
+*.snm
+*.vrb
+*.xdv
+*-blx.bib
+*.run.xml
+
+
+# 一些编辑器的临时文件
+*.bak
+*.swp
+*~
+.DS_Store

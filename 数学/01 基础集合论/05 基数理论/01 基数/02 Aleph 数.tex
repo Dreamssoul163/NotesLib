@@ -1,0 +1,197 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{Aleph 数}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (Aleph数)}
+
+递归定义类映射$\aleph:\mathbf{On}\to\mathbf{Cn}$如下:
+\vspace{3pt}
+\[
+    \forall\alpha\in\mathbf{On}:\quad
+    \aleph_\alpha\overset{\mathrm{def}}{=}\left\{\begin{aligned}
+        &\omega,\quad&&\alpha=0,\\[-3pt]
+        &\aleph(\max\alpha)^{\mathrm{h}},\quad&&\alpha\text{\,\,是后继序数},\\[-3pt]
+        &\sup\aleph[\alpha],\quad&&\alpha\text{\,\,是极限序数}.
+    \end{aligned}\right.
+\]
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1 (Aleph数)}
+
+\begin{enumerate}
+    \item $\aleph_0=\omega$,
+    \item 任给序数$\alpha$, $\aleph_{\alpha+1}=\aleph_\alpha^{\mathrm{h}}$,
+    \item 任给序数$\alpha$, 如果$\alpha$是极限序数, 那么
+    $\displaystyle\aleph_\alpha=\sup_{\beta<\alpha}\aleph_\beta$.
+\end{enumerate}
+
+\vspace{15pt}
+
+显然任给序数$\alpha$, $\aleph_\alpha$都是
+无限\href{01 基数#nameddest=sec:定义1.1}{基数}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+任给序数$\alpha,\alpha'$, 如果$\alpha<\alpha'$, 那么$\aleph_\alpha<\aleph_{\alpha'}$.
+
+\noindent{\kaishu 证明.}
+
+给定$\alpha$, 对$\alpha'>\alpha$归纳证明$\aleph_{\alpha'}>\aleph_\alpha$.
+任取$\alpha'>\alpha$, 假设
+\[
+    \forall\gamma:\quad\alpha<\gamma<\alpha'\to\aleph_\gamma>\aleph_\alpha.
+\]
+
+\begin{enumerate}
+    \item 如果$\alpha'$是后继序数, 即有$\alpha'=\gamma+1$,
+    那么有$\alpha\leqslant\gamma<\alpha'$, 依假设有
+    \vspace{1pt}
+    \[
+        \aleph_{\alpha'}=\aleph_\gamma^{\mathrm{h}}>
+        \aleph_\gamma\geqslant\aleph_\alpha.\\[3pt]
+    \]
+    \item 如果$\alpha'$是极限序数, 则$\alpha+1<\alpha'$, 从而
+    \vspace{1pt}
+    \begin{equation*}
+        \aleph_{\alpha'}=\sup_{\beta<\alpha'}\aleph_\beta
+        \geqslant\aleph_{\alpha+1}=\aleph_\alpha^{\mathrm{h}}>\aleph_\alpha.
+    \tag*{\qedsymbol}\end{equation*}
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.3}{}
+\noindent\textbf{定理1.3}
+
+任给序数$\alpha$, 有$\alpha\leqslant\aleph_\alpha$.
+
+\noindent{\kaishu 证明.}
+
+对$\alpha$归纳证明$\alpha\leqslant\aleph_\alpha$. 任取$\alpha$,
+假设对任意的$\beta<\alpha$有$\beta\leqslant\aleph_\beta$.
+
+\begin{enumerate}
+    \item 如果$\alpha=0$, 显然$0\leqslant\omega=\aleph_0$.
+    \item 如果$\alpha$是后继序数, 即有$\alpha=\beta+1$,
+    那么$\beta<\alpha$, 依假设有
+    \[
+        \alpha=\beta+1\leqslant\aleph_\beta+1\leqslant
+        \aleph_\beta^{\mathrm{h}}=\aleph_\alpha.
+    \]
+    \item 如果$\alpha$是极限序数, 那么依假设有
+    \begin{equation*}
+        \alpha=\sup_{\beta<\alpha}\beta\leqslant
+        \sup_{\beta<\alpha}\aleph_\beta=\aleph_\alpha.
+    \tag*{\qedsymbol}\end{equation*}
+\end{enumerate}
+
+
+
+
+
+\newpage
+
+最后, Aleph数可以表示所有的无限基数.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.4}{}
+\noindent\textbf{定理1.4}
+
+任给无限基数$\kappa$, 存在唯一的序数$\alpha$使得$\kappa=\aleph_\alpha$.
+
+\noindent{\kaishu 证明.}
+
+\noindent{\kaishu 存在性.}
+
+取满足$\aleph_\theta>\kappa$的最小的$\theta$,
+即对任意的$\alpha<\theta$有$\aleph_\alpha\leqslant\kappa$.
+由$\kappa$无限得$\theta$非零.
+
+\vspace{3pt}
+如果$\theta$是极限序数, 那么$\displaystyle
+\aleph_\theta=\sup_{\alpha<\theta}\aleph_\alpha\leqslant\kappa$矛盾.
+所以$\theta$是后继序数, 有$\theta=\alpha+1$.
+
+\vspace{3pt}
+于是由$\alpha<\theta$得$\aleph_\alpha\leqslant\kappa$.
+假设$\kappa>\aleph_\alpha$则有
+\[
+    \kappa\geqslant\aleph_\alpha^{\mathrm{h}}=\aleph_{\alpha+1}=\aleph_\theta,
+\]
+矛盾. 所以$\kappa=\aleph_\alpha$.
+
+\noindent{\kaishu 唯一性.} 因为$\aleph$保序, 显然. \hfill $\qedsymbol$
+
+\vspace{30pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (后继基数与极限基数)}
+
+任给无限基数$\kappa$, 存在唯一的序数$\alpha$使得$\kappa=\aleph_\alpha$ :
+\begin{enumerate}
+    \item 如果$\alpha$是后继序数, 那么称$\kappa$是一个\textbf{后继基数};
+    \item 如果$\alpha$是$0$或极限序数, 那么称$\kappa$是一个\textbf{极限基数}.
+\end{enumerate}
+
+\vspace{10pt}
+
+另外, 无限基数都是极限序数.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.5}{}
+\noindent\textbf{定理1.5}
+
+无限基数都是极限序数.
+
+\noindent{\kaishu 证明.}
+
+假设无限基数$\kappa$是后继序数, 即有$\kappa=\alpha+1$. 显然$\alpha\geqslant\omega$,
+令$\varepsilon=\alpha-\omega$. 于是
+\[
+    \kappa=\alpha+1=\omega+\varepsilon+1\approx 1+\omega+\varepsilon=
+    \omega+\varepsilon=\alpha,
+\]
+但是由$\alpha<\kappa$得$\alpha\prec\kappa$, 矛盾. \hfill $\qedsymbol$
+
+\end{document}

@@ -1,0 +1,214 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{自然数的序}
+
+这里关心\href{01 自然数#nameddest=sec:定义1.3}{自然数}和自然数集的``属于''关系.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+\begin{enumerate}
+    \item 自然数都是\href{02 传递集#nameddest=sec:定义1.1}{传递集},
+    \item 自然数集$\omega$是传递集.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 对$n$归纳证明$n$是传递集.
+    
+    \hspace{2.17em}
+    首先$0$显然是传递集; 其次任取自然数$n$, 假设$n$是传递集,
+    则$n^+$也是传递集.
+
+    \item 对$n$归纳证明$n\subset\omega$.
+    
+    \hspace{2.17em}
+    首先显然$0\subset\omega$; 其次任取自然数$n$, 假设$n\subset\omega$,
+    则$n^+=n\cup\{n\}\subset\omega$. \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+\begin{enumerate}
+    \item 任给自然数$n$, 有
+    \[
+        \forall x,y\in n:\quad x\in y\,\lor\,x=y\,\lor\,y\in x,\\[-6pt]
+    \]
+    \item 任给自然数$m,n$, 有$m\cap n\in m^+$,
+    \item 任给自然数$m,n$, 有
+    \[
+        m\in n\,\lor\,m=n\,\lor\,n\in m.\\[-3pt]
+    \]
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 记该命题为$p(n)$, 对$n$归纳证明$p(n)$.
+    
+    \hspace{2.17em}
+    首先$p(0)$显然成立; 其次任取自然数$n$, 假设$p(n)$成立, 对任意的$x,y\in n^+$:
+
+    \hspace{2.17em}
+    如果$x\in n,y\in n$, 那么依假设有$x\in y\,\lor\,x=y\,\lor\,y\in x$;
+
+    \hspace{2.17em}
+    如果$x\in n,y=n$, 那么$x\in y$;
+    
+    \hspace{2.17em}
+    如果$x=n,y\in n$, 那么$y\in x$;
+    
+    \hspace{2.17em}
+    如果$x=n,y=n$, 那么$x=y$. 综上$p(n^+)$成立.
+
+    \item 不妨设$m\cap n\neq m$, 即$m\not\subset n$. 此时$m\setminus n$非空.
+
+    \hspace{2.17em}
+    根据正则公理, 存在$x\in m\setminus n$使得$x\cap(m\setminus n)=\varnothing$.
+    下证$m\cap n=x$.
+
+    \hspace{2.17em}
+    对任意的$t\in m\cap n$, 有$x,t\in m$. 由第一条可知
+    \[
+        x\in t\,\lor\,x=t\,\lor\,t\in x.
+    \]
+    因为$n$是传递集, 所以此时$x\in t$或$x=t$都导致$x\in n$矛盾, 从而$t\in x$.
+
+    \hspace{2.17em}
+    对任意的$t\in x$, 因为$m$是传递集, 所以$t\in m$.
+    并且$t\notin m\setminus n$, 从而$t\in m\cap n$.
+
+    \hspace{2.17em}
+    综上即得$m\cap n=x\in m$.
+
+    % 这段证明很有趣, 是从序数的理论精简得来的.
+
+    \item 由第二条, 有$m\cap n\in m^+$, 同时$m\cap n\in n^+$. 于是:
+    
+    \hspace{2.17em}
+    如果$m\cap n\in m$, $m\cap n\in n$, 那么$m\cap n\in m\cap n$, 矛盾;
+
+    \hspace{2.17em}
+    如果$m\cap n\in m$, $m\cap n=n$, 那么$n\in m$;
+    
+    \hspace{2.17em}
+    如果$m\cap n=m$, $m\cap n\in n$, 那么$m\in n$;
+    
+    \hspace{2.17em}
+    如果$m\cap n=m$, $m\cap n=n$, 那么$m=n$. \hfill $\qedsymbol$
+
+    % 整体写下来好像不太好看... 不管了.
+\end{enumerate}
+
+
+
+
+
+\newpage
+
+至此, 可以完整地描述自然数的序.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.3}{}
+\noindent\textbf{定理1.3 (自然数集的良序)}
+
+自然数集$\omega$上的``属于''关系有以下性质:
+\begin{enumerate}
+    \item 反自反性: $\forall x\in\omega:\,x\notin x$,
+    \item 传递性: $\forall x,y,z\in\omega:\,x\in y\land y\in z\to x\in z$,
+    \item 三歧性: $\forall x,y\in\omega:\,x\in y\lor x=y\lor y\in x$,
+    \item 良基性: 对$\omega$的任意非空子集$A$, 存在$m\in A$使得
+    $\forall x\in A:\,x\notin m$.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 由正则公理即得.
+    \item 如果$x\in y$且$y\in z$, 那么因为$z$是传递集, 所以$x\in z$.
+    \item 由上述定理1.2即得.
+    \item 由正则公理即得. \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+以后把自然数间的$\in$写作$<$. 更标准的序的写法如下.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.4}{}
+\noindent\textbf{定理1.4 (自然数集的良序)}
+
+在自然数集$\omega$上定义
+\[
+    \leqslant\,=\{(x,y)\in\omega^2\mid x\in y\lor x=y\},
+\]
+那么$\leqslant$关系有以下性质,
+从而是\href{../../04 序理论/01 序关系/04 良序关系#nameddest=sec:定义1.1}{良序关系}:
+\begin{enumerate}
+    \item 自反性: $\forall x\in\omega:\,x\leqslant x$,
+    \item 传递性: $\forall x,y,z\in\omega:\,
+    x\leqslant y\land y\leqslant z\to x\leqslant z$,
+    \item 反对称性: $\forall x,y\in\omega:\,
+    x\leqslant y\land y\leqslant x\to x=y$,
+    \item 可比性: $\forall x,y\in\omega:\,x\leqslant y\lor y\leqslant x$,
+    \item 良基性: 对$\omega$的任意非空子集$A$, 存在$m\in A$使得
+    $\forall x\in A:\,m\leqslant x$.
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.5}{}
+\noindent\textbf{定理1.5}
+
+任给自然数$m,n$, $m\leqslant n$当且仅当$m\subset n$.
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 如果$m\leqslant n$, 即$m\in n$或$m=n$, 因为$n$是传递集, 所以$m\subset n$.
+    \item 如果$m\subset n$, 假设$n\in m$则$n\in n$, 矛盾. 所以$m\leqslant n$.
+    \hfill $\qedsymbol$
+\end{enumerate}
+
+\end{document}

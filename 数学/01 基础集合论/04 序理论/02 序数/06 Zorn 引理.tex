@@ -1,0 +1,206 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{Zorn 引理}
+
+% 代数中神秘的Zorn引理.
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1 (Zorn引理)}
+\vspace{5pt}
+
+任给\href{../01 序关系/02 偏序关系#nameddest=sec:定义1.1}{偏序结构}
+$(A,\leqslant)$, 如果$A$的链(全序子集)都有上界, 那么$A$有极大元.
+
+\vspace{7pt}\noindent{\kaishu 证明.}
+
+假设$A$没有极大元, 即任意元素都有更大的元素.
+
+对$A$的任意链$C$, 定义
+\[
+    m(C)=\{a\in A\mid a\text{\,\,是\,\,}C\text{\,\,的上界\,\,}
+    \land a\notin C\,\}.\\[-3pt]
+\]
+显然$m(C)$非空: 取$C$的上界$b$, 再取比$b$更大的元素$a$, 就有$a\in m(C)$.
+
+于是可以对$A$的任意链$C$选取一个$\varphi(C)\in m(C)$.
+
+\vspace{7pt}
+据此超限递归定义$\mathbf{On}$上的类映射$\mathbf{P}$ :
+\vspace{3pt}
+\[
+    \forall\alpha\in\mathbf{On}:\quad\mathbf{P}(\alpha)=\left\{\begin{aligned}
+        &\varphi\,(\,\mathbf{P}[\alpha]\,),\quad&&
+        \mathbf{P}[\alpha]\text{\,\,是\,\,}A\text{\,\,的链\,},\\[-3pt]
+        &A,\quad&&\mathbf{P}[\alpha]\text{\,\,不是\,\,}A\text{\,\,的链\,}.
+    \end{aligned}\right.
+\]
+
+\vspace{7pt}\hspace{-1em}\noindent{\kaishu 命题1.}
+任给序数$\alpha$, $\mathbf{P}[\alpha]$都是$A$的链.
+
+对$\alpha\in\mathbf{On}$归纳证明.
+任取序数$\alpha$, 假设对任意的$\beta<\alpha$, $\mathbf{P}[\beta]$是$A$的链, 此时
+\[
+    \mathbf{P}(\beta)=\varphi(\,\mathbf{P}[\beta]\,)\in m(\,\mathbf{P}[\beta]\,)
+    \quad\implies\quad
+    \mathbf{P}(\beta)\text{\,\,是\,\,}\mathbf{P}[\beta]\text{\,\,的上界\,\,}.
+\]
+然后任取$\gamma,\delta<\alpha$.
+
+\begin{enumerate}
+    \item 如果$\gamma<\delta$, 那么$\mathbf{P}(\gamma)\in\mathbf{P}[\delta]$,
+    所以$\mathbf{P}(\gamma)\leqslant\mathbf{P}(\delta)$,
+    \item 如果$\gamma=\delta$, 那么$\mathbf{P}(\gamma)=\mathbf{P}(\delta)$,
+    \item 如果$\gamma>\delta$, 那么$\mathbf{P}(\delta)\in\mathbf{P}[\gamma]$,
+    所以$\mathbf{P}(\gamma)\geqslant\mathbf{P}(\delta)$,
+\end{enumerate}
+所以$\mathbf{P}[\alpha]$是$A$的链.
+
+\vspace{7pt}\hspace{-1em}\noindent{\kaishu 命题2.} $\mathbf{P}$是单射.
+
+任给序数$\alpha,\beta$, 假设$\mathbf{P}(\alpha)=\mathbf{P}(\beta)$.
+再假设$\alpha<\beta$, 则$\mathbf{P}(\alpha)\in\mathbf{P}[\beta]$, 同时由命题1得
+\[
+    \mathbf{P}(\beta)=\varphi(\,\mathbf{P}[\beta]\,)\in m(\,\mathbf{P}[\beta]\,)
+    \quad\implies\quad\mathbf{P}(\beta)\notin\mathbf{P}[\beta],
+\]
+所以$\mathbf{P}(\alpha)\neq\mathbf{P}(\beta)$, 矛盾.
+
+同理假设$\alpha>\beta$也矛盾. 所以$\alpha=\beta$.
+
+\vspace{7pt}
+由命题1, $\mathbf{P}(\alpha)$都属于$A$, 同时由命题2得$\mathbf{P}$是单射, 矛盾.
+\hfill $\qedsymbol$
+
+
+
+
+
+\newpage
+
+\section{Hausdorff 极大原理}
+
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1 (Hausdorff极大原理)}
+\vspace{5pt}
+
+偏序结构的链都可以扩张成极大链.
+
+\vspace{7pt}\noindent{\kaishu 证明.}
+
+任取偏序结构$(A,\leqslant)$和$A$的链$C$, 定义
+\[
+    \mathcal{S}=\{D\subset A\mid D\text{\,\,是\,\,}A\text{\,\,的链\,\,}
+    \land D\supset C\},
+\]
+显然$\mathcal{S}$非空($C\in\mathcal{S}$).
+
+考虑$\mathcal{S}$上的包含偏序$(\mathcal{S},\subset)$,
+再任取$\mathcal{S}$的非空链$\mathcal{T}$.
+
+\vspace{7pt}\hspace{-1em}\noindent{\kaishu 命题1.}
+$\displaystyle\bigcup\mathcal{T}\subset A$,
+$\displaystyle\bigcup\mathcal{T}\supset C$.
+
+\vspace{3pt}
+因为$\mathcal{T}\subset\mathcal{P}(A)$,
+所以$\displaystyle\bigcup\mathcal{T}\subset A$.
+再取$D\in\mathcal{T}$, 则有$\displaystyle C\subset D\subset\bigcup\mathcal{T}$.
+
+\vspace{7pt}\hspace{-1em}\noindent{\kaishu 命题2.}
+$\displaystyle\bigcup\mathcal{T}$是$A$的链.
+
+\vspace{3pt}
+对任意的$\displaystyle a,a'\in\bigcup\mathcal{T}$,
+存在$D,D'\in\mathcal{T}$使得$a\in D,a'\in D'$. 因为$\mathcal{T}$是链, 所以:
+\vspace{3pt}
+\begin{enumerate}
+    \item 如果$D\subset D'$, 那么$a,a'\in D'$, 再由$D'$是$A$的链可得
+    $a\leqslant a'\lor a\geqslant a'$;
+    \item 如果$D\supset D'$, 那么$a,a'\in D$, 同样由$D$是$A$的链可得
+    $a\leqslant a'\lor a\geqslant a'$.
+\end{enumerate}
+\vspace{3pt}
+综上可得$\displaystyle\bigcup\mathcal{T}$是$A$的链.
+
+\vspace{7pt}
+综上即得$\displaystyle\bigcup\mathcal{T}\in\mathcal{S}$,
+显然$\displaystyle\bigcup\mathcal{T}$是$\mathcal{T}$的上界.
+
+\vspace{7pt}
+根据Zorn引理, $(\mathcal{S},\subset)$有极大元$M$, 于是:
+\begin{enumerate}
+    \item $M$是$A$的链且包含$C$,
+    \item 如果$D$是$A$的链且包含$M$, 则$D\in\mathcal{S}$, 从而$D=M$.
+    所以$M$是$A$的极大链. \hfill $\qedsymbol$
+\end{enumerate}
+
+
+
+
+
+\vspace{20pt}
+
+\section{Tukey 引理}
+
+\hypertarget{sec:定理3.1}{}
+\noindent\textbf{定理3.1 (Tukey引理)}
+
+任给非空集合$A$. 如果对任意的$x$, $x\in A$当且仅当
+$x$的有限子集都属于$A$, 那么$(A,\subset)$有极大元.
+
+\noindent{\kaishu 证明.}
+
+任取$(A,\subset)$中的链$C$, 考虑$\displaystyle\bigcup C$.
+
+对$\displaystyle\bigcup C$的任意非空有限子集$s$,
+对任意的$x\in s$选取$f(x)\in C$使得$x\in f(x)$, 于是
+\[
+    \{f(x)\mid x\in s\}\subset C
+\]
+也是$(A,\subset)$的链, 因为它有限, 所以有最大元$m$. 从而对任意的$x\in s$有
+\[
+    f(x)\in C\quad\implies\quad f(x)\subset m\quad\implies\quad x\in m,
+\]
+即$s\subset m$, $s$是$m$的有限子集, 所以$s\in A$.
+
+另外显然$\varnothing\in A$, 综上$\displaystyle\bigcup C$的有限子集都属于$A$,
+所以$\displaystyle\bigcup C\in A$.
+
+最后, 显然$\displaystyle\bigcup C$是$C$的上界.
+于是$(A,\subset)$的链都有上界, 由Zorn引理得$(A,\subset)$有极大元. \hfill $\qedsymbol$
+
+\end{document}

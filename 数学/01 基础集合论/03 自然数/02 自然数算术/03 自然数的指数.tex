@@ -1,0 +1,171 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{自然数的指数}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (自然数的指数)}
+
+给定\href{../01 自然数/01 自然数#nameddest=sec:定义1.3}{自然数} $m$,
+递归定义映射$\mathrm{exp}_m:\omega\to\omega$如下:
+\begin{enumerate}
+    \item $\mathrm{exp}_m(0)\overset{\mathrm{def}}{=}1$,
+    \item $\mathrm{exp}_m(n^+)\overset{\mathrm{def}}{=}\mathrm{exp}_m(n)\cdot m$.
+\end{enumerate}
+
+接下来, 对任意的自然数$m,n$, 定义
+\[
+    m^n\overset{\mathrm{def}}{=}\mathrm{exp}_m(n),\\[-3pt]
+\]
+称为$m$的$n$\textbf{次方}.
+
+\vspace{10pt}
+
+显然任给非零自然数$n$有$0^n=0$, 任给自然数$n$有$1^n=1$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+任给自然数$m,n,k$,
+\begin{enumerate}
+    \item $m^{n+k}=m^nm^k$,
+    \item $m^{nk}=(m^n)^k$,
+    \item $(mn)^k=m^kn^k$.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 任给自然数$m,n$, 对$k$归纳证明$m^{n+k}=m^nm^k$.
+    
+    \hspace{2.17em}
+    首先$m^{n+0}=m^n=m^n1=m^nm^0$;
+    
+    \hspace{2.17em}
+    其次任取自然数$k$, 假设$m^{n+k}=m^nm^k$, 那么
+    \[
+        m^{n+k^+}=m^{(n+k)^+}=m^{n+k}m=m^nm^km=m^nm^{k^+}.
+    \]
+
+    \item 任给自然数$m,n$, 对$k$归纳证明$m^{nk}=(m^n)^k$.
+    
+    \hspace{2.17em}
+    首先$m^{n0}=m^0=1=(m^n)^0$;
+    
+    \hspace{2.17em}
+    其次任取自然数$k$, 假设$m^{nk}=(m^n)^k$, 那么
+    \[
+        m^{nk^+}=m^{nk+n}=m^{nk}m^n=(m^n)^km^n=(m^n)^{k^+}.
+    \]
+
+    \item 任给自然数$m,n$, 对$k$归纳证明$(mn)^k=m^kn^k$.
+    
+    \hspace{2.17em}
+    首先$(mn)^0=1=1\cdot 1=m^0n^0$;
+    
+    \hspace{2.17em}
+    其次任取自然数$k$, 假设$(mn)^k=m^kn^k$, 那么
+    \begin{equation*}
+        (mn)^{k^+}=(mn)^kmn=m^kn^kmn=m^kmn^kn=m^{k^+}n^{k^+}.
+    \tag*{\qedsymbol}\end{equation*}
+\end{enumerate}
+
+
+
+
+
+\newpage
+
+然后列出一些指数与序的关系.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+任给自然数$m,n,k$,
+\begin{enumerate}
+    \item $n<2^n$,
+    \item 如果$m<n$且$k>1$, 那么$k^m<k^n$,
+    \item 如果$m\leqslant n$且$k\neq 0$, 那么$k^m\leqslant k^n$,
+    \item 如果$m<n$且$k\neq 0$, 那么$m^k<n^k$,
+    \item 如果$m\leqslant n$, 那么$m^k\leqslant n^k$.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 对$n$归纳证明$n<2^n$.
+    
+    \hspace{2.17em}
+    首先$0<1=2^0$;
+    其次任取自然数$n$, 假设$n<2^n$, 易证$1\leqslant 2^n$, 从而
+    \[
+        n^+=n+1<2^n+1\leqslant 2^n+2^n=2^n2=2^{n^+}.
+    \]
+
+    \item 记$q=n-m$, 显然$q\neq 0$. 易证$k^m\neq 0$且$1<k^q$, 所以
+    \[        
+        k^m<k^mk^q=k^{m+q}=k^n.
+    \]
+
+    \item 如果$k=1$, 那么$k^m=1\leqslant 1=k^n$;
+    
+    \hspace{2.17em}
+    如果$k\neq 1$, 那么由第二条即得$k^m\leqslant k^n$.
+    
+    \item 假设$m<n$, 对$k$归纳证明$k\neq 0\to m^k<n^k$.
+    
+    \hspace{2.17em}
+    首先$0=0$, 所以有$0\neq 0\to m^0<n^0$;
+    
+    \hspace{2.17em}
+    其次任取自然数$k$, 假设$k\neq 0\to m^k<n^k$, 那么
+    \[\left\{\begin{aligned}
+        &k=0\implies&&m^{k^+}=m<n=n^{k^+},\\[-3pt]
+        &k\neq 0\implies&&m^k<n^k\implies m^{k^+}=m^km<n^kn=n^{k^+}.
+    \end{aligned}\right.\]
+
+    \item 如果$k=0$, 那么$m^k=1\leqslant 1=n^k$.
+    
+    \hspace{2.17em}
+    如果$k\neq 0$, 那么由第四条即得$m^k\leqslant n^k$. \hfill $\qedsymbol$
+\end{enumerate}
+
+% 这一堆可谓是毫无规律可言, 而且写了两个``易证''. 评价为拉完了.
+
+\end{document}

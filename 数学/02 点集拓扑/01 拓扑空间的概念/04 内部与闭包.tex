@@ -1,0 +1,396 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{内部}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (内部)}
+
+给定\href{01 拓扑空间#nameddest=sec:定义1.1}{拓扑空间}
+$(X,\mathcal{T})$和点集$A\subset X$, 定义点集
+\[
+    \mathrm{int}(A)\overset{\mathrm{def}}{=}\{x\in X\mid
+    A\in\mathcal{N}_x\},
+\]
+称之为$A$的\textbf{内部}, 也记作$A^\circ$. 称其中的点为$A$的\textbf{内点},
+也就是说, $x$是$A$的内点等同于$A$是$x$的邻域.
+
+显然, 点$x\in A^\circ$当且仅当存在$x$的邻域$N$使得$N\subset A$.
+
+\vspace{10pt}
+
+下面整理了一些内部的性质.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+给定拓扑空间$(X,\mathcal{T})$ :
+\begin{enumerate}
+    \item 对任意点集$A$, $A^\circ\subset A$.
+    \item 对任意点集$A$, 如果$U\subset A$是开集, 那么$U\subset A^\circ$.
+    \item 对任意点集$A$, $A^\circ$是开集.
+    \item 对任意点集$A$, $A$是开集当且仅当$A^\circ=A$.
+    \item 对任意点集$A,B$, 如果$A\subset B$, 那么$A^\circ\subset B^\circ$.
+    \vspace{3pt}
+    \item 对任意有限个点集$(A_i)_{i<n}$, 有$\displaystyle
+    \left(\bigcap_{i=0}^{n-1}A_i\right)^\circ=\bigcap_{i=0}^{n-1}A_i^\circ$.
+    \vspace{3pt}
+    \item 对任意一些点集$(A_i)_{i\in I}$, 有$\displaystyle
+    \left(\bigcup_{i\in I}A_i\right)^\circ\supset\bigcup_{i\in I}A_i^\circ$.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 对任意点$x\in A^\circ$, $A$是$x$的邻域, 所以$x\in A$.
+    从而$A^\circ\subset A$.
+    \item 如果$U\subset A$是开集,
+    则对任意点$y\in U$, $A$是$y$的邻域, 即$y\in A^\circ$. 从而$U\subset A^\circ$.
+    \item 对任意点$x\in A^\circ$, $A$是$x$的邻域, 所以存在开集$U$使得
+    $x\in U\subset A$. 根据第二条可得$x\in U\subset A^\circ$,
+    即$A^\circ$也是$x$的邻域. 从而$A^\circ$是其中任意点的邻域, 即$A^\circ$是开集.
+    \item 如果$A$是开集, 那么由前两条显然$A^\circ=A$;
+    如果$A^\circ=A$, 那么由第三条显然$A$是开集.
+    \item 如果$A\subset B$, 那么$A^\circ\subset A\subset B$,
+    并且$A^\circ$是开集, 所以$A^\circ\subset B^\circ$.
+    \item 对任意点$x$:
+    
+    \vspace{3pt}\hspace{2.17em}
+    如果$\displaystyle x\in\left(\bigcap_{i=0}^{n-1}A_i\right)^\circ$,
+    即$\displaystyle\bigcap_{i=0}^{n-1}A_i$是$x$的邻域,
+    那么每个$A_i$都是$x$的邻域, 从而$\displaystyle x\in\bigcap_{i=0}^{n-1}A_i^\circ$.
+    
+    \vspace{3pt}\hspace{2.17em}
+    如果$\displaystyle x\in\bigcap_{i=0}^{n-1}A_i^\circ$,
+    即每个$A_i$都是$x$的邻域, 根据邻域系的有限交封闭性可得
+    $\displaystyle x\in\left(\bigcap_{i=0}^{n-1}A_i\right)^\circ$.
+
+    \vspace{5pt}
+    \item 对任意点$x$, 如果$\displaystyle x\in\bigcup_{i\in I}A_i^\circ$,
+    即存在$j\in I$使得$A_j$是$x$的邻域, 那么
+    $\displaystyle x\in\left(\bigcup_{i\in I}A_i\right)^\circ$.
+    \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (外部)}
+
+给定拓扑空间$(X,\mathcal{T})$和点集$A\subset X$,
+称$(A^c)^\circ$为$A$的\textbf{外部}, 称其中的点为$A$的\textbf{外点}.
+
+
+
+
+
+\newpage
+
+同样也可以根据内部算子来定义一个拓扑.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.3}{}
+\noindent\textbf{定义1.3 (内部算子公理)}
+
+给定集合$X$和映射$\mathrm{i}:\mathcal{P}(X)\to\mathcal{P}(X)$.
+称$\mathrm{i}$满足\textbf{内部算子公理}, 如果:
+\begin{enumerate}
+    \item $\mathrm{i}(X)=X$,
+    \item 对任意的$A\subset X$, 有$\mathrm{i}(A)\subset A$,
+    \item 对任意的$A\subset X$, 有$\mathrm{i}(\mathrm{i}(A))=\mathrm{i}(A)$,
+    \item 对任意的$A,B\subset X$, 有
+    $\mathrm{i}(A\cap B)=\mathrm{i}(A)\cap\mathrm{i}(B)$.
+\end{enumerate}
+
+\vspace{10pt}
+
+内部算子公理的推论是: 对任意的$A,B\subset X$,
+如果$A\subset B$, 那么$\mathrm{i}(A)\subset\mathrm{i}(B)$.
+
+\noindent{\kaishu 证明.}
+
+如果$A\subset B$, 那么$A=A\cap B$,
+于是$\mathrm{i}(A)=\mathrm{i}(A)\cap\mathrm{i}(B)$,
+即$\mathrm{i}(A)\subset\mathrm{i}(B)$. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+给定集合$X$和映射$\mathrm{i}:\mathcal{P}(X)\to\mathcal{P}(X)$, 那么:
+
+$\mathrm{i}$满足内部算子公理当且仅当$X$上存在唯一的拓扑$\mathcal{T}$使得
+$\mathrm{i}$是$(X,\mathcal{T})$的内部算子$\mathrm{int}$.
+
+\noindent{\kaishu 证明.}
+
+\noindent{\kaishu 必要性.}
+
+假设$\mathrm{i}$满足内部算子公理,
+定义$\mathcal{T}=\{U\subset X\mid\mathrm{i}(U)=U\}$. 易证:
+\begin{enumerate}
+    \item 由$\mathrm{i}(\varnothing)\subset\varnothing$得
+    $\mathrm{i}(\varnothing)=\varnothing$, 并且$\mathrm{i}(X)=X$.
+    \item 对$\mathcal{T}$中任意的$(U_i)_{i\in I}$,
+    记$\displaystyle U=\bigcup_{i\in I}U_i$ :
+    
+    \vspace{3pt}\hspace{2.17em}
+    对任意的$j\in I$有$U_j\subset U$, 所以$U_j=\mathrm{i}(U_j)\subset\mathrm{i}(U)$.
+    从而$U\subset\mathrm{i}(U)$, 即$U=\mathrm{i}(U)$, $U\in\mathcal{T}$.
+    \item 对任意的$U_1,U_2\in\mathcal{T}$ :
+    
+    \hspace{2.17em}
+    $\mathrm{i}(U_1\cap U_2)=\mathrm{i}(U_1)\cap\mathrm{i}(U_2)=U_1\cap U_2$,
+    即$U_1\cap U_2\in\mathcal{T}$.
+\end{enumerate}
+即$\mathcal{T}$是$X$上的拓扑. 进一步, 对任意点集$A$:
+\begin{enumerate}
+    \item 因为$\mathrm{i}(\mathrm{i}(A))=\mathrm{i}(A)$, 所以$\mathrm{i}(A)$是开集.
+    再由$\mathrm{i}(A)\subset A$即得$\mathrm{i}(A)\subset A^\circ$.
+    \item 因为$A^\circ$是开集并且$A^\circ\subset A$, 所以
+    $A^\circ=\mathrm{i}(A^\circ)\subset\mathrm{i}(A)$.
+\end{enumerate}
+综上, 对任意点集$A$有$\mathrm{i}(A)=A^\circ$,
+即$\mathrm{i}$是$(X,\mathcal{T})$的内部算子.
+
+如果拓扑$\mathcal{T}_1,\mathcal{T}_2$的空间的内部算子都是$\mathrm{i}$,
+那么对任意的$U\in\mathcal{T}_1$有
+\[
+    \mathrm{i}(U)=U\quad\implies\quad U\in\mathcal{T}_2,
+\]
+即$\mathcal{T}_1\subset\mathcal{T}_2$, 反之同理. 于是这样的拓扑唯一.
+
+\noindent{\kaishu 充分性.}
+
+根据定理1.1, 显然拓扑空间的内部算子满足此公理. \hfill $\qedsymbol$
+
+
+
+
+
+\newpage
+
+\section{闭包}
+
+\hypertarget{sec:定义2.1}{}
+\noindent\textbf{定义2.1 (闭包)}
+
+给定拓扑空间$(X,\mathcal{T})$和点集$A\subset X$, 定义点集
+\[
+    \mathrm{cl}(A)\overset{\mathrm{def}}{=}\{x\in X\mid
+    A^c\notin\mathcal{N}_x\},
+\]
+称之为$A$的\textbf{闭包}, 也记作$\overline{A}$. 称其中的点为$A$的\textbf{闭包点}.
+
+显然, 点$x\in \overline{A}$当且仅当对$x$的任意邻域$N$, 都有$N\cap A$非空.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1}
+
+给定拓扑空间$(X,\mathcal{T})$和点集$A\subset X$,
+$(A^c)^\circ=\overline{A}\,^c$, $\overline{A^c}=(A^\circ)^c$.
+
+\noindent{\kaishu 证明.}
+
+对任意点$x$有:
+\begin{enumerate}
+    \item $x\in(A^c)^\circ$当且仅当存在$x$的邻域$N$使得$N\subset A^c$,
+    即$N\cap A$是空集,
+    \item $x\in\overline{A}$当且仅当对$x$的任意邻域$N$, 都有$N\cap A$非空,
+\end{enumerate}
+显然二者互为否定, 于是$(A^c)^\circ=\overline{A}\,^c$.
+再代入$A^c$即得$\overline{A^c}=(A^\circ)^c$. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+闭包是内部的对偶概念. 相应地, 下面整理了一些闭包的性质.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.2}{}
+\noindent\textbf{定理2.2}
+
+给定拓扑空间$(X,\mathcal{T})$ :
+\begin{enumerate}
+    \item 对任意点集$A$, $\overline{A}\supset A$.
+    \item 对任意点集$A$, 如果$V\supset A$是闭集, 那么$V\supset\overline{A}$.
+    \item 对任意点集$A$, $\overline{A}$是闭集.
+    \item 对任意点集$A$, $A$是闭集当且仅当$\overline{A}=A$.
+    \item 对任意点集$A,B$, 如果$A\subset B$, 那么$\overline{A}\subset\overline{B}$.
+    \vspace{3pt}
+    \item 对任意有限个点集$(A_i)_{i<n}$, 有$\displaystyle
+    \overline{\bigcup_{i=0}^{n-1}A_i}=\bigcup_{i=0}^{n-1}\overline{A_i}$.
+    \vspace{3pt}
+    \item 对任意一些点集$(A_i)_{i\in I}$, 有$\displaystyle
+    \overline{\bigcap_{i\in I}A_i}\subset\bigcap_{i\in I}\overline{A_i}$.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 因为$\overline{A}\,^c=(A^c)^\circ\subset A^c$,
+    所以$\overline{A}\supset A$.
+    \item 如果$V\supset A$是闭集, 那么$V^c\subset A^c$是开集, 于是
+    $V^c\subset(A^c)^\circ=\overline{A}\,^c$, 即$V\supset\overline{A}$.
+    \item $\overline{A}\,^c=(A^c)^\circ$是开集, 所以$\overline{A}$是闭集.
+    \item $A$是闭集$\iff A^c$是开集$\iff(A^c)^\circ=A^c\iff
+    \overline{A}\,^c=A^c\iff\overline{A}=A$.
+    \item 如果$A\subset B$, 即$B^c\subset A^c$,
+    那么$\overline{B}\,^c=(B^c)^\circ\subset(A^c)^\circ=\overline{A}\,^c$,
+    即$\overline{A}\subset\overline{B}$.
+
+    \vspace{3pt}
+    \item $\displaystyle\overline{\bigcup_{i=0}^{n-1}A_i}^{\,c}=
+    \left(\left(\bigcup_{i=0}^{n-1}A_i\right)^c\,\right)^\circ=
+    \left(\bigcap_{i=0}^{n-1}A_i^c\right)^\circ=
+    \bigcap_{i=0}^{n-1}(A_i^c)^\circ=\bigcap_{i=0}^{n-1}\overline{A_i}^c=
+    \left(\bigcup_{i=0}^{n-1}\overline{A_i}\right)^c$, 即$\displaystyle
+    \overline{\bigcup_{i=0}^{n-1}A_i}=\bigcup_{i=0}^{n-1}\overline{A_i}$.
+
+    \vspace{3pt}
+    \item $\displaystyle\overline{\bigcap_{i\in I}A_i}^{\,c}=
+    \left(\left(\bigcap_{i\in I}A_i\right)^c\,\right)^\circ=
+    \left(\bigcup_{i\in I}A_i^c\right)^\circ\supset
+    \bigcup_{i\in I}(A_i^c)^\circ=\bigcup_{i\in I}\overline{A_i}^c=
+    \left(\bigcap_{i\in I}\overline{A_i}\right)^c$, 即$\displaystyle
+    \overline{\bigcap_{i\in I}A_i}\subset\bigcap_{i\in I}\overline{A_i}$.
+    \hfill $\qedsymbol$
+\end{enumerate}
+
+
+
+
+
+\newpage
+
+同样也可以根据闭包算子来定义一个拓扑.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义2.2}{}
+\noindent\textbf{定义2.2 (闭包算子公理)}
+
+给定集合$X$和映射$\mathrm{c}:\mathcal{P}(X)\to\mathcal{P}(X)$.
+称$\mathrm{c}$满足\textbf{闭包算子公理}, 如果:
+\begin{enumerate}
+    \item $\mathrm{c}(\varnothing)=\varnothing$,
+    \item 对任意的$A\subset X$, 有$\mathrm{c}(A)\supset A$,
+    \item 对任意的$A\subset X$, 有$\mathrm{c}(\mathrm{c}(A))=\mathrm{c}(A)$,
+    \item 对任意的$A,B\subset X$, 有
+    $\mathrm{c}(A\cup B)=\mathrm{c}(A)\cup\mathrm{c}(B)$.
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.3}{}
+\noindent\textbf{定理2.3}
+
+给定集合$X$和映射$\mathrm{c}:\mathcal{P}(X)\to\mathcal{P}(X)$, 那么:
+
+$\mathrm{c}$满足闭包算子公理当且仅当$X$上存在唯一的拓扑$\mathcal{T}$使得
+$\mathrm{c}$是$(X,\mathcal{T})$的闭包算子$\mathrm{cl}$.
+
+\noindent{\kaishu 证明.}
+
+\noindent{\kaishu 必要性.}
+
+假设$\mathrm{c}$满足闭包算子公理, 定义$\mathrm{i}:A\mapsto\mathrm{c}(A^c)^c$, 易证:
+\begin{enumerate}
+    \item $\mathrm{i}(X)=\mathrm{c}(\varnothing)^c=\varnothing^c=X$.
+    \item 对任意的$A\subset X$, 有$\mathrm{i}(A)=\mathrm{c}(A^c)^c\subset(A^c)^c=A$.
+    \item 对任意的$A\subset X$, 有$\mathrm{i}(\mathrm{i}(A))=
+    \mathrm{c}(\mathrm{c}(A^c)^{cc})^c=\mathrm{c}(\mathrm{c}(A^c))^c=
+    \mathrm{c}(A^c)^c=\mathrm{i}(A)$.
+    % 这一串有点鬼畜... 不要盯着看太久.
+    \item 对任意的$A,B\subset X$, 有$\mathrm{i}(A\cap B)=
+    \mathrm{c}(A^c\cup B^c)^c=\mathrm{c}(A^c)^c\cap\mathrm{c}(B^c)^c
+    =\mathrm{i}(A)\cap\mathrm{i}(B)$.
+\end{enumerate}
+即$\mathrm{i}$满足内部算子公理. 于是存在$X$上的拓扑使得
+$\mathrm{i}$是此空间的内部算子, 易证$\mathrm{c}$即是此空间的闭包算子.
+
+如果拓扑$\mathcal{T}_1,\mathcal{T}_2$的空间的闭包算子都是$\mathrm{c}$,
+那么对任意的$U\in\mathcal{T}_1$有
+\[
+    \mathrm{c}(U^c)=U^c\quad\implies\quad U\in\mathcal{T}_2,
+\]
+即$\mathcal{T}_1\subset\mathcal{T}_2$, 反之同理. 于是这样的拓扑唯一.
+
+\noindent{\kaishu 充分性.}
+
+根据定理2.2, 显然拓扑空间的闭包算子满足此公理. \hfill $\qedsymbol$
+
+% De Morgan 律创造了这一节.
+
+
+
+
+
+\vspace{20pt}
+
+\section{边界}
+
+\hypertarget{sec:定义3.1}{}
+\noindent\textbf{定义3.1 (边界)}
+
+给定拓扑空间$(X,\mathcal{T})$和点集$A\subset X$, 定义点集
+\[
+    \partial A\overset{\mathrm{def}}{=}\overline{A}\setminus A^\circ,
+\]
+称之为$A$的\textbf{边界}, 称其中的点为$A$的\textbf{边界点}.
+
+显然, 点$x\in\partial A$当且仅当对$x$的任意邻域$N$, $N$与$A,A^c$的交集都非空.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理3.1}{}
+\noindent\textbf{定理3.1}
+
+给定拓扑空间$(X,\mathcal{T})$和点集$A\subset X$, $\partial A$总是闭集,
+并且$\partial A=\partial(A^c)$.
+
+\noindent{\kaishu 证明.}
+
+$\partial A=\overline{A}\cap(A^\circ)^c=\overline{A}\cap\overline{A^c}$
+是两个闭集的交集, 所以也是闭集. 并且由此式显然$\partial A=\partial(A^c)$.
+\hfill $\qedsymbol$
+
+\end{document}

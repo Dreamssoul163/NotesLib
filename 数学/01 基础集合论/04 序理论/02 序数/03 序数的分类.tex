@@ -1,0 +1,137 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{序数的分类}
+
+首先给出一些\href{01 序数#nameddest=sec:定义1.1}{序数}与后继相关的定理.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+\begin{enumerate}
+    \item 任给序数$\alpha$, $\alpha^+$也是序数,
+    \item 任给序数$\alpha,\beta$,
+    $\alpha\leqslant\beta\iff\alpha<\beta^+\iff\alpha^+\leqslant\beta^+$,
+    \item 任给序数$\alpha,\beta$,
+    $\alpha<\beta\iff\alpha^+\leqslant\beta\iff\alpha^+<\beta^+$.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item $\alpha^+$也是传递集, 并且元素都是序数, 所以也是序数.
+    
+    \item 显然$\alpha\leqslant\beta$当且仅当$\alpha<\beta^+$.
+
+    \hspace{2.17em}
+    如果$\alpha<\beta^+$, 则对任意的$x<\alpha^+$有$x\leqslant\alpha$,
+    于是$x<\beta^+$. 从而$\alpha^+\leqslant\beta^+$.
+
+    \hspace{2.17em}
+    如果$\alpha^+\leqslant\beta^+$, 那么$\alpha<\alpha^+\leqslant\beta^+$.
+
+    \item 如果$\alpha<\beta$, 则对任意的$x<\alpha^+$有$x\leqslant\alpha$,
+    于是$x<\beta$. 从而$\alpha^+\leqslant\beta$.
+
+    \hspace{2.17em}
+    如果$\alpha^+\leqslant\beta$, 那么$\alpha<\alpha^+\leqslant\beta$.
+
+    \hspace{2.17em}
+    显然$\alpha^+\leqslant\beta$当且仅当$\alpha^+<\beta^+$. \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (后继序数、极限序数)}
+
+任给非空序数$\alpha$ :
+\begin{enumerate}
+    \item 如果存在序数$\beta$使得$\alpha=\beta^+$,
+    那么称$\alpha$是一个\textbf{后继序数};
+    \item 否则称$\alpha$是一个\textbf{极限序数}.
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+任给非空序数$\alpha$ :
+\begin{enumerate}
+    \item 如果$\alpha$是后继序数, 即有$\alpha=\beta^+$, 那么$\max\alpha=\beta$,
+    \item $\alpha$是极限序数当且仅当$\alpha$是归纳集,
+    \item 如果$\alpha$是极限序数, 那么$\alpha$没有最大元, $\sup\alpha=\alpha$.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 对任意的$x\in\alpha=\beta^+$有$x\leqslant\beta$, 所以$\beta$是最大元.
+    
+    \item 如果$\alpha$是极限序数, 那么首先由三歧性得$0<\alpha$,
+    其次对任意的$x<\alpha$, 再由三歧性得
+    \[
+        x^+<\alpha\,\lor\,x^+=\alpha\,\lor\,\alpha<x^+,
+    \]
+    假设$x^+=\alpha$则$\alpha$是后继序数矛盾;
+    假设$\alpha<x^+$则$\alpha\leqslant x$矛盾.
+    所以$x^+<\alpha$, 即$\alpha$是归纳集.
+
+    \hspace{2.17em}
+    如果$\alpha$是归纳集, 假设有$\alpha=\beta^+$则由$\beta\in\alpha$得
+    $\beta^+\in\alpha$矛盾. 所以$\alpha$是极限序数.
+
+    \item $\alpha$是$\alpha$的上界; 如果$\beta$也是上界, 那么$\beta<\alpha$
+    导致$\beta^+<\alpha$, 从而$\beta^+\leqslant\beta$矛盾,
+    所以$\beta\geqslant\alpha$.
+    
+    \hspace{2.17em}
+    所以$\alpha$是上确界. 显然此时没有最大元. \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:例1.1}{}
+\noindent\textbf{例1.1}
+
+\begin{enumerate}
+    \item 非零自然数都是后继序数,
+    \item 自然数集$\omega$是最小的极限序数.
+\end{enumerate}
+
+\end{document}

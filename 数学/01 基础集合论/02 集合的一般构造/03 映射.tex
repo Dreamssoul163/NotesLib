@@ -1,0 +1,270 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{映射}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (映射)}
+
+给定\href{02 二元关系#nameddest=sec:定义1.1}{二元关系} $f$, 如果
+\[
+    \forall x\,\forall y\,\forall y':\quad(x,y)\in f\land(x,y')\in f\to y=y',
+\]
+那么称$f$是一个\textbf{映射}.
+
+此时对任意的$x\in\mathrm{Dom}\,f$, 存在唯一的$y$使得$(x,y)\in f$, 记作$f(x)$或$fx$.
+
+\vspace{10pt}
+
+给定映射$f$和集合$a,b$.
+如果$\mathrm{Dom}\,f=a$且$\mathrm{Ran}\,f\subset b$, 就称$f$是从$a$到$b$的映射,
+记作$f:a\to b$.
+
+如果$\mathrm{Dom}\,f\subset a$且$\mathrm{Ran}\,f\subset b$,
+就称$f$是从$a$到$b$的部分映射.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (映射集)}
+
+给定集合$a,b$, 定义从$a$到$b$的\textbf{映射集}
+\[
+    ^ab\overset{\mathrm{def}}{=}\{f\subset a\times b\mid f:a\to b\},
+\]
+显然对任意的$f$, $f\in\,\!^ab$当且仅当$f$是从$a$到$b$的映射.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1 (映射的限制与复合)}
+
+\begin{enumerate}
+    \item 任给映射$f$和集合$a$, 限制$f\!\restriction_a$也是映射,
+    并且对任意的$x\in\mathrm{Dom}\,f\!\restriction_a$, 有
+    \[
+        f\!\restriction_a(x)=f(x).
+    \]
+    \item 任给映射$f,g$, 复合$g\circ f$也是映射,
+    并且对任意的$x\in\mathrm{Dom}(g\circ f)$, 有
+    \[
+        (g\circ f)(x)=g(f(x)).
+    \]
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 对任意的$x,y,y'$, 如果$(x,y),(x,y')$都属于$f\!\restriction_a$,
+    那么它们也都属于$f$, 因此$y=y'=f(x)$.
+    \item 对任意的$x,z,z'$, 如果$(x,z),(x,z')$都属于$g\circ f$, 则存在$y,y'$使得
+    \[
+        (x,y)\in f\land(y,z)\in g\quad\land\quad
+        (x,y')\in f\land(y',z')\in g,
+    \]
+    于是$y=y'=f(x)$, 进一步$z=z'=g(f(x))$. \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+给定映射$f$和集合$a,b$,
+\begin{enumerate}
+    \item 对任意的$x$, $x\in f^{-1}[a]$当且仅当$f(x)\in a$,
+    \item $f^{-1}[a\cap b]=f^{-1}[a]\cap f^{-1}[b]$,
+    \item $f^{-1}[a\setminus b]=f^{-1}[a]\setminus f^{-1}[b]$,
+    \item $f[f^{-1}[a]]=a\cap\mathrm{Ran}\,f$.
+\end{enumerate}
+
+
+
+
+
+\newpage
+
+\section{单射、满射与双射}
+
+\hypertarget{sec:定义2.1}{}
+\noindent\textbf{定义2.1 (单射、逆映射)}
+
+给定映射$f$, 如果$f^{-1}$也是映射, 即
+\[
+    \forall x\,\forall x'\,\forall y:\quad(x,y)\in f\land(x',y)\in f\to x=x',
+\]
+那么称$f$是\textbf{单射}. 此时称$f^{-1}$是它的\textbf{逆映射}, 显然它也是单射.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1}
+
+\begin{enumerate}
+    \item 任给单射$f$和集合$a$, 限制$f\!\restriction_a$也是单射.
+    \item 任给单射$f,g$, 复合$g\circ f$也是单射.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 对任意的$x,x',y$, 如果$(x,y),(x',y)$都属于$f\!\restriction_a$,
+    那么它们也都属于$f$, 因此$x=x'$.
+    \item $f^{-1},g^{-1}$都是映射, 所以$(g\circ f)^{-1}=f^{-1}\circ g^{-1}$
+    也是映射. \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定义2.2}{}
+\noindent\textbf{定义2.2 (满射、双射)}
+
+给定映射$f:a\to b$. 如果$\mathrm{Ran}\,f=b$, 就称$f:a\to b$是\textbf{满射}.
+
+如果$f:a\to b$既是单射又是满射, 就称$f:a\to b$是\textbf{双射}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.2}{}
+\noindent\textbf{定理2.2}
+
+\begin{enumerate}
+    \item 任给满射$f:a\to b$和$g:b\to c$, 复合$g\circ f:a\to c$也是满射.
+    \item 任给双射$f:a\to b$和$g:b\to c$, 复合$g\circ f:a\to c$也是双射.
+    \item 任给双射$f:a\to b$, 逆映射$f^{-1}:b\to a$也是双射.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item $\mathrm{Ran}(g\circ f)=g[\,\mathrm{Ran}\,f\,]=g[b]=c$.
+    \item 综上即得.
+    \item 显然$f^{-1}$是单射, 并且$\mathrm{Dom}\,f^{-1}=\mathrm{Ran}\,f=b$,
+    $\mathrm{Ran}\,f^{-1}=\mathrm{Dom}\,f=a$. \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定义2.3}{}
+\noindent\textbf{定义2.3 (恒等映射)}
+
+对任意集合$a$, 记$\mathrm{id}_a\overset{\mathrm{def}}{=}\{(x,x)\mid x\in a\}$,
+称作$a$上的\textbf{恒等映射}. 显然$\mathrm{id}_a$是$a$上的双射.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.3}{}
+\noindent\textbf{定理2.3}
+
+给定集合$a,b$和映射$f:a\to b$, $g:b\to a$.
+\begin{enumerate}
+    \item 如果$g\circ f=\mathrm{id}_a$, 那么$f^{-1}\subset g$,
+    并且$f$是单射, $g$是满射.
+    \item 如果$f\circ g=\mathrm{id}_b$, 那么$f^{-1}\supset g$,
+    并且$f$是满射, $g$是单射.
+    \item 如果$g\circ f=\mathrm{id}_a$并且$f\circ g=\mathrm{id}_b$, 那么
+    $f,g$都是双射且互为逆映射.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 对任意的$(y,x)\in f^{-1}$, 有$y=f(x)\implies x=g(f(x))=g(y)$,
+    即$(y,x)\in g$. 所以$f^{-1}\subset g$.
+
+    \hspace{2.17em}
+    因为$g$是映射, 所以$f^{-1}\subset g$也是映射, 即$f$是单射.
+    同时$\mathrm{Ran}\,g\supset\mathrm{Ran}\,f^{-1}=a$, 即$g$是满射.
+
+    \item 由第一条即得.
+    
+    \item 由前两条即得. \hfill $\qedsymbol$
+\end{enumerate}
+
+
+
+
+
+\newpage
+
+\section{选择公理}
+
+\hypertarget{sec:定义3.1}{}
+\noindent\textbf{定义3.1 (选择函数)}
+
+任给集合$a$和映射$\displaystyle f:a\to\bigcup a$, 如果
+\[
+    \forall x\in a:\quad f(x)\in x,
+\]
+就称$f$是$a$上的一个\textbf{选择函数}.
+
+\vspace{10pt}
+
+\href{../01 ZFC 公理/01 ZFC 公理#nameddest=sec:选择公理}{选择公理}要求,
+每个不含空集的集合都有选择函数. 据此有以下的定理.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理3.1}{}
+\noindent\textbf{定理3.1 (单值化定理)}
+
+任给二元关系$r$, 存在映射$f$使得$f\subset r$并且$\mathrm{Dom}\,f=\mathrm{Dom}\,r$.
+
+\noindent{\kaishu 证明.}
+
+取$\mathcal{P}(\mathrm{Ran}\,r)\setminus\{\varnothing\}$上的选择函数$\varphi$.
+对任意的$x\in\mathrm{Dom}\,r$, 定义
+\[
+    f(x)=\varphi(r[\{x\}]).
+\]
+此时对任意的$(x,y)\in f$, 有$y=\varphi(r[\{x\}])\in r[\{x\}]$, 即$(x,y)\in r$.
+所以$f\subset r$. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+\hypertarget{sec:定理3.2}{}
+\noindent\textbf{定理3.2 (单射定理)}
+
+任给映射$f$, 存在单射$g$使得$g\subset f$并且$\mathrm{Ran}\,g=\mathrm{Ran}\,f$.
+
+\noindent{\kaishu 证明.}
+
+对$f^{-1}$应用单值化定理, 存在映射$h$使得$h\subset f^{-1}$并且
+$\mathrm{Dom}\,h=\mathrm{Dom}\,f^{-1}=\mathrm{Ran}\,f$.
+
+再令$g=h^{-1}$, 显然$g$是单射, $g\subset f$并且$\mathrm{Ran}\,g=\mathrm{Ran}\,f$.
+\hfill $\qedsymbol$
+
+\end{document}

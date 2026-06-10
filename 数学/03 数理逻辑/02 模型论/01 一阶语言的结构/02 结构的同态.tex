@@ -1,0 +1,368 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{结构的同态}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (结构的同态)}
+
+给定一阶语言$\mathcal{L}$,
+$\mathcal{L}$-\href{01 一阶语言的结构#nameddest=sec:定义1.1}{结构}
+$A,B$和映射$p:A\to B$. 如果:
+\begin{enumerate}
+    \item 对任意的常元$c$, $p(c^A)=c^B$,
+    \item 对任意的$n$元函数符号$f$和$a_1,\cdots,a_n\in A$,
+    \[
+        p(f^A(a_1,\cdots,a_n))=f^B(p(a_1),\cdots,p(a_n)),
+    \]
+    \item 对任意的$n$元关系符号$r$和$a_1,\cdots,a_n\in A$,
+    \[
+        (a_1,\cdots,a_n)\in r^A\quad\leftrightarrow\quad
+        (p(a_1),\cdots,p(a_n))\in r^B;
+    \]
+\end{enumerate}
+就称$p$是从$A$到$B$的$\mathcal{L}$-\textbf{同态}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (结构的同构)}
+
+给定一阶语言$\mathcal{L}$, $\mathcal{L}$-结构$A,B$和同态$p:A\to B$.
+
+如果$p$是双射, 就称$p$是从$A$到$B$的$\mathcal{L}$-\textbf{同构}, 记作$p:A\cong B$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+给定一阶语言$\mathcal{L}$, $\mathcal{L}$-结构$A,B$和同构$p:A\cong B$,
+则$p^{-1}:B\cong A$.
+
+\noindent{\kaishu 证明.}
+
+只需证明$p^{-1}$是从$B$到$A$的同态.
+
+\begin{enumerate}
+    \item 对任意的常元$c$, $p^{-1}(c^B)=p^{-1}(p(c^A))=c^A$,
+    \item 对任意的$n$元函数符号$f$和$b_1,\cdots,b_n\in B$,
+    记$a_1=p^{-1}(b_1),\cdots,a_n=p^{-1}(b_n)$则有
+    \[
+        p^{-1}(f^B(b_1,\cdots,b_n))=p^{-1}(f^B(p(a_1),\cdots,p(a_n)))
+        =p^{-1}(p(f^A(a_1,\cdots,a_n)))=f^A(a_1,\cdots,a_n),
+    \]
+    \item 对任意的$n$元关系符号$r$和$b_1,\cdots,b_n\in B$,
+    记$a_1=p^{-1}(b_1),\cdots,a_n=p^{-1}(b_n)$则有
+    \begin{equation*}
+        (b_1,\cdots,b_n)\in r^B\quad\iff\quad
+        (p(a_1),\cdots,p(a_n))\in r^B\quad\iff\quad
+        (a_1,\cdots,a_n)\in r^A.
+    \tag*{\qedsymbol}\end{equation*}
+\end{enumerate}
+
+
+
+
+
+\newpage
+
+\section{结构的范畴}
+
+一个一阶语言的若干结构与它们之间的同态可以形成一个范畴.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1}
+
+给定一阶语言$\mathcal{L}$和一些$\mathcal{L}$-结构的集合$O$, 定义
+\[
+    M=\{(A,B,p)\mid A,B\in O,\,p:A\to B\,\text{是同态}\},
+\]
+则$(O,M)$可以形成$\mathbf{Set}_O$的子范畴, 即:
+\begin{enumerate}
+    \item 恒等映射是同态,
+    \item 同态的复合也是同态.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+第一, 对任意的结构$A$, 显然$\mathrm{id}_A$是$A$上的自同态.
+
+第二, 对任意的同态$p:A\to B$和$q:B\to C$, 证明$q\circ p:A\to C$是同态.
+\begin{enumerate}
+    \item 对任意的常元$c$, $(q\circ p)(c^A)=q(c^B)=c^C$,
+    \item 对任意的$n$元函数符号$f$和$a_1,\cdots,a_n\in A$,
+    \[
+        (q\circ p)(f^A(a_1,\cdots,a_n))
+        =q(f^B(p(a_1),\cdots,p(a_n)))
+        =f^C((q\circ p)(a_1),\cdots,(q\circ p)(a_n)),
+    \]
+    \item 对任意的$n$元关系符号$r$和$a_1,\cdots,a_n\in A$,
+    \begin{equation*}
+        (a_1,\cdots,a_n)\in r^A\quad\iff\quad
+        (p(a_1),\cdots,p(a_n))\in r^B\quad\iff\quad
+        ((q\circ p)(a_1),\cdots,(q\circ p)(a_n))\in r^C.
+    \tag*{\qedsymbol}\end{equation*}
+\end{enumerate}
+
+\noindent{\kaishu 备注.
+在范畴中$A,B,C$不是单纯的集合, 都代表完整的$\mathcal{L}$-结构.}
+
+
+
+
+
+\newpage
+
+\section{同态结构的语义}
+
+给定一阶语言$\mathcal{L}$, 两个$\mathcal{L}$-结构$A,B$和同态$p:A\to B$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理3.1}{}
+\noindent\textbf{定理3.1}
+
+任给$A$上的变元赋值$\sigma$和项$t$, 有$p(t^{(A,\sigma)})=t^{(B,p\circ\sigma)}$.
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 对任意的常元$c$, $p(c^{(A,\sigma)})=p(c^A)=c^B=c^{(B,p\circ\sigma)}$,
+    \item 对任意的变元$x$,
+    $p(x^{(A,\sigma)})=p(x^\sigma)=x^{p\circ\sigma}=x^{(B,p\circ\sigma)}$,
+    \item 对任意的$n$元函数符号$f$, 假设项$t_1,\cdots,t_n$满足命题, 那么
+    \begin{equation*}\begin{aligned}
+        &p((ft_1\cdots t_n)^{(A,\sigma)})
+        =p(f^A(t_1^{(A,\sigma)},\cdots,t_n^{(A,\sigma)}))\\[-3pt]
+        =\,\,&f^B(p(t_1^{(A,\sigma)}),\cdots,p(t_n^{(A,\sigma)}))
+        =f^B(t_1^{(B,p\circ\sigma)},\cdots,t_n^{(B,p\circ\sigma)})
+        =(ft_1\cdots t_n)^{(B,p\circ\sigma)}.
+    \end{aligned}\tag*{\qedsymbol}\end{equation*}
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理3.2}{}
+\noindent\textbf{定理3.2}
+
+任给$A$上的变元赋值$\sigma$和无等词、量词的公式$\varphi$,
+$(A,\sigma)\models\varphi\leftrightarrow(B,p\circ\sigma)\models\varphi$.
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 对任意的$n$元关系符号$r$和项$t_1,\cdots,t_n$,
+    \[\begin{aligned}
+        (A,\sigma)\models rt_1\cdots t_n\quad\iff\quad&
+        (t_1^{(A,\sigma)},\cdots,t_n^{(A,\sigma)})\in r^A\quad\iff\quad
+        (p(t_1^{(A,\sigma)}),\cdots,p(t_n^{(A,\sigma)}))\in r^B\\[-3pt]
+        \quad\iff\quad&(t_1^{(B,p\circ\sigma)},\cdots,t_n^{(B,p\circ\sigma)})\in r^B
+        \quad\iff\quad(B,p\circ\sigma)\models rt_1\cdots t_n,
+    \end{aligned}\]
+    \item 假设$\varphi_1$满足命题, 显然$\varphi=\neg\varphi_1$满足命题,
+    \item 假设$\varphi_1,\varphi_2$满足命题,
+    显然$\varphi=(\varphi_1\to\varphi_2)$满足命题. \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理3.3}{}
+\noindent\textbf{定理3.3}
+
+如果$p$是单同态, 那么任给$A$上的变元赋值$\sigma$和无量词的公式$\varphi$,
+$(A,\sigma)\models\varphi\leftrightarrow(B,p\circ\sigma)\models\varphi$.
+
+\noindent{\kaishu 证明.}
+
+对任意的项$t_1,t_2$,
+\begin{equation*}\begin{aligned}
+    (A,\sigma)\models t_1\equiv t_2\quad\iff\quad&
+    t_1^{(A,\sigma)}=t_2^{(A,\sigma)}\quad\iff\quad
+    p(t_1^{(A,\sigma)})=p(t_2^{(A,\sigma)})\\[-3pt]\quad\iff\quad&
+    t_1^{(B,p\circ\sigma)}=t_2^{(B,p\circ\sigma)}\quad\iff\quad
+    (B,p\circ\sigma)\models t_1\equiv t_2.
+\end{aligned}\tag*{\qedsymbol}\end{equation*}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理3.4}{}
+\noindent\textbf{定理3.4}
+
+如果$p$是满同态, 那么任给$A$上的变元赋值$\sigma$和无等词的公式$\varphi$,
+$(A,\sigma)\models\varphi\leftrightarrow(B,p\circ\sigma)\models\varphi$.
+
+\noindent{\kaishu 证明.}
+
+对任意的变元$x$, 假设$\varphi_1$满足命题, 那么对$\varphi=\exists x\varphi_1$有:
+\begin{enumerate}
+    \item 如果$(A,\sigma)\models\varphi$, 那么存在$a\in A$使得
+    $\displaystyle\left(A,\sigma\frac{a}{x}\right)\models\varphi_1$, 依假设有
+    \[
+        \left(B,(p\circ\sigma)\frac{p(a)}{x}\right)=
+        \left(B,p\circ\left(\sigma\frac{a}{x}\right)\right)\models\varphi_1
+        \quad\implies\quad(B,p\circ\sigma)\models\varphi,
+    \]
+    \item 如果$(B,p\circ\sigma)\models\varphi$, 那么存在$b\in B$使得
+    $\displaystyle\left(B,(p\circ\sigma)\frac{b}{x}\right)\models\varphi_1$,
+    此时存在$a\in A$使得$p(a)=b$, 从而
+    \begin{equation*}
+        \left(A,\sigma\frac{a}{x}\right)\models\varphi_1
+        \quad\implies\quad(A,\sigma)\models\varphi.
+    \tag*{\qedsymbol}\end{equation*}
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理3.5}{}
+\noindent\textbf{定理3.5}
+
+如果$p$是同构, 那么任给$A$上的变元赋值$\sigma$和公式$\varphi$,
+$(A,\sigma)\models\varphi\leftrightarrow(B,p\circ\sigma)\models\varphi$.
+
+
+
+
+
+\newpage
+
+给定一阶语言$\mathcal{L}$, 两个$\mathcal{L}$-结构$A,B$和映射$p:A\to B$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理3.6}{}
+\noindent\textbf{定理3.6}
+
+如果有$A$上的满变元赋值$\sigma$使得对任意公式$\varphi$都有
+$(A,\sigma)\models\varphi\leftrightarrow(B,p\circ\sigma)\models\varphi$,
+那么$p$是单同态.
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 对任意的$a_1,a_2\in A$, 假设$p(a_1)=p(a_2)$.
+    取变元$x_1,x_2$使得$x_1^\sigma=a_1,\,x_2^\sigma=a_2$, 则有
+    \[
+        x_1^{p\circ\sigma}=x_2^{p\circ\sigma}\implies
+        (B,p\circ\sigma)\models x_1\equiv x_2\implies
+        (A,\sigma)\models x_1\equiv x_2\implies x_1^\sigma=x_2^\sigma,
+    \]
+    即$a_1=a_2$. 所以$p$是单射.
+
+    \item 对任意的常元$c$, 取变元$x$使得$x^\sigma=c^A$, 则有
+    \[
+        (A,\sigma)\models x\equiv c\implies
+        (B,p\circ\sigma)\models x\equiv c\implies
+        x^{p\circ\sigma}=c^B,
+    \]
+    即$p(c^A)=c^B$.
+
+    \item 对任意的$n$元函数符号$f$和$a_1,\cdots,a_n\in A$,
+    
+    \hspace{2.17em}
+    取变元$x_1,\cdots,x_n,y$使得$x_1^\sigma=a_1,\,\cdots,\,x_n^\sigma=a_n,\,
+    y^\sigma=f^A(a_1,\cdots,a_n)$, 则有
+    \[
+        (A,\sigma)\models fx_1\cdots x_n\equiv y\implies
+        (B,p\circ\sigma)\models fx_1\cdots x_n\equiv y\implies
+        f^B(x_1^{p\circ\sigma},\cdots,x_n^{p\circ\sigma})=y^{p\circ\sigma},
+    \]
+    即$f^B(p(a_1),\cdots,p(a_n))=p(f^A(a_1,\cdots,a_n))$.
+    \item 对任意的$n$元关系符号$r$和$a_1,\cdots,a_n\in A$,
+    取变元$x_1,\cdots,x_n$使得$x_1^\sigma=a_1,\,\cdots,\,x_n^\sigma=a_n$, 则有
+    \begin{equation*}\begin{aligned}
+        (a_1,\cdots,a_n)\in r^A\iff&(A,\sigma)\models rx_1\cdots x_n\iff
+        (B,p\circ\sigma)\models rx_1\cdots x_n\\[-3pt]
+        \iff&(x_1^{p\circ\sigma},\cdots,x_n^{p\circ\sigma})\in r^B\iff
+        (p(a_1),\cdots,p(a_n))\in r^B.
+    \end{aligned}\tag*{\qedsymbol}\end{equation*}
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理3.7}{}
+\noindent\textbf{定理3.7}
+
+如果对$A$上任意的变元赋值$\sigma$和任意公式$\varphi$都有
+$(A,\sigma)\models\varphi\leftrightarrow(B,p\circ\sigma)\models\varphi$,
+那么$p$是单同态.
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 对任意的$a_1,a_2\in A$, 假设$p(a_1)=p(a_2)$.
+    取赋值$\sigma$和变元$x_1,x_2$使得$x_1^\sigma=a_1,\,x_2^\sigma=a_2$, 则有
+    \[
+        x_1^{p\circ\sigma}=x_2^{p\circ\sigma}\implies
+        (B,p\circ\sigma)\models x_1\equiv x_2\implies
+        (A,\sigma)\models x_1\equiv x_2\implies x_1^\sigma=x_2^\sigma,
+    \]
+    即$a_1=a_2$. 所以$p$是单射.
+
+    \item 对任意的常元$c$, 取赋值$\sigma$和变元$x$使得$x^\sigma=c^A$, 则有
+    \[
+        (A,\sigma)\models x\equiv c\implies
+        (B,p\circ\sigma)\models x\equiv c\implies
+        x^{p\circ\sigma}=c^B,
+    \]
+    即$p(c^A)=c^B$.
+
+    \item 对任意的$n$元函数符号$f$和$a_1,\cdots,a_n\in A$,
+    
+    \hspace{2.17em}
+    取赋值$\sigma$和变元$x_1,\cdots,x_n,y$使得
+    $x_1^\sigma=a_1,\,\cdots,\,x_n^\sigma=a_n,\,y^\sigma=f^A(a_1,\cdots,a_n)$, 则有
+    \[
+        (A,\sigma)\models fx_1\cdots x_n\equiv y\implies
+        (B,p\circ\sigma)\models fx_1\cdots x_n\equiv y\implies
+        f^B(x_1^{p\circ\sigma},\cdots,x_n^{p\circ\sigma})=y^{p\circ\sigma},
+    \]
+    即$f^B(p(a_1),\cdots,p(a_n))=p(f^A(a_1,\cdots,a_n))$.
+    \item 对任意的$n$元关系符号$r$和$a_1,\cdots,a_n\in A$,
+    
+    \hspace{2.17em}
+    取赋值$\sigma$和变元$x_1,\cdots,x_n$使得
+    $x_1^\sigma=a_1,\,\cdots,\,x_n^\sigma=a_n$, 则有
+    \begin{equation*}\begin{aligned}
+        (a_1,\cdots,a_n)\in r^A\iff&(A,\sigma)\models rx_1\cdots x_n\iff
+        (B,p\circ\sigma)\models rx_1\cdots x_n\\[-3pt]
+        \iff&(x_1^{p\circ\sigma},\cdots,x_n^{p\circ\sigma})\in r^B\iff
+        (p(a_1),\cdots,p(a_n))\in r^B.
+    \end{aligned}\tag*{\qedsymbol}\end{equation*}
+\end{enumerate}
+
+\end{document}

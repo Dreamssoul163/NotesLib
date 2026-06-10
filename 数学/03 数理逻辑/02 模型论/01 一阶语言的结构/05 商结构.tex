@@ -1,0 +1,260 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{商结构}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (同余关系)}
+
+给定一阶语言$\mathcal{L}$,
+$\mathcal{L}$-\href{01 一阶语言的结构#nameddest=sec:定义1.1}{结构}
+$A$和$A$上的等价关系$\sim$. 如果:
+\begin{enumerate}
+    \item 对任意的$n$元函数符号$f$和等价的$a_1\sim a_1',\cdots,a_n\sim a_n'\in A$, 有
+    \[
+        f^A(a_1,\cdots,a_n)\sim f^A(a_1',\cdots,a_n'),
+    \]
+    \item 对任意的$n$元关系符号$r$和等价的$a_1\sim a_1',\cdots,a_n\sim a_n'\in A$, 有
+    \[
+        (a_1,\cdots,a_n)\in r^A\quad\to\quad(a_1',\cdots,a_n')\in r^A;
+    \]
+\end{enumerate}
+就称$\sim$是$A$上的$\mathcal{L}$-\textbf{同余关系}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (商结构)}
+
+给定一阶语言$\mathcal{L}$, $\mathcal{L}$-结构$A$和$A$上的$\mathcal{L}$-同余关系$\sim$,
+则存在唯一的$\mathcal{L}$-结构$^{\displaystyle A}\!/_{\displaystyle\sim}$使得:
+\begin{enumerate}
+    \item 对任意的常元$c$, $c^{A/\sim}=[c^A]$,
+    \item 对任意的$n$元函数符号$f$和
+    $s_1,\cdots,s_n\in\,\!^{\displaystyle A}\!/_{\displaystyle\sim}$, 有
+    \[
+        \forall a_1\in s_1,\,\,\cdots,\,\,\forall a_n\in s_n:
+        f^{A/\sim}(s_1,\cdots,s_n)=[f^A(a_1,\cdots,a_n)],
+    \]
+    \vspace{-13pt}
+    \item 对任意的$n$元关系符号$r$和
+    $s_1,\cdots,s_n\in\,\!^{\displaystyle A}\!/_{\displaystyle\sim}$, 有
+    \[
+        \forall a_1\in s_1,\,\,\cdots,\,\,\forall a_n\in s_n:
+        ((s_1,\cdots,s_n)\in r^{A/\sim}\,\leftrightarrow\,(a_1,\cdots,a_n)\in r^A);
+    \]
+\end{enumerate}
+称之为结构$A$模$\sim$的\textbf{商结构}.
+
+\noindent{\kaishu 验证.}
+
+\noindent{\kaishu 存在性.}
+
+\begin{enumerate}
+    \item 对任意的常元$c$定义$c^{A/\sim}=[c^A]$,
+    \item 对任意的$n$元函数符号$f$和
+    $s_1,\cdots,s_n\in\,\!^{\displaystyle A}\!/_{\displaystyle\sim}$,
+    选定$m_1\in s_1,\cdots,m_n\in s_n$, 定义
+    \[
+        f^{A/\sim}(s_1,\cdots,s_n)=[f^A(m_1,\cdots,m_n)].
+    \]
+    此时再任取$a_1\in s_1,\cdots,a_n\in s_n$, 有
+    $m_1\sim a_1,\cdots,m_n\sim a_n$, 依同余关系的定义就有
+    \[
+        f^{A/\sim}(s_1,\cdots,s_n)=[f^A(a_1,\cdots,a_n)].
+    \]
+    \item 对任意的$n$元关系符号$r$, 定义
+    \[
+        r^{A/\sim}=\left\{(s_1,\cdots,s_n)\in\,\!
+        \left(^{\displaystyle A}\!/_{\displaystyle\sim}\right)^n\,\middle\vert\,
+        \exists m_1\in s_1,\,\,\cdots,\,\,\exists m_n\in s_n:
+        (m_1,\cdots,m_n)\in r^A\right\}.
+    \]
+    此时任取$s_1,\cdots,s_n\in\,\!^{\displaystyle A}\!/_{\displaystyle\sim}$
+    和$a_1\in s_1,\cdots,a_n\in s_n$:
+
+    \hspace{2.17em}
+    如果$(s_1,\cdots,s_n)\in r^{A/\sim}$,
+    那么存在$m_1\in s_1,\cdots,m_n\in s_n$使得
+    \[
+        (m_1,\cdots,m_n)\in r^A\quad\implies\quad(a_1,\cdots,a_n)\in r^A;
+    \]
+
+    \hspace{2.17em}
+    如果$(a_1,\cdots,a_n)\in r^A$, 显然$(s_1,\cdots,s_n)\in r^{A/\sim}$.
+\end{enumerate}
+
+\noindent{\kaishu 唯一性.}
+
+假设有两个商结构, 易证常元、函数符号和关系符号的解释都相同, 即结构相同.
+\hfill $\qedsymbol$
+
+
+
+
+
+\newpage
+
+\section{商结构与同态}
+
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1 (投影同态)}
+
+给定一阶语言$\mathcal{L}$, $\mathcal{L}$-结构$A$
+和$A$上的$\mathcal{L}$-同余关系$\sim$, 投影映射
+\[
+    \pi:A\to\,^{\displaystyle A}\!/_{\displaystyle\sim},\,a\mapsto[a]
+\]
+是从$A$到$^{\displaystyle A}\!/_{\displaystyle\sim}$的满同态,
+称之为\textbf{投影同态}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.2}{}
+\noindent\textbf{定理2.2}
+
+给定一阶语言$\mathcal{L}$和$\mathcal{L}$-结构$A,B$.
+
+设$p:A\to B$是同态, 则存在唯一的$A$上的等价关系$\sim$
+和$q:\,^{\displaystyle A}\!/_{\displaystyle\sim}\to B$使得:
+\begin{enumerate}
+    \item $\sim$是同余关系,
+    \vspace{3pt}
+    \item $q$是从$^{\displaystyle A}\!/_{\displaystyle\sim}$到$B$的单同态,
+    \item $p=q\circ\pi$.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\noindent{\kaishu 存在性.}
+
+假设有同态$p:A\to B$, 定义$A$上的等价关系$\sim_p$:
+\[
+    \forall a,a'\in A:(a\sim_p a'\iff p(a)=p(a')).
+\]
+此时:
+\begin{enumerate}
+    \item 对任意的$n$元函数符号$f$和$a_1\sim_p a_1',\cdots,a_n\sim_p a_n'\in A$, 有
+    \[
+        p(f^A(a_1,\cdots,a_n))=f^B(p(a_1),\cdots,p(a_n))
+        =f^B(p(a_1'),\cdots,p(a_n'))=p(f^A(a_1',\cdots,a_n')),
+    \]
+    从而
+    \[
+        f^A(a_1,\cdots,a_n)\sim_p f^A(a_1',\cdots,a_n'),
+    \]
+    \item 对任意的$n$元关系符号$r$和$a_1\sim_p a_1',\cdots,a_n\sim_p a_n'\in A$, 有
+    \[\begin{aligned}
+        &(a_1,\cdots,a_n)\in r^A\quad\iff\quad(p(a_1),\cdots,p(a_n))\in r^B\\[-3pt]
+        \quad\iff\quad&(p(a_1'),\cdots,p(a_n'))\in r^B\quad\iff\quad
+        (a_1',\cdots,a_n')\in r^A,
+    \end{aligned}\]
+\end{enumerate}
+\vspace{3pt}
+所以$\sim_p$是$A$上的同余关系. 令$q:\,^{\displaystyle A}\!/_{\displaystyle\sim_p}\to B$
+为$p$模$\sim_p$的商映射, 则$q$是单射并且:
+\begin{enumerate}
+    \item 对任意的常元$c$, $q(c^{A/\sim_p})=q[c^A]=p(c^A)=c^B$,
+    \vspace{3pt}
+    \item 对任意的$n$元函数符号$f$
+    和$s_1,\cdots,s_n\in\,\!^{\displaystyle A}\!/_{\displaystyle\sim_p}$,
+    选定$a_1\in s_1,\cdots,a_n\in s_n$, 则有
+    \[\begin{aligned}
+        &q(f^{A/\sim_p}(s_1,\cdots,s_n))=q[f^A(a_1,\cdots,a_n)]\\[-3pt]
+        =\,\,&p(f^A(a_1,\cdots,a_n))=f^B(p(a_1),\cdots,p(a_n))
+        =f^B(q(s_1),\cdots,q(s_n)),
+    \end{aligned}\]
+    \item 对任意的$n$元关系符号$r$
+    和$s_1,\cdots,s_n\in\,\!^{\displaystyle A}\!/_{\displaystyle\sim_p}$,
+    选定$a_1\in s_1,\cdots,a_n\in s_n$, 则有
+    \[\begin{aligned}
+        &(s_1,\cdots,s_n)\in r^{A/\sim_p}\quad\iff\quad
+        (a_1,\cdots,a_n)\in r^A\\[-3pt]\quad\iff\quad&
+        (p(a_1),\cdots,p(a_n))\in r^B\quad\iff\quad
+        (q(s_1),\cdots,q(s_n))\in r^B,
+    \end{aligned}\]
+\end{enumerate}
+所以$q:\,^{\displaystyle A}\!/_{\displaystyle\sim_p}\to B$是单同态.
+最后, 依定义显然$p=q\circ\pi$.
+
+\vspace{3pt}
+\noindent{\kaishu 唯一性.} 显然. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.3}{}
+\noindent\textbf{定理2.3 (同态基本定理)}
+
+给定一阶语言$\mathcal{L}$和$\mathcal{L}$-结构$A,B$.
+
+设$p:A\to B$是同态, 则存在唯一的同构$q:\,^{\displaystyle A}\!/_{\displaystyle\sim_p}
+\to\mathrm{Ran}\,p$使得$p=\iota\circ q\circ\pi$.
+
+
+
+
+
+\newpage
+
+\section{商结构的语义}
+
+给定一阶语言$\mathcal{L}$, $\mathcal{L}$-结构$A$
+和$A$上的$\mathcal{L}$-同余关系$\sim$, 则任给$A$上的变元赋值$\sigma$, 记
+\[
+    ^{\displaystyle\sigma}\!/_{\displaystyle\sim}=\pi\circ\sigma:
+    x\mapsto[\sigma(x)],
+\]
+它是商结构$^{\displaystyle A}\!/_{\displaystyle\sim}$上的变元赋值.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理3.1}{}
+\noindent\textbf{定理3.1}
+
+给定一阶语言$\mathcal{L}$, $\mathcal{L}$-结构$A$
+和$A$上的$\mathcal{L}$-同余关系$\sim$, 则任给$A$上的变元赋值$\sigma$有:
+\begin{enumerate}
+    \item 对任意的项$t$, $[t^{(A,\sigma)}]=t^{(A/\sim,\sigma/\sim)}$,
+    \item 对任意的无等词公式$\varphi$,
+    $(A,\sigma)\models\varphi\iff\left(^{\displaystyle A}\!/_{\displaystyle\sim},
+    ^{\displaystyle\sigma}\!/_{\displaystyle\sim}\right)\models\varphi$.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+因为投影同态$\pi$是满同态, 由\href{02 结构的同态#nameddest=sec:定理3.4}
+{满同态语义的定理}即得. \hfill $\qedsymbol$
+
+\end{document}

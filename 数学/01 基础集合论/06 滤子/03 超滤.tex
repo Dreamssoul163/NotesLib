@@ -1,0 +1,184 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{超滤}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (超滤)}
+
+集合$X$上的极大\href{01 滤子#nameddest=sec:定义1.1}{滤子}称为$X$上的\textbf{超滤}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+任给集合$X$和$X$上的滤子$F$, 以下等价:
+\vspace{1pt}
+\begin{enumerate}
+    \item $F$是超滤.
+    \vspace{1pt}
+    \item 对任意的$a\subset X$, 有$a\in F\lor a^c\in F$.
+    \vspace{1pt}
+    \item 对$X$的任意有限个子集$(a_i)_{i<n}$,
+    如果$\displaystyle\bigcup_{i<n}a_i\in F$, 那么存在$i<n$使得$a_i\in F$.
+    \vspace{3pt}
+    \item 对任意的$a_1,a_2\subset X$, 如果$a_1\cup a_2\in F$,
+    那么$a_1\in F\lor a_2\in F$.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\noindent{\kaishu 1 $\to$ 2.}
+
+假设$F$是超滤, $a\notin F$, 下证$a^c\in F$.
+
+任取$F$的非空有限子集$T$, 有$\displaystyle\bigcap T\in F$.
+因为$a\notin F$, 所以$\displaystyle\bigcap T\not\subset a$, 从而
+\[
+    \bigcap\,(T\cup\{a^c\})=\left(\bigcap T\right)\cap a^c\neq\varnothing,\\[3pt]
+\]
+即$F\cup\{a^c\}$的非空有限子集的交集都非空, 可以生成滤子$G$.
+
+此时$G\supset F\cup\{a^c\}\supset F$, 由$F$是超滤得$G=F$, 所以$a^c\in F$.
+
+\noindent{\kaishu 2 $\to$ 3.}
+
+假设2.成立, 且有$\displaystyle\bigcup_{i<n}a_i\in F$.
+如果对任意的$i<n$有$a_i\notin F$, 那么$a_i^c\in F$, 从而
+\[
+    \left(\bigcup_{i<n}a_i\right)^c=\bigcap_{i<n}a_i^c\in F,
+\]
+矛盾.
+
+\noindent{\kaishu 3 $\to$ 4.} 显然.
+
+\noindent{\kaishu 4 $\to$ 1.}
+
+假设4.成立, 且有滤子$G\supset F$. 对任意的$a\in G$, 注意到
+\[
+    a\cup a^c=X\in F\quad\implies\quad a\in F\lor a^c\in F,
+\]
+如果$a^c\in F$则$a^c\in G$矛盾, 所以$a\in F$. 所以$G=F$, 即$F$是超滤.
+\hfill $\qedsymbol$
+
+
+
+
+
+\newpage
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+任意滤子都能扩张成一个超滤.
+
+\noindent{\kaishu 证明.}
+
+任取集合$X$和其上的滤子$F$, 定义
+\[
+    \mathcal{S}=\{\,G\subset\mathcal{P}(X)\mid G\text{\,是\,}X\text{\,上的滤子\,}
+    \land\,G\supset F\},
+\]
+显然$\mathcal{S}$非空($F\in\mathcal{S}$).
+
+考虑$\mathcal{S}$上的包含偏序$(\mathcal{S},\subset)$,
+再任取$\mathcal{S}$的非空链$\mathcal{T}$.
+
+\vspace{7pt}\hspace{-1em}\noindent{\kaishu 命题1.}
+$\displaystyle\bigcup\mathcal{T}\subset\mathcal{P}(X)$,
+$\displaystyle\bigcup\mathcal{T}\supset F$.
+
+\vspace{3pt}
+因为$\mathcal{T}\subset\mathcal{P}\mathcal{P}(X)$,
+所以$\displaystyle\bigcup\mathcal{T}\subset\mathcal{P}(X)$.
+再取$G\in\mathcal{T}$, 则有$\displaystyle F\subset G\subset\bigcup\mathcal{T}$.
+
+\vspace{7pt}\hspace{-1em}\noindent{\kaishu 命题2.}
+$\displaystyle\bigcup\mathcal{T}$是$X$上的滤子.
+
+\vspace{3pt}
+$\mathcal{T}$是$X$上的一族滤子, 因为$(\mathcal{T},\subset)$是全序, 显然是有向集,
+由\href{01 滤子#nameddest=sec:定理1.2}{引理}得$\displaystyle\bigcup\mathcal{T}$
+也是$X$上的滤子.
+
+\vspace{7pt}
+综上即得$\displaystyle\bigcup\mathcal{T}\in\mathcal{S}$,
+显然$\displaystyle\bigcup\mathcal{T}$是$\mathcal{T}$的上界.
+
+\vspace{7pt}
+根据 \href{../04 序理论/02 序数/06 Zorn 引理#nameddest=sec:定理1.1}{Zorn引理},
+$(\mathcal{S},\subset)$有极大元$G$, 于是:
+\begin{enumerate}
+    \item $G$是$X$上的滤子且包含$F$,
+    \item 如果$H$是$X$上的滤子且包含$G$, 则$H\in\mathcal{S}$, 从而$H=G$.
+    所以$G$是超滤. \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+主滤子是平凡的超滤, 更关注的是其它的超滤.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.3}{}
+\noindent\textbf{定理1.3}
+
+\begin{enumerate}
+    \item 主滤子都是超滤, 称为主超滤,
+    \item 无限集合上一定有非主超滤.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 设$F$是$X$上的一个主滤子. 显然对任意的$a\subset X$总有
+    $a\in F\lor a^c\in F$, 所以$F$是超滤.
+
+    \item 如果$X$是无限集, 那么其上的Fréchet滤子$F_\sigma$可以扩张成一个超滤$F$.
+    
+    \hspace{2.17em}
+    假设$F$是某个$x\in X$的主超滤, 那么
+    \[
+        \{x\}^c\text{\,是余有限子集\,}\quad\implies\quad
+        \{x\}^c\in F_\sigma\quad\implies\quad\{x\}^c\in F,
+    \]
+    矛盾. 即$F$是非主超滤. \hfill $\qedsymbol$
+\end{enumerate}
+
+% 最近开始写毕业论文. 很令人疲惫.
+% 2026.05.11
+
+\end{document}

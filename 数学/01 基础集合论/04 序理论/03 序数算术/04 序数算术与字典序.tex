@@ -1,0 +1,106 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{序数算术与字典序}
+
+序数算术恰好是简单运算的\href{../01 序关系/05 字典序#nameddest=sec:定义1.1}{字典序}.
+
+\vspace{20pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+任给\href{../02 序数/01 序数#nameddest=sec:定义1.1}{序数} $\alpha,\beta$, 有
+$\alpha+\beta=\mathrm{Type}(\alpha\sqcup\beta,\leqslant_{\mathrm{lex}})$.
+
+\noindent{\kaishu 证明.}
+
+对任意的$(i,x)\in \alpha\sqcup\beta$, 定义
+\[
+    f(i,x)=\alpha i+x,
+\]
+易证$f:\alpha\sqcup\beta\to\alpha+\beta$是双射, 下证$f$严格保序.
+
+在$\alpha\sqcup\beta$中任取$(i,x)<_{\mathrm{lex}}(j,y)$ :
+\begin{enumerate}
+    \item 如果$i=0,\,j=1$, 则$f(i,x)=x<\alpha\leqslant\alpha+y=f(j,y)$ ;
+    \item 如果$i=j=0,\,x<y$, 则$f(i,x)=x<y=f(j,y)$ ;
+    \item 如果$i=j=1,\,x<y$, 则$f(i,x)=\alpha+x<\alpha+y=f(j,y)$.
+    \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{20pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+任给序数$\alpha,\beta$, 有
+$\alpha\beta=\mathrm{Type}(\beta\times\alpha,\leqslant_{\mathrm{lex}})$.
+
+\noindent{\kaishu 证明.}
+
+对任意的$(x,y)\in\beta\times\alpha$, 定义
+\[
+    f(x,y)=\alpha x+y,
+\]
+易证$f:\beta\times\alpha\to\alpha\beta$是双射, 下证$f$严格保序.
+
+在$\beta\times\alpha$中任取$(x,y)<_{\mathrm{lex}}(x',y')$ :
+\begin{enumerate}
+    \item 如果$x<x'$, 则
+    \[
+        f(x,y)=\alpha x+y<\alpha x+\alpha=\alpha x^+
+        \leqslant\alpha x'\leqslant\alpha x'+y'=f(x',y')\,;
+    \]
+    \item 如果$x=x',\,y<y'$, 则
+    \begin{equation*}
+        f(x,y)=\alpha x+y<\alpha x'+y'=f(x',y').
+    \tag*{\qedsymbol}\end{equation*}
+\end{enumerate}
+
+\vspace{30pt}
+
+\hypertarget{sec:定理1.3}{}
+\noindent\textbf{定理1.3}
+
+任给序数$\alpha,\beta$ :
+\begin{enumerate}
+    \item $\alpha+\beta\approx\alpha\sqcup\beta\approx
+    \beta\sqcup\alpha\approx\beta+\alpha$,
+    \item $\alpha\beta\approx\beta\times\alpha\approx
+    \alpha\times\beta\approx\beta\alpha$.
+\end{enumerate}
+
+\end{document}

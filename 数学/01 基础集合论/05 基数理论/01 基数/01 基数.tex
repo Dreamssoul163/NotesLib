@@ -1,0 +1,229 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{基数}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (基数)}
+
+给定\href{../../04 序理论/02 序数/01 序数#nameddest=sec:定义1.1}{序数}
+$\kappa$, 如果
+\[
+    \forall\alpha<\kappa:\quad\alpha\prec\kappa,
+\]
+就称$\kappa$是一个\textbf{基数}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+自然数和自然数集$\omega$都是基数.
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 自然数$n$都是有限集, 即$\forall n<\omega:n\prec\omega$,
+    \item 任取自然数$n$,
+    由\href{../../03 自然数/03 有限集/01 有限集#nameddest=sec:定理1.2}{鸽笼原理}得
+    $\forall m<n:m\prec n$. \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (集合的势)}
+
+给定集合$x$, 存在唯一的基数$\kappa$使得$x\approx\kappa$,
+称之为$x$的\textbf{势}, 记作$|x|$或$\#x$.
+
+\noindent{\kaishu 证明.}
+
+\noindent{\kaishu 存在性.}
+
+考虑$x$上所有良序关系的集合
+$L=\{r\subset x\times x\mid\,r\text{\,是\,}x\text{\,上的良序\,}\}$,
+然后收集它们的序型
+\[
+    x^{\mathrm{E}}=\{\,\mathrm{Type}(x,r)\,\mid r\in L\}.
+\]
+
+根据\href{../../04 序理论/02 序数/05 良序原理#nameddest=sec:定理1.1}{良序原理},
+$L$非空, 所以$x^{\mathrm{E}}$非空.
+令$\kappa=\min x^{\mathrm{E}}$, 显然$\kappa\approx x$.
+
+对任意的$\alpha<\kappa$, 假设$\alpha\approx\kappa\approx x$,
+存在双射$f:\alpha\to x$, 把$\alpha$上的良序复制到$x$上, 记作$\leqslant$, 即有
+\[
+    f:(\alpha,\in)\cong(x,<)\quad\implies\quad
+    \alpha=\mathrm{Type}(x,\leqslant)\quad\implies\quad
+    \alpha\in x^{\mathrm{E}},
+\]
+矛盾. 所以$\alpha\prec\kappa$, 即$\kappa$是基数.
+
+\noindent{\kaishu 唯一性.}
+
+如果基数$\kappa,\lambda$都与$x$等势, 假设$\kappa<\lambda$则$\kappa\prec\lambda$,
+矛盾. 同理$\lambda<\kappa$也矛盾, 所以$\kappa=\lambda$. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+任给集合$a,b$ :
+\begin{enumerate}
+    \item $a\approx b$当且仅当$|a|=|b|$,
+    \item $a\prec b$当且仅当$|a|<|b|$,
+    \item $a\preccurlyeq b$当且仅当$|a|\leqslant|b|$.
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.3}{}
+\noindent\textbf{定义1.3 (基数类)}
+
+记全体基数组成的类为\textbf{基数类}, 记作$\mathbf{Cn}$.
+基数类是\href{../../01 ZFC 公理/02 类#nameddest=sec:真类}{真类}.
+
+\noindent{\kaishu 验证.}
+
+假设存在集合$\mathrm{Cn}$使得
+$\forall\kappa:\kappa\in\mathrm{Cn}\leftrightarrow\kappa\text{\,是基数\,}$. 那么:
+\[
+    \left|\,\mathcal{P}(\sup\mathrm{Cn})\,\right|\in\mathrm{Cn}
+    \quad\implies\quad
+    \left|\,\mathcal{P}(\sup\mathrm{Cn})\,\right|\leqslant\sup\mathrm{Cn}
+    \quad\implies\quad
+    \mathcal{P}(\sup\mathrm{Cn})\preccurlyeq\sup\mathrm{Cn},
+\]
+矛盾. \hfill $\qedsymbol$
+
+
+
+
+
+\newpage
+
+\section{基数的构造}
+
+Hartogs数和取上确界两种操作可以得到更大的基数.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义2.1}{}
+\noindent\textbf{定义2.1 (Hartogs数)}
+
+\vspace{3pt}
+任给集合$x$, 定义$\displaystyle
+x^{\mathrm{h}}\overset{\mathrm{def}}{=}\bigcup_{y\subset x}y^{\mathrm{E}}$,
+称之为$x$的\textbf{Hartogs数}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1}
+
+任给集合$x$, 有
+\[
+    \forall\alpha:\quad\alpha\in x^{\mathrm{h}}\leftrightarrow
+    \alpha\in\mathbf{On}\land\alpha\preccurlyeq x.
+\]
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 如果$\alpha\in x^{\mathrm{h}}$,
+    则存在$y\subset x$使得$\alpha\in y^{\mathrm{E}}$, 从而
+    $\alpha\approx y\preccurlyeq x$.
+    \item 如果序数$\alpha\preccurlyeq x$, 那么有单射$f:\alpha\to x$,
+    即有双射$f:\alpha\to\mathrm{Ran}\,f$, 所以
+    \begin{equation*}
+        \alpha\approx\mathrm{Ran}\,f\quad\implies\quad
+        \alpha\in(\mathrm{Ran}\,f)\,^{\mathrm{E}}\quad\implies\quad
+        \alpha\in x^{\mathrm{h}}.
+    \tag*{\qedsymbol}\end{equation*}
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.2}{}
+\noindent\textbf{定理2.2}
+
+任给集合$x$, $x^{\mathrm{h}}$是大于$|x|$的最小基数.
+
+\noindent{\kaishu 证明.}
+
+第一, 证明$x^{\mathrm{h}}$是序数. 如果$\beta\in\alpha\in x^{\mathrm{h}}$, 则
+\[
+    \beta\preccurlyeq\alpha\land\alpha\preccurlyeq x
+    \quad\implies\quad\beta\preccurlyeq x
+    \quad\implies\quad\beta\in x^{\mathrm{h}},
+\]
+即$x^{\mathrm{h}}$是传递集, 所以是序数.
+
+第二, 证明$x^{\mathrm{h}}$是基数. 首先假设$x^{\mathrm{h}}\preccurlyeq x$
+则$x^{\mathrm{h}}\in x^{\mathrm{h}}$矛盾, 所以$x^{\mathrm{h}}\succ x$.
+然后对任意的$\alpha<x^{\mathrm{h}}$有
+\[
+    \alpha\preccurlyeq x\quad\implies\quad\alpha\prec x^{\mathrm{h}},
+\]
+所以$x^{\mathrm{h}}$是基数.
+
+第三, 由$x\prec x^{\mathrm{h}}$得$|x|<x^{\mathrm{h}}$.
+另外, 如果基数$\kappa>|x|$, 此时假设$\kappa<x^{\mathrm{h}}$则
+\[
+    \kappa\preccurlyeq x\quad\implies\quad\kappa\leqslant|x|,
+\]
+矛盾. 所以$\kappa\geqslant x^{\mathrm{h}}$,
+即$x^{\mathrm{h}}$是大于$|x|$的最小基数. \hfill $\qedsymbol$
+
+\vspace{15pt}
+
+\hypertarget{sec:定理2.3}{}
+\noindent\textbf{定理2.3}
+
+任给非空集合$K$, 如果$K$的元素都是基数, 那么$\sup K$也是基数.
+
+\noindent{\kaishu 证明.}
+
+对任意的$\displaystyle\alpha<\sup K=\bigcup K$, 存在$\kappa\in K$使得
+\[
+    \alpha<\kappa\quad\implies\quad\alpha\prec\kappa
+    \quad\implies\quad\alpha\prec\sup K,
+\]
+所以$\sup K$是基数. \hfill $\qedsymbol$
+
+\end{document}

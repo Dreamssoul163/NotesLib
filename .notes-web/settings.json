@@ -1,0 +1,139 @@
+{
+    // ***
+    "latex-workshop.latex.tools": [
+        {
+            "name": "pdflatex",
+            "command": "pdflatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOCFILE%"
+            ]
+        },
+        {
+            "name": "xelatex",
+            "command": "xelatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-output-directory=%OUTDIR%",
+                "%DOCFILE%"
+            ]
+        },
+        {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-pdf",
+                "-outdir=%OUTDIR%",
+                "%DOCFILE%"
+            ]
+        },
+        {
+            "name": "bibtex",
+            "command": "bibtex",
+            "args": [
+                "%OUTDIR%/%DOCFILE%"
+            ]
+        },
+        {
+            "name": "move-aux",
+            "command": "powershell",
+            "args": [
+                "-NoProfile",
+                "-Command",
+                "Get-ChildItem \"%DIR%\" -File | Where-Object { $_.Extension -in '.aux','.log','.out','.toc','.lof','.lot','.bbl','.blg','.fls','.fdb_latexmk','.xdv','.gz' } | Remove-Item -Force"
+            ]
+        },
+        {
+            "name": "copy-pdf",
+            "command": "powershell",
+            "args": [
+                "-NoProfile",
+                "-Command",
+                "Copy-Item \"%OUTDIR%/%DOCFILE%.pdf\" -Destination \"%DIR%/%DOCFILE%.pdf\" -Force"
+            ]
+        }
+    ],
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "XeLaTeX",
+            "tools": [
+                "xelatex",
+                "copy-pdf"
+            ]
+        },
+        {
+            "name": "PDFLaTeX",
+            "tools": [
+                "pdflatex",
+                "move-aux"
+            ]
+        },
+        {
+            "name": "BibTeX",
+            "tools": [
+                "bibtex"
+            ]
+        },
+        {
+            "name": "LaTeXmk",
+            "tools": [
+                "latexmk",
+                "move-aux"
+            ]
+        },
+        {
+            "name": "xelatex -> bibtex -> xelatex*2",
+            "tools": [
+                "xelatex",
+                "bibtex",
+                "xelatex",
+                "xelatex",
+                "move-aux"
+            ]
+        },
+        {
+            "name": "pdflatex -> bibtex -> pdflatex*2",
+            "tools": [
+                "pdflatex",
+                "bibtex",
+                "pdflatex",
+                "pdflatex",
+                "move-aux"
+            ]
+        },
+        {
+            "name": "xelatex -> biber -> xelatex*2",
+            "tools": [
+                "xelatex",
+                "biber",
+                "xelatex",
+                "xelatex",
+                "move-aux"
+            ]
+        }
+    ],
+    "latex-workshop.latex.outDir": "%WORKSPACE_FOLDER%/.build",
+    "latex-workshop.latex.autoBuild.run": "onSave",
+    "editor.minimap.enabled": false,
+    "github.copilot.enable": {
+        "*": false
+    },
+    "explorer.confirmDelete": false,
+    "editor.unicodeHighlight.allowedLocales": {
+        "zh-hans": true
+    },
+"verus-analyzer.server.path": "C:\\Users\\zhou-\\.vscode\\extensions\\verus-lang.verus-analyzer-0.3.259-win32-x64\\server\\verus-analyzer.exe",
+"files.autoSave": "onFocusChange",
+"claudeCode.preferredLocation": "panel",
+"editor.detectIndentation": false,
+"editor.stickyScroll.enabled": false,
+"terminal.integrated.stickyScroll.enabled": false,
+"chat.viewSessions.orientation": "stacked"
+}

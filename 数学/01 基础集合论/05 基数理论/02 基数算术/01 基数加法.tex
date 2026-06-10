@@ -1,0 +1,104 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{基数加法}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (基数加法)}
+
+对任意的\href{../01 基数/01 基数#nameddest=sec:定义1.1}{基数}
+$\kappa,\lambda$, 定义
+\[
+    \kappa\oplus\lambda\overset{\mathrm{def}}{=}|\,\kappa\sqcup\lambda\,|,
+\]
+称之为\textbf{基数加法}.
+
+\noindent{\kaishu 备注.
+这里为了与序数加法区分, 使用$\oplus$符号. 在不产生歧义的情况下仍然使用$+$符号.}
+
+\vspace{10pt}
+
+显然$\kappa\oplus\lambda=|\,\kappa+\lambda\,|$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+任给基数$\kappa,\lambda$,
+\begin{enumerate}
+    \item 如果$\kappa,\lambda$都有限, 那么$\kappa\oplus\lambda=\kappa+\lambda$,
+    \item 如果$\kappa$或$\lambda$无限,
+    那么$\kappa\oplus\lambda=\max\{\kappa,\lambda\}$.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 如果$\kappa,\lambda$都有限, 那么$\kappa+\lambda$是自然数,
+    因此$\kappa\oplus\lambda=|\,\kappa+\lambda\,|=\kappa+\lambda$.
+    
+    \item 如果$\kappa$或$\lambda$无限且$\kappa\geqslant\lambda$,
+    那么$\kappa$无限. 做序数除法, 有序数$\eta,\varepsilon$使得
+    \[
+        \kappa=\omega\eta+\varepsilon\quad\land\quad\varepsilon<\omega.
+    \]
+    因为$\kappa$是极限序数, 所以$\varepsilon=0$, 即$\kappa=\omega\eta$. 于是一方面
+    \[
+        \kappa+\lambda\preccurlyeq\kappa+\kappa=\omega\eta2\approx
+        2\omega\eta=\omega\eta=\kappa,
+    \]
+    另一方面$\kappa+\lambda\succcurlyeq\kappa$, 所以$\kappa+\lambda\approx\kappa$,
+    即$\kappa\oplus\lambda=\kappa$.
+
+    \item 如果$\kappa$或$\lambda$无限且$\kappa\leqslant\lambda$,
+    则同理得$\lambda+\kappa\approx\lambda$, 所以$\kappa\oplus\lambda=\lambda$.
+    \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+\begin{enumerate}
+    \item 结合律: $\forall\kappa,\lambda,\mu\in\mathbf{Cn}:\,
+    (\kappa\oplus\lambda)\oplus\mu=\kappa\oplus(\lambda\oplus\mu)$,
+    \item 单位元: $\forall\kappa\in\mathbf{Cn}:\,\kappa\oplus 0=\kappa$,
+    \item 交换律: $\forall\kappa,\lambda\in\mathbf{Cn}:\,
+    \kappa\oplus\lambda=\lambda\oplus\kappa$.
+\end{enumerate}
+
+\end{document}

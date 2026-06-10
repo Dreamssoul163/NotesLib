@@ -1,0 +1,134 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{初等等价}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (初等等价)}
+
+给定一阶语言$\mathcal{L}$, $\mathcal{L}$-结构$A,B$. 如果对任意语句$\varphi$有
+\[
+    A\models\varphi\leftrightarrow B\models\varphi,
+\]
+即$A,B$有相同的理论, 就称$A,B$\textbf{初等等价}, 记作$A\equiv B$.
+
+\vspace{10pt}
+
+显然同构的结构是初等等价的.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+给定一阶语言$\mathcal{L}$, $\mathcal{L}$-结构$A,B$.
+如果存在\href{01 初等嵌入#nameddest=sec:定义1.1}{初等嵌入} $p:A\to B$,
+那么$A\equiv B$.
+
+\noindent{\kaishu 证明.}
+
+任取$A$上的变元赋值$\sigma$和语句$\varphi$, 假设$A\models\varphi$,
+那么$(A,\sigma)\models\varphi\implies(B,p\circ\sigma)\models\varphi$,
+即$B\models\varphi$. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+给定一阶语言$\mathcal{L}$和$\mathcal{L}$-结构$A,B$, 考虑$A$对$\mathcal{L}$
+的\href{../02 一阶语义/02 语言的限制与扩张#nameddest=sec:定义2.1}{扩充语言}
+$\mathcal{L}_A$. 此时存在$A$到$B$的初等嵌入当且仅当存在$B$在$\mathcal{L}_A$上的
+解释扩张$B'$使得$B'\equiv A^*$.
+
+\noindent{\kaishu 证明.}
+
+\noindent{\kaishu 必要性.}
+
+假设$p:A\to B$是初等嵌入, 把$a\in A$在$B$中解释成$a^{B'}=p(a)$, 得到$B'$.
+
+再任取$\mathcal{L}_A$的语句$\psi$, 假设$A^*\models\psi$, 下证$B'\models\psi$.
+直接应用\href{../02 一阶语义/04 替换定理#nameddest=sec:定理2.2}{引理},
+存在$A$上的变元赋值$\sigma$、$\mathcal{L}$的公式$\varphi$
+和$\mathcal{L}_A$的替换$\theta$使得:
+\begin{enumerate}
+    \item $\psi=\theta(\varphi)$, 并且$\theta[\varphi]$,
+    \item 对任意的$x\in\mathrm{at}(\varphi)$,
+    $\theta(x)\in\mathcal{C}\cup A$并且$x^{(A,\sigma)}=\theta(x)^{A*}$,
+    \item $(A,\sigma)\models\varphi$.
+\end{enumerate}
+
+因为$p$是初等嵌入, 所以$(B,p\circ\sigma)\models\varphi$.
+同时对任意的$x\in\mathrm{at}(\varphi)$有
+\[\left\{\begin{aligned}
+    &\theta(x)\in\mathcal{C}:\quad
+    &&x^{(B,p\circ\sigma)}=p(x^{(A,\sigma)})=p(\theta(x)^{A*})=
+    p(\theta(x)^A)=\theta(x)^B=\theta(x)^{B'},\\[-3pt]
+    &\theta(x)\in A:\quad
+    &&x^{(B,p\circ\sigma)}=p(x^{(A,\sigma)})=p(\theta(x)^{A*})=
+    p(\theta(x))=\theta(x)^{B'},\\[3pt]
+\end{aligned}\right.\]
+再使用\href{../02 一阶语义/04 替换定理#nameddest=sec:定理2.1}{广义的替换定理}即
+得$B'\models\psi$.
+
+\noindent{\kaishu 充分性.}
+
+假设$B'\equiv A^*$, 则定义$p(a)=a^{B'}$.
+再任取$A$上的变元赋值$\sigma$和$\mathcal{L}$的公式$\varphi$.
+
+定义$\mathcal{L}_A$的替换$\theta:x\mapsto x^{(A,\sigma)}\in A$.
+此时对任意的$x\in\mathrm{at}(\varphi)$有
+\begin{enumerate}
+    \item $\mathrm{var}\,\theta(x)=\varnothing$, 即$
+    \mathrm{var}\,\theta(x)\cap\mathrm{bnd}(\varphi)=\varnothing$,
+    从而有$\theta[\varphi]$并且易证$\theta(\varphi)$是语句,
+    \item $x^{(A,\sigma)}=\theta(x)=\theta(x)^{A*}$,
+    \item 如果$x$是变元, 那么$x^{(B,p\circ\sigma)}=p(x^\sigma)=\theta(x)^{B'}$,
+    \item 如果$x$是常元, 考虑$\mathcal{L}_A$的语句$x\equiv x^A$, 注意到
+    \[\left\{\begin{aligned}
+        &A^*\models x\equiv x^A&\iff&&&x^{A*}=(x^A)^{A*}&\iff&&&x^A=x^A,\\[-3pt]
+        &B'\models x\equiv x^A&\iff&&&x^{B'}=(x^A)^{B'}&\iff&&&x^B=\theta(x)^{B'},
+    \end{aligned}\right.\]
+    于是根据$B'\equiv A^*$可知$x^B=\theta(x)^{B'}$, 即也有
+    $x^{(B,p\circ\sigma)}=\theta(x)^{B'}$.
+\end{enumerate}
+
+综上, 使用广义的替换定理可知
+\begin{equation*}
+    (A,\sigma)\models\varphi\iff A^*\models\theta(\varphi)\iff
+    B'\models\theta(\varphi)\iff(B,p\circ\sigma)\models\varphi.
+\tag*{\qedsymbol}\end{equation*}
+
+\end{document}

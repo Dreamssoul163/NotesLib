@@ -1,0 +1,232 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{邻域}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (邻域)}
+
+给定\href{01 拓扑空间#nameddest=sec:定义1.1}{拓扑空间} $(X,\mathcal{T})$.
+
+对任意点$x$和点集$N$,
+如果存在开集$U$使得
+\[
+    x\in U\quad\land\quad U\subset N,
+\]
+就称$N$是$x$在此空间的一个\textbf{邻域}.
+
+对任意点$x$, 称$x$的邻域的全体为$x$的\textbf{邻域系}, 记作$\mathcal{N}_x$.
+再称$(\mathcal{N}_x)_{x\in X}$为此空间的\textbf{邻域系族}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+给定拓扑空间$(X,\mathcal{T})$. 对任意的点集$A$,
+$A$是开集当且仅当$A$是其中任意点的邻域.
+
+\noindent{\kaishu 证明.}
+
+如果$A$是开集, 那么对任意点$x\in A$有$x\in A\subset A$, 即$A$是$x$的邻域.
+
+如果$A$是其中任意点的邻域, 即对任意点$y\in A$可以选择开集$U_y$使得
+$y\in U_y\subset A$. 那么对任意点$x$:
+\begin{enumerate}
+    \item 当$x\in A$时, 有$x\in U_x$, 从而$\displaystyle x\in\bigcup_{y\in A}U_y$,
+    \item 当$\displaystyle x\in\bigcup_{y\in A}U_y$时,
+    存在点$y\in A$使得$x\in U_y$, 从而$x\in A$,
+\end{enumerate}
+\vspace{3pt}
+综上就有$\displaystyle A=\bigcup_{y\in A}U_y$是开集. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+同样也可以根据邻域系族来定义一个拓扑.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (邻域公理)}
+
+给定集合$X$和它的一族非空子集族$(\mathcal{A}_x)_{x\in X}$.
+称$(\mathcal{A}_x)_{x\in X}$满足\textbf{邻域公理}, 如果:
+\begin{enumerate}
+    \item 对任意点$x$和点集$M\in\mathcal{A}_x$, 有$x\in M$,
+    \item 对任意点$x$和点集$M\in\mathcal{A}_x$,
+    如果点集$M'\supset M$, 那么$M'\in\mathcal{A}_x$,
+    \item 对任意点$x$和点集$M,M'\in\mathcal{A}_x$,
+    二者的交集$M\cap M'\in\mathcal{A}_x$,
+    \item 对任意点$x$和点集$M\in\mathcal{A}_x$, 存在点集$M'\subset M$使得
+    $x\in M'$并且$\forall y\in M':M'\in\mathcal{A}_y$.
+\end{enumerate}
+
+\vspace{10pt}
+
+这里的公理4可以改为公理4' (即1,2,3 $\vdash$ 4 $\leftrightarrow$ 4') :
+
+\hspace{-1.1em}
+4'. 对任意点$x$和点集$M\in\mathcal{A}_x$, 存在点集$M'\subset M$使得
+$M'\in\mathcal{A}_x$并且$\forall y\in M':M\in\mathcal{A}_y$.
+
+\noindent{\kaishu 证明.}
+
+在2的前提下, 4 $\to$ 4'是显然的. 只需证4' $\to$ 4, 把1,2,3,4'作为前提证明4.
+
+对任意点$x$和点集$M\in\mathcal{A}_x$, 定义点集
+$M'=\{z\in M\mid M\in\mathcal{A}_z\}$即可.
+
+第一, 显然$M'\subset M$;
+
+第二, 因为$M\in\mathcal{A}_x$, 再由1得$x\in M$, 所以依定义有$x\in M'$;
+
+第三, 对任意点$y\in M'$, 依定义有$M\in\mathcal{A}_y$.
+由4', 存在点集$N_y\subset M$使得
+\[
+    N_y\in\mathcal{A}_y\quad\land\quad\forall z\in N_y:M\in\mathcal{A}_z.
+\]
+注意到对任意点$z\in N_y$有$z\in M$且$M\in\mathcal{A}_z$, 即$z\in M'$,
+从而$N_y\subset M'$. 再由2即得$M'\in\mathcal{A}_y$.
+
+综上, $M'$满足4. \hfill $\qedsymbol$
+
+
+
+
+
+\newpage
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+给定集合$X$和它的一族非空子集族$(\mathcal{A}_x)_{x\in X}$, 那么:
+
+$(\mathcal{A}_x)_{x\in X}$满足邻域公理当且仅当
+$X$上存在唯一的拓扑$\mathcal{T}$使得
+$(\mathcal{A}_x)_{x\in X}$是$(X,\mathcal{T})$的邻域系族.
+
+\noindent{\kaishu 证明.}
+
+\noindent{\kaishu 必要性.}
+
+假设$(\mathcal{A}_x)_{x\in X}$满足邻域公理, 定义
+$\mathcal{T}=\{U\subset X\mid\forall x\in U:U\in\mathcal{A}_x\}$. 易证:
+\begin{enumerate}
+    \item 显然$\varnothing\in\mathcal{T}$; 对任意点$x$, 由公理2得
+    $X\in\mathcal{A}_x$, 从而$X\in\mathcal{T}$.
+
+    \item 对$\mathcal{T}$中任意的$(U_i)_{i\in I}$ :
+    
+    \vspace{3pt}\hspace{2.17em}
+    对任意点$\displaystyle x\in\bigcup_{i\in I}U_i$, 存在$j\in I$使得
+    $x\in U_j$, 则$U_j\in\mathcal{A}_x$,
+    由公理2得$\displaystyle\bigcup_{i\in I}U_i\in\mathcal{A}_x$.
+    从而$\displaystyle\bigcup_{i\in I}U_i\in\mathcal{T}$.
+
+    \vspace{3pt}
+    \item 对任意的$U_1,U_2\in\mathcal{T}$ :
+    
+    \hspace{2.17em}
+    对任意点$x\in U_1\cap U_2$, 有$U_1,U_2\in\mathcal{A}_x$,
+    由公理3得$U_1\cap U_2\in\mathcal{A}_x$. 从而$U_1\cap U_2\in\mathcal{T}$.
+\end{enumerate}
+即$\mathcal{T}$是$X$上的拓扑. 进一步, 对任意点$x$和点集$N$ :
+\begin{enumerate}
+    \item 如果$N\in\mathcal{A}_x$, 由公理4
+    存在$U\subset N$使得$x\in U$并且$U\in\mathcal{T}$, 即$N\in\mathcal{N}_x$.
+    \item 如果$N\in\mathcal{N}_x$, 那么存在$U\in\mathcal{T}$使得$x\in U\subset N$,
+    此时$U\in\mathcal{A}_x$, 由公理2得$N\in\mathcal{A}_x$.
+\end{enumerate}
+综上, 对任意点$x$有$\mathcal{A}_x=\mathcal{N}_x$,
+即$(\mathcal{A}_x)_{x\in X}=(\mathcal{N}_x)_{x\in X}$是$(X,\mathcal{T})$的邻域系族.
+
+如果拓扑$\mathcal{T}_1,\mathcal{T}_2$的空间的邻域系族都是$(\mathcal{A}_x)_{x\in X}$,
+那么对任意的$U\in\mathcal{T}_1$有
+\[
+    \forall x\in U:U\in\mathcal{A}_x\quad\implies\quad U\in\mathcal{T}_2,
+\]
+即$\mathcal{T}_1\subset\mathcal{T}_2$, 反之同理. 于是这样的拓扑唯一.
+
+\noindent{\kaishu 充分性.}
+
+任取拓扑空间$(X,\mathcal{T})$, 有:
+\begin{enumerate}
+    \item 如果$N$是$x$的邻域:
+    
+    \hspace{2.17em}
+    存在开集$U$使得$x\in U\subset N$, 显然$x\in N$.
+
+    \item 如果$N$是$x$的邻域且点集$N'\supset N$ :
+    
+    \hspace{2.17em}
+    存在开集$U$使得$x\in U\subset N$, 于是也有$x\in U\subset N'$,
+    所以$N'$也是$x$的邻域.
+
+    \item 如果$N,N'$是$x$的邻域:
+    
+    \hspace{2.17em}
+    存在开集$U,U'$使得$x\in U\subset N,\,x\in U'\subset N'$. 此时$U\cap U'$也是开集
+    并且$x\in U\cap U'\subset N\cap N'$, 所以$N\cap N'$也是$x$的邻域.
+
+    \item 如果$N$是$x$的邻域:
+    
+    \hspace{2.17em}
+    存在开集$U$使得$x\in U\subset N$, 即$U$是含$x$的$N$的子集并且
+    $U$是其中任意点的邻域.
+\end{enumerate}
+综上即得$(X,\mathcal{T})$的邻域系族满足邻域公理. \hfill $\qedsymbol$
+
+% 感觉写的有点好, 又有点不好. 现在对拓扑的整体图像并不太清晰, 有机会再改进吧.
+% 一不小心就熬到快5点了. 晚安.
+% 2026.03.21
+
+% 现在回头看, 能熬到深夜写数学笔记的生活还是幸福的.
+% 2026.05.11
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.3}{}
+\noindent\textbf{定理1.3 (邻域系对有限交封闭)}
+
+给定拓扑空间$(X,\mathcal{T})$. 对任意点$x$和它的有限个邻域$(N_i)_{i<n}$,
+它们的交$\displaystyle\bigcap_{i=0}^{n-1}N_i$也是$x$的邻域.
+
+\noindent{\kaishu 证明.}
+
+根据邻域公理, $\mathcal{N}_x$是$X$上
+的\href{../../01 基础集合论/06 滤子/01 滤子#nameddest=sec:定义1.1}{滤子},
+所以对有限交封闭. \hfill $\qedsymbol$
+
+\end{document}

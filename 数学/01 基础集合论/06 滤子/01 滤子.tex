@@ -1,0 +1,190 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{滤子}
+
+% 要学点集拓扑, 不得不先把滤子和网的一些概念搞清楚.
+
+% 周杰伦新专辑还有8分钟就要正式发行, 非常 ~ 非常期待!
+% 2026.03.24
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (滤子)}
+
+给定集合$X$和它的子集族$F\subset\mathcal{P}(X)$. 如果:
+\begin{enumerate}
+    \item $\varnothing\notin F,\,X\in F$,
+    \item 对任意的$a_1,a_2\subset X$, 如果$a_1\in F$且$a_1\subset a_2$,
+    那么$a_2\in F$,
+    \item 对任意的$a_1,a_2\in F$, 有$a_1\cap a_2\in F$,
+\end{enumerate}
+就称$F$是$X$上的一个\textbf{滤子}.
+
+% 爽听! 今天的工作就到这里.
+
+% 好听!
+
+% 2026.03.25
+
+\vspace{10pt}
+
+\hypertarget{sec:例1.1}{}
+\noindent\textbf{例1.1}
+
+给定集合$X$和非空的$b\subset X$, 包含$b$的全体子集
+\[
+    F_b=\{a\subset X\mid a\supset b\}
+\]
+是$X$上的滤子. 特别地,
+\begin{enumerate}
+    \item $F_X=\{X\}$称为$X$上的\textbf{平凡滤子},
+    \item 对任意的$x\in X$, $F_{\{x\}}=\{a\subset X\mid x\in a\}$
+    称为$x$的\textbf{主滤子}.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item $\varnothing\not\supset b,\,X\supset b$,
+    \item 对任意的$a_1,a_2\subset X$, 如果$a_1\in F_b$且$a_1\subset a_2$,
+    那么$a_2\supset a_1\supset b$, 所以$a_2\in F_b$,
+    \item 对任意的$a_1,a_2\in F_b$, 有$a_1,a_2\supset b$,
+    所以$a_1\cap a_2\supset b$. \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:例1.2}{}
+\noindent\textbf{例1.2 (Fréchet滤子)}
+
+给定无限集合$X$, 称它的余有限子集的全体为$X$上的\textbf{Fréchet滤子}:
+\[
+    F_\sigma=\{a\subset X\mid a^c\text{\,有限}\}.
+\]
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item $\varnothing^c=X$是无限集, $X^c=\varnothing$是有限集,
+    \item 对任意的$a_1,a_2\subset X$, 如果$a_1\in F_\sigma$且$a_1\subset a_2$,
+    那么$a_2^c\subset a_1^c$也有限,
+    \item 对任意的$a_1,a_2\in F_\sigma$, 有$a_1^c,a_2^c$有限, 所以
+    $(a_1\cap a_2)^c=a_1^c\cup a_2^c$也有限. \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1 (滤子对有限交封闭)}
+
+给定$X$上的滤子$F$. 对$F$中任意有限个$(a_i)_{i<n}$,
+有$\displaystyle\bigcap_{i=0}^{n-1}a_i\in F$.
+
+\noindent{\kaishu 证明.}
+
+首先, $n=1$的情况显然; 其次, 假设任取$(a_i)_{i<n}$
+有$\displaystyle\bigcap_{i=0}^{n-1}a_i\in F$, 那么任取$(a_i)_{i<n+1}$有:
+\vspace{3pt}
+\begin{equation*}
+    \bigcap_{i=0}^na_i=\left(\bigcap_{i=0}^{n-1}a_i\right)\cap a_n\in F.
+\tag*{\qedsymbol}\end{equation*}
+
+
+
+
+
+\newpage
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+给定集合$X$和$X$上的非空的一族滤子$\mathcal{S}$ :
+\vspace{3pt}
+\begin{enumerate}
+    \item $\displaystyle\bigcap\mathcal{S}$也是$X$上的滤子,
+    \vspace{3pt}
+    \item 如果$(\mathcal{S},\subset)$是有向集,
+    那么$\displaystyle\bigcup\mathcal{S}$也是$X$上的滤子.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 显然$\displaystyle\varnothing\notin\bigcap\mathcal{S},
+    \,X\in\bigcap\mathcal{S}$.
+
+    \vspace{3pt}\hspace{2.17em}
+    如果$\displaystyle a_1\in\bigcap\mathcal{S}$且$a_1\subset a_2\subset X$, 那么
+    对任意的$F\in\mathcal{S}$有
+    \[
+        a_1\in F\quad\implies\quad a_2\in F,
+    \]
+    从而$\displaystyle a_2\in\bigcap\mathcal{S}$.
+
+    \vspace{3pt}\hspace{2.17em}
+    如果$\displaystyle a_1,a_2\in\bigcap\mathcal{S}$, 那么
+    对任意的$F\in\mathcal{S}$有
+    \[
+        a_1,a_2\in F\quad\implies\quad a_1\cap a_2\in F,
+    \]
+    从而$\displaystyle a_1\cap a_2\in\bigcap\mathcal{S}$.
+
+    \vspace{3pt}
+    \item 显然$\displaystyle\varnothing\notin\bigcup\mathcal{S},
+    \,X\in\bigcup\mathcal{S}$.
+
+    \vspace{3pt}\hspace{2.17em}
+    如果$\displaystyle a_1\in\bigcup\mathcal{S}$且$a_1\subset a_2\subset X$, 那么
+    存在$F\in\mathcal{S}$使得
+    \[
+        a_1\in F\quad\implies\quad a_2\in F,
+    \]
+    从而$\displaystyle a_2\in\bigcup\mathcal{S}$.
+    
+    \vspace{3pt}\hspace{2.17em}
+    如果$\displaystyle a_1,a_2\in\bigcup\mathcal{S}$, 那么
+    存在$F_1,F_2\in\mathcal{S}$使得
+    \[
+        a_1\in F_1\quad\land\quad a_2\in F_2,
+    \]
+    如果$(\mathcal{S},\subset)$是有向集, 那么可以取$F\in\mathcal{S}$
+    使得$F_1,F_2\subset F$, 此时
+    \[
+        a_1,a_2\in F\quad\implies\quad a_1\cap a_2\in F,
+    \]
+    从而$\displaystyle a_1\cap a_2\in\bigcup\mathcal{S}$. \hfill $\qedsymbol$
+\end{enumerate}
+
+\end{document}

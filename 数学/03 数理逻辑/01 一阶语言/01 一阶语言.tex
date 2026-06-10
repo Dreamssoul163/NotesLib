@@ -1,0 +1,213 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{一阶语言}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (一阶语言)}
+
+称$\mathcal{L}=(\mathcal{V},\mathcal{C},
+(n_f)_{f\in\mathcal{F}},(n_r)_{r\in\mathcal{R}})$是一个\textbf{一阶语言}, 如果:
+\begin{enumerate}
+    \item $\mathcal{V}$是无限集,
+    \item $\mathcal{V},\mathcal{C},\mathcal{F},\mathcal{R}$两两不相交,
+    \item 对任意的$f\in\mathcal{F}$有$n_f\in\mathbb{N}^+$,
+    对任意的$r\in\mathcal{R}$有$n_r\in\mathbb{N}^+$.
+\end{enumerate}
+
+\vspace{10pt}
+
+分别称$\mathcal{V},\mathcal{C},\mathcal{F},\mathcal{R}$为
+变元符号集、常元符号集、函数符号集和关系符号集.
+
+称$n_f$为$f$的元数, 称$n_r$为$r$的元数.
+
+\vspace{10pt}
+
+此时记$|\mathcal{L}|\overset{\mathrm{def}}{=}
+|\mathcal{V}\cup\mathcal{C}\cup\mathcal{F}\cup\mathcal{R}|$,
+称之为$\mathcal{L}$的基数. 显然这一定是无限基数.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (一阶语言的字母表)}
+
+给定一阶语言$\mathcal{L}=(\mathcal{V},\mathcal{C},
+(n_f)_{f\in\mathcal{F}},(n_r)_{r\in\mathcal{R}})$, 称
+\[
+    \Sigma_{\mathcal{L}}\overset{\mathrm{def}}{=}
+    \mathcal{V}\cup\mathcal{C}\cup\mathcal{F}\cup\mathcal{R}\cup\mathrm{Log}
+\]
+为$\mathcal{L}$的\textbf{字母表}, 其中
+$\mathrm{Log}=\{\ \neg\ ,\ \to\ ,\ \exists\ ,\ \equiv\ ,\ (\ ,\ )\ \}$.
+
+默认$\mathrm{Log}$也与$\mathcal{L}$中的各集合均不相交.
+
+\vspace{10pt}
+
+记$\Sigma_{\mathcal{L}}^*$为$\Sigma_{\mathcal{L}}$中符号组成的所有字符串的集合.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+对任意的一阶语言$\mathcal{L}$, $|\Sigma_{\mathcal{L}}^*|=|\mathcal{L}|$.
+
+\noindent{\kaishu 证明.}
+
+显然$|\Sigma_{\mathcal{L}}|=|\mathcal{L}|$.
+对任意的自然数$n$, 把$\Sigma_{\mathcal{L}}$中长度为$n$的字符串的集合记为
+$\Sigma_{\mathcal{L}}^n$, 则有$\displaystyle\Sigma_{\mathcal{L}}^*=
+\bigcup_{n\in\mathbb{N}}\Sigma_{\mathcal{L}}^n$.
+\begin{enumerate}
+    \item 显然$|\mathbb{N}|=\omega\leqslant|\mathcal{L}|$,
+    \item 对任意的自然数$n$, 显然$|\Sigma_{\mathcal{L}}^n|=
+    |\Sigma_{\mathcal{L}}|^n\leqslant|\Sigma_{\mathcal{L}}|=|\mathcal{L}|$,
+\end{enumerate}
+\vspace{3pt}
+于是$\displaystyle|\Sigma_{\mathcal{L}}^*|=
+\left|\bigcup_{n\in\mathbb{N}}\Sigma_{\mathcal{L}}^n\right|\leqslant|\mathcal{L}|$.
+同时显然$|\Sigma_{\mathcal{L}}^*|\geqslant|\mathcal{L}|$, 所以二者相等.
+\hfill $\qedsymbol$
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.3}{}
+\noindent\textbf{定义1.3 (子语言)}
+
+给定一阶语言$\mathcal{L}_1,\mathcal{L}_2$. 如果$\mathcal{L}_1$内的所有符号
+也都是$\mathcal{L}_2$的对应符号, 并且函数和关系符号的元数相同, 就称$\mathcal{L}_1$
+是$\mathcal{L}_2$的\textbf{子语言}, 记作$\mathcal{L}_1\subset\mathcal{L}_2$.
+
+
+
+
+
+\newpage
+
+\section*{附录1\ \ 归纳定义与归纳证明}
+\addcontentsline{toc}{section}{(附录) 归纳定义与归纳证明}
+
+\hypertarget{sec:定义A1.1}{}
+\noindent\textbf{定义A1.1 (归纳定义)}
+
+给定集合$U$以及:
+\begin{enumerate}
+    \item 初始集$B\subset U$,
+    \item 归纳规则: 一个索引集$I$, 并且每个$i\in I$对应一个正整数$n_i$和一个映射
+    \[
+        f_i:U^{n_i}\to U.
+    \]
+\end{enumerate}
+那么可以对每个自然数$k$递归定义$G_k$如下:
+\begin{enumerate}
+    \item $G_0=B$,
+    \item 对每个自然数$k$归纳定义
+    \[
+        G_{k+1}=\left(\bigcup_{i\in I}\{f_i(u_1,\cdots,u_{n_i})
+        \mid u_1,\cdots,u_{n_i}\in G_k\}\right)\cup G_k,
+    \]
+\end{enumerate}
+最后记$\displaystyle G=\bigcup_{k\in\mathbb{N}}G_k$,
+称之为由初始集和归纳规则归纳定义的目标集. 称$G_k$为其第$k$层.
+
+\vspace{10pt}
+
+依定义, 任意选定$i\in I$和$u_1,\cdots,u_{n_i}\in G$,
+显然有$f_i(u_1,\cdots,u_{n_i})\in G$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理A1.1}{}
+\noindent\textbf{定理A1.1}
+
+给定集合$U$, 初始集$B$和归纳规则$(n_i)_{i\in I},(f_i)_{i\in I}$,
+记其归纳定义的目标集为$G$, 有
+\[
+    |G|\leqslant\max\{|B|,|I|,\omega\}.
+\]
+
+\noindent{\kaishu 证明.}
+
+记$\kappa=\max\{|B|,|I|,\omega\}$, 归纳证明每一层$|G_k|\leqslant\kappa$.
+首先$|G_0|=|B|\leqslant\kappa$; 其次假设$|G_k|\leqslant\kappa$, 则
+\begin{enumerate}
+    \item $|I|\leqslant\kappa$,
+    \item 对每个$i\in I$, $|\{f_i(u_1,\cdots,u_{n_i})\mid
+    u_1,\cdots,u_{n_i}\in G_k\}|\leqslant|G_k|^{n_i}\leqslant\kappa^{n_i}=\kappa$,
+\end{enumerate}
+所以$\displaystyle\left|\bigcup_{i\in I}\{f_i(u_1,\cdots,u_{n_i})\mid
+u_1,\cdots,u_{n_i}\in G_k\}\right|\leqslant\kappa$,
+进一步$|G_{k+1}|\leqslant\kappa$. 归纳证明成立.
+
+最后, 因为$|\mathbb{N}|\leqslant\kappa$并且对每个$k\in\mathbb{N}$有
+$|G_k|\leqslant\kappa$, 所以$\displaystyle
+|G|=\left|\bigcup_{k\in\mathbb{N}}G_k\right|\leqslant\kappa$. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+\hypertarget{sec:定理A1.2}{}
+\noindent\textbf{定理A1.2 (归纳证明)}
+
+给定集合$U$, 初始集$B$和归纳规则$(n_i)_{i\in I},(f_i)_{i\in I}$,
+记其归纳定义的目标集为$G$.
+
+给定命题$p(u)$. 如果
+\begin{enumerate}
+    \item $\forall u\in B:p(u)$,
+    \item 对任意的$i\in I$有
+    \[
+        \forall u_1,\cdots,u_{n_i}\in G:p(u_1)\land\cdots\land p(u_{n_i})\to
+        p(f_i(u_1,\cdots,u_{n_i}));
+    \]
+\end{enumerate}
+那么$\forall u\in G:p(u)$.
+
+\noindent{\kaishu 证明.}
+
+只需归纳证明每一层的元素都满足命题$p$.
+
+首先, 显然$G_0$的元素都满足命题$p$;
+其次, 假设$G_k$的元素都满足命题$p$, 那么任取$u\in G_{k+1}$:
+\begin{enumerate}
+    \item 如果存在$i\in I$和$u_1,\cdots,u_{n_i}\in G_k$使得
+    $u=f_i(u_1,\cdots,u_{n_i})$, 那么依假设可得$p(u)$,
+    \item 如果$u\in G_k$, 依假设即得$p(u)$,
+\end{enumerate}
+所以$G_{k+1}$的元素也都满足命题$p$. {\hfill $\qedsymbol$}
+
+\end{document}

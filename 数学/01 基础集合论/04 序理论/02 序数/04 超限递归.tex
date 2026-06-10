@@ -1,0 +1,244 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{超限归纳}
+
+超限归纳法可以从良序集上扩展到序数类上. 首先给出序数类的良序性质.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+给定命题$p(\alpha)$. 如果存在\href{01 序数#nameddest=sec:定义1.1}{序数}
+$\alpha$使得$p(\alpha)$成立, 那么存在唯一的序数$\mu$使得
+\[
+    p(\mu)\quad\land\quad\forall\beta<\mu:\neg\,p(\beta),
+\]
+即$\mu$是满足$p$的最小序数.
+
+\noindent{\kaishu 证明.}
+
+定义$A=\{\beta\leqslant\alpha\mid p(\beta)\}$, 则$A$非空($\alpha\in A$),
+并且$A$的元素都是序数.
+
+所以$A$有最小元$\mu$, 显然$\mu$是满足$p$的唯一最小序数. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2 (序数类的超限归纳)}
+
+给定命题$p(\alpha)$. 如果对任意的序数$\alpha$有
+\[
+    \forall\beta<\alpha:p(\beta)\quad\to\quad p(\alpha),
+\]
+那么对任意的序数$\alpha$, $p(\alpha)$成立.
+
+\noindent{\kaishu 证明.}
+
+假设存在序数$\alpha$使得$p(\alpha)$不成立, 取满足$\neg\,p$的最小序数$\mu$.
+但是由已知得$p(\mu)$成立, 矛盾. \hfill $\qedsymbol$
+
+
+
+
+
+\vspace{50pt}
+
+\section{超限递归}
+
+定义类$\mathbf{F}_{\mathrm{O}}$: 对任意的$f$, 如果$f$是某个序数上的映射,
+则记$f\in\mathbf{F}_{\mathrm{O}}$.
+
+给定$\mathbf{F}_{\mathrm{O}}$上
+的\href{../../01 ZFC 公理/02 类#nameddest=sec:类映射}{类映射} $\mathbf{F}$,
+用它进行递归定义.
+
+\vspace{10pt}
+
+首先给出一个唯一性引理.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1 (唯一性引理)}
+
+任给序数$\alpha,\beta$和其上的映射$f,g$, 假设$\beta\leqslant\alpha$. 如果
+\[
+    \forall\gamma<\beta:\quad f(\gamma)=\mathbf{F}(f\!\restriction_\gamma)
+    \,\,\land\,\,g(\gamma)=\mathbf{F}(g\!\restriction_\gamma),
+\]
+那么$\forall\gamma<\beta:f(\gamma)=g(\gamma)$, 即$f\!\restriction_\beta\,=g$.
+
+\noindent{\kaishu 证明.}
+
+对$\gamma<\beta$归纳证明$f(\gamma)=g(\gamma)$.
+任取$\gamma<\beta$, 假设$\forall\delta<\gamma:f(\delta)=g(\delta)$. 那么
+\vspace{3pt}
+\[
+    f\!\restriction_\gamma=\{(\delta,f(\delta))\mid\delta<\gamma\}=
+    \{(\delta,g(\delta))\mid\delta<\gamma\}=g\!\restriction_\gamma,\\[3pt]
+\]
+从而$f(\gamma)=\mathbf{F}(f\!\restriction_\gamma)
+=\mathbf{F}(g\!\restriction_\gamma)=g(\gamma)$. \hfill $\qedsymbol$
+
+
+
+
+
+\newpage
+
+接下来, 递归定义可以从自然数上扩展到序数上.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.2}{}
+\noindent\textbf{定理2.2 (序数上的递归)}
+
+任给序数$\alpha$, 存在唯一的$\alpha$上的映射$f_\alpha$使得
+\[
+    \forall\gamma<\alpha:\,
+    f_\alpha(\gamma)=\mathbf{F}(f_\alpha\!\restriction_\gamma).
+\]
+
+\noindent{\kaishu 证明.}
+
+\noindent{\kaishu 存在性.}
+
+对$\alpha\in\mathbf{On}$归纳证明存在性.
+任取序数$\alpha$, 假设对任意的$\beta<\alpha$, 存在$\beta$上的映射$f_\beta$使得
+\[
+    \forall\gamma<\beta:\,
+    f_\beta(\gamma)=\mathbf{F}(f_\beta\!\restriction_\gamma),
+\]
+那么选取一个这样的$f_\beta$.
+
+\vspace{3pt}
+如果$\alpha=0$, 那么$f_\alpha=\varnothing$满足命题.
+
+如果$\alpha$是后继序数, 即有$\alpha=\beta^+$, 那么定义
+\[f_\alpha:\gamma\mapsto\left\{\begin{aligned}
+    &f_\beta(\gamma),\quad&&\gamma<\beta,\\[-3pt]
+    &\mathbf{F}(f_\beta),\quad&&\gamma=\beta.
+\end{aligned}\right.\]
+则对任意的$\gamma<\alpha$有:
+\begin{enumerate}
+    \item 如果$\gamma<\beta$, 那么$f_\alpha(\gamma)=f_\beta(\gamma)=
+    \mathbf{F}(f_\beta\!\restriction_\gamma)=
+    \mathbf{F}(f_\alpha\!\restriction_\gamma)$,
+    \vspace{1pt}
+    \item 如果$\gamma=\beta$, 那么$f_\alpha(\gamma)=\mathbf{F}(f_\beta)=
+    \mathbf{F}(f_\alpha\!\restriction_\beta)=
+    \mathbf{F}(f_\alpha\!\restriction_\gamma)$,
+\end{enumerate}
+所以$f_\alpha$满足命题.
+
+如果$\alpha$是极限序数, 那么定义
+\[
+    f_\alpha:\gamma\mapsto f_{\gamma^+}(\gamma).
+\]
+则对任意的$\gamma<\alpha$和任意的$\delta<\gamma$,
+由唯一性引理可知$f_{\delta^+}(\delta)=f_{\gamma^+}(\delta)$, 从而
+\[
+    \forall\delta<\gamma:\,f_{\gamma^+}(\delta)=f_{\delta^+}(\delta)=
+    f_\alpha(\delta)\quad\implies\quad
+    f_{\gamma^+}\!\restriction_\gamma=f_\alpha\!\restriction_\gamma,
+\]
+从而
+\[
+    f_\alpha(\gamma)=f_{\gamma^+}(\gamma)=
+    \mathbf{F}(f_{\gamma^+}\!\restriction_\gamma)=
+    \mathbf{F}(f_\alpha\!\restriction_\gamma),
+\]
+所以$f_\alpha$满足命题.
+
+\noindent{\kaishu 唯一性.} 由唯一性引理即得. \hfill $\qedsymbol$
+
+
+
+
+
+\newpage
+
+最后, 递归定义可以从序数上扩展到序数类上.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.3}{}
+\noindent\textbf{定理2.3 (序数类的超限递归)}
+
+存在唯一的$\mathbf{On}$上的类映射$\mathbf{P}$使得
+\[
+    \forall\alpha\in\mathbf{On}:\,
+    \mathbf{P}(\alpha)=\mathbf{F}(\,\mathbf{P}\!\restriction_\alpha\,),
+\]
+其中$\mathbf{P}\!\restriction_\alpha\,\,=
+\{\,(\,\beta,\mathbf{P}(\beta)\,)\mid\beta<\alpha\}$.
+
+\noindent{\kaishu 证明.}
+
+\noindent{\kaishu 存在性.}
+
+序数上的递归给出了$f_\alpha$ (对任意序数$\alpha$)的定义, 据此对任意的序数$\alpha$定义
+\[
+    \mathbf{P}(\alpha)=f_{\alpha^+}(\alpha).
+\]
+
+对任意的序数$\alpha$和任意的$\beta<\alpha$, 由唯一性引理可知
+$f_{\beta^+}(\beta)=f_{\alpha^+}(\beta)$, 从而
+\[
+    \forall\beta<\alpha:f_{\alpha^+}(\beta)=f_{\beta^+}(\beta)=
+    \mathbf{P}(\beta)\quad\implies\quad
+    f_{\alpha^+}\!\restriction_\alpha\,\,=\mathbf{P}\!\restriction_\alpha,
+\]
+从而
+\[
+    \mathbf{P}(\alpha)=f_{\alpha^+}(\alpha)=
+    \mathbf{F}(f_{\alpha^+}\!\restriction_\alpha)=
+    \mathbf{F}(\,\mathbf{P}\!\restriction_\alpha\,).
+\]
+
+\noindent{\kaishu 唯一性.}
+
+假设$\mathbf{P},\mathbf{Q}$都满足命题, 那么对任意序数$\alpha$,
+由唯一性引理可知
+\[
+    \mathbf{P}\!\restriction_{\alpha^+}(\alpha)=
+    \mathbf{Q}\!\restriction_{\alpha^+}(\alpha),
+\]
+从而$\mathbf{P}(\alpha)=\mathbf{Q}(\alpha)$. \hfill $\qedsymbol$
+
+\end{document}

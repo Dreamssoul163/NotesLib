@@ -1,0 +1,189 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{自然数的乘法}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (自然数的乘法)}
+
+给定\href{../01 自然数/01 自然数#nameddest=sec:定义1.3}{自然数} $m$,
+递归定义映射$\mathrm{mul}_m:\omega\to\omega$如下:
+\begin{enumerate}
+    \item $\mathrm{mul}_m(0)\overset{\mathrm{def}}{=}0$,
+    \item $\mathrm{mul}_m(n^+)\overset{\mathrm{def}}{=}\mathrm{mul}_m(n)+m$.
+\end{enumerate}
+
+接下来, 对任意的自然数$m,n$, 定义
+\[
+    m\cdot n\overset{\mathrm{def}}{=}\mathrm{mul}_m(n),\\[-3pt]
+\]
+称$\cdot$为\textbf{乘法}, 称$m\cdot n$为$m,n$的\textbf{积}, 也可写作$mn$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1 (自然数半环)}
+
+自然数集上的乘法有以下性质, 从而是交换幺半环:
+\begin{enumerate}
+    \item 分配律: $\forall m,n,k\in\omega:\,m(n+k)=mn+mk$,
+    \item 结合律: $\forall m,n,k\in\omega:\,(mn)k=m(nk)$,
+    \item 单位元: $\forall n\in\omega:\,n1=1n=n$,
+    \item 交换律: $\forall m,n\in\omega:\,mn=nm$.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 任给自然数$m,n$, 对$k$归纳证明$m(n+k)=mn+mk$.
+    
+    \hspace{2.17em}
+    首先$m(n+0)=mn=mn+0=mn+m0$;
+    
+    \hspace{2.17em}
+    其次任取自然数$k$, 假设$m(n+k)=mn+mk$, 那么
+    \[
+        m(n+k^+)=m(n+k)^+=m(n+k)+m=mn+mk+m=mn+mk^+.
+    \]
+
+    \item 任给自然数$m,n$, 对$k$归纳证明$(mn)k=m(nk)$.
+    
+    \hspace{2.17em}
+    首先$(mn)0=0=m0=m(n0)$; 其次任取自然数$k$, 假设$(mn)k=m(nk)$, 那么
+    \[
+        (mn)k^+=(mn)k+mn=m(nk)+mn=m(nk+n)=m(nk^+).
+    \]
+
+    \item 显然$\forall n\in\omega:\,n1=n$. 再对$n$归纳证明$1n=n$.
+    
+    \hspace{2.17em}
+    首先$1\cdot 0=0$; 其次任取自然数$n$, 假设$1n=n$, 那么
+    \[
+        1n^+=1n+1=n+1=n^+.
+    \]
+
+    \item 第一, 对$m$归纳证明$0m=0$. 证明是显然的.    
+    
+    \hspace{2.17em}
+    第二, 对$m$归纳证明$\forall n\in\omega:\,nm+m=n^+m$.
+    
+    \hspace{2.17em}
+    首先对任意的自然数$n$, 有$n0+0=0=n^+0$;
+    
+    \hspace{2.17em}
+    其次任取自然数$m$,
+    假设$\forall n\in\omega:\,nm+m=n^+m$, 那么对任意的自然数$n$有
+    \[
+        nm^++m^+=nm+n+m+1=nm+m+n+1=n^+m+n^+=n^+m^+.
+    \]
+
+    \hspace{2.17em}
+    最后任给自然数$m$, 对$n$归纳证明$mn=nm$.
+    
+    \hspace{2.17em}
+    首先$m0=0=0m$; 其次任取自然数$n$, 假设$mn=nm$, 那么
+    \begin{equation*}
+        mn^+=mn+m=nm+m=n^+m.
+    \tag*{\qedsymbol}\end{equation*}
+\end{enumerate}
+
+
+
+
+
+\newpage
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+任给自然数$m,n$, 如果$mn=0$, 那么$m=0$或$n=0$.
+
+\noindent{\kaishu 证明.}
+
+任给非零自然数$m$, 对$n$归纳证明$n\neq 0\to mn\neq 0$.
+
+首先$0=0$, 所以有$0\neq 0\to m0\neq 0$;
+
+其次任取自然数$n$, 假设$n\neq 0\to mn\neq 0$, 那么
+$mn^+=mn+m\geqslant m$, 从而$mn^+\neq 0$.
+
+综上, 对任意非零的自然数$m,n$, 都有$mn\neq 0$. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+最后定义自然数的带余除法.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (自然数的带余除法)}
+
+给定自然数$m,n$, 如果$m\neq 0$, 那么存在唯一的一对自然数$p$和$q$使得
+\[
+    n=mp+q\quad\land\quad q\in m,
+\]
+分别记作$n/m$和$n\%m$, 称作$n$除以$m$的\textbf{商}和\textbf{余数}.
+
+\noindent{\kaishu 证明.}
+
+\noindent{\kaishu 存在性.}
+
+任给非零自然数$m$, 对$n$归纳证明$\exists p,q\in\omega:\,n=mp+q\land q<m$.
+
+首先显然$0=m0+0$并且$0<m$;
+
+其次任取自然数$n$, 假设存在自然数$p,q$使得$n=mp+q$且$q<m$.
+
+此时$q^+<m^+$, 即$q^+<m$或$q^+=m$.
+
+\begin{enumerate}
+    \item 如果$q^+<m$, 那么$n^+=mp+q^+$并且$q^+<m$.
+    \item 如果$q^+=m$, 那么$n^+=mp+m=mp^+=mp^++0$并且$0<m$.
+\end{enumerate}
+综上, 存在自然数$p',q'$使得$n^+=mp'+q'$并且$q'<m$.
+
+\noindent{\kaishu 唯一性.}
+
+假设同时存在自然数$p,q$和$p',q'$使得
+\[
+    n=mp+q=mp'+q'\quad\land\quad q<m\quad\land\quad q'<m.
+\]
+假设$p<p'$, 即$p^+\leqslant p'$, 则
+\[
+    n=mp+q<mp+m=mp^+\leqslant mp'\leqslant mp'+q'=n,
+\]
+矛盾. 同理$p'<p$也矛盾, 所以$p=p'$. 进一步显然$q=q'$. \hfill $\qedsymbol$
+
+\end{document}

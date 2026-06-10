@@ -1,0 +1,175 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{不交并}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (不交并)}
+
+给定一族集合$(f(i))_{i\in I}$, 定义它们的\textbf{不交并}
+$\displaystyle
+\bigsqcup_{i\in I}f(i)\overset{\mathrm{def}}{=}\bigcup_{i\in I}f(i)\times\{i\}$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (嵌入映射)}
+
+给定一族集合$(f(i))_{i\in I}$, 再给定$i\in I$, 则有\textbf{嵌入映射}
+$\displaystyle\iota_i:f(i)\to\bigsqcup_{i\in I}f(i),\quad x\mapsto(x,i)$.
+
+显然嵌入映射是单射.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1 (不交并的泛性质)}
+
+给定一族集合$(f(i))_{i\in I}$, 集合$A$和一族映射$(\varphi_i:f(i)\to A)_{i\in I}$,
+存在唯一的映射$\displaystyle\varphi:\bigsqcup_{i\in I}f(i)\to A$使得
+\[
+    \forall i\in I:\,\,\varphi\circ\iota_i=\varphi_i.
+\]
+
+\noindent{\kaishu 证明.}
+
+显然$\varphi:(x,i)\mapsto\varphi_i(x)$唯一满足条件. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+% \hypertarget{sec:定理1.2}{}
+% \noindent\textbf{定理1.2}
+
+% 给定一族集合$(f(i))_{i\in I}$和$I$的一个划分$S$, 那么$\displaystyle
+% \bigsqcup_{s\in S}\bigsqcup_{i\in s}f(i)\approx\bigsqcup_{i\in I}f(i)$.
+
+% \noindent{\kaishu 证明.}
+
+% 对任意的$\displaystyle((x,i),s)\in\bigsqcup_{s\in S}\bigsqcup_{i\in s}f(i)$,
+% 有$s\in S$且$\displaystyle(x,i)\in\bigsqcup_{i\in s}f(i)$,
+% 即$i\in s$且$x\in f(i)$. 据此定义
+% \[
+%     \varphi((x,i),s)=(x,i)\in\bigsqcup_{i\in I}f(i),
+% \]
+% 即$\displaystyle\varphi:\bigsqcup_{s\in S}\bigsqcup_{i\in s}f(i)
+% \to\bigsqcup_{i\in I}f(i)$.
+
+% \vspace{6pt}
+% 反之, 对任意的$\displaystyle(x,i)\in\bigsqcup_{i\in I}f(i)$,
+% 有$i\in I$且$x\in f(i)$. 于是有唯一的$s_i\in S$使得$i\in s_i$. 据此定义
+% \[
+%     \phi(x,i)=((x,i),s_i)\in\bigsqcup_{s\in S}\bigsqcup_{i\in s}f(i),
+% \]
+% 即$\displaystyle\phi:\bigsqcup_{i\in I}f(i)
+% \to\bigsqcup_{s\in S}\bigsqcup_{i\in s}f(i)$.
+
+% \vspace{6pt}
+% 易证$\varphi,\phi$互为逆映射, 即二者都是双射. \hfill $\qedsymbol$
+
+% \vspace{10pt}
+
+% 有时会使用更简单的二元不交并.
+
+% \vspace{10pt}
+
+% \hypertarget{sec:定义1.3}{}
+% \noindent\textbf{定义1.3 (二元不交并)}
+
+% 给定集合$a,b$, 定义它们的\textbf{二元不交并}
+% \[
+%     a\sqcup b\overset{\mathrm{def}}{=}a\times\{0\}\cup b\times\{1\}.
+% \]
+
+
+
+
+
+% \newpage
+
+\vspace{20pt}
+
+\section{一般 Descartes 积}
+
+\hypertarget{sec:定义2.1}{}
+\noindent\textbf{定义2.1 (一般 Descartes 积)}
+
+给定一族集合$(f(i))_{i\in I}$, 定义它们的\textbf{一般Descartes积}
+\[
+    \prod_{i\in I}f(i)\overset{\mathrm{def}}{=}
+    \left\{p:I\to\bigcup_{i\in I}f(i)\,\middle\vert\,
+    \forall i\in I:p(i)\in f(i)\right\}.
+\]
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1}
+
+给定一族集合$(f(i))_{i\in I}$, 如果$f(i)$都非空,
+那么$\displaystyle\prod_{i\in I}f(i)$非空.
+
+\noindent{\kaishu 证明.}
+
+取选择函数$\displaystyle F:\{f(i)\mid i\in I\}\to\bigcup_{i\in I}f(i)$.
+显然$\displaystyle F\circ f\in\prod_{i\in I}f(i)$. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+\hypertarget{sec:定义2.2}{}
+\noindent\textbf{定义2.2 (投影映射)}
+
+给定一族集合$(f(i))_{i\in I}$, 再给定$i\in I$, 则有\textbf{投影映射}
+$\displaystyle\pi_i:\prod_{i\in I}f(i)\to f(i),\quad p\mapsto p(i)$.
+
+显然投影映射是满射.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.2}{}
+\noindent\textbf{定理2.2 (一般Descartes积的泛性质)}
+
+给定一族集合$(f(i))_{i\in I}$, 集合$A$和一族映射$(\varphi_i:A\to f(i))_{i\in I}$,
+存在唯一的映射$\displaystyle\varphi:A\to\prod_{i\in I}f(i)$使得
+\[
+    \forall i\in I:\,\,\pi_i\circ\varphi=\varphi_i.
+\]
+
+\noindent{\kaishu 证明.}
+
+显然$\varphi:a\mapsto(\varphi_i(a))_{i\in I}$唯一满足条件. \hfill $\qedsymbol$
+
+% ``集合的一般构造''这一章就到这里吧. 有缺漏的日后再补.
+
+\end{document}

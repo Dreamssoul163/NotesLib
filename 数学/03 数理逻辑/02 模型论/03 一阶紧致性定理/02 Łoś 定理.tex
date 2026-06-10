@@ -1,0 +1,142 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{Łoś 定理}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1 (Łoś 定理)}
+
+给定一阶语言$\mathcal{L}$, 一族$\mathcal{L}$-结构$(A_i)_{i\in I}$
+和$I$上的超滤$\mathcal{U}$, 记\href{01 超积结构#nameddest=sec:定义2.1}{超积结构}为
+$^{\displaystyle P}\!/_{\displaystyle\mathcal{U}}$.
+
+对任意的公式$\varphi$和$(A_i)_{i\in I}$上任意的变元赋值$(\sigma_i)_{i\in I}$, 定义
+\[
+    ^{\displaystyle S}\!/_{\displaystyle\mathcal{U}}:
+    \mathcal{V}\to\,^{\displaystyle P}\!/_{\displaystyle\mathcal{U}},\,
+    x\mapsto[(\sigma_i(x))_{i\in I}],\\[3pt]
+\]
+都有: $\left(\,^{\displaystyle P}\!/_{\displaystyle\mathcal{U}},\,
+^{\displaystyle S}\!/_{\displaystyle\mathcal{U}}\right)\models\varphi$当且仅当
+$\{i\in I\mid(A_i,\sigma_i)\models\varphi\}\in\mathcal{U}$.
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 对任意的项$t_1,t_2$,
+    $\left(\,^{\displaystyle P}\!/_{\displaystyle\mathcal{U}},\,^{\displaystyle S}
+    \!/_{\displaystyle\mathcal{U}}\right)\models t_1\equiv t_2$当且仅当$(t_1^
+    {(A_i,\sigma_i)})_{i\in I}\sim_{\mathcal{U}}(t_2^{(A_i,\sigma_i)})_{i\in I}$,
+    即有$u\in\mathcal{U}$使得
+    \vspace{3pt}
+    \[
+        \forall i\in u:t_1^{(A_i,\sigma_i)}=t_2^{(A_i,\sigma_i)}\quad\iff\quad
+        \forall i\in u:(A_i,\sigma_i)\models t_1\equiv t_2.\\[3pt]
+    \]
+
+    \item 对任意的$n$元关系符号$r$和项$t_1,\cdots,t_n$,
+    $\left(\,^{\displaystyle P}\!/_{\displaystyle\mathcal{U}},\,^{\displaystyle S}
+    \!/_{\displaystyle\mathcal{U}}\right)\models rt_1\cdots t_n$
+    当且仅当有$u\in\mathcal{U}$使得
+    \vspace{3pt}
+    \[
+        \forall i\in u:(t_1^{(A_i,\sigma_i)},\cdots,t_n^{(A_i,\sigma_i)})\in r^{A_i}
+        \quad\iff\quad\forall i\in u:(A_i,\sigma_i)\models rt_1\cdots t_n.\\[3pt]
+    \]
+
+    \item 假设$\varphi_1$满足命题, 对$\varphi=\neg\varphi_1$有:
+    \vspace{5pt}
+    \[\begin{aligned}
+        &\left(\,^{\displaystyle P}\!/_{\displaystyle\mathcal{U}},\,
+        ^{\displaystyle S}\!/_{\displaystyle\mathcal{U}}\right)\models\varphi
+        \quad\iff\quad\left(\,^{\displaystyle P}\!/_{\displaystyle\mathcal{U}},\,
+        ^{\displaystyle S}\!/_{\displaystyle\mathcal{U}}\right)\not\models\varphi_1\\
+        \quad\iff\quad&\{i\in I\mid(A_i,\sigma_i)\models\varphi_1\}\notin\mathcal{U}
+        \quad\iff\quad\{i\in I\mid(A_i,\sigma_i)\models\varphi\}\in\mathcal{U}.\\[3pt]
+    \end{aligned}\]
+
+    \item 假设$\varphi_1,\varphi_2$满足命题, 对$\varphi=(\varphi_1\to\varphi_2)$有:
+    \vspace{5pt}
+    \[\begin{aligned}
+        &\left(\,^{\displaystyle P}\!/_{\displaystyle\mathcal{U}},\,
+        ^{\displaystyle S}\!/_{\displaystyle\mathcal{U}}\right)\models\varphi
+        \quad\iff\quad\left(\,^{\displaystyle P}\!/_{\displaystyle\mathcal{U}},\,
+        ^{\displaystyle S}\!/_{\displaystyle\mathcal{U}}\right)\models\neg\varphi_1
+        \,\,\lor\,\,\left(\,^{\displaystyle P}\!/_{\displaystyle\mathcal{U}},\,
+        ^{\displaystyle S}\!/_{\displaystyle\mathcal{U}}\right)\models\varphi_2\\
+        \quad\iff\quad&\{i\in I\mid(A_i,\sigma_i)\models\neg\varphi_1\}\in\mathcal{U}
+        \,\,\lor\,\,\{i\in I\mid(A_i,\sigma_i)\models\varphi_2\}\in\mathcal{U}\\
+        \quad\iff\quad&\{i\in I\mid(A_i,\sigma_i)\models(\varphi_1\to\varphi_2)\}
+        \in\mathcal{U}.\\[3pt]
+    \end{aligned}\]
+
+    \item 对任意的变元$x$, 假设$\varphi_1$满足命题, 对$\varphi=\exists x\varphi_1$有:
+    
+    \vspace{3pt}\hspace{2.17em}
+    如果$\left(\,^{\displaystyle P}\!/_{\displaystyle\mathcal{U}},\,
+    ^{\displaystyle S}\!/_{\displaystyle\mathcal{U}}\right)\models\varphi$,
+    那么存在$s\in\,\!^{\displaystyle P}\!/_{\displaystyle\mathcal{U}}$使得
+    $\left(\,^{\displaystyle P}\!/_{\displaystyle\mathcal{U}},\,^{\displaystyle S}
+    \!/_{\displaystyle\mathcal{U}}\,\displaystyle\frac{s}{x}\right)\models\varphi_1$.
+    取$p\in s$, 注意到
+    \vspace{3pt}
+    \[
+        \forall y\in\mathcal{V}:\,^{\displaystyle S}
+        \!/_{\displaystyle\mathcal{U}}\,\displaystyle\frac{s}{x}(y)
+        =\left[\left(\sigma_i\frac{p(i)}{x}(y)\right)_{i\in I}\right],\\[3pt]
+    \]
+    所以依假设有$u\in\mathcal{U}$使得对任意的$i\in u$有
+    $\left(A_i,\sigma_i\displaystyle\frac{p(i)}{x}\right)\models\varphi_1$,
+    即$(A_i,\sigma_i)\models\varphi$.
+
+    \vspace{3pt}\hspace{2.17em}
+    如果有$u\in\mathcal{U}$使得对任意的$i\in u$有$(A_i,\sigma_i)\models\varphi$,
+    即存在$a_i\in A_i$使得
+    $\left(A_i,\sigma_i\displaystyle\frac{a_i}{x}\right)\models\varphi_1$, 那么
+    \vspace{3pt}
+    \[
+        \forall y\in\mathcal{V}:\,^{\displaystyle S}
+        \!/_{\displaystyle\mathcal{U}}\,\displaystyle\frac{[(a_i)_{i\in I}]}{x}(y)
+        =\left[\left(\sigma_i\frac{a_i}{x}(y)\right)_{i\in I}\right],\\[3pt]
+    \]
+    依假设$\left(\,^{\displaystyle P}\!/_{\displaystyle\mathcal{U}},\,
+    ^{\displaystyle S}\!/_{\displaystyle\mathcal{U}}\,
+    \displaystyle\frac{[(a_i)_{i\in I}]}{x}\right)\models\varphi_1$,
+    即$\left(\,^{\displaystyle P}\!/_{\displaystyle\mathcal{U}},\,
+    ^{\displaystyle S}\!/_{\displaystyle\mathcal{U}}\right)\models\varphi$.
+    \hfill $\qedsymbol$
+\end{enumerate}
+
+\end{document}

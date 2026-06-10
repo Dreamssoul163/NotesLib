@@ -1,0 +1,176 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section*{类}
+\addcontentsline{toc}{section}{类}
+
+直观上可以把满足某性质的集合的全体看作一个对象, 但是有时这样的对象在集合论语言内不存在,
+在元语言中称之为``类''.
+
+\vspace{10pt}
+
+\hypertarget{sec:类}{}
+\noindent\textbf{类}
+
+任取公式$\varphi(p_1,\cdots,p_n,x)$,
+它可以指定一个以$p_1,\cdots,p_n$为参数的类$\mathbf{A}$, 在集合论语言中
+\vspace{3pt}
+\[
+    x\in\mathbf{A}\overset{\mathrm{def}}{\leftrightarrow}\varphi.
+\]
+
+特别地, 集合也可以视为一个类.
+
+\vspace{10pt}
+
+下面省略对参数的说明, 默认有$p_1,\cdots,p_n$ (也可以没有)作为参数.
+
+\vspace{10pt}
+
+\hypertarget{sec:真类}{}
+\noindent\textbf{真类}
+
+给定类$\mathbf{A}$. 如果
+$\neg\,\exists a\,\forall x:\,x\in\mathbf{A}\leftrightarrow x\in a$,
+就称$\mathbf{A}$是一个真类.
+
+\vspace{10pt}
+
+\hypertarget{sec:子类}{}
+\noindent\textbf{子类}
+
+给定类$\mathbf{A},\mathbf{B}$. 如果$\forall x:x\in\mathbf{A}\to x\in\mathbf{B}$,
+就称$\mathbf{A}$是$\mathbf{B}$的子类, 记$\mathbf{A}\subset\mathbf{B}$.
+
+进一步, 如果$\forall x:x\in\mathbf{A}\leftrightarrow x\in\mathbf{B}$,
+就记$\mathbf{A}=\mathbf{B}$.
+
+\vspace{10pt}
+
+\hypertarget{sec:类的二元运算}{}
+\noindent\textbf{类的二元运算}
+
+给定类$\mathbf{A},\mathbf{B}$,
+
+定义它们的二元并$\mathbf{A}\cup\mathbf{B}$:
+$x\in\mathbf{A}\cup\mathbf{B}\overset{\mathrm{def}}{\leftrightarrow}
+x\in\mathbf{A}\lor x\in\mathbf{B}$;
+
+定义它们的二元交$\mathbf{A}\cap\mathbf{B}$:
+$x\in\mathbf{A}\cap\mathbf{B}\overset{\mathrm{def}}{\leftrightarrow}
+x\in\mathbf{A}\land x\in\mathbf{B}$;
+
+定义它们的二元积$\mathbf{A}\times\mathbf{B}$:
+$p\in\mathbf{A}\times\mathbf{B}\overset{\mathrm{def}}{\leftrightarrow}
+\exists x\in\mathbf{A}\,\exists y\in\mathbf{B}:p=(x,y)$.
+
+\vspace{10pt}
+
+\hypertarget{sec:类的一般运算}{}
+\noindent\textbf{类的一般运算}
+
+给定类$\mathbf{A}$.
+
+定义它的一般并$\displaystyle\bigcup\mathbf{A}$:
+$\displaystyle x\in\bigcup\mathbf{A}\overset{\mathrm{def}}{\leftrightarrow}
+\exists y\in\mathbf{A}:x\in y$.
+
+定义它的一般交$\displaystyle\bigcap\mathbf{A}$:
+$\displaystyle x\in\bigcap\mathbf{A}\overset{\mathrm{def}}{\leftrightarrow}
+\forall y\in\mathbf{A}:x\in y$.
+
+\vspace{10pt}
+
+\hypertarget{sec:集合宇宙}{}
+\noindent\textbf{集合宇宙}
+
+公式$x=x$指定一个没有参数的类, 记作$\mathbf{V}$, 称作集合宇宙.
+显然$x\in\mathbf{V}$始终成立.
+
+
+
+
+
+\newpage
+
+\section*{类映射}
+\addcontentsline{toc}{section}{类映射}
+
+类映射是映射的推广, 只关注对应关系, 不关注整体对象.
+
+\vspace{10pt}
+
+\hypertarget{sec:类映射}{}
+\noindent\textbf{类映射}
+
+给定类$\mathbf{A},\mathbf{B}$和$\mathbf{P}\subset\mathbf{A}\times\mathbf{B}$,
+如果
+\[
+    \forall x\in\mathbf{A}\,\exists!y\in\mathbf{B}:(x,y)\in\mathbf{P},
+\]
+那么称$\mathbf{P}$是从$\mathbf{A}$到$\mathbf{B}$的类映射. 把$y$记为$\mathbf{P}(x)$.
+
+\vspace{10pt}
+
+\hypertarget{sec:真类到集合没有单射}{}
+\noindent\textbf{真类到集合没有单射}
+
+给定类$\mathbf{A}$, 集合$b$和$\mathbf{A}$上的类映射$\mathbf{P}$, 则以下矛盾:
+\begin{enumerate}
+    \item $\mathbf{A}$是真类,
+    \item 对任意的$x\in\mathbf{A}$, $\mathbf{P}(x)\in b$,
+    \item 对任意的$x,x'\in\mathbf{A}$,
+    如果$\mathbf{P}(x)=\mathbf{P}(x')$, 那么$x=x'$.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+使用\href{01 ZFC 公理#nameddest=sec:分离公理模式}{分离公理}, 存在$c$使得
+\[
+    \forall y:\quad y\in c\leftrightarrow y\in b\land\exists x:y=\mathbf{P}(x),
+\]
+从而$\forall y\in c\,\exists! x:y=\mathbf{P}(x)$.
+
+再使用\href{01 ZFC 公理#nameddest=sec:替换公理模式}{替换公理}, 存在$a$使得
+\[
+    \forall x:\quad x\in a\leftrightarrow\exists y\in c:y=\mathbf{P}(x),
+\]
+同时显然
+\[
+    \forall x:\quad x\in\mathbf{A}\leftrightarrow\exists y\in c:y=\mathbf{P}(x),
+\]
+从而$\forall x:x\in\mathbf{A}\leftrightarrow x\in a$, 与$\mathbf{A}$是真类矛盾.
+
+\end{document}

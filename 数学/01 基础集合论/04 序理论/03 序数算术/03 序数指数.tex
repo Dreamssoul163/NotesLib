@@ -1,0 +1,377 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{序数指数}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (序数指数)}
+
+给定非零\href{../02 序数/01 序数#nameddest=sec:定义1.1}{序数} $\alpha$,
+递归定义类映射$\mathbf{Exp}_\alpha:\mathbf{On}\to\mathbf{On}$如下:
+\vspace{3pt}
+\[
+    \forall\beta\in\mathbf{On}:\quad
+    \mathbf{Exp}_\alpha(\beta)\overset{\mathrm{def}}{=}\left\{\begin{aligned}
+        &1,\quad&&\beta=0,\\[-3pt]
+        &\mathbf{Exp}_\alpha(\max\beta)\cdot\alpha,\quad&&
+        \beta\text{\,\,是后继序数},\\[-3pt]
+        &\sup\mathbf{Exp}_\alpha[\beta],\quad&&
+        \beta\text{\,\,是极限序数}.
+    \end{aligned}\right.
+\]
+
+接下来, 对任意的非零序数$\alpha,\beta$, 定义
+\[
+    \alpha^\beta\overset{\mathrm{def}}{=}\mathbf{Exp}_\alpha(\beta),
+\]
+称为\textbf{序数指数}. 另外, 规定$0^0=1$, 对任意的非零序数$\beta$有$0^\beta=0$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1 (序数指数)}
+
+任给序数$\alpha,\beta$,
+\begin{enumerate}
+    \item $\alpha^0=1$, $\alpha^1=\alpha$,
+    \item $\alpha^{\beta^+}=\alpha^\beta\alpha$,
+    \item 如果$\alpha$非零且$\beta$是极限序数,
+    那么$\displaystyle\alpha^\beta=\sup_{\gamma<\beta}\alpha^\gamma$.
+\end{enumerate}
+
+\vspace{15pt}
+
+显然\href{../../03 自然数/02 自然数算术/03 自然数的指数#nameddest=sec:定义1.1}
+{自然数的指数}是序数指数的特例.
+易证任给序数$\alpha$有$1^\alpha=1,2^\alpha\geqslant\alpha$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+任给序数$\alpha,\beta,\beta'$, 如果$\alpha>1$且$\beta<\beta'$,
+那么$\alpha^\beta<\alpha^{\beta'}$.
+
+\noindent{\kaishu 证明.}
+
+给定$\alpha>1$和$\beta$, 对$\beta'>\beta$归纳证明$\alpha^\beta<\alpha^{\beta'}$.
+任取$\beta'>\beta$, 假设
+\[
+    \forall\gamma:\quad\beta<\gamma<\beta'\to\alpha^\beta<\alpha^\gamma.
+\]
+
+\begin{enumerate}
+    \item 如果$\beta'$是后继序数, 即有$\beta'=\gamma^+$,
+    那么有$\beta\leqslant\gamma<\beta'$, 依假设有
+    \[
+        \alpha^\beta\leqslant\alpha^\gamma<\alpha^{\gamma^+}=\alpha^{\beta'}.
+    \]
+    \item 如果$\beta'$是极限序数, 则$\beta^+<\beta'$, 从而
+    \begin{equation*}
+        \alpha^\beta<\alpha^{\beta^+}\leqslant
+        \sup_{\gamma<\beta'}\alpha^\gamma=\alpha^{\beta'}.
+    \tag*{\qedsymbol}\end{equation*}
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.3}{}
+\noindent\textbf{定理1.3}
+
+任给序数$\alpha,\alpha',\beta$, 如果$\alpha<\alpha'$,
+那么$\alpha^\beta\leqslant(\alpha')^\beta$.
+
+\noindent{\kaishu 证明.}
+
+给定$\alpha<\alpha'$,不妨设$\alpha$非零,
+对$\beta$归纳证明$\alpha^\beta\leqslant(\alpha')^\beta$.
+任取$\beta$, 假设对任意的$\gamma<\beta$有$\alpha^\gamma\leqslant(\alpha')^\gamma$.
+
+\begin{enumerate}
+    \item 如果$\beta=0$, 显然.
+    \item 如果$\beta$是后继序数, 即有$\beta=\gamma^+$, 那么$\gamma<\beta$, 依假设有
+    \[
+        \alpha^\beta=\alpha^\gamma\alpha\leqslant
+        (\alpha')^\gamma\alpha'=(\alpha')^\beta.\\[1pt]
+    \]
+    \item 如果$\beta$是极限序数, 那么依假设有
+    \vspace{-1pt}
+    \begin{equation*}
+        \alpha^\beta=\sup_{\gamma<\beta}\alpha^\gamma\leqslant
+        \sup_{\gamma<\beta}(\alpha')^\gamma=(\alpha')^\beta.
+    \tag*{\qedsymbol}\end{equation*}
+\end{enumerate}
+
+
+
+
+
+\newpage
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.4}{}
+\noindent\textbf{定理1.4}
+
+任给序数$\alpha,\beta$, 如果$\alpha\neq 0$且$\beta>1$,
+那么存在唯一的一组序数$\nu,\eta,\varepsilon$使得
+\[
+    \alpha=\beta^\nu\eta+\varepsilon\quad\land\quad
+    0<\eta<\beta\quad\land\quad\varepsilon<\beta^\nu.
+\]
+
+\noindent{\kaishu 证明.}
+
+\noindent{\kaishu 存在性.}
+
+取满足$\beta^\rho>\alpha$的最小的$\rho$,
+即对任意的$\nu<\rho$有$\beta^\nu\leqslant\alpha$. 显然$\rho$非零.
+
+\vspace{3pt}
+如果$\rho$是极限序数, 那么$\displaystyle
+\beta^\rho=\sup_{\nu<\rho}\beta^\nu\leqslant\alpha$矛盾.
+所以$\rho$是后继序数, 有$\rho=\nu^+$.
+
+\vspace{3pt}
+记$\eta=\alpha/\beta^\nu,\varepsilon=\alpha\%\beta^\nu$, 则有
+\[
+    \alpha=\beta^\nu\eta+\varepsilon\quad\land\quad\varepsilon<\beta^\nu,
+\]
+同时
+\[
+    \beta^\nu\eta\leqslant\beta^\nu\eta+\varepsilon=\alpha<\beta^\rho=
+    \beta^\nu\beta\quad\implies\quad\eta<\beta,
+\]
+最后假设$\eta=0$则$\alpha=\varepsilon<\beta^0=1$矛盾, 所以$\eta>0$.
+
+\noindent{\kaishu 唯一性.}
+
+假设同时存在$\nu,\eta,\varepsilon$和$\nu',\eta',\varepsilon'$使得
+\[\left\{\begin{aligned}
+    &\alpha=\beta^\nu\eta+\varepsilon\,&&\land\quad
+    0<\eta<\beta\,&&\land\quad\varepsilon<\beta^\nu,\\[-3pt]
+    &\alpha=\beta^{\nu'}\eta'+\varepsilon'\,&&\land\quad
+    0<\eta'<\beta\,&&\land\quad\varepsilon'<\beta^{\nu'}.
+\end{aligned}\right.\]
+假设$\nu<\nu'$, 即$\nu^+\leqslant\nu'$, 则
+\[
+    \alpha=\beta^\nu\eta+\varepsilon<\beta^\nu\eta+\beta^\nu=
+    \beta^\nu\eta^+\leqslant\beta^\nu\beta=\beta^{\nu^+}\leqslant
+    \beta^{\nu'}\leqslant\beta^{\nu'}\eta'+\varepsilon'=\alpha,
+\]
+矛盾. 同理$\nu'<\nu$也矛盾, 所以$\nu=\nu'$.
+进一步显然$\eta=\eta',\,\varepsilon=\varepsilon'$. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.5}{}
+\noindent\textbf{定理1.5}
+
+任给序数$\alpha>1,\,\beta\neq 0$ :
+\begin{enumerate}
+    \item 如果$\alpha$是后继序数且$\beta<\omega$, 那么$\alpha^\beta$是后继序数,
+    \item 如果$\alpha$是极限序数或$\beta\geqslant\omega$,
+    那么$\alpha^\beta$是极限序数.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 对$0<\beta<\omega$归纳证明$\alpha^\beta$与$\alpha$同类.
+    
+    \hspace{2.17em}
+    首先$\alpha^1=\alpha$与$\alpha$同类;
+    其次任取自然数$\beta$, 如果$\alpha^\beta$与$\alpha$同类, 那么
+    \[
+        \alpha^{\beta^+}=\alpha^\beta\alpha
+    \]
+    也与$\alpha$同类.
+
+    \item 对$\beta\geqslant\omega$归纳证明$\alpha^\beta$是极限序数.
+    任取$\beta\geqslant\omega$, 假设
+    \[
+        \forall\gamma:\quad\omega\leqslant\gamma<\beta\to
+        \alpha^\gamma\text{\,是极限序数\,}.
+    \]
+
+    \hspace{2.17em}
+    如果$\beta$是后继序数, 即有$\beta=\gamma^+$,
+    那么显然$\omega\leqslant\gamma<\beta$, 依假设有
+    \vspace{3pt}
+    \[
+        \alpha^\gamma\text{\,是极限序数\,}\to\,
+        \alpha^\beta=\alpha^\gamma\alpha\text{\,是极限序数\,}.
+    \]
+
+    \vspace{3pt}\hspace{2.17em}
+    如果$\beta$是极限序数, 那么对任意的$\displaystyle
+    x<\alpha^\beta=\bigcup_{\gamma<\beta}\alpha^\gamma$, 存在$\gamma<\beta$使得
+    \vspace{3pt}
+    \[
+        x<\alpha^\gamma\quad\implies\quad x^+<\alpha^\gamma+1\leqslant
+        \alpha^\gamma2\leqslant\alpha^\gamma\alpha=\alpha^{\gamma^+}
+        \quad\implies\quad x^+<\alpha^\beta,
+    \]
+    所以$\alpha^\beta$是归纳集, 即是极限序数. \hfill $\qedsymbol$
+\end{enumerate}
+
+
+
+
+
+\newpage
+
+\hypertarget{sec:定理1.6}{}
+\noindent\textbf{定理1.6 (序数的加法指数)}
+
+任给序数$\alpha,\beta,\gamma$, 有$\alpha^{\beta+\gamma}=\alpha^\beta\alpha^\gamma$.
+
+\noindent{\kaishu 证明.}
+
+给定$\alpha,\beta$, 不妨设$\alpha>1,\beta\neq 0$, 对$\gamma$归纳证明.
+任取$\gamma$, 假设对任意的$\delta<\gamma$有
+$\alpha^{\beta+\delta}=\alpha^\beta\alpha^\delta$.
+
+\begin{enumerate}
+    \item 如果$\gamma=0$, 显然$\alpha^{\beta+0}=\alpha^\beta=\alpha^\beta\alpha^0$.
+    
+    \vspace{3pt}
+    \item 如果$\gamma$是后继序数, 即有$\gamma=\delta^+$, 那么$\delta<\gamma$,
+    依假设有
+    \[
+        \alpha^{\beta+\gamma}=\alpha^{(\beta+\delta)^+}=\alpha^{\beta+\delta}\alpha=
+        \alpha^\beta\alpha^\delta\alpha=\alpha^\beta\alpha^\gamma.
+    \]
+
+    \vspace{3pt}
+    \item 如果$\gamma$是极限序数, 此时$\beta+\gamma$和$\alpha^\gamma$也是极限序数.
+    
+    \vspace{3pt}\hspace{2.17em}
+    一方面, 对任意的$\displaystyle\theta<\beta+\gamma=
+    \bigcup_{\delta<\gamma}(\beta+\delta)$, 存在$\delta<\gamma$使得
+    $\theta<\beta+\delta$, 所以
+    \vspace{3pt}
+    \[
+        \alpha^\theta<\alpha^{\beta+\delta}=\alpha^\beta\alpha^\delta
+        \leqslant\sup_{\rho<\alpha^\gamma}\alpha^\beta\rho
+        \quad\implies\quad\sup_{\theta<\beta+\gamma}\alpha^\theta
+        \leqslant\sup_{\rho<\alpha^\gamma}\alpha^\beta\rho.
+    \]
+
+    \vspace{3pt}\hspace{2.17em}
+    另一方面, 对任意的$\displaystyle\rho<\alpha^\gamma=
+    \bigcup_{\delta<\gamma}\alpha^\delta$, 存在$\delta<\gamma$使得
+    $\rho<\alpha^\delta$, 所以
+    \vspace{3pt}
+    \[
+        \alpha^\beta\rho<\alpha^\beta\alpha^\delta=\alpha^{\beta+\delta}
+        \leqslant\sup_{\theta<\beta+\gamma}\alpha^\theta
+        \quad\implies\quad\sup_{\rho<\alpha^\gamma}\alpha^\beta\rho
+        \leqslant\sup_{\theta<\beta+\gamma}\alpha^\theta.
+    \]
+
+    \hspace{2.17em}
+    综上即得
+    \begin{equation*}
+        \alpha^{\beta+\gamma}=\sup_{\theta<\beta+\gamma}\alpha^\theta=
+        \sup_{\rho<\alpha^\gamma}\alpha^\beta\rho=\alpha^\beta\alpha^\gamma.
+    \tag*{\qedsymbol}\end{equation*}
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.7}{}
+\noindent\textbf{定理1.7 (序数的乘法指数)}
+
+任给序数$\alpha,\beta,\gamma$, 有$\alpha^{\beta\gamma}=(\alpha^\beta)^\gamma$.
+
+\noindent{\kaishu 证明.}
+
+给定$\alpha,\beta$, 不妨设$\alpha>1,\beta\neq 0$, 对$\gamma$归纳证明.
+任取$\gamma$, 假设对任意的$\delta<\gamma$有
+$\alpha^{\beta\delta}=(\alpha^\beta)^\delta$.
+
+\begin{enumerate}
+    \item 如果$\gamma=0$, 显然$\alpha^{\beta0}=1=(\alpha^\beta)^0$.
+    
+    \vspace{3pt}
+    \item 如果$\gamma$是后继序数, 即有$\gamma=\delta^+$, 那么$\delta<\gamma$,
+    依假设有
+    \[
+        \alpha^{\beta\gamma}=\alpha^{\beta\delta+\beta}=
+        \alpha^{\beta\delta}\alpha^\beta=(\alpha^\beta)^\delta\alpha^\beta=
+        (\alpha^\beta)^\gamma.
+    \]
+
+    \vspace{3pt}
+    \item 如果$\gamma$是极限序数, 此时$\beta\gamma$也是极限序数.
+    
+    \vspace{3pt}\hspace{2.17em}
+    一方面, 对任意的$\displaystyle\lambda<\beta\gamma=
+    \bigcup_{\delta<\gamma}\beta\delta$, 存在$\delta<\gamma$使得
+    $\lambda<\beta\delta$, 所以
+    \vspace{3pt}
+    \[
+        \alpha^\lambda<\alpha^{\beta\delta}=(\alpha^\beta)^\delta
+        \leqslant\sup_{\delta<\gamma}(\alpha^\beta)^\delta
+        \quad\implies\quad\sup_{\lambda<\beta\gamma}\alpha^\lambda
+        \leqslant\sup_{\delta<\gamma}(\alpha^\beta)^\delta.
+    \]
+
+    \vspace{3pt}\hspace{2.17em}
+    另一方面, 对任意的$\delta<\gamma$, 有
+    \vspace{3pt}
+    \[
+        (\alpha^\beta)^\delta=\alpha^{\beta\delta}
+        \leqslant\sup_{\lambda<\beta\gamma}\alpha^\lambda
+        \quad\implies\quad\sup_{\delta<\gamma}(\alpha^\beta)^\delta
+        \leqslant\sup_{\lambda<\beta\gamma}\alpha^\lambda.
+    \]
+
+    \hspace{2.17em}
+    综上即得
+    \begin{equation*}
+        \alpha^{\beta\gamma}=\sup_{\lambda<\beta\gamma}\alpha^\lambda=
+        \sup_{\delta<\gamma}(\alpha^\beta)^\delta=(\alpha^\beta)^\gamma.
+    \tag*{\qedsymbol}\end{equation*}
+\end{enumerate}
+
+\vspace{15pt}
+
+最后, 未必有$(\alpha\beta)^\gamma=\alpha^\gamma\beta^\gamma$,
+例如$\omega^22^2\neq(\omega2)^2$.
+
+\end{document}

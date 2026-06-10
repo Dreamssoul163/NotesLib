@@ -1,0 +1,158 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{滤子基}
+
+% 旅游好累, 难得休息一天. 可能写的不够好, 日后再做改进.
+% 2026.05.05 于许昌
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (滤子基)}
+
+给定集合$X$和它的非空的子集族$B\subset\mathcal{P}(X)$. 如果:
+\begin{enumerate}
+    \item $\varnothing\notin B$,
+    \item 对任意的$b_1,b_2\in B$, 存在$b_3\in B$使得
+    $b_3\subset b_1\cap b_2$,
+\end{enumerate}
+就称$B$是$X$上的一个\textbf{滤子基}.
+
+\vspace{10pt}
+
+滤子基通过向上扩张操作就可以得到滤子.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (生成滤子)}
+
+任给集合$X$和$X$上的滤子基$B$,
+\[
+    \langle B\rangle=\{a\subset X\mid\exists\,b\in B:b\subset a\}
+\]
+是$X$上包含$B$的最小滤子, 称作由$B$生成的滤子.
+也称$B$是$\langle B\rangle$的一个基.
+
+\noindent{\kaishu 验证.}
+
+显然$\langle B\rangle$包含$B$. 首先证明$\langle B\rangle$是滤子.
+
+\begin{enumerate}
+    \item 显然$\varnothing\notin\langle B\rangle,\,X\in\langle B\rangle$.
+    \item 如果$a_1\in\langle B\rangle$且$a_1\subset a_2\subset X$,
+    那么存在$b\in B$使得
+    \[
+        b\subset a_1\quad\implies\quad b\subset a_2,
+    \]
+    从而$a_2\in\langle B\rangle$.
+    \item 如果$a_1,a_2\in\langle B\rangle$, 那么存在$b_1,b_2\in B$使得
+    \[
+        b_1\subset a_1\quad\land\quad b_2\subset a_2,
+    \]
+    此时存在$b_3\in B$使得$b_3\subset b_1\cap b_2\subset a_1\cap a_2$,
+    所以$a_1\cap a_2\in\langle B\rangle$.
+\end{enumerate}
+
+接下来, 如果滤子$F$包含$B$, 那么对任意的$a\in\langle B\rangle$,
+存在$b\in B$使得$b\subset a$, 此时
+\[
+    b\in F\quad\implies\quad a\in F,
+\]
+所以$\langle B\rangle\subset F$, 即$\langle B\rangle$是$X$上包含$B$的最小滤子.
+
+
+
+
+
+\newpage
+
+\section{滤子子基}
+
+\hypertarget{sec:定义2.1}{}
+\noindent\textbf{定义2.1 (滤子子基)}
+
+给定集合$X$和它的非空的子集族$S\subset\mathcal{P}(X)$.
+
+如果$S$满足``有限交性质'', 即
+$S$的非空有限子集的交集都非空, 那么就称$S$是$X$上的一个\textbf{滤子子基}.
+
+\vspace{10pt}
+
+滤子子基通过有限交扩张操作可以得到滤子基, 从而可以生成滤子.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义2.2}{}
+\noindent\textbf{定义2.2 (生成滤子)}
+
+任给集合$X$和$X$上的滤子子基$S$,
+\vspace{3pt}
+\[
+    B=\left\{\,\bigcap R\,\,\middle\vert\,\,
+    R\text{\,是\,}S\text{\,的非空有限子集\,}\right\}\\[3pt]
+\]
+是$X$上包含$S$的滤子基.
+
+进一步, $\langle B\rangle$是$X$上包含$S$的最小滤子, 也记作$\langle S\rangle$,
+称作由$S$生成的滤子, 称$S$是其子基.
+
+\noindent{\kaishu 验证.}
+
+显然$B$包含$S$. 首先证明$B$是滤子基.
+
+\begin{enumerate}
+    \item 依定义, $S$的非空有限子集的交集非空, 所以$\varnothing\notin B$.
+    \item 对任意的$b_1,b_2\in B$, 存在$S$的非空有限子集$R_1,R_2$使得
+    $\displaystyle b_1=\bigcap R_1,\,b_2=\bigcap R_2$, 从而
+    \vspace{3pt}
+    \[
+        b_1\cap b_2=\bigcap\,(R_1\cup R_2)\in B.
+    \]
+\end{enumerate}
+
+% Maybe we won't see the sunrise
+% Maybe we won't see the moon shine
+% Even if the whole world is just you and I
+% It's ok girl everything will be fine
+
+\vspace{3pt}
+接下来, 如果滤子$F$包含$S$, 那么对任意的$b\in B$, 存在$S$的非空有限子集$R$使得
+\[
+    b=\bigcap R\in F,
+\]
+所以$B\subset F$, 从而$\langle B\rangle\subset F$,
+即$\langle B\rangle$是$X$上包含$S$的最小滤子. \hfill $\qedsymbol$
+
+\end{document}

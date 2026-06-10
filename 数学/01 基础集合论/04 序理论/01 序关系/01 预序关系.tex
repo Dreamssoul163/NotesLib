@@ -1,0 +1,159 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{预序关系}
+
+序关系是\href{../../02 集合的一般构造/02 二元关系#nameddest=sec:定义1.1}{二元关系},
+常用$\leqslant$符号表示, 把$(x,y)\in\,\,\leqslant$记为$x\leqslant y$.
+
+此时规定它衍生的符号:
+\begin{enumerate}
+    \item $x\geqslant y\overset{\mathrm{def}}{\leftrightarrow}y\leqslant x$,
+    \item $x<y\overset{\mathrm{def}}{\leftrightarrow}x\leqslant y\land x\neq y$,
+    \item $x>y\overset{\mathrm{def}}{\leftrightarrow}y\leqslant x\land x\neq y$.
+\end{enumerate}
+
+\vspace{10pt}
+
+最简单的序关系是预序关系.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (预序关系)}
+
+给定集合$a$和$a$上的二元关系$\leqslant$. 如果以下两条成立:
+\begin{enumerate}
+    \item 自反性: $\forall x\in a:\,x\leqslant x$,
+    \item 传递性: $\forall x,y,z\in a:\,
+    x\leqslant y\land y\leqslant z\to x\leqslant z$,
+\end{enumerate}
+那么称$\leqslant$是$a$上的一个\textbf{预序关系}.
+也称$(a,\leqslant)$是一个\textbf{预序结构}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+给定预序结构$(a,\leqslant)$, 则$a$上的二元关系
+\[
+    \sim\,=\{(x,y)\in a\times a\mid x\leqslant y\land y\leqslant x\}
+\]
+是等价关系.
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 对任意的$x\in a$有$x\leqslant x$, 即$x\sim x$.
+    \item 对任意的$x,y\in a$, 显然有$x\sim y\to y\sim x$.
+    \item 对任意的$x,y,z\in a$, 如果$x\sim y$且$y\sim z$, 即
+    \[
+        x\leqslant y\land y\leqslant x\quad\land\quad
+        y\leqslant z\land z\leqslant y,
+    \]
+    那么$x\leqslant z$且$z\leqslant x$, 即$x\sim z$. \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (极值与最值)}
+
+给定预序结构$(a,\leqslant)$和$m\in a$.
+\begin{enumerate}
+    \item 如果$\forall x\in a:x\nless m$, 就称$m$是$a$的一个\textbf{极小元},
+    \item 如果$\forall x\in a:x\ngtr m$, 就称$m$是$a$的一个\textbf{极大元},
+    \item 如果$\forall x\in a:x\geqslant m$, 就称$m$是$a$的\textbf{最小元},
+    记作$\min a$,
+    \item 如果$\forall x\in a:x\leqslant m$, 就称$m$是$a$的\textbf{最大元},
+    记作$\max a$.
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.3}{}
+\noindent\textbf{定义1.3 (界与确界)}
+
+给定预序结构$(a,\leqslant)$, $b\subset a$和$m\in a$.
+\begin{enumerate}
+    \item 如果$\forall x\in b:x\geqslant m$, 就称$m$是$b$的一个\textbf{下界},
+    \item 如果$\forall x\in b:x\leqslant m$, 就称$m$是$b$的一个\textbf{上界},
+    \item 如果$m$是$b$的最大下界, 就称$m$是$b$的\textbf{下确界}, 记作$\inf b$,
+    \item 如果$m$是$b$的最小上界, 就称$m$是$b$的\textbf{上确界}, 记作$\sup b$.
+\end{enumerate}
+
+
+
+
+
+\newpage
+
+\section{有向集}
+
+\hypertarget{sec:定义2.1}{}
+\noindent\textbf{定义2.1 (有向集)}
+
+给定预序结构$(a,\leqslant)$, 如果
+\[
+    \forall x,y\in a\,\,\,\,\exists z\in a\,:\,x\leqslant z\land y\leqslant z,
+\]
+就称$(a,\leqslant)$是\textbf{有向集}, 或\textbf{有向预序集}.
+
+\vspace{10pt}
+
+有向集的任意两个元素都有公共上界. 进一步, 其有限子集都有上界.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1}
+
+任给有向集$(a,\leqslant)$. 对$a$中任意有限个$(x_i)_{i<n}$,
+$\{x_i\}_{i<n}$有上界.
+
+\noindent{\kaishu 证明.}
+
+首先, $n=1$的情况显然;
+
+其次, 假设任取$(x_i)_{i<n}$, $\{x_i\}_{i<n}$有上界. 那么任取$(x_i)_{i<n+1}$,
+取$\{x_i\}_{i<n}$的上界$y$, 此时存在$z$使得
+\[
+    y\leqslant z\quad\land\quad x_n\leqslant z,
+\]
+显然$z$是$\{x_i\}_{i<n+1}$的上界. \hfill $\qedsymbol$
+
+
+\end{document}

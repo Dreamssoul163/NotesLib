@@ -1,0 +1,342 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{序数乘法}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (序数乘法)}
+
+给定\href{../02 序数/01 序数#nameddest=sec:定义1.1}{序数} $\alpha$,
+递归定义类映射$\mathbf{Mul}_\alpha:\mathbf{On}\to\mathbf{On}$如下:
+\vspace{3pt}
+\[
+    \forall\beta\in\mathbf{On}:\quad
+    \mathbf{Mul}_\alpha(\beta)\overset{\mathrm{def}}{=}\left\{\begin{aligned}
+        &0,\quad&&\beta=0,\\[-3pt]
+        &\mathbf{Mul}_\alpha(\max\beta)+\alpha,\quad&&
+        \beta\text{\,\,是后继序数},\\[-3pt]
+        &\sup\mathbf{Mul}_\alpha[\beta],\quad&&
+        \beta\text{\,\,是极限序数}.
+    \end{aligned}\right.
+\]
+
+接下来, 对任意的序数$\alpha,\beta$, 定义
+\[
+    \alpha\cdot\beta\overset{\mathrm{def}}{=}\mathbf{Mul}_\alpha(\beta),
+\]
+也可写作$\alpha\beta$, 称为\textbf{序数乘法}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1 (序数乘法)}
+
+任给序数$\alpha,\beta$,
+\begin{enumerate}
+    \item $\alpha0=0$, $\alpha1=\alpha$,
+    \item $\alpha\beta^+=\alpha\beta+\alpha$,
+    \item 如果$\beta$是极限序数,
+    那么$\displaystyle\alpha\beta=\sup_{\gamma<\beta}\alpha\gamma$.
+\end{enumerate}
+
+\vspace{15pt}
+
+显然\href{../../03 自然数/02 自然数算术/02 自然数的乘法#nameddest=sec:定义1.1}
+{自然数的乘法}是序数乘法的特例. 易证任给序数$\alpha$有$0\alpha=0,1\alpha=\alpha$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+任给序数$\alpha,\beta,\beta'$, 如果$\alpha\neq 0$且$\beta<\beta'$,
+那么$\alpha\beta<\alpha\beta'$.
+
+\noindent{\kaishu 证明.}
+
+给定$\alpha\neq 0$和$\beta$, 对$\beta'>\beta$归纳证明$\alpha\beta<\alpha\beta'$.
+任取$\beta'>\beta$, 假设
+\[
+    \forall\gamma:\quad\beta<\gamma<\beta'\to\alpha\beta<\alpha\gamma.
+\]
+
+\begin{enumerate}
+    \item 如果$\beta'$是后继序数, 即有$\beta'=\gamma^+$,
+    那么有$\beta\leqslant\gamma<\beta'$, 依假设有
+    \[
+        \alpha\beta\leqslant\alpha\gamma<\alpha\gamma^+=\alpha\beta'.
+    \]
+    \item 如果$\beta'$是极限序数, 则$\beta^+<\beta'$, 从而
+    \begin{equation*}
+        \alpha\beta<\alpha\beta^+\leqslant
+        \sup_{\gamma<\beta'}\alpha\gamma=\alpha\beta'.
+    \tag*{\qedsymbol}\end{equation*}
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.3}{}
+\noindent\textbf{定理1.3}
+
+任给序数$\alpha,\alpha',\beta$, 如果$\alpha<\alpha'$,
+那么$\alpha\beta\leqslant\alpha'\beta$.
+
+\noindent{\kaishu 证明.}
+
+给定$\alpha<\alpha'$, 对$\beta$归纳证明$\alpha\beta\leqslant\alpha'\beta$.
+任取$\beta$, 假设对任意的$\gamma<\beta$有$\alpha\gamma\leqslant\alpha'\gamma$.
+
+\begin{enumerate}
+    \item 如果$\beta=0$, 显然.
+    \item 如果$\beta$是后继序数, 即有$\beta=\gamma^+$, 那么$\gamma<\beta$, 依假设有
+    \[
+        \alpha\beta=\alpha\gamma+\alpha\leqslant\alpha'\gamma+\alpha'=\alpha'\beta.
+        \\[1pt]
+    \]
+    \item 如果$\beta$是极限序数, 那么依假设有
+    \vspace{-1pt}
+    \begin{equation*}
+        \alpha\beta=\sup_{\gamma<\beta}\alpha\gamma\leqslant
+        \sup_{\gamma<\beta}\alpha'\gamma=\alpha'\beta.
+    \tag*{\qedsymbol}\end{equation*}
+\end{enumerate}
+
+
+
+
+
+\newpage
+
+\hypertarget{sec:定理1.4}{}
+\noindent\textbf{定理1.4 (序数带余除法)}
+
+任给序数$\alpha,\beta$, 如果$\beta\neq 0$, 那么存在唯一的一对序数$\eta,\varepsilon$
+使得
+\[
+    \alpha=\beta\eta+\varepsilon\quad\land\quad\varepsilon<\beta,
+\]
+分别记作$\alpha/\beta$和$\alpha\%\beta$.
+
+\noindent{\kaishu 证明.}
+
+\noindent{\kaishu 存在性.}
+
+取满足$\beta\theta>\alpha$的最小的$\theta$,
+即对任意的$\eta<\theta$有$\beta\eta\leqslant\alpha$. 显然$\theta$非零.
+
+\vspace{3pt}
+如果$\theta$是极限序数, 那么$\displaystyle\beta\theta=\sup_{\eta<\theta}\beta\eta
+\leqslant\alpha$矛盾. 所以$\theta$是后继序数, 有$\theta=\eta^+$.
+
+\vspace{3pt}
+于是由$\eta<\theta$得$\beta\eta\leqslant\alpha$,
+记$\varepsilon=\alpha-\beta\eta$, 则有
+\[
+    \beta\eta+\varepsilon=\alpha<\beta\theta=\beta\eta+\beta\quad\implies\quad
+    \varepsilon<\beta.
+\]
+
+\noindent{\kaishu 唯一性.}
+
+假设同时存在$\eta,\varepsilon$和$\eta',\varepsilon'$使得
+\[\left\{\begin{aligned}
+    &\alpha=\beta\eta+\varepsilon\,&&\land\quad\varepsilon<\beta,\\[-3pt]
+    &\alpha=\beta\eta'+\varepsilon'\,&&\land\quad\varepsilon'<\beta.
+\end{aligned}\right.\]
+假设$\eta<\eta'$, 即$\eta^+\leqslant\eta'$, 则
+\[
+    \alpha=\beta\eta+\varepsilon<\beta\eta+\beta=\beta\eta^+\leqslant
+    \beta\eta'\leqslant\beta\eta'+\varepsilon'=\alpha,
+\]
+矛盾. 同理$\eta'<\eta$也矛盾, 所以$\eta=\eta'$.
+进一步显然$\varepsilon=\varepsilon'$. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.5}{}
+\noindent\textbf{定理1.5}
+
+任给非零序数$\alpha,\beta$ :
+\begin{enumerate}
+    \item 如果$\alpha,\beta$都是后继序数, 那么$\alpha\beta$是后继序数,
+    \item 如果$\alpha$或$\beta$是极限序数, 那么$\alpha\beta$是极限序数.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 如果$\alpha=\gamma^+$, $\beta=\delta^+$, 那么
+    \[
+        \alpha\beta=\alpha\delta+\alpha=(\alpha\delta+\gamma)^+.
+    \]
+    \item 如果$\beta$是极限序数, 那么对任意的$\displaystyle
+    x<\alpha\beta=\bigcup_{\gamma<\beta}\alpha\gamma$, 存在$\gamma<\beta$使得
+    \vspace{3pt}
+    \[
+        x<\alpha\gamma\quad\implies\quad
+        x^+<\alpha\gamma+1\leqslant\alpha\gamma+\alpha=\alpha\gamma^+
+        \quad\implies\quad x^+<\alpha\beta,
+    \]
+    所以$\alpha\beta$是归纳集, 即是极限序数.
+    \item 如果$\alpha$是极限序数且$\beta$是后继序数, 即有$\beta=\gamma^+$, 那么
+    \[
+        \alpha\beta=\alpha\gamma+\alpha
+    \]
+    是极限序数. \hfill $\qedsymbol$
+\end{enumerate}
+
+
+
+
+
+\newpage
+
+\hypertarget{sec:定理1.6}{}
+\noindent\textbf{定理1.6 (序数乘法的右分配律)}
+
+任给序数$\alpha,\beta,\gamma$, 有$\alpha(\beta+\gamma)=\alpha\beta+\alpha\gamma$.
+
+\noindent{\kaishu 证明.}
+
+给定$\alpha,\beta$, 不妨设$\alpha$非零, 对$\gamma$归纳证明.
+任取$\gamma$, 假设对任意的$\delta<\gamma$有
+$\alpha(\beta+\delta)=\alpha\beta+\alpha\delta$.
+
+\begin{enumerate}
+    \item 如果$\gamma=0$, 显然$\alpha(\beta+0)=\alpha\beta=\alpha\beta+\alpha0$.
+    
+    \vspace{3pt}
+    \item 如果$\gamma$是后继序数, 即有$\gamma=\delta^+$, 那么$\delta<\gamma$,
+    依假设有
+    \[
+        \alpha(\beta+\gamma)=\alpha(\beta+\delta)+\alpha=
+        \alpha\beta+\alpha\delta+\alpha=\alpha\beta+\alpha\gamma.
+    \]
+
+    \vspace{3pt}
+    \item 如果$\gamma$是极限序数, 此时$\beta+\gamma$和$\alpha\gamma$也是极限序数.
+    
+    \vspace{3pt}\hspace{2.17em}
+    一方面, 对任意的$\displaystyle\theta<\beta+\gamma=
+    \bigcup_{\delta<\gamma}(\beta+\delta)$, 存在$\delta<\gamma$使得
+    $\theta<\beta+\delta$, 所以
+    \vspace{3pt}
+    \[
+        \alpha\theta<\alpha(\beta+\delta)=\alpha\beta+\alpha\delta
+        \leqslant\sup_{\lambda<\alpha\gamma}(\alpha\beta+\lambda)
+        \quad\implies\quad\sup_{\theta<\beta+\gamma}\alpha\theta
+        \leqslant\sup_{\lambda<\alpha\gamma}(\alpha\beta+\lambda).
+    \]
+
+    \vspace{3pt}\hspace{2.17em}
+    另一方面, 对任意的$\displaystyle\lambda<\alpha\gamma=
+    \bigcup_{\delta<\gamma}\alpha\delta$, 存在$\delta<\gamma$使得
+    $\lambda<\alpha\delta$, 所以
+    \vspace{3pt}
+    \[
+        \alpha\beta+\lambda<\alpha\beta+\alpha\delta=\alpha(\beta+\delta)
+        \leqslant\sup_{\theta<\beta+\gamma}\alpha\theta
+        \quad\implies\quad\sup_{\lambda<\alpha\gamma}(\alpha\beta+\lambda)
+        \leqslant\sup_{\theta<\beta+\gamma}\alpha\theta.
+    \]
+
+    \hspace{2.17em}
+    综上即得
+    \begin{equation*}
+        \alpha(\beta+\gamma)=\sup_{\theta<\beta+\gamma}\alpha\theta=
+        \sup_{\lambda<\alpha\gamma}(\alpha\beta+\lambda)=
+        \alpha\beta+\alpha\gamma.
+    \tag*{\qedsymbol}\end{equation*}
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.7}{}
+\noindent\textbf{定理1.7 (序数乘法的结合律)}
+
+任给序数$\alpha,\beta,\gamma$, 有$(\alpha\beta)\gamma=\alpha(\beta\gamma)$.
+
+\noindent{\kaishu 证明.}
+
+给定$\alpha,\beta$, 不妨设$\beta$非零, 对$\gamma$归纳证明.
+任取$\gamma$, 假设对任意的$\delta<\gamma$有
+$(\alpha\beta)\delta=\alpha(\beta\delta)$.
+
+\begin{enumerate}
+    \item 如果$\gamma=0$, 显然$(\alpha\beta)0=0=\alpha(\beta0)$.
+    
+    \vspace{3pt}
+    \item 如果$\gamma$是后继序数, 即有$\gamma=\delta^+$, 那么$\delta<\gamma$,
+    依假设有
+    \[
+        (\alpha\beta)\gamma=(\alpha\beta)\delta+\alpha\beta=
+        \alpha(\beta\delta)+\alpha\beta=\alpha(\beta\delta+\beta)=
+        \alpha(\beta\gamma).
+    \]
+
+    \vspace{3pt}
+    \item 如果$\gamma$是极限序数, 此时$\beta\gamma$也是极限序数.
+    
+    \vspace{3pt}\hspace{2.17em}
+    一方面, 对任意的$\delta<\gamma$, 有
+    \vspace{3pt}
+    \[
+        \alpha(\beta\delta)\leqslant\sup_{\lambda<\beta\gamma}\alpha\lambda
+        \quad\implies\quad\sup_{\delta<\gamma}\,\alpha(\beta\delta)
+        \leqslant\sup_{\lambda<\beta\gamma}\alpha\lambda.
+    \]
+    
+    \vspace{3pt}\hspace{2.17em}
+    另一方面, 对任意的$\displaystyle\lambda<\beta\gamma=
+    \bigcup_{\delta<\gamma}\beta\delta$, 存在$\delta<\gamma$使得
+    $\lambda<\beta\delta$, 所以
+    \vspace{3pt}
+    \[
+        \alpha\lambda<\alpha(\beta\delta)
+        \leqslant\sup_{\delta<\gamma}\,\alpha(\beta\delta)
+        \quad\implies\quad\sup_{\lambda<\beta\gamma}\alpha\lambda
+        \leqslant\sup_{\delta<\gamma}\,\alpha(\beta\delta).
+    \]
+
+    \hspace{2.17em}
+    综上即得
+    \begin{equation*}
+        (\alpha\beta)\gamma=\sup_{\delta<\gamma}\,(\alpha\beta)\delta=
+        \sup_{\delta<\gamma}\,\alpha(\beta\delta)=
+        \sup_{\lambda<\beta\gamma}\alpha\lambda=\alpha(\beta\gamma).
+    \tag*{\qedsymbol}\end{equation*}
+\end{enumerate}
+
+\end{document}

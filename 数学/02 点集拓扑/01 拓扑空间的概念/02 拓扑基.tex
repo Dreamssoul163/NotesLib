@@ -1,0 +1,208 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{拓扑基}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (拓扑基)}
+
+给定集合$X$和它的子集族$\mathcal{B}\subset\mathcal{P}(X)$. 如果:
+\vspace{3pt}
+\begin{enumerate}
+    \item $\displaystyle\bigcup\mathcal{B}=X$,
+    \vspace{3pt}
+    \item 对任意的$B_1,B_2\in\mathcal{B}$和$x\in B_1\cap B_2$,
+    存在$B_3\in\mathcal{B}$使得$x\in B_3\subset B_1\cap B_2$,
+\end{enumerate}
+就称$\mathcal{B}$是$X$上的一个\textbf{拓扑基}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (生成拓扑)}
+
+任给集合$X$和$X$上的拓扑基$\mathcal{B}$,
+\[
+    \langle\mathcal{B}\rangle=\{U\subset X\mid
+    \forall x\in U\,\,\exists B\in\mathcal{B}:\,x\in B\subset U\}
+\]
+是$X$上包含$\mathcal{B}$的最粗拓扑, 称作由$\mathcal{B}$生成的拓扑.
+也称$\mathcal{B}$是$\langle\mathcal{B}\rangle$的一个基.
+
+\noindent{\kaishu 验证.}
+
+显然$\langle\mathcal{B}\rangle$包含$\mathcal{B}$.
+首先证明$\langle\mathcal{B}\rangle$是拓扑.
+
+\begin{enumerate}
+    \item 显然$\varnothing\in\langle\mathcal{B}\rangle$.
+    因为$\displaystyle\bigcup\mathcal{B}=X$, 所以$X\in\langle\mathcal{B}\rangle$.
+    \vspace{3pt}
+    \item 对$\langle\mathcal{B}\rangle$中任意的$(U_i)_{i\in I}$,
+    任取$\displaystyle x\in\bigcup_{i\in I}U_i$, 存在$i\in I$使得$x\in U_i$,
+    依定义存在$B\in\mathcal{B}$使得
+    \vspace{3pt}
+    \[
+        x\in B\subset U_i\quad\implies\quad
+        x\in B\subset U_i\subset\bigcup_{i\in I}U_i,\\[-3pt]
+    \]
+    所以$\displaystyle\bigcup_{i\in I}U_i\in\langle\mathcal{B}\rangle$.
+    \vspace{3pt}
+    \item 对任意的$U_1,U_2\in\langle\mathcal{B}\rangle$, 任取$x\in U_1\cap U_2$,
+    依定义存在$B_1,B_2\in\mathcal{B}$使得
+    \[
+        x\in B_1\subset U_1\quad\land\quad x\in B_2\subset U_2,
+    \]
+    此时存在$B_3\in\mathcal{B}$使得
+    \[
+        x\in B_3\subset B_1\cap B_2\subset U_1\cap U_2,
+    \]
+    所以$U_1\cap U_2\in\langle\mathcal{B}\rangle$.
+\end{enumerate}
+
+\vspace{3pt}
+接下来, 如果拓扑$\mathcal{T}$包含$\mathcal{B}$,
+那么对任意的$U\in\langle\mathcal{B}\rangle$,
+对任意的$x\in U$选取一个$B_x\in\mathcal{B}$使得
+\[
+    x\in B_x\subset U,
+\]
+易证$\displaystyle U=\bigcup_{x\in U}B_x$. 因为每个$B_x\in\mathcal{T}$,
+所以$U\in\mathcal{T}$. 所以$\langle\mathcal{B}\rangle\subset\mathcal{T}$,
+即$\langle\mathcal{B}\rangle$是$X$上包含$\mathcal{B}$的最粗拓扑. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+给定拓扑空间$(X,\mathcal{T})$和$\mathcal{B}\subset\mathcal{T}$, 以下等价:
+\begin{enumerate}
+    \item $\mathcal{B}$是此空间的基.
+    \item 对任意开集$U$和点$x\in U$, 存在$B\in\mathcal{B}$使得$x\in B\subset U$.
+    \vspace{3pt}
+    \item 对任意开集$U$, 存在$\mathcal{B}$中的$(B_i)_{i\in I}$使得
+    $\displaystyle U=\bigcup_{i\in I}B_i$.
+\end{enumerate}
+
+% 毕业论文终于大概定稿了. 久违地写一点数学.
+% 儿童节快乐.
+% 2026.06.01
+
+
+
+
+
+\newpage
+
+\section{拓扑子基}
+
+\hypertarget{sec:定义2.1}{}
+\noindent\textbf{定义2.1 (拓扑子基)}
+
+给定集合$X$和$X$的子集族$\mathcal{S}\subset\mathcal{P}(X)$.
+如果$\displaystyle\bigcup\mathcal{S}=X$,
+就称$\mathcal{S}$是$X$上的一个\textbf{拓扑子基}.
+
+\vspace{10pt}
+
+拓扑子基通过有限交扩张操作可以得到拓扑基, 从而可以生成拓扑.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义2.2}{}
+\noindent\textbf{定义2.2 (生成滤子)}
+
+任给集合$X$和$X$上的拓扑子基$\mathcal{S}$,
+\vspace{3pt}
+\[
+    \mathcal{B}=\left\{\,\bigcap\mathcal{R}\,\,\middle\vert\,\,
+    \mathcal{R}\text{\,是\,}\mathcal{S}\text{\,的非空有限子集\,}\right\}\\[3pt]
+\]
+是$X$上包含$\mathcal{S}$的拓扑基.
+
+进一步, $\langle\mathcal{B}\rangle$是$X$上包含$\mathcal{S}$的最粗拓扑,
+也记作$\langle\mathcal{S}\rangle$, 称作由$\mathcal{S}$生成的拓扑,
+称$\mathcal{S}$是其子基.
+
+\noindent{\kaishu 验证.}
+
+显然$\mathcal{B}$包含$\mathcal{S}$. 首先证明$\mathcal{B}$是拓扑基.
+
+% 又到了高考的时候, 祝所有人高考顺利.
+% 我现在可能与他们同样地紧张. 也希望自己三天后的答辩顺利.
+% 2026.06.07
+
+\begin{enumerate}
+    \item $\displaystyle\bigcup\mathcal{B}\supset\bigcup\mathcal{S}=X$,
+    从而$\displaystyle\bigcup\mathcal{B}=X$.
+    \vspace{3pt}
+    \item 对任意的$B_1,B_2\in\mathcal{B}$, 存在$\mathcal{S}$的非空有限子集
+    $\mathcal{R}_1,\mathcal{R}_2$使得
+    \[
+        B_1=\bigcap\mathcal{R}_1\quad\land\quad B_2=\bigcap\mathcal{R}_2,
+    \]
+    从而$\displaystyle B_1\cap B_2=\bigcap\,(\mathcal{R}_1\cup\mathcal{R}_2)$
+    也属于$\mathcal{B}$.
+\end{enumerate}
+
+\vspace{3pt}
+接下来, 如果拓扑$\mathcal{T}$包含$\mathcal{S}$,
+那么对任意的$B\in\mathcal{B}$, 存在$\mathcal{S}$的非空有限子集$\mathcal{R}$使得
+\[
+    B=\bigcap\mathcal{R}\in\mathcal{T},
+\]
+所以$\mathcal{B}\subset\mathcal{T}$,
+从而$\langle\mathcal{B}\rangle\subset\mathcal{T}$,
+即$\langle\mathcal{B}\rangle$是$X$上包含$\mathcal{S}$的最粗拓扑. \hfill $\qedsymbol$
+
+% 答辩结束了, 不知道结果如何.
+% 现在也并没有之前想的那样放松. 有点慌...
+% 2026.06.10
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1}
+
+给定拓扑空间$(X,\mathcal{T})$和$\mathcal{S}\subset\mathcal{T}$, 以下等价:
+\begin{enumerate}
+    \item $\mathcal{S}$是此空间的子基.
+    \vspace{3pt}
+    \item 对任意开集$U$, 存在$\mathcal{S}$的一族非空有限子集$(\mathcal{R}_i)_{i\in I}$
+    使得$\displaystyle U=\bigcup_{i\in I}\bigcap\mathcal{R}_i$.
+\end{enumerate}
+
+\end{document}

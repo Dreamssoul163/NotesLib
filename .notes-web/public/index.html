@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NotesLib</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div id="app">
+    <aside id="sidebar">
+      <div class="header">
+        <span>全部笔记</span>
+        <button id="toggle-sidebar" class="toggle-sidebar" title="收起/展开目录">◀</button>
+      </div>
+      <div id="tree" class="tree"></div>
+    </aside>
+    <main id="viewer">
+      <div class="viewer-header">
+        <div class="title">
+          <div class="nav-controls">
+            <button id="nav-back" class="small-nav" title="后退" disabled>◂</button>
+            <button id="nav-forward" class="small-nav" title="前进" disabled>▸</button>
+          </div>
+          <span id="viewer-title-text" style="margin-left:8px">预览</span>
+        </div>
+        <div class="page-controls">
+          <button id="page-prev" title="上一页">‹</button>
+          <span id="page-display">0 / 0</span>
+          <button id="page-next" title="下一页">›</button>
+        </div>
+        <div class="zoom-controls">
+          <button id="zoom-out" title="缩小">−</button>
+          <span id="zoom-value">90%</span>
+          <button id="zoom-in" title="放大">+</button>
+        </div>
+      </div>
+      <div id="content" class="content"><div class="empty">未选择笔记</div></div>
+    </main>
+  </div>
+  <script src="https://unpkg.com/pdfjs-dist/build/pdf.min.js"></script>
+  <script>
+    if (window.pdfjsLib) {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://unpkg.com/pdfjs-dist/build/pdf.worker.min.js';
+    }
+  </script>
+  <script src="/main.js"></script>
+</body>
+</html>

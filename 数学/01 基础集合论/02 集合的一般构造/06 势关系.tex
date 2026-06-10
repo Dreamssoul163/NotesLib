@@ -1,0 +1,242 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{势关系}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1}
+
+给定集合$a,b$, 一般使用下面的记号:
+\begin{enumerate}
+    \item 如果存在从$a$到$b$的\href{03 映射#nameddest=sec:定义2.2}{双射},
+    就记$a\approx b$, 称$a,b$\textbf{等势},
+    \item 如果存在从$a$到$b$的\href{03 映射#nameddest=sec:定义2.1}{单射},
+    就记$a\preccurlyeq b$,
+    \item 如果$a\preccurlyeq b$且$a\not\approx b$,
+    就记$a\prec b$.
+\end{enumerate}
+
+\vspace{15pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+任给集合$a,b$, 如果$b$非空, 那么$a\succcurlyeq b$当且仅当
+存在从$a$到$b$的\href{03 映射#nameddest=sec:定义2.2}{满射}.
+
+\noindent{\kaishu 证明.}
+
+\noindent{\kaishu 必要性.}
+
+取单射$f:b\to a$. 再取$x_0\in b$, 然后对任意的$y\in a$定义
+\vspace{3pt}
+\[g(y)=\left\{\begin{aligned}
+    &f^{-1}(y),\quad&&y\in\mathrm{Ran}\,f,\\[-3pt]
+    &x_0,\quad&&y\notin\mathrm{Ran}\,f,
+\end{aligned}\right.\\[3pt]\]
+则$g$的值域是$f^{-1}[\,\mathrm{Ran}\,f\,]\cup\{x_0\}=b$,
+即$g$是从$a$到$b$的满射.
+
+\noindent{\kaishu 充分性.}
+
+取满射$g:a\to b$. 应用\href{03 映射#nameddest=sec:定理3.2}{单射定理},
+存在单射$h$使得$h\subset g$并且
+$\mathrm{Ran}\,h=\mathrm{Ran}\,g=b$.
+
+考虑$f=h^{-1}$, 则$f$也是单射, 并且
+\[\left\{\begin{aligned}
+    &\mathrm{Dom}\,f=\mathrm{Ran}\,h=b,\\[-3pt]
+    &\mathrm{Ran}\,f=\mathrm{Dom}\,h\subset\mathrm{Dom}\,g=a,
+\end{aligned}\right.\]
+即$f$是从$b$到$a$的单射, $a\succcurlyeq b$. \hfill $\qedsymbol$
+
+% \vspace{10pt}
+
+% \hypertarget{sec:定理1.2}{}
+% \noindent\textbf{定理1.2}
+
+% 任给集合$a,a',b,b',c$, 假设$a\approx a'$, $b\approx b'$, 则:
+% \begin{enumerate}
+%     \item $\mathcal{P}(a)\approx\mathcal{P}(a')$,
+%     \item 如果$a\cap b=a'\cap b'=\varnothing$, 那么$a\cup b\approx a'\cup b'$,
+%     \item $a\times b\approx b\times a$,
+%     \item $a\times b\approx a'\times b'$,
+%     \item $^ab\approx\,^{a'}b'$,
+%     \item 如果$a\cap b=\varnothing$, 那么$^{a\cup b}c\approx\,^ac\times\,\!^bc$,
+%     \item $^{a\times b}c\approx\,\!^a(\,^bc)$.
+% \end{enumerate}
+
+% \noindent{\kaishu 证明.}
+
+% 这里不给出完整证明, 只把双射$\varphi$构造出来. 设$f:a\to a'$和$g:b\to b'$是双射.
+
+% \begin{enumerate}
+%     \item $\varphi:\mathcal{P}(a)\to\mathcal{P}(a'),\,s\mapsto f[s]$.
+%     \hspace{10.01em}$\varphi^{-1}:s'\mapsto f^{-1}[s']$.
+%     \vspace{6pt}
+%     \item $\varphi:a\cup b\to a'\cup b',\,x\mapsto\left\{\begin{aligned}
+%     &f(x),&&x\in a,\\&g(x),&&x\in b.\end{aligned}\right.$
+%     \hspace{4.96em}$\varphi^{-1}:x'\mapsto\left\{\begin{aligned}
+%     &f^{-1}(x'),&&x'\in a',\\&g^{-1}(x'),&&x'\in b'.\end{aligned}\right.$
+%     \vspace{6pt}
+%     \item $\varphi:a\times b\to b\times a,\,(x,y)\mapsto(y,x)$.
+%     \hspace{7.55em}$\varphi^{-1}:(y,x)\mapsto(x,y)$.
+%     \item $\varphi:a\times b\to a'\times b',\,(x,y)\mapsto(f(x),g(y))$.
+%     \hspace{4.35em}$\varphi^{-1}:(x',y')\mapsto(f^{-1}(x'),g^{-1}(y'))$.
+%     \item $\varphi:\,^ab\to\,\!^{a'}b',\,\psi\mapsto g\circ\psi\circ f^{-1}$.
+%     \hspace{8.67em}$\varphi^{-1}:\psi'\mapsto g^{-1}\circ\psi'\circ f$.
+%     \item $\varphi:\,^{a\cup b}c\to\,^ac\times\,\!^bc,\,
+%     \psi\mapsto(\psi\!\restriction_a,\psi\!\restriction_b)$.
+%     \hspace{6.36em}$\varphi^{-1}:(\psi_1,\psi_2)\mapsto\psi_1\cup\psi_2$.
+%     \item $\varphi:\,^{a\times b}c\to\,\!^a(\,^bc),\,\psi\mapsto
+%     (x\mapsto(y\mapsto\psi(x,y)))$.
+%     \hspace{2.86em}$\varphi^{-1}:\psi'\mapsto((x,y)\mapsto\psi'(x)(y))$.
+%     \hfill $\qedsymbol$
+% \end{enumerate}
+
+\vspace{15pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2 (Cantor定理)}
+
+任给集合$a$, 有$a\prec\mathcal{P}(a)$.
+
+\noindent{\kaishu 证明.}
+
+首先, 对任意的$x\in a$定义
+\[
+    f(x)=\{x\},
+\]
+则$f:a\to\mathcal{P}(a)$, 并且显然是单射. 所以$a\preccurlyeq\mathcal{P}(a)$.
+
+其次, 假设$a\approx\mathcal{P}(a)$, 即存在双射$g:a\to\mathcal{P}(a)$. 此时定义
+\[
+    b=\{x\in a\mid x\notin g(x)\},
+\]
+则$b\in\mathcal{P}(a)$, 再令$y=g^{-1}(b)$. 依定义,
+\[
+    y\in b\iff y\in g(y)\iff y\notin b,
+\]
+矛盾. 所以$a\not\approx\mathcal{P}(a)$.
+
+综上, $a\prec\mathcal{P}(a)$. \hfill $\qedsymbol$
+
+
+
+
+
+\newpage
+
+\hypertarget{sec:定理1.3}{}
+\noindent\textbf{定理1.3 (Cantor-Bernstein定理)}
+
+任给集合$a,b$, 如果$a\preccurlyeq b$且$b\preccurlyeq a$, 那么$a\approx b$.
+
+\noindent{\kaishu 证明.}
+
+取单射$f:a\to b$和$g:b\to a$, 记$h=g\circ f$, $a'=a\setminus\mathrm{Ran}\,g$.
+
+定义$a$的子集族
+\vspace{-3pt}
+\[
+    \mathcal{A}=\{\,U\subset a\mid a'\cup h[U]\subset U\,\},\\[-3pt]
+\]
+显然$a\in\mathcal{A}$, 即$\mathcal{A}$非空.
+考虑$\displaystyle V=\bigcap\mathcal{A}$. 首先
+\vspace{3pt}
+\[\left\{\begin{aligned}
+    \,&\,\,\,\,V\!\!\!\!&&=\,\,\,\,\bigcap_{U\in\mathcal{A}}U\!\!\!\!&&
+    \subset\bigcap_{U\in\mathcal{A}}a\!\!\!\!&&=a\,,\\
+    \,&\,\,\,\,a'\!\!\!\!&&=\,\,\,\,\bigcap_{U\in\mathcal{A}}a'\!\!\!\!&&
+    \subset\bigcap_{U\in\mathcal{A}}U\!\!\!\!&&=V\,,\\
+    \,&h[V]\!\!\!\!&&=\bigcap_{U\in\mathcal{A}}h[U]\!\!\!\!&&
+    \subset\bigcap_{U\in\mathcal{A}}U\!\!\!\!&&=V\,,
+\end{aligned}\right.\\[3pt]\]
+综上即得$V\subset a$且$a'\cup h[V]\subset V$, 即$V\in\mathcal{A}$.
+
+\vspace{3pt}
+其次由$a'\cup h[V]\subset V$得
+\[
+    h[a'\cup h[V]]\subset h[V]\quad\implies\quad
+    a'\cup h[a'\cup h[V]]\subset a'\cup h[V]\quad\implies\quad
+    a'\cup h[V]\in\mathcal{A},
+\]
+又因为$V$是$\mathcal{A}$的交集, 所以$V\subset a'\cup h[V]$.
+
+\vspace{3pt}
+综上$V=a'\cup h[V]$. 据此定义映射
+\vspace{-3pt}
+\[p:a\to b,\quad x\mapsto\left\{\begin{aligned}
+    &f(x),\quad&&x\in V,\\[-3pt]
+    &g^{-1}(x),\quad&&x\notin V,
+\end{aligned}\right.\\[3pt]\]
+当$x\notin V$时有$x\notin a'$, 即$x\in\mathrm{Ran}\,g$, 所以$g^{-1}(x)$是存在的.
+下证$p:a\to b$是双射, 从而$a\approx b$.
+
+\vspace{3pt}
+假设$p(x)=p(x')$, 如果$x,x'$同时属于$V$或不属于$V$, 显然都有$x=x'$.
+如果$x\in V,\,x'\notin V$, 那么
+\[
+    f(x)=g^{-1}(x')\quad\implies\quad x'=h(x)\in h[V]
+    \quad\implies\quad x'\in V,
+\]
+矛盾. 于是$p$是单射.
+
+\vspace{3pt}
+任取$y\in b$, 如果$g(y)\in V$则一定有$g(y)\in h[V]$, 从而存在$x\in V$使得
+\[
+    g(y)=h(x)\quad\implies\quad y=f(x)\quad\implies\quad y=p(x),\\[3pt]
+\]
+如果$g(y)\notin V$则$y=g^{-1}(g(y))=p(g(y))$. 于是$p$是满射. \hfill $\qedsymbol$
+
+\vspace{20pt}
+
+最后, 可以完整描述$\approx$的等价性和$\preccurlyeq$的偏序性.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.4}{}
+\noindent\textbf{定理1.4}
+
+任给集合$a,b,c$ :
+\begin{enumerate}
+    \item $a\approx a$, $a\preccurlyeq a$,
+    \item 如果$a\approx b$, 那么$b\approx a$,
+    \item 如果$a\approx b$且$b\approx c$, 那么$a\approx c$,
+    \item 如果$a\preccurlyeq b$且$b\preccurlyeq c$, 那么$a\preccurlyeq c$,
+    \item 如果$a\preccurlyeq b$且$b\preccurlyeq a$, 那么$a\approx b$.
+\end{enumerate}
+
+\end{document}

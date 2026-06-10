@@ -1,0 +1,195 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{乘积结构}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (乘积结构)}
+
+给定一阶语言$\mathcal{L}$和一族
+$\mathcal{L}$-\href{../01 一阶语言的结构/01 一阶语言的结构#nameddest=sec:定义1.1}
+{结构} $(A_i)_{i\in I}$, 再给定$I$上的超滤$\mathcal{U}$.
+在$\displaystyle P=\prod_{i\in I}A_i$上:
+\begin{enumerate}
+    \item 对任意的常元$c$, 定义$c^P=(c^{A_i})_{i\in I}$,
+    \item 对任意的$n$元函数符号$f$, 定义
+    \[
+        f^P:P^n\to P,\,
+        (p_1,\cdots,p_n)\mapsto(f^{A_i}(p_1(i),\cdots,p_n(i)))_{i\in I},
+    \]
+    \item 对任意的$n$元关系符号$r$, 定义
+    \[
+        r^P=\{(p_1,\cdots,p_n)\in P^n\mid\exists u\in\mathcal{U},\,
+        \forall i\in u,\,(p_1(i),\cdots,p_n(i))\in r^{A_i}\},
+    \]
+\end{enumerate}
+称$P$为$(A_i)_{i\in I}$在$\mathcal{U}$上的\textbf{乘积结构}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+给定一阶语言$\mathcal{L}$, 一族$\mathcal{L}$-环境$(A_i,\sigma_i)_{i\in I}$
+和$I$上的超滤$\mathcal{U}$, 记乘积结构为$P$. 再定义
+\[
+    S:\mathcal{V}\to P,\,x\mapsto(\sigma_i(x))_{i\in I},
+\]
+作为$P$上的变元赋值. 那么对任意的项$t$有$t^{(P,S)}=(t^{(A_i,\sigma_i)})_{i\in I}$.
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 对任意的常元$c$,
+    $c^{(P,S)}=c^P=(c^{A_i})_{i\in I}=(c^{(A_i,\sigma_i)})_{i\in I}$,
+    \item 对任意的变元$x$,
+    $x^{(P,S)}=x^S=(x^{\sigma_i})_{i\in I}=(x^{(A_i,\sigma_i)})_{i\in I}$,
+    \item 对任意的$n$元函数符号$f$, 假设项$t_1,\cdots,t_n$满足命题,
+    那么对$t=ft_1\cdots t_n$有
+    \begin{equation*}
+        t^{(P,S)}=f^P(t_1^{(P,S)},\cdots,t_n^{(P,S)})
+        =(f^{A_i}(t_1^{(A_i,\sigma_i)},\cdots,t_n^{(A_i,\sigma_i)}))_{i\in I}
+        =(t^{(A_i,\sigma_i)})_{i\in I}.
+    \tag*{\qedsymbol}\end{equation*}
+\end{enumerate}
+
+
+
+
+
+\newpage
+
+\section{超积结构}
+
+\hypertarget{sec:定义2.1}{}
+\noindent\textbf{定义2.1 (超积结构)}
+
+给定一阶语言$\mathcal{L}$, 一族$\mathcal{L}$-结构$(A_i)_{i\in I}$和$I$上的
+超滤$\mathcal{U}$, 记乘积结构为$P$. 再定义$P$上的等价关系$\sim_{\mathcal{U}}$:
+\[
+    \forall p,p'\in P:(p\sim_{\mathcal{U}}p'\iff
+    \exists u\in\mathcal{U},\,\forall i\in u:p(i)=p'(i)),\\[3pt]
+\]
+则$\sim_{\mathcal{U}}$是$P$上的$\mathcal{L}$-同余关系, 称商结构
+$^{\displaystyle P}\!/_{\displaystyle\sim_{\mathcal{U}}}$为
+$(A_i)_{i\in I}$在$\mathcal{U}$上的\textbf{超积结构},
+也记作$^{\displaystyle P}\!/_{\displaystyle\mathcal{U}}$.
+
+\noindent{\kaishu 验证.}
+
+\begin{enumerate}
+    \item 对任意的$n$元函数符号$f$和
+    $p_1\sim_{\mathcal{U}}p_1',\cdots,p_n\sim_{\mathcal{U}}p_n'\in P$,
+    依定义存在$u_1,\cdots,u_n\in\mathcal{U}$使得
+    \[
+        \forall j\leqslant n,\,\forall i\in u_j:(p_j(i)=p_j'(i)),
+    \]
+    此时定义$\displaystyle u=\bigcap_{j\leqslant n}u_j\in\mathcal{U}$,
+    则对任意的$i\in u$有$\forall j\leqslant n:p_j(i)=p_j'(i)$, 从而
+    \vspace{3pt}
+    \[
+        f^P(p_1,\cdots,p_n)(i)=f^{A_i}(p_1(i),\cdots,p_n(i))
+        =f^{A_i}(p_1'(i),\cdots,p_n'(i))=f^P(p_1',\cdots,p_n')(i),
+    \]
+    依定义即得$f^P(p_1,\cdots,p_n)\sim_{\mathcal{U}}f^P(p_1',\cdots,p_n')$.
+
+    \item 对任意的$n$元关系符号$r$和
+    $p_1\sim_{\mathcal{U}}p_1',\cdots,p_n\sim_{\mathcal{U}}p_n'\in P$,
+    假设$(p_1,\cdots,p_n)\in r^P$.
+
+    \hspace{2.17em}
+    首先, 同理存在$u\in\mathcal{U}$使得
+    对任意的$i\in u$有$\forall j\leqslant n:p_j(i)=p_j'(i)$;
+
+    \hspace{2.17em}
+    其次根据$r^P$的定义, 又存在$u'\in\mathcal{U}$使得
+    对任意的$i\in u'$有$(p_1(i),\cdots,p_n(i))\in r^{A_i}$.
+
+    \hspace{2.17em}
+    所以对任意的$i\in u\cap u'$就有$(p_1'(i),\cdots,p_n'(i))\in r^{A_i}$,
+    从而$(p_1',\cdots,p_n')\in r^P$. \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+超积结构$^{\displaystyle P}\!/_{\displaystyle\mathcal{U}}$的具体解释如下:
+\vspace{3pt}
+\begin{enumerate}
+    \item 对任意的常元$c$, $c^{P/\mathcal{U}}=[(c^{A_i})_{i\in I}]$,
+    \item 对任意的$n$元函数符号$f$和$s_1,\cdots,s_n\in\,\!
+    ^{\displaystyle P}\!/_{\displaystyle\mathcal{U}}$,
+    \[
+        \forall p_1\in s_1,\,\cdots,\,\forall p_n\in s_n:
+        f^{P/\mathcal{U}}(s_1,\cdots,s_n)=
+        [(f^{A_i}(p_1(i),\cdots,p_n(i)))_{i\in I}],
+    \]
+    \item 对任意的$n$元关系符号$r$和$s_1,\cdots,s_n\in\,\!
+    ^{\displaystyle P}\!/_{\displaystyle\mathcal{U}}$,
+    \[
+        \forall p_1\in s_1,\,\cdots,\,\forall p_n\in s_n:
+        ((s_1,\cdots,s_n)\in r^{P/\mathcal{U}}\leftrightarrow\exists u\in\mathcal{U},\,
+        \forall i\in u:(p_1(i),\cdots,p_n(i))\in r^{A_i}).
+    \]
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1}
+
+给定一阶语言$\mathcal{L}$, 一族$\mathcal{L}$-环境$(A_i,\sigma_i)_{i\in I}$
+和$I$上的超滤$\mathcal{U}$,
+记超积结构为$^{\displaystyle P}\!/_{\displaystyle\mathcal{U}}$. 再定义
+\[
+    ^{\displaystyle S}\!/_{\displaystyle\mathcal{U}}:
+    \mathcal{V}\to\,^{\displaystyle P}\!/_{\displaystyle\mathcal{U}},\,
+    x\mapsto[(\sigma_i(x))_{i\in I}],\\[3pt]
+\]
+作为$^{\displaystyle P}\!/_{\displaystyle\mathcal{U}}$上的变元赋值.
+那么对任意的项$t$有$t^{(P/\mathcal{U},S/\mathcal{U})}
+=[(t^{(A_i,\sigma_i)})_{i\in I}]$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义2.2}{}
+\noindent\textbf{定义2.2 (超幂)}
+
+给定一阶语言$\mathcal{L}$, $\mathcal{L}$-结构$A$, 非空集合$I$
+和$I$上的超滤$\mathcal{U}$.
+
+称$(A)_{i\in I}$在$\mathcal{U}$上的超积结构为$A$对$\mathcal{U}$的\textbf{超幂},
+记作$A^\mathcal{U}$.
+
+\end{document}

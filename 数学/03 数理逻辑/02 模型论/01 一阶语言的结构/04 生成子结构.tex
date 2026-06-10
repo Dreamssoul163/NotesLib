@@ -1,0 +1,220 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{生成子结构}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (生成子结构)}
+
+给定一阶语言$\mathcal{L}$, $\mathcal{L}$-结构$B$和非空的$\Omega\subset B$.
+在$B$中定义:
+\begin{enumerate}
+    \item 初始集$\Omega\cup\{c^B\mid c\in\mathcal{C}\}$,
+    \item 归纳规则: 对每个函数符号$f\in\mathcal{F}$, 指定映射$f^B$.
+\end{enumerate}
+从$\Omega$和归纳规则可以归纳定义$\langle\Omega\rangle\subset B$,
+称为$\Omega$在$B$中生成的子结构.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+给定一阶语言$\mathcal{L}$, $\mathcal{L}$-结构$B$和非空的$\Omega\subset B$,
+则$\langle\Omega\rangle$是$B$的包含$\Omega$的
+最小的\href{03 子结构#nameddest=sec:定义1.1}{子结构}.
+
+\noindent{\kaishu 证明.}
+
+首先依定义可知$\langle\Omega\rangle$含有所有的$c^B$并且对所有$f^B$封闭, 所以它是子结构.
+
+其次, 假设$A\supset\Omega$也是$B$的子结构, 那么:
+\begin{enumerate}
+    \item 对任意的$b\in\Omega\cup\{c^B\mid c\in\mathcal{C}\}$, 都有$b\in A$,
+    \item 对任意的$n$元函数符号$f$, 假设$a_1,\cdots,a_n\in A$, 那么
+    $f^B(a_1,\cdots,a_n)\in A$.
+\end{enumerate}
+
+所以归纳证明得: 对任意的$b\in\langle\Omega\rangle$都有$b\in A$,
+从而$\langle\Omega\rangle\subset A$. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+给定一阶语言$\mathcal{L}$, $\mathcal{L}$-结构$B$和非空的$\Omega\subset B$,
+$|\langle\Omega\rangle|\leqslant\max\{|\Omega|,|\mathcal{L}|\}$.
+
+\noindent{\kaishu 证明.}
+
+显然$|\Omega\cup\{c^B\mid c\in\mathcal{C}\}|, |\mathcal{F}|, \omega$
+都不大于$\max\{|\Omega|,|\mathcal{L}|\}$,
+根据\href{../../01 一阶语言/01 一阶语言#nameddest=sec:定理A1.1}{引理}即得.
+\hfill $\qedsymbol$
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.3}{}
+\noindent\textbf{定理1.3}
+
+给定一阶语言$\mathcal{L}$, $\mathcal{L}$-结构$B$.
+对$B$上任意的变元赋值$\sigma$和非空的$W\subset\mathcal{V}$, 有
+\[
+    \langle\,\sigma[W]\,\rangle=\{t^{(B,\sigma)}\mid
+    t\in T^{\mathcal{L}}\land\mathrm{var}(t)\subset W\}.
+\]
+特别地, 取$W=\mathcal{V}$就有
+\[
+    \langle\,\mathrm{Ran}\,\sigma\,\rangle=
+    \{t^{(B,\sigma)}\mid t\in T^{\mathcal{L}}\}.
+\]
+
+\noindent{\kaishu 证明.}
+
+第一, 证明
+$\langle\,\sigma[W]\,\rangle\subset\{t^{(B,\sigma)}\mid
+t\in T^{\mathcal{L}}\land\mathrm{var}(t)\subset W\}$.
+
+首先, 对任意的$b\in\sigma[W]$, 存在$x\in W$使得$x^\sigma=b$,
+并且$\mathrm{var}(x)=\{x\}\subset W$;
+
+对任意的$b\in\{c^B\mid c\in\mathcal{C}\}$, 存在$c\in\mathcal{C}$使得
+$c^B=b$, 并且$\mathrm{var}(c)=\varnothing\subset W$.
+
+其次, 对任意的$n$元函数符号$f$, 假设$b_1,\cdots,b_n\in\{t^{(B,\sigma)}\mid
+t\in T^{\mathcal{L}}\land\mathrm{var}(t)\subset W\}$, 即
+\[
+    \forall i,\,\exists t_i\in T^{\mathcal{L}}:\quad
+    \mathrm{var}(t_i)\subset W\quad\land\quad b_i=t_i^{(B,\sigma)}.
+\]
+令$t=ft_1\cdots t_n$, 则$\mathrm{var}(t)\subset W$并且
+$f^B(b_1,\cdots,b_n)=t^{(B,\sigma)}$.
+
+第二, 对所有项$t$归纳证明
+$\mathrm{var}(t)\subset W\to t^{(B,\sigma)}\in\langle\,\sigma[W]\,\rangle$.
+
+首先, 如果$t$是变元且$\mathrm{var}(t)\subset W$, 则$t\in W$, 从而
+$t^{(B,\sigma)}\in\sigma[W]\subset\langle\,\sigma[W]\,\rangle$;
+
+如果$t$是常元, 则一定有$t^{(B,\sigma)}=t^B\in\langle\,\sigma[W]\,\rangle$.
+
+其次, 对任意的$n$元函数符号$f$, 假设$t_1,\cdots,t_n$满足命题.
+再假设$t=ft_1\cdots t_n$满足$\mathrm{var}(t)\subset W$.
+此时对每个$t_i$也有$\mathrm{var}(t_i)\subset W$,
+于是$t_i^{(B,\sigma)}\in\langle\,\sigma[W]\,\rangle$. 从而
+$t^{(B,\sigma)}\in\langle\,\sigma[W]\,\rangle$. \hfill $\qedsymbol$
+
+
+
+
+
+\newpage
+
+\hypertarget{sec:定理1.4}{}
+\noindent\textbf{定理1.4}
+
+给定一阶语言$\mathcal{L}$, $\mathcal{L}$-结构$A,B$和它们上的变元赋值
+$\sigma,\tau$, 以及非空的$W\subset\mathcal{V}$.
+
+如果对任意的原子公式$\varphi$有
+\[
+    \mathrm{FV}(\varphi)\subset W\to
+    ((A,\sigma)\models\varphi\leftrightarrow(B,\tau)\models\varphi),
+\]
+那么存在同构$p:\langle\,\sigma[W]\,\rangle\cong\langle\,\tau[W]\,\rangle$,
+同时$p\circ\sigma\!\restriction_W=\tau\!\restriction_W$.
+
+\noindent{\kaishu 证明.}
+
+根据定理1.3即得
+\[
+    \langle\,\sigma[W]\,\rangle=\{t^{(A,\sigma)}\mid
+    t\in T^{\mathcal{L}}\land\mathrm{var}(t)\subset W\},\quad
+    \langle\,\tau[W]\,\rangle=\{t^{(B,\tau)}\mid
+    t\in T^{\mathcal{L}}\land\mathrm{var}(t)\subset W\}.
+\]
+此时定义
+\vspace{-3pt}
+\[
+    p=\{(t^{(A,\sigma)},t^{(B,\tau)})\mid
+    t\in T^{\mathcal{L}}\land\mathrm{var}(t)\subset W\},\\[-3pt]
+\]
+易证$p$的定义域和值域就是$\langle\,\sigma[W]\,\rangle$和$\langle\,\tau[W]\,\rangle$.
+接下来证明$p$是双射.
+
+假设有$(a,b_1),(a,b_2)\in p$. 依定义, 存在变元集包含于$W$的项$t_1,t_2$使得
+\[
+    a=t_1^{(A,\sigma)}=t_2^{(A,\sigma)},\quad
+    b_1=t_1^{(B,\tau)},\quad b_2=t_2^{(B,\tau)}.
+\]
+注意到$(A,\sigma)\models t_1\equiv t_2$,
+于是$(B,\tau)\models t_1\equiv t_2$, 即$b_1=b_2$.
+
+再假设有$(a_1,b),(a_2,b)\in p$, 同理易证$a_1=a_2$.
+综上即得$p:\langle\,\sigma[W]\,\rangle\to\langle\,\tau[W]\,\rangle$是双射.
+
+对任意的变元$x\in W$, 依定义即得$p(x^\sigma)=x^{\tau}$. 最后证明$p$是同态.
+
+\begin{enumerate}
+    \item 对任意的常元$c$, 依定义有$p(c^A)=c^B$.
+    
+    \item 对任意的$n$元函数符号$f$和$a_1,\cdots,a_n\in\langle\,\sigma[W]\,\rangle$,
+    对每个$a_i$取项$t_i$使得
+    \[
+        \mathrm{var}(t_i)\subset W\quad\land\quad t_i^{(A,\sigma)}=a_i,
+    \]
+    则依定义有$p(a_i)=t_i^{(B,\tau)}$.
+
+    \hspace{2.17em}
+    令$t=ft_1\cdots t_n$, 则$\mathrm{var}(t)\subset W$, 于是
+    \[
+        p(f^A(a_1,\cdots,a_n))=p(t^{(A,\sigma)})
+        =t^{(B,\tau)}=f^B(p(a_1),\cdots,p(a_n)).
+    \]
+
+    \item 对任意的$n$元关系符号$r$和$a_1,\cdots,a_n\in\langle\,\sigma[W]\,\rangle$,
+    对每个$a_i$取项$t_i$使得
+    \[
+        \mathrm{var}(t_i)\subset W\quad\land\quad t_i^{(A,\sigma)}=a_i,
+    \]
+    则依定义有$p(a_i)=t_i^{(B,\tau)}$. 从而
+    \begin{equation*}
+        (a_1,\cdots,a_n)\in r^A\iff(A,\sigma)\models rt_1\cdots t_n\iff
+        (B,\tau)\models rt_1\cdots t_n\iff(p(a_1),\cdots,p(a_n))\in r^B.
+    \tag*{\qedsymbol}\end{equation*}
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,128 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{Beth 数}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (Beth数)}
+
+递归定义类映射$\beth:\mathbf{On}\to\mathbf{Cn}$如下:
+\vspace{3pt}
+\[
+    \forall\alpha\in\mathbf{On}:\quad
+    \beth_\alpha\overset{\mathrm{def}}{=}\left\{\begin{aligned}
+        &\omega,\quad&&\alpha=0,\\[-3pt]
+        &|\mathcal{P}(\beth(\max\alpha))|,\quad&&
+        \alpha\text{\,\,是后继序数},\\[-3pt]
+        &\sup\beth[\alpha],\quad&&\alpha\text{\,\,是极限序数}.
+    \end{aligned}\right.
+\]
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1 (Beth数)}
+
+\begin{enumerate}
+    \item $\beth_0=\omega$,
+    \item 任给序数$\alpha$, $\beth_{\alpha+1}=|\mathcal{P}(\beth_\alpha)|$,
+    \item 任给序数$\alpha$, 如果$\alpha$是极限序数, 那么
+    $\displaystyle\beth_\alpha=\sup_{\beta<\alpha}\beth_\beta$.
+\end{enumerate}
+
+\vspace{15pt}
+
+显然任给序数$\alpha$, $\beth_\alpha$都是
+无限\href{01 基数#nameddest=sec:定义1.1}{基数}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+任给序数$\alpha,\alpha'$, 如果$\alpha<\alpha'$, 那么$\beth_\alpha<\beth_{\alpha'}$.
+
+\noindent{\kaishu 证明.}
+
+给定$\alpha$, 对$\alpha'>\alpha$归纳证明$\beth_{\alpha'}>\beth_\alpha$.
+任取$\alpha'>\alpha$, 假设
+\[
+    \forall\gamma:\quad\alpha<\gamma<\alpha'\to\beth_\gamma>\beth_\alpha.
+\]
+
+\begin{enumerate}
+    \item 如果$\alpha'$是后继序数, 即有$\alpha'=\gamma+1$,
+    那么有$\alpha\leqslant\gamma<\alpha'$, 依假设有
+    \vspace{1pt}
+    \[
+        \beth_{\alpha'}=|\mathcal{P}(\beth_\gamma)|>
+        \beth_\gamma\geqslant\beth_\alpha.\\[3pt]
+    \]
+    \item 如果$\alpha'$是极限序数, 则$\alpha+1<\alpha'$, 从而
+    \vspace{1pt}
+    \begin{equation*}
+        \beth_{\alpha'}=\sup_{\beta<\alpha'}\beth_\beta
+        \geqslant\beth_{\alpha+1}=|\mathcal{P}(\beth_\alpha)|>\beth_\alpha.
+    \tag*{\qedsymbol}\end{equation*}
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.3}{}
+\noindent\textbf{定理1.3}
+
+任给序数$\alpha$, 有$\aleph_\alpha\leqslant\beth_\alpha$.
+
+\noindent{\kaishu 证明.}
+
+对$\alpha$归纳证明$\aleph_\alpha\leqslant\beth_\alpha$.
+任取$\alpha$, 假设对任意的$\beta<\alpha$有$\aleph_\beta\leqslant\beth_\beta$.
+
+\begin{enumerate}
+    \item 如果$\alpha=0$, 显然$\aleph_0=\omega=\beth_0$.
+    \item 如果$\alpha$是后继序数, 即有$\alpha=\beta+1$,
+    那么$\beta<\alpha$, 依假设有
+    \[
+        \aleph_\beta\leqslant\beth_\beta<\beth_\alpha\quad\implies\quad
+        \aleph_\alpha=\aleph_\beta^{\mathrm{h}}\leqslant\beth_\alpha.
+    \]
+    \item 如果$\alpha$是极限序数, 那么依假设有
+    \begin{equation*}
+        \aleph_\alpha=\sup_{\beta<\alpha}\aleph_\beta\leqslant
+        \sup_{\beta<\alpha}\beth_\beta=\beth_\alpha.
+    \tag*{\qedsymbol}\end{equation*}
+\end{enumerate}
+
+\end{document}

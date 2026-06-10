@@ -1,0 +1,236 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{拓扑空间}
+
+% 保持乐观.
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (拓扑空间)}
+
+给定集合$X$和它的子集族$\mathcal{T}\subset\mathcal{P}(X)$. 如果:
+\begin{enumerate}
+    \item $\varnothing\in\mathcal{T},\,X\in\mathcal{T}$,
+    \item 对$\mathcal{T}$中任意的$(U_i)_{i\in I}$,
+    有$\displaystyle\bigcup_{i\in I}U_i\in\mathcal{T}$,
+    \vspace{3pt}
+    \item 对任意的$U_1,U_2\in\mathcal{T}$, 有$U_1\cap U_2\in\mathcal{T}$,
+\end{enumerate}
+就称$\mathcal{T}$是$X$上的一个\textbf{拓扑},
+称$(X,\mathcal{T})$是一个\textbf{拓扑空间}.
+
+在不产生歧义的情况下, 简称$X$是一个拓扑空间.
+
+\vspace{10pt}
+
+这时通常称$X$的元素为点, 称$X$的子集为点集.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2}
+
+设$\mathcal{T}_1,\mathcal{T}_2$是$X$上的两个拓扑.
+如果$\mathcal{T}_1\subset\mathcal{T}_2$, 就称$\mathcal{T}_1$比$\mathcal{T}_2$更粗,
+或称$\mathcal{T}_2$比$\mathcal{T}_1$更细.
+
+\vspace{10pt}
+
+\hypertarget{sec:例1.1}{}
+\noindent\textbf{例1.1 (平凡拓扑)}
+
+给定集合$X$, $\{\varnothing,X\}$是$X$上最粗的拓扑, 称作\textbf{平凡拓扑}.
+
+\vspace{10pt}
+
+\hypertarget{sec:例1.2}{}
+\noindent\textbf{例1.2 (离散拓扑)}
+
+给定集合$X$, $\mathcal{P}(X)$是$X$上最细的拓扑, 称作\textbf{离散拓扑}.
+
+\vspace{10pt}
+
+\hypertarget{sec:例1.3}{}
+\noindent\textbf{例1.3 (滤子拓扑)}
+
+给定集合$X$上的\href{../../01 基础集合论/06 滤子/01 滤子#nameddest=sec:定义1.1}{滤子}
+$F$, $F\cup\{\varnothing\}$是$X$上的拓扑, 称作\textbf{滤子拓扑}.
+
+
+
+
+
+\vspace{20pt}
+
+\section{开集}
+
+\hypertarget{sec:定义2.1}{}
+\noindent\textbf{定义2.1 (开集)}
+
+给定拓扑空间$(X,\mathcal{T})$, 称$\mathcal{T}$中的点集为此空间的一个\textbf{开集},
+称$\mathcal{T}$为此空间的\textbf{开集族}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1 (开集的有限交封闭)}
+
+给定拓扑空间$(X,\mathcal{T})$. 对任意有限个开集$(U_i)_{i<n}$,
+它们的交$\displaystyle\bigcap_{i=0}^{n-1}U_i$也是开集.
+
+\noindent{\kaishu 证明.}
+
+首先, $n=1$的情况显然; 其次, 假设任取$(U_i)_{i<n}$
+有$\displaystyle\bigcap_{i=0}^{n-1}U_i\in\mathcal{T}$, 那么任取$(U_i)_{i<n+1}$有:
+\vspace{3pt}
+\begin{equation*}
+    \bigcap_{i=0}^nU_i=\left(\bigcap_{i=0}^{n-1}U_i\right)\cap U_n\in\mathcal{T}.
+\tag*{\qedsymbol}\end{equation*}
+
+
+
+
+
+\newpage
+
+\section{闭集}
+
+\hypertarget{sec:定义3.1}{}
+\noindent\textbf{定义3.1 (闭集)}
+
+给定拓扑空间$(X,\mathcal{T})$.
+
+对任意点集$V$, 如果$V^c\in\mathcal{T}$, 就称$V$是此空间的一个\textbf{闭集},
+称闭集的全体为此空间的\textbf{闭集族}.
+
+\vspace{10pt}
+
+可以根据闭集族来定义一个拓扑.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义3.2}{}
+\noindent\textbf{定义3.2 (闭集公理)}
+
+给定集合$X$和它的子集族$\mathcal{C}\subset\mathcal{P}(X)$.
+称$\mathcal{C}$满足\textbf{闭集公理}, 如果:
+\begin{enumerate}
+    \item $\varnothing\in\mathcal{C},\,X\in\mathcal{C}$,
+    \item 对$\mathcal{C}$中任意的$(V_i)_{i\in I}$,
+    有$\displaystyle\bigcap_{i\in I}V_i\in\mathcal{C}$,
+    \vspace{3pt}
+    \item 对任意的$V_1,V_2\in\mathcal{C}$, 有$V_1\cup V_2\in\mathcal{C}$.
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理3.1}{}
+\noindent\textbf{定理3.1}
+
+给定集合$X$和它的子集族$\mathcal{C}\subset\mathcal{P}(X)$, 那么:
+
+$\mathcal{C}$满足闭集公理当且仅当$X$上存在唯一的拓扑$\mathcal{T}$
+使得$\mathcal{C}$是$(X,\mathcal{T})$的闭集族.
+
+\noindent{\kaishu 证明.}
+
+\noindent{\kaishu 必要性.}
+
+假设$\mathcal{C}$满足闭集公理, 定义$\mathcal{T}=\{V^c\mid V\in\mathcal{C}\}$. 易证:
+\begin{enumerate}
+    \item $\varnothing=X^c\in\mathcal{T},\,X=\varnothing^c\in\mathcal{T}$,
+    \vspace{3pt}
+    \item 对$\mathcal{T}$中任意的$(U_i)_{i\in I}$,
+    $\displaystyle\left(\bigcup_{i\in I}U_i\right)^c
+    =\bigcap_{i\in I}U_i^c\in\mathcal{C}$, 所以
+    $\displaystyle\bigcup_{i\in I}U_i\in\mathcal{T}$,
+    \vspace{3pt}
+    \item 对任意的$U_1,U_2\in\mathcal{T}$,
+    有$(U_1\cap U_2)^c=(U_1^c\cup U_2^c)\in\mathcal{C}$, 所以
+    $U_1\cap U_2\in\mathcal{T}$.
+\end{enumerate}
+即$\mathcal{T}$是$X$上的拓扑.
+进一步, 显然$(X,\mathcal{T})$的闭集恰好是$\mathcal{C}$中的点集,
+即$\mathcal{C}$是$(X,\mathcal{T})$的闭集族.
+
+如果拓扑$\mathcal{T}_1,\mathcal{T}_2$的空间的闭集族都是$\mathcal{C}$,
+那么对任意的$U\in\mathcal{T}_1$有
+\[
+    U^c\in\mathcal{C}\quad\implies\quad U\in\mathcal{T}_2,
+\]
+即$\mathcal{T}_1\subset\mathcal{T}_2$, 反之同理. 于是这样的拓扑唯一.
+
+\noindent{\kaishu 充分性.}
+
+假设$\mathcal{C}$是拓扑空间$(X,\mathcal{T})$的闭集族, 则:
+\begin{enumerate}
+    \item $\varnothing=X^c\in\mathcal{C},\,X=\varnothing^c\in\mathcal{C}$,
+    \vspace{3pt}
+    \item 对$\mathcal{C}$中任意的$(V_i)_{i\in I}$,
+    $\displaystyle\left(\bigcap_{i\in I}V_i\right)^c
+    =\bigcup_{i\in I}V_i^c\in\mathcal{T}$, 所以
+    $\displaystyle\bigcap_{i\in I}V_i\in\mathcal{C}$,
+    \vspace{3pt}
+    \item 对任意的$V_1,V_2\in\mathcal{C}$,
+    有$(V_1\cup V_2)^c=(V_1^c\cap V_2^c)\in\mathcal{T}$, 所以
+    $V_1\cup V_2\in\mathcal{C}$. \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理3.2}{}
+\noindent\textbf{定理3.2 (闭集的有限并封闭)}
+
+给定拓扑空间$(X,\mathcal{T})$. 对任意有限个闭集$(V_i)_{i<n}$,
+它们的并$\displaystyle\bigcup_{i=0}^{n-1}V_i$也是闭集.
+
+\noindent{\kaishu 证明.}
+
+每个$V_i^c$都是开集, 所以$\displaystyle\left(\bigcup_{i=0}^{n-1}V_i\right)^c
+=\bigcap_{i=0}^{n-1}V_i^c$也是开集,
+即$\displaystyle\bigcup_{i=0}^{n-1}V_i$是闭集. \hfill $\qedsymbol$
+
+% 焦虑, 疲惫, 感伤.
+% 2026.05.25
+
+% 写完了毕设论文的第一稿, 最近最轻松的一晚. 希望毕业顺利.
+% 有点想念数学了.
+% 2026.05.27
+
+% 论文似乎改完了?
+% 事已至此, 再休息一会儿吧.
+% 2026.05.31
+
+\end{document}

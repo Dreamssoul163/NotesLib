@@ -1,0 +1,194 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{初等嵌入}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (初等嵌入)}
+
+给定一阶语言$\mathcal{L}$, $\mathcal{L}$-结构$A,B$和映射$p:A\to B$.
+如果对$A$上任意的变元赋值$\sigma$和任意公式$\varphi$有
+\[
+    (A,\sigma)\models\varphi\leftrightarrow(B,p\circ\sigma)\models\varphi,
+\]
+就称$p$是从$A$到$B$的\textbf{初等嵌入}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+同构是初等嵌入, 初等嵌入是单同态.
+
+\noindent{\kaishu 证明.}
+
+见``结构的同态''一节
+的\href{../01 一阶语言的结构/02 结构的同态#nameddest=sec:定理3.5}{定理3.5} 以
+及\href{../01 一阶语言的结构/02 结构的同态#nameddest=sec:定理3.7}{定理3.7}.
+\hfill $\qedsymbol$
+
+\vspace{10pt}
+
+\hypertarget{sec:例1.1}{}
+\noindent\textbf{例1.1}
+
+给定一阶语言$\mathcal{L}$, $\mathcal{L}$-结构$A$,
+非空集合$I$和$I$上的超滤$\mathcal{U}$, 则
+\[
+    \theta:A\to A^{\mathcal{U}},\,a\mapsto[(a)_{i\in I}]
+\]
+是从$A$到$A^{\mathcal{U}}$的初等嵌入.
+
+\noindent{\kaishu 证明.}
+
+对$A$上任意的变元赋值$\sigma$, 注意到
+\[
+    \theta\circ\sigma:x\mapsto[(x^\sigma)_{i\in I}],
+\]
+因此可以使用 \href{../03 一阶紧致性定理/02 Łoś 定理#nameddest=sec:定理1.1}
+{Łoś定理}得: 对任意的公式$\varphi$, $(A,\sigma)\models\varphi$当且仅当
+$(A^{\mathcal{U}},\theta\circ\sigma)\models\varphi$. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (初等子结构)}
+
+给定一阶语言$\mathcal{L}$, $\mathcal{L}$-结构$A,B$.
+如果$A\leqslant B$且嵌入同态是初等嵌入, 即
+对$A$上任意的变元赋值$\sigma$和任意公式$\varphi$有
+\[
+    (A,\sigma)\models\varphi\leftrightarrow(B,\sigma)\models\varphi,
+\]
+那么就称$A$是$B$的$\mathcal{L}$-\textbf{初等子结构}, 记作$A\preccurlyeq B$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+给定一阶语言$\mathcal{L}$, $\mathcal{L}$-结构$A,B$.
+设$p:A\to B$是初等嵌入, 则存在唯一的$B'\subset B$和$q:A\to B'$使得:
+\begin{enumerate}
+    \item $B'\preccurlyeq B$,
+    \item $q$是从$A$到$B'$的同构,
+    \item $p=\iota\circ q$.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\noindent{\kaishu 存在性.}
+
+根据``子结构''一节
+的\href{../01 一阶语言的结构/03 子结构#nameddest=sec:定理2.2}{定理2.2},
+存在$B'\leqslant B$和满同态$q:A\to B'$使得$p=\iota\circ q$.
+因为$p$是单射, 所以$q$也是单射, 即$q$是同构.
+
+进一步, 对$B'$上任意的变元赋值$\sigma$和任意公式$\varphi$,
+考虑$A$上的变元赋值$q^{-1}\circ\sigma$, 有
+\[
+    (B',\sigma)\models\varphi\iff(A,q^{-1}\circ\sigma)\models\varphi\iff
+    (B,\sigma)\models\varphi,
+\]
+其中第一步因为$q$是同构, 第二步因为$p$是初等嵌入. 所以$\iota$也是初等嵌入.
+
+\noindent{\kaishu 唯一性.}
+
+根据此定理的唯一性即得. \hfill $\qedsymbol$
+
+
+
+
+
+\newpage
+
+\section{Tarski-Vaught 判别法}
+
+Tarski-Vaught判别法描述了一个子结构何时是初等子结构.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1 (Tarski-Vaught判别法)}
+
+给定一阶语言$\mathcal{L}$, $\mathcal{L}$-结构$A,B$. 如果$A\leqslant B$,
+那么$A\preccurlyeq B$当且仅当它们满足Tarski-Vaught条件:
+
+对任意公式$\varphi$、变元$x$和$A$上的变元赋值$\sigma$, 有
+\[
+    \left(\exists b\in B:\left(B,\sigma\frac{b}{x}\right)\models\varphi\right)\to
+    \left(\exists a\in A:\left(B,\sigma\frac{a}{x}\right)\models\varphi\right).
+\]
+
+\noindent{\kaishu 证明.}
+
+\noindent{\kaishu 必要性.}
+
+假设$A\preccurlyeq B$, 任取公式$\varphi$、变元$x$和$A$上的变元赋值$\sigma$.
+
+\vspace{3pt}
+如果存在$b\in B$使得$\displaystyle\left(B,\sigma\frac{b}{x}\right)\models\varphi$,
+那么有$(B,\sigma)\models\exists x\varphi$, 由初等子结构可得
+$(A,\sigma)\models\exists x\varphi$,
+即也存在$a\in A$使得$\displaystyle\left(A,\sigma\frac{a}{x}\right)\models\varphi$.
+再根据初等子结构可得$\displaystyle\left(B,\sigma\frac{a}{x}\right)\models\varphi$.
+
+\noindent{\kaishu 充分性.}
+
+假设$A,B$满足Tarski-Vaught条件, 对公式$\varphi$归纳证明:
+任给$A$上的变元赋值$\sigma$都有
+\[
+    (A,\sigma)\models\varphi\leftrightarrow(B,\sigma)\models\varphi.
+\]
+因为$\iota$是单同态, 所以只需证明量词规则的一部分.
+即任取变元$x$, 假设$\varphi_1$满足命题, 那么对$\varphi=\exists x\varphi_1$有:
+\begin{enumerate}
+    \item 如果$(A,\sigma)\models\varphi$, 那么存在$a\in A$使得
+    $\displaystyle\left(A,\sigma\frac{a}{x}\right)\models\varphi_1$, 依假设有
+    \[
+        \left(B,\sigma\frac{a}{x}\right)\models\varphi_1
+        \quad\implies\quad(B,\sigma)\models\varphi,
+    \]
+    \item 如果$(B,\sigma)\models\varphi$, 那么存在$b\in B$使得
+    $\displaystyle\left(B,\sigma\frac{b}{x}\right)\models\varphi_1$,
+    根据Tarski-Vaught条件, 存在$a\in A$使得
+    \begin{equation*}
+        \left(B,\sigma\frac{a}{x}\right)\models\varphi_1
+        \quad\implies\quad\left(A,\sigma\frac{a}{x}\right)\models\varphi_1
+        \quad\implies\quad(A,\sigma)\models\varphi.
+    \tag*{\qedsymbol}\end{equation*}
+\end{enumerate}
+
+\end{document}

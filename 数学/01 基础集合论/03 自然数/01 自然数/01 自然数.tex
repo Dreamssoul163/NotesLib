@@ -1,0 +1,246 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{自然数}
+
+首先给出集合的后继和归纳集的概念.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (后继)}
+
+给定集合$a$, 定义$a^+\overset{\mathrm{def}}{=}a\cup\{a\}$, 称之为$a$的\textbf{后继}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+\begin{enumerate}
+    \item 任给集合$a,x$, $x\in a^+$当且仅当$x\in a$或$x=a$.
+    \item 任给集合$a,b$, $a^+\!\subset b$当且仅当$a\subset b$且$a\in b$.
+    \item 任给集合$a,b$, 如果$a^+=b^+$, 那么$a=b$.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+前两条显然. 第三条: 如果$a^+=b^+$, 再假设$a\neq b$. 那么
+\[
+    a\in a^+=b^+\implies a\in b\lor a=b\implies a\in b,
+\]
+同理$b\in a$. 此时易证$\{a,b\}$
+不满足\href{../../01 ZFC 公理/01 ZFC 公理#nameddest=sec:正则公理}{正则公理}, 矛盾.
+\hfill $\qedsymbol$
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (归纳集)}
+
+给定集合$I$. 如果$\varnothing\in I$并且$\forall x\in I:x^+\in I$,
+就称$I$是\textbf{归纳集}.
+
+\vspace{10pt}
+
+\href{../../01 ZFC 公理/01 ZFC 公理#nameddest=sec:无限公理}{无限公理}要求存在归纳集,
+于是可以定义自然数.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.3}{}
+\noindent\textbf{定义1.3 (自然数)}
+
+存在唯一的集合$\omega$使得
+\[
+    \forall x:(x\in\omega\,\,\leftrightarrow\,\,
+    \forall I:(I\text{\,是归纳集\,}\to x\in I)),
+\]
+称之为\textbf{自然数集}, 称其中的元素为\textbf{自然数}.
+
+\noindent{\kaishu 验证.}
+
+\noindent{\kaishu 存在性.}
+
+根据无限公理, 取归纳集$I_0$, 定义
+\[
+    \omega=\{x\in I_0\mid\forall I:(I\text{\,是归纳集\,}\to x\in I)\}.
+\]
+
+对任意的$x$ : 如果$x\in\omega$, 那么依定义$x$属于每个归纳集;
+
+如果$x$属于每个归纳集, 显然$x\in I_0$, 从而$x\in\omega$. 综上$\omega$是自然数集.
+
+\noindent{\kaishu 唯一性.} 显然. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+自然数集$\omega$是最小归纳集, 即:
+\begin{enumerate}
+    \item $\omega$是归纳集,
+    \item 任给归纳集$I$, 有$\omega\subset I$.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item $\varnothing$属于每个归纳集, 所以$\varnothing\in\omega$;
+    
+    \hspace{2.17em}
+    对任意的$x\in\omega$, $x$属于每个归纳集, 所以$x^+$也属于每个归纳集,
+    即$x^+\in\omega$.
+
+    \item 依定义显然. \hfill $\qedsymbol$
+\end{enumerate}
+
+
+
+
+
+\newpage
+
+\section{归纳与递归}
+
+初始的几个自然数记号如下: $0\overset{\mathrm{def}}{=}\varnothing$,
+$1\overset{\mathrm{def}}{=}0^+$, $2\overset{\mathrm{def}}{=}1^+$, $\cdots$
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1 (数学归纳法)}
+
+给定命题$p(n)$. 如果:
+\begin{enumerate}
+    \item $p(0)$成立,
+    \item 对任意的$n\in\omega$, 有$p(n)\to p(n^+)$,
+\end{enumerate}
+那么对任意的$n\in\omega$, $p(n)$成立.
+
+\noindent{\kaishu 证明.}
+
+定义集合$P=\{n\in\omega\mid p(n)\}$. 根据假设, $0\in P$并且
+对任意的$n\in P$有$n^+\in P$, 所以$P$是归纳集.
+
+从而$\omega\subset P$, 即对任意的$n\in\omega$, $p(n)$成立. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.2}{}
+\noindent\textbf{定理2.2 (递归定义法)}
+
+给定集合$A$, 元素$x_0\in A$和映射$R:\omega\times A\to A$,
+则存在唯一的映射$f:\omega\to A$使得
+\begin{enumerate}
+    \item $f(0)=x_0$,
+    \item 对任意的$n\in\omega$, 有$f(n^+)=R(n,f(n))$.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\noindent{\kaishu 存在性.}
+
+% 为了叙述方便, 记$p_0=(0,x_0)$;
+% 对任意的$p=(n,x)\in\omega\times A$, 记$\widehat{p}=(n^+,S_n(x))$.
+
+收集一些满足归纳要求的二元关系, 定义
+\[
+    S=\{r\subset\omega\times A\mid\,\,(0,x_0)\in r\,\,\land\,\,
+    \forall(n,x)\in r:(n^+,R(n,x))\in r\},\\[3pt]
+\]
+显然$\omega\times A\in S$, 即$S$非空.
+再定义$\displaystyle f=\bigcap S$, 易证$f\in S$.
+
+\vspace{3pt}
+首先证明$f:\omega\to A$, 对$n$归纳证明$\exists!\,x:(n,x)\in f$.
+
+\begin{enumerate}
+    \item $(0,x_0)\in f$.
+    
+    \hspace{2.17em}
+    并且如果有$(0,y)\in f$但是$y\neq x_0$, 那么易证$f\setminus\{(0,y)\}\in S$, 矛盾.
+
+    \item 任取自然数$n$, 假设存在唯一的$x$使得$(n,x)\in f$, 则有$(n^+,R(n,x))\in f$.
+
+    \hspace{2.17em}
+    并且如果有$(n^+,y)\in f$但是$y\neq R(n,x)$,
+    那么易证$f\setminus\{(n^+,y)\}\in S$, 矛盾.
+\end{enumerate}
+
+% 第一, $(0,x_0)=p_0\in f$. 并且如果有$p'=(0,y)\in f$但是$y\neq x_0$,
+% 那么定义$f'=f\setminus\{p'\}$ :
+% \begin{enumerate}
+%     \item $p_0\in f$并且$p_0\neq p'$, 所以$p_0\in f'$,
+%     \item 对任意的$p\in f'$, 由$p\in f$得$\widehat{p}\in f$,
+%     并且显然$\widehat{p}\neq p'$, 所以$\widehat{p}\in f'$.
+% \end{enumerate}
+% 综上$f'\in S$, $f\subset f'$, 矛盾. 所以$y=x_0$唯一.
+% 即$\exists!\,x:(0,x)\in f$.
+
+% 第二, 对任意的自然数$m$, 假设存在唯一的$x_m$使得$p_m=(m,x_m)\in f$.
+
+% 此时$(m^+,S_m(x_m))=\widehat{p_m}\in f$.
+% 并且如果有$p'=(m^+,y)\in f$但是$y\neq S_m(x_m)$, 那么定义$f'=f\setminus\{p'\}$ :
+% \begin{enumerate}
+%     \item $p_0\in f$并且显然$p_0\neq p'$, 所以$p_0\in f'$,
+%     \item 对任意的$p=(n,x)\in f'$, 由$p\in f$得$\widehat{p}\in f$,
+%     并且如果$\widehat{p}=p'$即$(n^+,S_n(x))=(m^+,y)$, 那么
+%     \[
+%         n^+=m^+\implies n=m\implies x=x_m\implies y=S_n(x)=S_m(x_m),
+%     \]
+%     矛盾. 所以$\widehat{p}\neq p'$, 即$\widehat{p}\in f'$.
+% \end{enumerate}
+% 综上$f'\in S$, $f\subset f'$, 矛盾. 所以$y=S_m(x_m)$唯一.
+% 即$\exists!\,x:(m^+,x)\in f$.
+
+% 经过再三考虑, 还是决定牺牲完整度, 换取简洁性. 完整的写出来太过臃肿了.
+
+归纳完毕, 综上即得$f:\omega\to A$. 显然$f\in S$表示$f$满足递归定义的要求.
+
+\noindent{\kaishu 唯一性.}
+
+假设$f,g$都满足递归定义的要求, 归纳证明$\forall n\in\omega:f(n)=g(n)$.
+
+\begin{enumerate}
+    \item $f(0)=x_0=g(0)$.
+    \item 对任意的自然数$n$, 假设$f(n)=g(n)$,
+    那么$f(n^+)=R(n,f(n))=R(n,g(n))=g(n^+)$.
+\end{enumerate}
+
+归纳完毕, 综上即得$f=g$, 即递归定义唯一. \hfill $\qedsymbol$
+
+\end{document}

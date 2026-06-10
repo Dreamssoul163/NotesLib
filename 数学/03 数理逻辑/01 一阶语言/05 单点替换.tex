@@ -1,0 +1,360 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{单点替换}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (单点替换)}
+
+给定一阶语言$\mathcal{L}$, 变元或常元$y$和项$s$,
+把\href{04 一般替换#nameddest=sec:定义1.1}{替换}
+$\displaystyle i\frac{s}{y}$简记为$\displaystyle\frac{s}{y}$, 即
+\[\forall z\in\mathcal{V}\cup\mathcal{C}:\quad\frac{s}{y}(z)=
+\left\{\begin{aligned}
+    &s,\quad&z=y,\\[-3pt]
+    &z,\quad&z\neq y,
+\end{aligned}\right.\]
+称之为$y$到$s$的\textbf{单点替换}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+给定一阶语言$\mathcal{L}$, 变元$x$, 变元或常元$y$, 项$s$和公式$\varphi$.
+\vspace{3pt}
+\begin{enumerate}
+    \item 如果$y=x$, 那么$\displaystyle
+    \frac{s}{y}(\exists x\varphi)=\exists x\varphi$,
+    \vspace{6pt}
+    \item 如果$y\neq x$, 那么$\displaystyle
+    \frac{s}{y}(\exists x\varphi)=\exists x\frac{s}{y}(\varphi)$.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+依定义, $\displaystyle\frac{s}{y}(\exists x\varphi)=
+\exists x\left(\frac{s}{y}/x\right)(\varphi)$.
+
+\vspace{3pt}
+\begin{enumerate}
+    \item 假设$y=x$, 那么$\displaystyle\frac{s}{y}/x=i$,
+    从而$\displaystyle\frac{s}{y}(\exists x\varphi)=\exists x\varphi$,
+    \vspace{6pt}
+    \item 假设$y\neq x$, 那么$\displaystyle\frac{s}{y}/x=\frac{s}{y}$,
+    从而$\displaystyle\frac{s}{y}(\exists x\varphi)=\exists x\frac{s}{y}(\varphi)$.
+    \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+给定一阶语言$\mathcal{L}$, 变元$x$, 变元或常元$y$, 项$s$和公式$\varphi$.
+\vspace{3pt}
+\begin{enumerate}
+    \item 如果$y=x$, 那么$\displaystyle\frac{s}{y}[\exists x\varphi]$为真,
+    \vspace{6pt}
+    \item 如果$y\neq x$, 那么$\displaystyle\frac{s}{y}[\exists x\varphi]$
+    当且仅当$\displaystyle\frac{s}{y}[\varphi]$并且
+    $y\in\mathrm{at}(\varphi)\to x\notin\mathrm{var}(s)$.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 假设$y=x$, 即$\displaystyle\frac{s}{y}/x=i$. 那么首先显然有$i[\varphi]$;
+    其次对任意的$z\in\mathrm{at}(\exists x\varphi)$, 一定有$z\neq x$, 所以
+    \[
+        \frac{s}{y}(z)=z\implies\mathrm{var}\,\frac{s}{y}(z)=\{z\}
+        \implies x\notin\mathrm{var}\,\frac{s}{y}(z).
+    \]
+    综上即得$\displaystyle\frac{s}{y}[\exists x\varphi]$.
+
+    \vspace{3pt}
+    \item 假设$y\neq x$, 即$\displaystyle\frac{s}{y}/x=\frac{s}{y}$.
+    
+    \vspace{6pt}\hspace{2.17em}
+    如果$\displaystyle\frac{s}{y}[\exists x\varphi]$, 依定义有
+    $\displaystyle\frac{s}{y}[\varphi]$并且对任意的$z\in\mathrm{at}
+    (\exists x\varphi)$有$\displaystyle x\notin\mathrm{var}\frac{s}{y}(z)$. 此时
+    如果$y\in\mathrm{at}(\varphi)$就有
+    \[
+        y\in\mathrm{at}(\exists x\varphi)\quad\implies\quad
+        x\notin\mathrm{var}\frac{s}{y}(y)=\mathrm{var}(s).
+    \]
+    
+    \hspace{2.17em}
+    如果$\displaystyle\frac{s}{y}[\varphi]$并且
+    $y\in\mathrm{at}(\varphi)\to x\notin\mathrm{var}(s)$, 那么
+    对任意的$z\in\mathrm{at}(\exists x\varphi)$, 同样一定有$z\neq x$, 所以
+    \[
+        \frac{s}{y}(z)=z\implies\mathrm{var}\,\frac{s}{y}(z)=\{z\}
+        \implies x\notin\mathrm{var}\,\frac{s}{y}(z).
+    \]
+    综上即得$\displaystyle\frac{s}{y}[\exists x\varphi]$. \hfill $\qedsymbol$
+\end{enumerate}
+
+
+
+
+
+\newpage
+
+下面的两个定理可以简单地判断一些单点替换是自由的.
+
+% 下面的两个定理在想象中是显然的, 但是好像并不是美妙的结论. 应该只适合作为引理使用.
+
+% 晚上23:51, 尝试睡觉前写完后面的三个(四个?)定理.
+% 2026.02.28
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.3}{}
+\noindent\textbf{定理1.3}
+
+给定一阶语言$\mathcal{L}$, 变元或常元$y$, 项$s$和公式$\varphi$.
+如果$y\notin\mathrm{at}(\varphi)$, 那么$\displaystyle\frac{s}{y}[\varphi]$.
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 对任意的原子公式$\varphi$, 一定有$\displaystyle\frac{s}{y}[\varphi]$.
+    
+    \vspace{3pt}
+    \item 假设$\varphi_1$满足命题, 再假设$\varphi=\neg\varphi_1$满足
+    $y\notin\mathrm{at}(\varphi)$.
+    那么由$\mathrm{at}(\varphi)=\mathrm{at}(\varphi_1)$得
+    \vspace{3pt}
+    \[
+        y\notin\mathrm{at}(\varphi_1)\implies
+        \frac{s}{y}[\varphi_1]\implies\frac{s}{y}[\varphi].
+    \]
+
+    \vspace{3pt}
+    \item 假设$\varphi_1,\varphi_2$满足命题,
+    再假设$\varphi=(\varphi_1\to\varphi_2)$满足$y\notin\mathrm{at}(\varphi)$. 那么
+    由$\mathrm{at}(\varphi)=\mathrm{at}(\varphi_1)\cup\mathrm{at}(\varphi_2)$得
+    \vspace{3pt}
+    \[
+        y\notin\mathrm{at}(\varphi_1)\land y\notin\mathrm{at}(\varphi_2)\implies
+        \frac{s}{y}[\varphi_1]\land\frac{s}{y}[\varphi_2]\implies
+        \frac{s}{y}[\varphi].
+    \]
+
+    \item 对任意的变元$x$, 假设$\varphi_1$满足命题,
+    再假设$\varphi=\exists x\varphi_1$满足$y\notin\mathrm{at}(\varphi)$.
+
+    \vspace{3pt}\hspace{2.17em}
+    如果$y=x$, 那么$\displaystyle\frac{s}{y}[\varphi]$为真;
+
+    \vspace{3pt}\hspace{2.17em}
+    如果$y\neq x$, 那么有$y\notin\mathrm{at}(\varphi_1)$,
+    依假设有$\displaystyle\frac{s}{y}[\varphi_1]$,
+    直接可得$\displaystyle\frac{s}{y}[\varphi]$. \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+% 熬不住了, 先睡了. 刚才处理了一下编译文件位置的问题, 感谢 Copilot.
+% 剩下两个定理明天再写.
+
+% 刚刚看了《才二十三》的 MV. Good night, Khalil.
+% 2026.03.01
+
+\hypertarget{sec:定理1.4}{}
+\noindent\textbf{定理1.4}
+
+给定一阶语言$\mathcal{L}$, 变元或常元$y$, 项$s$和公式$\varphi$.
+如果$\mathrm{var}(s)\cap\mathrm{bnd}(\varphi)=\varnothing$,
+那么$\displaystyle\frac{s}{y}[\varphi]$.
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 对任意的原子公式$\varphi$, 一定有$\displaystyle\frac{s}{y}[\varphi]$.
+    
+    \vspace{3pt}
+    \item 假设$\varphi_1$满足命题, 再假设$\varphi=\neg\varphi_1$满足
+    $\mathrm{var}(s)\cap\mathrm{bnd}(\varphi)=\varnothing$.
+    那么由$\mathrm{bnd}(\varphi)=\mathrm{bnd}(\varphi_1)$得
+    \vspace{3pt}
+    \[
+        \mathrm{var}(s)\cap\mathrm{bnd}(\varphi_1)=\varnothing\implies
+        \frac{s}{y}[\varphi_1]\implies\frac{s}{y}[\varphi].
+    \]
+
+    \vspace{3pt}
+    \item 假设$\varphi_1,\varphi_2$满足命题,
+    再假设$\varphi=(\varphi_1\to\varphi_2)$满足
+    $\mathrm{var}(s)\cap\mathrm{bnd}(\varphi)=\varnothing$. 那么
+    由$\mathrm{bnd}(\varphi)=\mathrm{bnd}(\varphi_1)\cup\mathrm{bnd}(\varphi_2)$得
+    \vspace{3pt}
+    \[
+        \mathrm{var}(s)\cap\mathrm{bnd}(\varphi_1)=\varnothing\land
+        \mathrm{var}(s)\cap\mathrm{bnd}(\varphi_2)=\varnothing\implies
+        \frac{s}{y}[\varphi_1]\land\frac{s}{y}[\varphi_2]\implies
+        \frac{s}{y}[\varphi].
+    \]
+
+    \item 对任意的变元$x$, 假设$\varphi_1$满足命题,
+    再假设$\varphi=\exists x\varphi_1$满足
+    $\mathrm{var}(s)\cap\mathrm{bnd}(\varphi)=\varnothing$.
+    
+    \vspace{3pt}\hspace{2.17em}
+    如果$y=x$, 那么$\displaystyle\frac{s}{y}[\varphi]$为真;
+
+    \vspace{3pt}\hspace{2.17em}
+    如果$y\neq x$, 首先由$\mathrm{var}(s)\cap\mathrm{bnd}(\varphi_1)=\varnothing$
+    得$\displaystyle\frac{s}{y}[\varphi_1]$, 其次由$x\in\mathrm{bnd}(\varphi)$得
+    $x\notin\mathrm{var}(s)$. 所以$\displaystyle\frac{s}{y}[\varphi]$.
+    \hfill $\qedsymbol$
+\end{enumerate}
+
+% XZMH XDXH ~
+
+
+
+
+
+\newpage
+
+% 之前的版本是用单点替换的自由性来定义一般替换的自由性,
+% 而现在的版本是直接定义一般的情况, 由此导出单点的情况.
+% 因为这个定理, 所以这两种定义方式是等价的.
+% 修改的时候觉得现在的版本更加贴近本质. 但是这样就要花篇幅证明这个定理.
+% 更抽象地说, 第一版是给出两个定义, 而第二版是给出一个定义, 再证明一个定理.
+% 现在想想, 似乎难以判断哪种方式更好.
+
+% 相比第二版, 第一版不需要证明此定理,
+% 但是需要额外证明"一般替换的自由性"满足它该有的性质的一个定理.
+% 那个定理的证明似乎比这里的证明要简洁一些, 不太记得了.
+
+% 第一版的概念感觉太冗杂, 会不得不写更多的简单但无聊的"定理",
+% 并且不知道怎么给所谓"单点替换的自由性"一个好的名字.
+% 抽象的(不是广泛使用的)名字大量出现会导致笔记的可读性很差. 所以最终决定保留第二版.
+% 2026.02.28
+
+\hypertarget{sec:定理1.5}{}
+\noindent\textbf{定理1.5}
+
+给定一阶语言$\mathcal{L}$. 对任意的公式$\varphi$和替换$\theta$,
+$\theta[\varphi]$当且仅当$\displaystyle\forall y\in\mathcal{V}\cup\mathcal{C}:
+\frac{\theta(y)}{y}[\varphi]$.
+
+\noindent{\kaishu 证明.}
+
+% 这些证明的书写真的很烦, 各种命题一层套一层, 不知道话该怎么说. 虽然结论很美妙.
+
+\begin{enumerate}
+    \item 对任意的原子公式$\varphi$, 两边始终为真.
+    
+    \item 假设$\varphi_1$满足命题, 则对$\varphi=\neg\varphi_1$有
+    \[
+        \theta[\varphi]\iff\theta[\varphi_1]\iff
+        \forall y:\frac{\theta(y)}{y}[\varphi_1]\iff
+        \forall y:\frac{\theta(y)}{y}[\varphi].
+    \]
+
+    \item 假设$\varphi_1,\varphi_2$满足命题, 则对$\varphi=(\varphi_1\to\varphi_2)$有
+    \[
+        \theta[\varphi]\iff\theta[\varphi_1]\land\theta[\varphi_2]\iff
+        \forall y:\frac{\theta(y)}{y}[\varphi_1]\land\frac{\theta(y)}{y}[\varphi_2]
+        \iff\forall y:\frac{\theta(y)}{y}[\varphi].
+    \]
+
+    \item 对任意的变元$x$, 假设$\varphi_1$满足命题,
+    则对$\varphi=\exists x\varphi_1$有
+    \vspace{3pt}
+    \begin{equation*}\begin{aligned}
+        \theta[\varphi]\iff&\theta/x[\varphi_1]\land
+        \forall y\in\mathrm{at}(\varphi):x\notin\mathrm{var}\,\theta(y)\\
+        \iff&\forall y:\frac{\theta/x(y)}{y}[\varphi_1]\land
+        \forall y\in\mathrm{at}(\varphi):x\notin\mathrm{var}\,\theta(y)\\
+        \iff&\forall y\neq x:\frac{\theta(y)}{y}[\varphi_1]\land
+        \forall y\in\mathrm{at}(\varphi_1)\setminus\{x\}:
+        x\notin\mathrm{var}\,\theta(y)\\
+        \iff&\forall y\neq x:\left(\frac{\theta(y)}{y}[\varphi_1]\land
+        (y\in\mathrm{at}(\varphi_1)\to x\notin\mathrm{var}\,\theta(y))\right)\\
+        \iff&\forall y:\frac{\theta(y)}{y}[\varphi].
+    \end{aligned}\tag*{\qedsymbol}\end{equation*}
+\end{enumerate}
+
+% 我收回前面的话. 这里的一长串的证明尝试了直接一路写过去, 而不是用自然语言讨论.
+% 居然成功了. 很优雅.
+
+\vspace{10pt}
+
+使用这些定理可以得到替换自由的一个充分条件.
+
+% 图穷匕见了. 写这一整节都是为了下面的这个定理, 用它证明替换定理的一个推论.
+% (替换定理: 定理2.1)
+
+% 值得注意的是, 黄书棋老师课程中的替换定理使用的就是
+% &\forall y\in\mathrm{at}(\varphi):
+% \mathrm{var}\,\theta(y)\cap\mathrm{bnd}(\varphi)=\varnothing&
+% 这个条件, 它更容易判定. 但它只是真正的自由替换的一个充分条件.
+
+% 【数理逻辑/模型论 2025 黄书棋老师 第十一节课：项与公式的替换；替换定理】
+% https://www.bilibili.com/video/BV1fQSmBdEMr
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.6}{}
+\noindent\textbf{定理1.6}
+
+给定一阶语言$\mathcal{L}$. 对任意的公式$\varphi$和替换$\theta$, 如果
+\[
+    \forall y\in\mathrm{at}(\varphi):
+    \mathrm{var}\,\theta(y)\cap\mathrm{bnd}(\varphi)=\varnothing,
+\]
+那么$\theta[\varphi]$.
+
+\noindent{\kaishu 证明.}
+
+对任意的变元或常元$y$:
+\vspace{3pt}
+\begin{enumerate}
+    \item 如果$y\notin\mathrm{at}(\varphi)$,
+    那么有$\displaystyle\frac{\theta(y)}{y}[\varphi]$,
+    \item 如果$y\in\mathrm{at}(\varphi)$,
+    依假设有$\mathrm{var}\,\theta(y)\cap\mathrm{bnd}(\varphi)=\varnothing$,
+    从而也有$\displaystyle\frac{\theta(y)}{y}[\varphi]$.
+\end{enumerate}
+
+综上即得$\theta[\varphi]$. \hfill $\qedsymbol$
+
+\end{document}

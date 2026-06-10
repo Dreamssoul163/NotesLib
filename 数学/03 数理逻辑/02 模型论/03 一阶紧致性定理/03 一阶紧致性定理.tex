@@ -1,0 +1,105 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{一阶紧致性定理}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1 (一阶紧致性定理)}
+
+给定一阶语言$\mathcal{L}$. 对任意一族公式$\Gamma$,
+如果$\Gamma$的任意有限子集都一致, 那么$\Gamma$一致.
+
+\noindent{\kaishu 证明.}
+
+假设$\Gamma$的任意有限子集都一致, 定义
+\[
+    I=\{i\subset\Gamma\mid i\,\text{有限}\},
+\]
+则对任意的$i\in I$, 存在$\mathcal{L}$-环境$(A_i,\sigma_i)$满足$i$.
+
+对任意的$\varphi\in\Gamma$, 定义$\Omega_\varphi=\{i\in I\mid i\ni\varphi\}$
+(即$\Gamma$所有含$\varphi$的有限子集), 考虑全体$\Omega_\varphi$组成的集合
+\[
+    B=\{\Omega_\varphi\mid\varphi\in\Gamma\}\subset\mathcal{P}(I).
+\]
+任取它的非空有限子集$\{\Omega_{\varphi_1},\cdots,\Omega_{\varphi_n}\}\subset B$,
+注意到
+\[
+    \{\varphi_1,\cdots,\varphi_n\}\in
+    \Omega_{\varphi_1}\cap\cdots\cap\Omega_{\varphi_n},
+\]
+即$B$的非空有限子集的交集都非空, 从而可以扩张成$I$上的一个超滤$\mathcal{U}\supset B$.
+
+\vspace{3pt}
+最后, 考虑超积结构$^{\displaystyle P}\!/_{\displaystyle\mathcal{U}}$和它的变元赋值
+\[
+    ^{\displaystyle S}\!/_{\displaystyle\mathcal{U}}:
+    \mathcal{V}\to\,^{\displaystyle P}\!/_{\displaystyle\mathcal{U}},\,
+    x\mapsto[(\sigma_i(x))_{i\in I}]\\[3pt]
+\]
+组成的环境$\left(\,^{\displaystyle P}\!/_{\displaystyle\mathcal{U}},\,
+^{\displaystyle S}\!/_{\displaystyle\mathcal{U}}\right)$. 因为对任意的
+$\varphi\in\Gamma$, 存在$\Omega_\varphi\in\mathcal{U}$使得对其中任意的$i$有
+\[
+    i\in\Omega_\varphi\implies i\ni\varphi\implies
+    (A_i,\sigma_i)\models\varphi,\\[3pt]
+\]
+于是根据 \href{02 Łoś 定理#nameddest=sec:定理1.1}{Łoś定理}可知
+$\left(\,^{\displaystyle P}\!/_{\displaystyle\mathcal{U}},\,^{\displaystyle S}
+\!/_{\displaystyle\mathcal{U}}\right)\models\varphi$,
+从而该环境满足$\Gamma$. \hfill $\qedsymbol$
+
+\vspace{20pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2 (一阶紧致性定理)}
+
+给定一阶语言$\mathcal{L}$. 对任意一族公式$\Gamma$和公式$\varphi$,
+如果$\Gamma\models\varphi$, 那么存在$\Gamma$的有限子集$\Delta$
+使得$\Delta\models\varphi$.
+
+\noindent{\kaishu 证明.}
+
+$\Gamma\cup\{\neg\varphi\}$不一致, 由上述定理可知, 存在有限的
+$S\subset\Gamma\cup\{\neg\varphi\}$不一致.
+
+令$D=S\cup\{\neg\varphi\}$, 则$D$也是$\Gamma\cup\{\neg\varphi\}$的有限子集
+并且也不一致(因为$S$不一致).
+
+再令$\Delta=D\setminus\{\neg\varphi\}$, 则$\Delta$是$\Gamma$的有限子集.
+此时$\Delta\cup\{\neg\varphi\}=D$不一致, 所以$\Delta\models\varphi$.
+\hfill $\qedsymbol$
+
+\end{document}

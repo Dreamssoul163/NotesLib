@@ -1,0 +1,155 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{量词消去判别法}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+给定一阶语言$\mathcal{L}$, $\mathcal{L}$-理论$T$和公式$\varphi$, 以下等价:
+\begin{enumerate}
+    \item 对$T$的任意模型$A,B$, 如果有它们的子结构$M,N$以及同构$p:M\cong N$,
+    那么
+    \[
+        \forall\sigma:\mathcal{V}\to M:\quad
+        (A,\sigma)\models\varphi\leftrightarrow(B,p\circ\sigma)\models\varphi.
+        \\[3pt]
+    \]
+    \item 存在无量词公式$\psi$使得$\mathrm{FV}(\psi)\subset\mathrm{FV}(\varphi)$
+    并且$\varphi\overset{T}{\leftrightarrow}{\psi}$.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\noindent{\kaishu 1 $\to$ 2.}
+
+假设1.条件成立. 准备工作: 记$W=\mathrm{FV}(\varphi)$, 以及:
+\[\begin{aligned}
+    &Q&&=\{\psi\in F^{\mathcal{L}}\mid
+    \psi\text{\,无量词}\land\mathrm{FV}(\psi)\subset W\},\\[-3pt]
+    &P&&=\{\psi\in Q\mid T\cup\{\varphi\}\models\psi\}.
+\end{aligned}\]
+
+首先证明$T\cup P\models\varphi$, 即对任意的$(A,\sigma)\models T\cup P$,
+下证$(A,\sigma)\models\varphi$. 这时再记
+\[
+    P_A=\{\psi\in Q\mid(A,\sigma)\models\psi\},
+\]
+因为$(A,\sigma)\models T\cup P$, 所以显然有$P\subset P_A$.
+
+第一, 证明$T\cup\{\varphi\}\cup P_A$一致.
+任取有限多个$\psi_1,\cdots,\psi_n\in P_A$, 易证也有$\displaystyle\psi=
+\bigwedge_{i=1}^n\psi_i\in P_A$.
+
+\vspace{3pt}
+假设$T\cup\{\varphi,\psi\}$不一致, 则$T\cup\{\varphi\}\models\neg\psi$,
+依定义$\neg\psi\in P\subset P_A$, 与$\psi\in P_A$矛盾.
+所以$T\cup\{\varphi,\psi\}$一致, 即$T\cup\{\varphi,\psi_1,\cdots,\psi_n\}$一致.
+根据\href{../03 一阶紧致性定理/03 一阶紧致性定理#nameddest=sec:定理1.1}{紧致性定理},
+$T\cup\{\varphi\}\cup P_A$一致, 取$(B,\tau)\models T\cup\{\varphi\}\cup P_A$.
+
+第二, 对任意满足$\mathrm{FV}(\psi)\subset W$的原子公式$\psi$,
+显然$\psi\in Q$, 同时$\neg\psi\in Q$. 此时:
+\begin{enumerate}
+    \item 如果$(A,\sigma)\models\psi$, 那么$\psi\in P_A$, 于是$(B,\tau)\models\psi$.
+    \item 如果$(A,\sigma)\not\models\psi$, 那么$\neg\psi\in P_A$,
+    于是$(B,\tau)\models\neg\psi$, 即$(B,\tau)\not\models\psi$.
+\end{enumerate}
+综上, 应用\href{../01 一阶语言的结构/04 生成子结构#nameddest=sec:定理1.4}{引理},
+记$M=\langle\,\sigma[W]\,\rangle,N=\langle\,\tau[W]\,\rangle$, 则有同构
+$p:M\cong N$使得$p\circ\sigma\!\restriction_W=\tau\!\restriction_W$.
+
+第三, 取一个$\sigma':\mathcal{V}\to M$使得$\sigma'\!\restriction_W=\sigma\!\restriction_W$,
+令$\tau'=p\circ\sigma'$, 则显然也有$\tau'\!\restriction_W=\tau\!\restriction_W$. 再根据1.条件有
+\[
+    (B,\tau)\models\varphi\implies(B,\tau')\models\varphi\implies
+    (A,\sigma')\models\varphi\implies(A,\sigma)\models\varphi.
+\]
+至此已证$(A,\sigma)\models\varphi$, 即已证$T\cup P\models\varphi$.
+
+然后再根据紧致性定理, 存在有限多个$\psi_1,\cdots,\psi_n\in P$使得
+$T\cup\{\psi_1,\cdots,\psi_n\}\models\varphi$.
+令$\displaystyle\psi=\bigwedge_{i=1}^n\psi_i$, 则:
+\begin{enumerate}
+    \item $\psi$也是无量词公式, 并且$\mathrm{FV}(\psi)\subset W$.
+    \item 对每个$\psi_i$有$T\cup\{\varphi\}\models\psi_i$,
+    从而$T\cup\{\varphi\}\models\psi$.
+    \item $T\cup\{\psi\}\models T\cup\{\psi_1,\cdots,\psi_n\}\models\varphi$.
+\end{enumerate}
+综上, $\psi$满足2.条件.
+
+\noindent{\kaishu 2 $\to$ 1.}
+
+假设存在无量词公式$\psi$使得$\varphi\overset{T}{\leftrightarrow}\psi$.
+
+对$T$的任意模型$A,B$, 如果有它们的子结构$M,N$以及同构$p:M\cong N$,
+则对任意的$\sigma:\mathcal{V}\to M$有
+\begin{equation*}\begin{aligned}
+    &(A,\sigma)\models\varphi\iff(A,\sigma)\models\psi\iff
+    (M,\sigma)\models\psi\\[-3pt]
+    \iff\,&(N,p\circ\sigma)\models\psi\iff(B,p\circ\sigma)\models\psi\iff
+    (B,p\circ\sigma)\models\varphi.
+\end{aligned}\tag*{\qedsymbol}\end{equation*}
+
+
+
+
+
+\newpage
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2 (量词消去判别法)}
+
+给定一阶语言$\mathcal{L}$和$\mathcal{L}$-理论$T$,
+$T$是\href{01 量词消去理论#nameddest=sec:定义1.2}{量词消去理论}当且仅当:
+
+对任意的无量词公式$\varphi$、变元$x$、$T$的任意模型$A,B$,
+如果有它们的子结构$M,N$以及同构$p:M\cong N$, 那么
+\[
+    \forall\sigma:\mathcal{V}\to M:\quad
+    (A,\sigma)\models\exists x\varphi\leftrightarrow
+    (B,p\circ\sigma)\models\exists x\varphi.
+\]
+
+\noindent{\kaishu 证明.}
+
+由\href{01 量词消去理论#nameddest=sec:定理1.2}{引理}和上述定理即得.
+\hfill $\qedsymbol$
+
+% 模型论的学习暂告一段落, 据说只算是入门水平. 谢谢黄书棋老师, 谢谢 bilibili.
+% 之后计划尽快地回到量子信息理论相关的内容. 证明论也在计划内.
+% 2026.03.17
+
+\end{document}

@@ -1,0 +1,145 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{语言的限制与扩张}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1}
+
+给定一阶语言$\mathcal{L}_1,\mathcal{L}_2$, 设$\mathcal{L}_1\subset\mathcal{L}_2$,
+再给定$\mathcal{L}_1$-结构$A_1$和$\mathcal{L}_2$-结构$A_2$.
+
+如果$A_1,A_2$有相同的论域$A$, 并且$\mathcal{L}_1$内所有符号在$A_1,A_2$中有相同的解释,
+就称$A_1$是$A_2$的\textbf{解释限制}, 或称$A_2$是$A_1$的\textbf{解释扩张}.
+
+\vspace{10pt}
+
+在此设定下, $\mathcal{L}_1$的项和公式在$\mathcal{L}_2$中有同样的语义,
+具体有下面关于语义的定理.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+任给$\sigma_1:\mathcal{V}_1\to A,\sigma_2:\mathcal{V}_2\to A$
+和$\mathcal{L}_1$的项$t$, 如果$\sigma_1=\sigma_2\!\restriction_{\mathcal{V}_1}$, 那么
+$t^{(A_1,\sigma_1)}=t^{(A_2,\sigma_2)}$.
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 对任意的常元$c$, $c^{(A_1,\sigma_1)}=c^{A_1}=c^{A_2}=c^{(A_2,\sigma_2)}$,
+    \item 对任意的变元$x$,
+    $x^{(A_1,\sigma_1)}=x^{\sigma_1}=x^{\sigma_2}=x^{(A_2,\sigma_2)}$,
+    \item 对任意的$n$元函数符号$f$, 假设项$t_1,\cdots,t_n$满足命题, 那么
+    \begin{equation*}
+        (ft_1\cdots t_n)^{(A_1,\sigma_1)}
+        =f^{A_1}(t_1^{(A_1,\sigma_1)},\cdots,t_n^{(A_1,\sigma_1)})
+        =f^{A_2}(t_1^{(A_2,\sigma_2)},\cdots,t_n^{(A_2,\sigma_2)})
+        =(ft_1\cdots t_n)^{(A_2,\sigma_2)}.
+    \tag*{\qedsymbol}\end{equation*}
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+任给$\sigma_1:\mathcal{V}_1\to A,\sigma_2:\mathcal{V}_2\to A$
+和$\mathcal{L}_1$的公式$\varphi$, 如果$\sigma_1=\sigma_2\!\restriction_{\mathcal{V}_1}$, 那么
+$(A_1,\sigma_1)\models^1\varphi\leftrightarrow(A_2,\sigma_2)\models^2\varphi$.
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 对任意的项$t_1,t_2$,
+    \[
+        (A_1,\sigma_1)\models^1t_1\equiv t_2\iff
+        t_1^{(A_1,\sigma_1)}=t_2^{(A_1,\sigma_1)}\iff
+        t_1^{(A_2,\sigma_2)}=t_2^{(A_2,\sigma_2)}\iff
+        (A_2,\sigma_2)\models^2t_1\equiv t_2,
+    \]
+    \item 对任意的$n$元关系符号$r$和项$t_1,\cdots,t_n$,
+    \[\begin{aligned}
+        &(A_1,\sigma_1)\models^1rt_1\cdots t_n\iff
+        (t_1^{(A_1,\sigma_1)},\cdots,t_n^{(A_1,\sigma_1)})\in r^{A_1}\\[-3pt]
+        \iff&(t_1^{(A_2,\sigma_2)},\cdots,t_n^{(A_2,\sigma_2)})\in r^{A_2}\iff
+        (A_2,\sigma_2)\models^2rt_1\cdots t_n,
+    \end{aligned}\]
+    \item 假设$\varphi_1$满足命题, 显然$\varphi=\neg\varphi_1$满足命题,
+    \item 假设$\varphi_1,\varphi_2$满足命题,
+    显然$\varphi=(\varphi_1\to\varphi_2)$满足命题,
+    \item 对任意的变元$x$, 假设$\varphi_1$满足命题,
+    那么对$\varphi=\exists x\varphi_1$有:
+    \begin{equation*}
+        (A_1,\sigma_1)\models^1\varphi\iff
+        \exists a\in A:\left(A_1,\sigma_1\frac{a}{x}\right)\models^1\varphi_1\iff
+        \exists a\in A:\left(A_2,\sigma_2\frac{a}{x}\right)\models^2\varphi_1\iff
+        (A_2,\sigma_2)\models^2\varphi.
+    \tag*{\qedsymbol}\end{equation*}
+\end{enumerate}
+
+\vspace{20pt}
+
+
+
+
+
+\section{结构扩充语言}
+
+\hypertarget{sec:定义2.1}{}
+\noindent\textbf{定义2.1 (扩充语言)}
+
+给定一阶语言$\mathcal{L}$和$\mathcal{L}$-结构$A$, 定义
+\[
+    \mathcal{L}_A\overset{\mathrm{def}}{=}(\mathcal{V},\mathcal{C}\cup A,
+    (n_f)_{\mathcal{F}},(n_r)_{\mathcal{R}}),
+\]
+称之为结构$A$对语言$\mathcal{L}$的\textbf{扩充语言}.
+
+\noindent{\kaishu 备注.
+这里默认$A$与$\mathcal{L}$各集合均不相交, 不再展开讨论.}
+
+\vspace{10pt}
+
+进一步, $A$中的常元可以把自身当作它在$A$中的解释,
+由此可以定义$A$在$\mathcal{L}_A$上的解释扩张$A^*$.
+
+% 这样的定义未免太不严谨了.
+% 但是严谨的写法非常的繁杂、无聊, 并且偏离了逻辑本身的意义.
+% 希望未来使用这些概念时, 不会因为不严谨性而造成困扰.
+
+\end{document}

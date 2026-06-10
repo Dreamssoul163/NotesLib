@@ -1,0 +1,206 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{向下 Löwenheim-Skolem 定理}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1 (向下Löwenheim-Skolem定理)}
+
+给定一阶语言$\mathcal{L}$, $\mathcal{L}$-结构$B$和非空的$\Omega\subset B$.
+如果$|\Omega|\geqslant|\mathcal{L}|$, 则存在结构$A$使得
+\[
+    A\supset\Omega\quad\land\quad A\preccurlyeq B\quad\land\quad|A|=|\Omega|.
+\]
+
+\noindent{\kaishu 证明.}
+
+记$\kappa=|\Omega|$. 首先做准备工作:
+\begin{enumerate}
+    \item 取$\mathcal{P}(B)\setminus\{\varnothing\}$上的一个选择函数
+    $C$, 即可以从$B$的任何非空子集中选取一个元素.
+    \item 记命题$p(S,\varphi,x,s)$: $S\subset B$且非空, $\varphi\in F^{\mathcal{L}}$,
+    $x\in\mathcal{V}$, $s\in\,\!^{\mathcal{V}}\!S/\varphi$, 存在$b\in B$使得
+    $\displaystyle\left(B,s\frac{b}{x}\right)\models\varphi$.
+    \item 当上述命题成立时, 集合$\displaystyle\left\{b\in B\,\middle\vert\,
+    \left(B,s\frac{b}{x}\right)\models\varphi\right\}$非空, 用$C$从中选取一个元素
+    记作$a(S,\varphi,x,s)$.
+\end{enumerate}
+
+\vspace{6pt}
+取$\Omega$在$B$中\href{../01 一阶语言的结构/04 生成子结构#nameddest=sec:定义1.1}
+{生成的子结构} $\langle\Omega\rangle$, 由此对任意自然数$k$递归定义:
+
+\begin{enumerate}
+    \item $A_0=\langle\Omega\rangle$,
+    \vspace{3pt}
+    \item $\displaystyle I_0=\{(\varphi,x,s)\in F^{\mathcal{L}}\times
+    \mathcal{V}\times\mathcal{P}(\,^{\mathcal{V}}\!B)\mid p(A_0,\varphi,x,s)\}$,
+    \item $A_{k+1}=\langle\{a(A_k,\varphi,x,s)\mid
+    (\varphi,x,s)\in I_k\}\cup A_k\rangle$,
+    \item $\displaystyle I_{k+1}=
+    \{(\varphi,x,s)\in F^{\mathcal{L}}\times
+    \mathcal{V}\times\mathcal{P}(\,^{\mathcal{V}}\!B)\mid p(A_{k+1},\varphi,x,s)\}$,
+\end{enumerate}
+然后定义$\displaystyle A=\bigcup_{k\in\mathbb{N}}A_k$. 下面证明$A$满足条件.
+
+\vspace{3pt}
+第一, 证明$A$是子结构. 首先所有的$c^B\in A_0\subset A$;
+其次对任意的$n$元函数符号$f$和$a_1,\cdots,a_n\in A$, 必然有自然数$k$使得
+$a_1,\cdots,a_n\in A_k$, 从而$f^B(a_1,\cdots,a_n)\in A_k\subset A$.
+
+第二, 证明$A$是\href{01 初等嵌入#nameddest=sec:定义1.2}{初等子结构}, 验证
+\href{01 初等嵌入#nameddest=sec:定理2.1}{Tarski-Vaught条件}. 任取公式$\varphi$,
+变元$x$和$A$上的变元赋值$\sigma$, 假设存在$b\in B$使得$\displaystyle\left(
+B,\sigma\frac{b}{x}\right)\models\varphi$.
+考虑有限的$\sigma[\mathrm{FV}(\varphi)]\subset A$, 必然有自然数$k$使得
+$\sigma[\mathrm{FV}(\varphi)]\subset A_k$.
+
+\vspace{3pt}
+由\href{../02 一阶语义/01 重合引理#nameddest=sec:定理2.1}{引理}, 取双射
+$r:\,^{\mathcal{V}}\!A_k/\varphi\to\,^{\mathrm{FV}(\varphi)}A_k$.
+由此令$s=r^{-1}(\sigma\!\restriction_{\mathrm{FV}(\varphi)})$, 再任取$\tau\in s$,
+则由$r$的性质有
+\[
+    \tau\!\restriction_{\mathrm{FV}(\varphi)}=r(s)=\sigma\!\restriction_{\mathrm{FV}(\varphi)}
+    \quad\implies\quad\tau\overset{\displaystyle\varphi}{=}\sigma\quad\implies\quad
+    \tau\frac{b}{x}\overset{\displaystyle\varphi}{=}\sigma\frac{b}{x},
+\]
+根据重合引理有$\displaystyle\left(B,\tau\frac{b}{x}\right)\models\varphi$,
+即$\displaystyle\left(B,s\frac{b}{x}\right)\models\varphi$, 从而有
+$p(A_k,\varphi,x,s)$, 即$(\varphi,x,s)\in I_k$.
+记$a=a(A_k,\varphi,x,s)$, 则$a\in A_{k+1}\subset A$, 同时
+$\displaystyle\left(B,s\frac{a}{x}\right)\models\varphi\implies
+\left(B,\tau\frac{a}{x}\right)\models\varphi\implies
+\left(B,\sigma\frac{a}{x}\right)\models\varphi$.
+
+\vspace{3pt}
+第三, 证明$A\supset\Omega$. 显然$A\supset A_0\supset\Omega$.
+
+第四, 证明$|A|=\kappa$. 归纳证明每个$|A_k|\leqslant\kappa$.
+首先由\href{../01 一阶语言的结构/04 生成子结构#nameddest=sec:定理1.2}{引理}可知
+$|A_0|=|\langle\Omega\rangle|\leqslant\kappa$;
+
+其次假设$|A_k|\leqslant\kappa$. 此时先估计$I_k$的势, 有
+\[
+    I_k=\{(\varphi,x,s)\mid p(A_{k},\varphi,x,s)\}\subset
+    \bigcup_{(\varphi,x)\in F^{\mathcal{L}}\times\mathcal{V}}\{(\varphi,x,s)\mid
+    s\in\,\!^{\mathcal{V}}\!A_k/\varphi\}.
+\]
+\begin{enumerate}
+    \item $|F^{\mathcal{L}}\times\mathcal{V}|=|F^{\mathcal{L}}|\cdot|\mathcal{V}|
+    \leqslant|\mathcal{L}|\cdot|\mathcal{L}|\leqslant\kappa\cdot\kappa=\kappa$,
+    \item 对任意的$(\varphi,x)$, $|\,^{\mathcal{V}}\!A_k/\varphi|=
+    |\,^{\mathrm{FV}(\varphi)}A_k|=|A_k|^{|\mathrm{FV}(\varphi)|}
+    \leqslant\kappa^{|\mathrm{FV}(\varphi)|}=\kappa$,
+\end{enumerate}
+综上可得$|I_k|\leqslant\kappa$. 从而
+\[
+    |\{a(A_k,\varphi,x,s)\mid(\varphi,x,s)\in I_k\}\cup A_k|\leqslant
+    |I_k|+|A_k|\leqslant\kappa+\kappa=\kappa,
+\]
+所以$|A_{k+1}|\leqslant\max\{\kappa,|\mathcal{L}|\}=\kappa$, 归纳证明成立.
+
+\vspace{6pt}
+由此显然可得$\displaystyle|A|=\left|\bigcup_{k\in\mathbb{N}}A_k\right|
+\leqslant\kappa$. 同时$A\supset\Omega$于是$|A|\geqslant\kappa$. \hfill $\qedsymbol$
+
+
+
+
+
+\newpage
+
+\section{向上 Löwenheim-Skolem 定理}
+
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1 (向上Löwenheim-Skolem定理)}
+
+给定一阶语言$\mathcal{L}$, 无限$\mathcal{L}$-结构$A$和基数$\kappa$.
+如果$\kappa\geqslant\max\{|A|,|\mathcal{L}|\}$, 则存在结构$B$使得
+\[
+    A\preccurlyeq B\quad\land\quad|B|=\kappa.
+\]
+
+\noindent{\kaishu 证明.}
+
+考虑$A$对$\mathcal{L}$的扩充语言$\mathcal{L}_A$,
+把其中结构$A^*$的理论(即所有被$A^*$满足的$\mathcal{L}_A$的语句)记为$T_0$.
+
+任取与$\mathcal{L}_A$各集合不相交且势为$\kappa$的集合$\Omega$,
+把$\Omega$再添加到$\mathcal{L}_A$的常元集中, 得到更大的语言$\mathcal{L}_A^\Omega$.
+然后定义$\mathcal{L}_A^\Omega$的理论
+\[
+    T=T_0\cup\{\neg c\equiv d\mid c,d\in\Omega\land c\neq d\}.
+\]
+
+任取$T$的有限子集$S$, 下证$S$在$\mathcal{L}_A^\Omega$中有模型. 定义$\displaystyle
+\Omega_S=\Omega\cap\left(\bigcup_{\psi\in S}\mathrm{const}(\psi)\right)$,
+由$S$有限可得$\Omega_S$也有限. 因为$A$是无限集, 存在$\Omega_S$到$A$的单射,
+易证存在$A^*$在$\mathcal{L}_A^\Omega$上的解释扩张$A^*_S$使得
+\[
+    \forall c,d\in\Omega_S:\quad(c\neq d\to c^{A^*_S}\neq d^{A^*_S}),
+\]
+即令$\Omega_S$中不同的常元在其中的解释也不同. 此时对任意的$\psi\in S$:
+\begin{enumerate}
+    \item 如果$\psi\in T_0$, 那么$A^*\models\psi$, 自然也有$A^*_S\models\psi$,
+    \item 如果存在不同的$c,d\in\Omega$使得$\psi=\neg c\equiv d$,
+    那么$c,d\in\Omega_S$, 依定义有$c^{A^*_S}\neq d^{A^*_S}$,
+    从而$A^*_S\models\psi$.
+\end{enumerate}
+综上即得$A^*_S$是$S$的模型.
+根据\href{../03 一阶紧致性定理/03 一阶紧致性定理#nameddest=sec:定理1.1}
+{紧致性定理}可得$T$有模型$M_A^\Omega$ (论域记为$M$), 即:
+\begin{enumerate}
+    \item $M_A^\Omega\models T_0$,
+    \item 对任意不同的$c,d\in\Omega$, 由$M_A^\Omega\models\neg c\equiv d$得
+    $c^{M_A^\Omega}\neq d^{M_A^\Omega}$, 即$\Omega$到$M$有单射,
+    从而$|M|\geqslant|\Omega|=\kappa$.
+\end{enumerate}
+
+把$M_A^\Omega$在$\mathcal{L}_A$上的解释限制记为$M_A$, 则同样有$M_A\models T_0$,
+易证$M_A\equiv A^*$.
+又因为$\kappa\geqslant\max\{|A|,|\mathcal{L}|\}=|\mathcal{L}_A|$,
+所以根据向下Löwenheim-Skolem定理, 存在$M_A$的初等子结构$N_A$使得$|N_A|=\kappa$.
+
+因为$N_A\equiv A^*$, 把$N_A$在$\mathcal{L}$上的解释限制记为$N$,
+所以根据\href{02 初等等价#nameddest=sec:定理1.2}{引理}可知, 在$\mathcal{L}$中存在
+$A$到$N$的初等嵌入. 此时自然可以由结构$N$得到一个等势的结构$B$使得$A\preccurlyeq B$.
+\hfill $\qedsymbol$
+
+\noindent{\kaishu 备注.
+严格来讲, 由$N$得到$B$需要保证嵌入的剩余部分与$A$不交,
+与主题不太相关, 不再赘述.}
+
+\end{document}

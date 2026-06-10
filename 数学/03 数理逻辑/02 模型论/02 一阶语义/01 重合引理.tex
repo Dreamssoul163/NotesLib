@@ -1,0 +1,214 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{重合引理}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1 (项的重合引理)}
+
+给定一阶语言$\mathcal{L}$和
+$\mathcal{L}$-\href{../01 一阶语言的结构/01 一阶语言的结构#nameddest=sec:定义1.1}
+{结构} $A$, 对任意的项$t$和$A$上的变元赋值$\sigma,\tau$, 如果
+\[
+    \forall x\in\mathrm{var}(t):x^\sigma=x^\tau,
+\]
+记作$\sigma\overset{\displaystyle t}{=}\tau$, 那么$t^{(A,\sigma)}=t^{(A,\tau)}$.
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 对任意的常元$c$, 始终有$c^{(A,\sigma)}=c^A=c^{(A,\tau)}$.
+    \item 对任意的变元$x$, 假设$\sigma\overset{\displaystyle x}{=}\tau$,
+    因为$x\in\mathrm{var}(x)$, 所以$x^{(A,\sigma)}=x^\sigma=x^\tau=x^{(A,\tau)}$.
+    \item 对任意的$n$元函数符号$f$, 假设$t_1,\cdots,t_n$满足命题
+    并且$t=ft_1\cdots t_n$满足$\sigma\overset{\displaystyle t}{=}\tau$,
+    则对每个$t_i$有
+    \vspace{3pt}
+    \[
+        \mathrm{var}(t_i)\subset\mathrm{var}(t)
+        \quad\implies\quad\sigma\overset{\displaystyle t_i}{=}\tau
+        \quad\implies\quad t_i^{(A,\sigma)}=t_i^{(A,\tau)},
+    \]
+    从而$t^{(A,\sigma)}=f^A(t_1^{(A,\sigma)},\cdots,t_n^{(A,\sigma)})
+    =f^A(t_1^{(A,\tau)},\cdots,t_n^{(A,\tau)})=t^{(A,\tau)}$. \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2 (公式的重合引理)}
+
+给定一阶语言$\mathcal{L}$和$\mathcal{L}$-结构$A$,
+对任意的公式$\varphi$和$A$上的变元赋值$\sigma,\tau$, 如果
+\[
+    \forall x\in\mathrm{FV}(\varphi):x^\sigma=x^\tau,
+\]
+记作$\sigma\overset{\displaystyle\varphi}{=}\tau$,
+那么$(A,\sigma)\models\varphi$当且仅当$(A,\tau)\models\varphi$.
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 对任意的项$t_1,t_2$, 假设$\varphi=t_1\equiv t_2$满足
+    $\sigma\overset{\displaystyle\varphi}{=}\tau$, 则对每个$t_i$有
+    \[
+        \mathrm{var}(t_i)\subset\mathrm{FV}(\varphi)
+        \quad\implies\quad\sigma\overset{\displaystyle t_i}{=}\tau
+        \quad\implies\quad t_i^{(A,\sigma)}=t_i^{(A,\tau)},
+    \]
+    从而
+    \[
+        (A,\sigma)\models\varphi\quad\iff\quad
+        t_1^{(A,\sigma)}=t_2^{(A,\sigma)}\quad\iff\quad
+        t_1^{(A,\tau)}=t_2^{(A,\tau)}\quad\iff\quad(A,\tau)\models\varphi.
+    \]
+
+    \item 对任意的$n$元关系符号$r$和项$t_1,\cdots,t_n$,
+    假设$\varphi=rt_1\cdots t_n$满足$\sigma\overset{\displaystyle\varphi}{=}\tau$.
+    同理每个$t_i$赋值相同, 从而
+    \[
+        (A,\sigma)\models\varphi\,\iff\,
+        (t_1^{(A,\sigma)},\cdots,t_n^{(A,\sigma)})\in r^A\,\iff\,
+        (t_1^{(A,\tau)},\cdots,t_n^{(A,\tau)})\in r^A\,\iff\,
+        (A,\tau)\models\varphi.
+    \]
+
+    \item 假设$\varphi_1$满足命题并且$\varphi=\neg\varphi_1$满足
+    $\sigma\overset{\displaystyle\varphi}{=}\tau$.
+    因为$\mathrm{FV}(\varphi)=\mathrm{FV}(\varphi_1)$, 所以
+    $\sigma\overset{\displaystyle\varphi_1}{=}\tau$, 从而
+    \[
+        (A,\sigma)\models\varphi\,\iff\,\neg\,(A,\sigma)\models\varphi_1\,\iff\,
+        \neg\,(A,\tau)\models\varphi_1\,\iff\,(A,\tau)\models\varphi.
+    \]
+
+    \item 假设$\varphi_1,\varphi_2$满足命题并且$\varphi=(\varphi_1\to\varphi_2)$
+    满足$\sigma\overset{\displaystyle\varphi}{=}\tau$.
+    
+    \vspace{3pt}\hspace{2.17em}
+    因为$\mathrm{FV}(\varphi)=\mathrm{FV}(\varphi_1)\cup\mathrm{FV}(\varphi_2)$,
+    所以$\sigma\overset{\displaystyle\varphi_1}{=}\tau$并且
+    $\sigma\overset{\displaystyle\varphi_2}{=}\tau$, 同理
+    $(A,\sigma)\models\varphi\iff(A,\tau)\models\varphi$.
+
+    \vspace{3pt}
+    \item 对任意的变元$x$, 假设$\varphi_1$满足命题并且$\varphi=\exists x\varphi_1$
+    满足$\sigma\overset{\displaystyle\varphi}{=}\tau$.
+
+    \vspace{3pt}\hspace{2.17em}
+    假设$(A,\sigma)\models\varphi$, 即存在$a\in A$使得
+    $\displaystyle\left(A,\sigma\frac{a}{x}\right)\models\varphi_1$,
+    下证$\displaystyle\sigma\frac{a}{x}\overset{\displaystyle\varphi_1}{=}
+    \tau\frac{a}{x}$. 对任意的$y\in\mathrm{FV}(\varphi_1)$:
+
+    \vspace{3pt}\hspace{2.17em}
+    如果$y=x$, 那么$\displaystyle\sigma\frac{a}{x}(y)=a=\tau\frac{a}{x}(y)$;
+    如果$y\neq x$, 那么$y\in\mathrm{FV}(\varphi_1)\setminus\{x\}
+    =\mathrm{FV}(\varphi)$, 依假设有
+    \vspace{3pt}
+    \[
+        \sigma\frac{a}{x}(y)=\sigma(y)=\tau(y)=\tau\frac{a}{x}(y).\\[3pt]
+    \]
+    于是$\displaystyle\sigma\frac{a}{x}\overset{\displaystyle\varphi_1}{=}
+    \tau\frac{a}{x}$, 依假设有
+    $\displaystyle\left(A,\tau\frac{a}{x}\right)\models\varphi_1$,
+    从而$(A,\tau)\models\varphi$. 反之同理. \hfill $\qedsymbol$
+\end{enumerate}
+
+
+
+
+
+\newpage
+
+\section{等价赋值的观点}
+
+\hypertarget{sec:定义2.1}{}
+\noindent\textbf{定义2.1}
+
+给定一阶语言$\mathcal{L}$, $\mathcal{L}$-结构$A$和公式$\varphi$. 显然
+$\overset{\displaystyle\varphi}{=}$是$^{\mathcal{V}}\!A$上的等价关系,
+把其商集记为$^{\mathcal{V}}\!A/\varphi$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1}
+
+给定一阶语言$\mathcal{L}$, $\mathcal{L}$-结构$A$和公式$\varphi$, 则存在唯一的
+双射$r:\,^{\mathcal{V}}\!A/\varphi\to\,^{\mathrm{FV}(\varphi)}A$满足:
+\[
+    \forall s\in\,\!^{\mathcal{V}}\!A/\varphi,\,\forall\sigma\in s:\,
+    r(s)=\sigma\!\restriction_{\mathrm{FV}(\varphi)}.
+\]
+
+\noindent{\kaishu 证明.}
+
+依定义, 当$\sigma\overset{\displaystyle\varphi}{=}\tau$时一定有
+$\sigma\!\restriction_{\mathrm{FV}(\varphi)}=\tau\!\restriction_{\mathrm{FV}(\varphi)}$,
+所以有唯一的商映射$r:\,^{\mathcal{V}}\!A/\varphi\to\,^{\mathrm{FV}(\varphi)}A$
+满足命题.
+
+然后证明$r$是单射. 如果$r(s)=r(s')$, 那么取$\sigma\in s$和$\sigma'\in s'$就有
+\[
+    \sigma\!\restriction_{\mathrm{FV}(\varphi)}=r(s)=r(s')=\sigma'\!\restriction_{\mathrm{FV}(\varphi)},
+\]
+从而$\sigma\overset{\displaystyle\varphi}{=}\sigma'$, 即$s=s'$.
+
+最后证明$r$是满射. 对任意的$f\in\,\!^{\mathrm{FV}(\varphi)}A$,
+取它的一个扩张$f\subset\sigma\in\,\!^{\mathcal{V}}\!A$,
+则$r[\sigma]=\sigma\!\restriction_{\mathrm{FV}(\varphi)}=f$. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+对任意的$s\in\,\!^{\mathcal{V}}\!A/\varphi$, 如果存在$\sigma\in s$使得
+$(A,\sigma)\models\varphi$, 就记$(A,s)\models\varphi$.
+
+根据重合引理, 如果$(A,s)\models\varphi$, 那么对任意的$\tau\in s$都有
+$(A,\tau)\models\varphi$.
+
+\vspace{10pt}
+
+此时再给定变元$x$和$a\in A$. 当$\sigma\overset{\displaystyle\varphi}{=}\tau$
+时一定有$\displaystyle\sigma\frac{a}{x}\overset{\displaystyle\varphi}{=}
+\tau\frac{a}{x}$, 即$\displaystyle\left[\sigma\frac{a}{x}\right]=
+\left[\tau\frac{a}{x}\right]$. 所以能定义$\displaystyle s\frac{a}{x}$使得:
+\vspace{6pt}
+\[
+    \forall s\in\,\!^{\mathcal{V}}\!A/\varphi,\,\forall\sigma\in s:\,
+    s\frac{a}{x}=\left[\sigma\frac{a}{x}\right].
+\]
+
+\end{document}
