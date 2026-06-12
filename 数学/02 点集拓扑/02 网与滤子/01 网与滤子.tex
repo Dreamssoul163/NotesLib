@@ -1,0 +1,114 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{网}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (网)}
+
+给定\href{../../01 基础集合论/04 序理论/01 序关系/01 预序关系#nameddest=sec:定义2.1}{有向集}
+$(D,\leqslant)$和集合$X$, 称映射$\varphi:D\to X$为$X$中的一个\textbf{网}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (网的尾部)}
+
+给定网$\varphi:D\to X$和某个$\alpha_0\in D$, 定义
+\[
+    T_{\alpha_0}=\{\varphi(\alpha)\mid\alpha\geqslant\alpha_0\},
+\]
+称之为$\varphi$在$\alpha_0$之后的\textbf{尾部}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.3}{}
+\noindent\textbf{定义1.3 (子网)}
+
+给定网$\varphi:D\to X$和$\psi:E\to X$. 如果存在映射$f:E\to D$使得:
+\begin{enumerate}
+    \item 对任意的$\beta,\beta'\in E$, 如果$\beta\leqslant\beta'$,
+    那么$f(\beta)\leqslant f(\beta')$,
+    \item 对任意的$\alpha\in D$, 存在$\beta\in E$使得$f(\beta)\geqslant\alpha$,
+    \item $\psi=\varphi\circ f$,
+\end{enumerate}
+就称$\psi$是$\varphi$的\textbf{子网}.
+
+\vspace{10pt}
+
+给定$X$中的网$\varphi$和$U\subset X$. 如果
+\[
+    \forall\alpha_0\in D\,\,\exists\alpha\geqslant\alpha_0:\varphi(\alpha)\in U,
+\]
+就说该网\textbf{频繁落入}$U$; 如果$\varphi$的某个尾部包含于集合$U$, 即
+\[
+    \exists\alpha_0\in D\,\,\forall\alpha\geqslant\alpha_0:\varphi(\alpha)\in U,
+\]
+就说该网\textbf{最终落入}$U$. 显然:
+\begin{enumerate}
+    \item 如果$\varphi$最终落入$U$, 那么它也频繁落入$U$,
+    \item $\varphi$频繁落入$U$当且仅当它不最终落入$U^c$.
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.4}{}
+\noindent\textbf{定义1.4 (泛网)}
+
+给定$X$中的网$\varphi$. 如果对任意的$U\subset X$,
+$\varphi$都最终落入$U$或$U^c$, 就称它是\textbf{泛网}.
+
+
+
+
+
+
+% \newpage
+
+% \section{网的极限与聚点}
+
+% \hypertarget{sec:定义2.1}{}
+% \noindent\textbf{定义2.1 (网收敛)}
+
+% 给定\href{../01 拓扑空间/01 拓扑空间#nameddest=sec:定义1.1}{拓扑空间}
+% $(X,\mathcal{T})$, $X$上的网$(x_\alpha)_{\alpha\in\Lambda}$和点$x\in X$. 如果
+% \[
+%     \forall N\in\mathcal{N}_x\,\,\exists\alpha\in\Lambda:T_\alpha\subset N,
+% \]
+% 即$x$的任意邻域包含一个尾部, 就称$(x_\alpha)_{\alpha\in\Lambda}$
+% \textbf{收敛于}$x$, 也称$x$是$(x_\alpha)_{\alpha\in\Lambda}$的一个\textbf{极限},
+% 记作$x_\alpha\to x$.
+
+\end{document}
