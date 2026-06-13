@@ -155,4 +155,37 @@ $\{x_i\}_{i<n}$有上界.
 \]
 显然$z$是$\{x_i\}_{i<n+1}$的上界. \hfill $\qedsymbol$
 
+
+
+
+
+\vspace{20pt}
+
+\section{共尾子集}
+
+\hypertarget{sec:定义3.1}{}
+\noindent\textbf{定义3.1 (共尾子集)}
+
+给定预序结构$(a,\leqslant)$和$s\subset a$, 如果
+\[
+    \forall x\in a\,\,\,\,\exists y\in s\,:\,y\geqslant x,
+\]
+就称$s$是$a$的\textbf{共尾子集}, 或称$s$在$a$中\textbf{共尾}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义3.2}{}
+\noindent\textbf{定义3.2 (共尾映射)}
+
+给定预序结构$(a,\leqslant_a),(b,\leqslant_b)$和映射$f:a\to b$.
+如果$\mathrm{Ran}\,f$在$b$中共尾, 即
+\[
+    \forall x\in b\,\,\,\,\exists y\in a\,:\,f(y)\geqslant_b x,
+\]
+就称$f$是\textbf{共尾映射}.
+
+\vspace{10pt}
+
+显然当$s\subset a$在$a$中共尾时, 嵌入映射是共尾映射.
+
 \end{document}

@@ -59,24 +59,25 @@ $(D,\leqslant)$和集合$X$, 称映射$\varphi:D\to X$为$X$中的一个\textbf{
 
 给定网$\varphi:D\to X$和$\psi:E\to X$. 如果存在映射$f:E\to D$使得:
 \begin{enumerate}
-    \item 对任意的$\beta,\beta'\in E$, 如果$\beta\leqslant\beta'$,
-    那么$f(\beta)\leqslant f(\beta')$,
-    \item 对任意的$\alpha\in D$, 存在$\beta\in E$使得$f(\beta)\geqslant\alpha$,
+    \item $f$保序, 即$\forall\beta,\beta'\in E:\beta\leqslant\beta'\to
+    f(\beta)\leqslant f(\beta')$,
+    \item $f$是\href{../../01 基础集合论/04 序理论/01 序关系/01 预序关系#nameddest=sec:定义3.2}
+    {共尾映射}, 即$\forall\alpha\in D\,\,\exists\beta\in E:f(\beta)\geqslant\alpha$,
     \item $\psi=\varphi\circ f$,
 \end{enumerate}
 就称$\psi$是$\varphi$的\textbf{子网}.
 
 \vspace{10pt}
 
-给定$X$中的网$\varphi$和$U\subset X$. 如果
-\[
-    \forall\alpha_0\in D\,\,\exists\alpha\geqslant\alpha_0:\varphi(\alpha)\in U,
-\]
-就说该网\textbf{频繁落入}$U$; 如果$\varphi$的某个尾部包含于集合$U$, 即
+给定$X$中的网$\varphi$和$U\subset X$. 如果$\varphi$的某个尾部包含于集合$U$, 即
 \[
     \exists\alpha_0\in D\,\,\forall\alpha\geqslant\alpha_0:\varphi(\alpha)\in U,
 \]
-就说该网\textbf{最终落入}$U$. 显然:
+就说该网\textbf{最终落入}$U$; 如果$U$的原像在$D$中共尾, 即
+\[
+    \forall\alpha_0\in D\,\,\exists\alpha\geqslant\alpha_0:\varphi(\alpha)\in U,
+\]
+就说该网\textbf{频繁落入}$U$. 显然:
 \begin{enumerate}
     \item 如果$\varphi$最终落入$U$, 那么它也频繁落入$U$,
     \item $\varphi$频繁落入$U$当且仅当它不最终落入$U^c$.
