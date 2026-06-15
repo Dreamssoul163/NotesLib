@@ -1,0 +1,274 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{范畴}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (范畴)}
+
+给定集合$O,M,s,t,i,\circ$, 如果:
+\begin{enumerate}
+    \item $s,t:M\to O$, $i:O\to M$,
+    \item 对任意的$X\in O$有$s(i(X))=t(i(X))=X$,
+    \item $\circ\,:\,\{(g,f)\in M\times M\mid s(g)=t(f)\}\,\to\,M$,
+    \item 对任意的$f,g\in M$, 在有定义的情形下,
+    $s(g\circ f)=s(f)$, $t(g\circ f)=t(g)$,
+    \item 对任意的$X\in O$和$f\in M$, 在有定义的情形下,
+    $f\circ i(X)=f$, $i(X)\circ f=f$,
+    \item 对任意的$f,g,h\in M$, 在有定义的情形下,
+    $h\circ(g\circ f)=(h\circ g)\circ f$,
+\end{enumerate}
+就称$(O,M,s,t,i,\circ)$是一个\textbf{范畴}.
+
+% 很丑的定义.
+
+\vspace{10pt}
+
+给定范畴$\mathbf{C}=(O,M,s,t,i,\circ)$, 通常:
+\begin{enumerate}
+    \item 称$O$为\textbf{对象集}, 记作$\mathrm{Ob}(\mathbf{C})$,
+    在不产生歧义的情况下直接记作$\mathbf{C}$, 其中的元素称为\textbf{对象},
+    \item 称$M$为\textbf{态射集}, 记作$\mathrm{Mor}(\mathbf{C})$,
+    其中的元素称为\textbf{态射},
+    \item 对任意的对象$X$, 称$i(X)$是$X$上的\textbf{单位态射}, 记作$I_X$,
+    \item 对任意的对象$X,Y$, 记
+    \[
+        \mathbf{C}(X,Y)\overset{\mathrm{def}}{=}
+        \{\,f\in M\mid s(f)=X\,\land\,t(f)=Y\,\}\,,
+    \]
+    当$f\in\mathbf{C}(X,Y)$时, 称$f$为从$X$到$Y$的态射,
+    在不产生歧义的情况下记作$f:X\to Y$.
+\end{enumerate}
+
+\vspace{10pt}
+
+通常用一个Grothendieck宇宙(以下简称宇宙)限制范畴的尺度.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2}
+
+给定一个宇宙$\mathcal{U}$和范畴$\mathbf{C}$,
+\begin{enumerate}
+    \item 如果对任意的对象$X,Y$, 都有$\mathbf{C}(X,Y)\in\mathcal{U}$,
+    就称$\mathbf{C}$是$\mathcal{U}$-\textbf{局部小范畴},
+    \item 如果$\mathrm{Ob}(\mathbf{C})\in\mathcal{U}$且
+    $\mathrm{Mor}(\mathbf{C})\in\mathcal{U}$,
+    就称$\mathbf{C}$是$\mathcal{U}$-\textbf{小范畴}.
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.3}{}
+\noindent\textbf{定义1.3 (对偶范畴)}
+
+给定范畴$\mathbf{C}=(O,M,s,t,i,\circ)$,
+\begin{enumerate}
+    \item 对任意的$f\in M$定义$s'(f)=t(f)$,$t'(f)=s(f)$,
+    \item 对任意的$f,g\in M$, 当$s'(g)=t'(f)$时定义$g\circ'f=f\circ g$,
+\end{enumerate}
+则$\mathbf{C}^{\mathrm{op}}=(O,M,s',t',i,\circ')$是范畴,
+称之为$\mathbf{C}$的\textbf{对偶范畴}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+任给宇宙$\mathcal{U}$和范畴$\mathbf{C}$,
+\begin{enumerate}
+    \item 对任意的$X,Y\in\mathbf{C}$,
+    $\mathbf{C}^{\mathrm{op}}(X,Y)=\mathbf{C}(Y,X)$,
+    \item $(\mathbf{C}^{\mathrm{op}})^{\mathrm{op}}=\mathbf{C}$,
+    \item 如果$\mathbf{C}$是$\mathcal{U}$-(局部)\,\!小范畴,
+    那么$\mathbf{C}^{\mathrm{op}}$也是$\mathcal{U}$-(局部)\,\!小范畴.
+\end{enumerate}
+
+
+
+
+
+\newpage
+
+\hypertarget{sec:定义1.4}{}
+\noindent\textbf{定义1.4 (积范畴)}
+
+给定范畴$\mathbf{C}_1=(O_1,M_1,s_1,t_1,i_1,\circ_1)$和
+$\mathbf{C}_2=(O_2,M_2,s_2,t_2,i_2,\circ_2)$,
+\begin{enumerate}
+    \item 定义$O=O_1\times O_2$, $M=M_1\times M_2$,
+    \item 对任意的$(f_1,f_2)\in M$, 定义
+    $s(f_1,f_2)=(s_1(f_1),s_2(f_2))$, $t(f_1,f_2)=(t_1(f_1),t_2(f_2))$,
+    \item 对任意的$(X_1,X_2)\in O$, 定义$i(X_1,X_2)=(i_1(X_1),i_2(X_2))$,
+    \item 对任意的$(f_1,f_2),(g_1,g_2)\in M$, 当$s(g_1,g_2)=t(f_1,f_2)$时定义
+    \[
+        (g_1,g_2)\circ(f_1,f_2)=(g_1\circ_1f_1,g_2\circ_2f_2),
+    \]
+\end{enumerate}
+则$\mathbf{C}_1\times\mathbf{C}_2=(O,M,s,t,i,\circ)$是范畴,
+称之为$\mathbf{C}_1,\mathbf{C}_2$的\textbf{积范畴}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+任给宇宙$\mathcal{U}$和范畴$\mathbf{C}_1,\mathbf{C}_2$,
+\begin{enumerate}
+    \item 对任意的$X_1,Y_1\in\mathbf{C}_1$和$X_2,Y_2\in\mathbf{C}_2$,
+    \vspace{-3pt}
+    \[
+        (\mathbf{C}_1\times\mathbf{C}_2)((X_1,X_2),(Y_1,Y_2))=
+        \mathbf{C}_1(X_1,Y_1)\times\mathbf{C}_2(X_2,Y_2),
+    \]
+    \item $(\mathbf{C}_1\times\mathbf{C}_2)^{\mathrm{op}}=
+    \mathbf{C}_1^{\mathrm{op}}\times\mathbf{C}_2^{\mathrm{op}}$,
+    \item 如果$\mathbf{C}_1,\mathbf{C}_2$都是$\mathcal{U}$-(局部)\,\!小范畴,
+    那么$\mathbf{C}_1\times\mathbf{C}_2$也是$\mathcal{U}$-(局部)\,\!小范畴.
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.5}{}
+\noindent\textbf{定义1.5 (子范畴)}
+
+给定范畴$\mathbf{C}=(O,M,s,t,i,\circ)$和
+$\mathbf{C}'=(O',M',s',t',i',\circ')$, 如果
+\begin{enumerate}
+    \item $O'\subset O,\ M'\subset M$,
+    \item 对任意的$f\in M'$有$s'(f)=s(f),\ t'(f)=t(f)$,
+    \item 对任意的$X\in O'$有$i'(X)=i(X)$,
+    \item 在有定义的情形下, $g\circ'f=g\circ f$,
+\end{enumerate}
+就称$\mathbf{C}'$是$\mathbf{C}$的\textbf{子范畴}.
+
+进一步, 如果对任意的$X,Y\in O'$都有$\mathbf{C}(X,Y)=\mathbf{C}'(X,Y)$,
+就称$\mathbf{C}'$是$\mathbf{C}$的\textbf{全子范畴}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.6}{}
+\noindent\textbf{定义1.6 (同余关系与商范畴)}
+
+给定范畴$\mathbf{C}=(O,M,s,t,i,\circ)$和$M$上的等价关系$\sim$. 如果:
+\begin{enumerate}
+    \item 对任意的$f_1\sim f_2$, 有$s(f_1)=s(f_2),t(f_1)=t(f_2)$,
+    \item 对任意的$f_1\sim f_2,g_1\sim g_2$, 在有定义的情形下,
+    $g_1\circ f_1\sim g_2\circ f_2$,
+\end{enumerate}
+就称$\sim$是$\mathbf{C}$上的\textbf{同余关系}. 此时:
+\begin{enumerate}
+    \vspace{3pt}
+    \item 定义$O'=O$, $M'=\,\!^{\displaystyle M}\!/_{\displaystyle\sim}$,
+    \item 对任意的$p\in M'$, 有唯一的$s'(p),t'(p)$使得
+    \[
+        \forall f\in p:\quad s'(p)=s(f)\,\,\land\,\,t'(p)=t(f),
+    \]
+    \item 对任意的$X\in O'$, 定义$i'(X)=[\,i(X)\,]$,
+    \item 对任意的$p,q\in M'$, 当$s'(q)=t'(p)$时有唯一的$q\circ'p$使得
+    \[
+        \forall f\in p\,\,\forall g\in q:\quad q\circ'p=[\,g\circ f\,],
+    \]
+\end{enumerate}
+则$\,\!^{\displaystyle\mathbf{C}}\!/_{\displaystyle\sim}=(O',M',s',t',i',\circ')$
+是范畴, 称之为$\mathbf{C}$模$\sim$的\textbf{商范畴}.
+
+
+
+
+
+\newpage
+
+\section{范畴的例子}
+
+\hypertarget{sec:例2.1}{}
+\noindent\textbf{例2.1 (集合范畴)}
+
+给定集合$\mathcal{U}$:
+\begin{enumerate}
+    \item 定义$O=\mathcal{U}$,
+    $\displaystyle M=\bigcup_{X,Y\in O}\{(f,X,Y)\mid f:X\to Y\}$,
+    \vspace{3pt}
+    \item 对任意的$(f,X,Y)\in M$, 定义$s(f,X,Y)=X,\ t(f,X,Y)=Y$,
+    \item 对任意的$X\in O$, 定义$i(X)=(\mathrm{id}_X,X,X)$,
+    \item 对任意的$(f,X,Y),(g,Y,Z)\in M$,
+    定义$(g,Y,Z)\circ(f,X,Y)=(g\circ f,X,Z)$(映射的复合),
+\end{enumerate}
+则$\mathbf{Set}_{\mathcal{U}}=(O,M,s,t,i,\circ)$是范畴,
+称之为$\mathcal{U}$内的\textbf{集合范畴}.
+
+\noindent{\kaishu 备注.}
+在明确$X,Y$的时候, 在不产生歧义的情况下不区分映射$f$与态射$(f,X,Y)$.
+
+\vspace{10pt}
+
+通常给定一个宇宙$\mathcal{U}$,
+此时$\mathbf{Set}_{\mathcal{U}}$也简记为$\mathbf{Set}$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1}
+
+任给一个宇宙$\mathcal{U}$.
+集合范畴$\mathbf{Set}$是$\mathcal{U}$-局部小范畴, 但不是$\mathcal{U}$-小范畴.
+
+\noindent{\kaishu 证明.}
+
+对任意的$X,Y\in\mathcal{U}$,
+\vspace{-3pt}
+\[
+    \mathbf{Set}(X,Y)=\,\!^X\!Y\times\{X\}\times\{Y\}\in\mathcal{U},\\[-3pt]
+\]
+所以$\mathbf{Set}$是局部小范畴.
+但是对象集$\mathcal{U}\notin\mathcal{U}$, 所以它不是小范畴. {\hfill $\qedsymbol$}
+
+\vspace{10pt}
+
+\hypertarget{sec:例2.2}{}
+\noindent\textbf{例2.2 (预序集范畴)}
+
+给定预序结构$(a,\leqslant)$:
+\begin{enumerate}
+    \item 定义$O=a$, $M=\,\leqslant$,
+    \item 对任意的$(X,Y)\in M$, 定义$s(X,Y)=X$, $t(X,Y)=Y$,
+    \item 对任意的$X\in O$, 定义$i(X)=(X,X)$,
+    \item 对任意的$(X,Y),(Y,Z)\in M$, 定义$(Y,Z)\circ(X,Y)=(X,Z)$,
+\end{enumerate}
+则$\mathbf{Proset}(a,\leqslant)=(O,M,s,t,i,\circ)$是范畴,
+称之为$(a,\leqslant)$的\textbf{预序集范畴}.
+
+\end{document}
