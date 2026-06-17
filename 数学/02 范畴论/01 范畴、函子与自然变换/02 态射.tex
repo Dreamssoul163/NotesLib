@@ -1,0 +1,205 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\setlength{\headheight}{12.7pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\setlist[itemize]{itemsep=0pt,topsep=0pt,parsep=0pt,leftmargin=0pt,itemindent=2.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{态射的性质}
+
+为了表述方便, 这里省略$\circ$符号.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (单态射、满态射与双态射)}
+
+给定\href{01 范畴#nameddest=sec:定义1.1}{范畴} $\mathbf{C}$和态射$f$,
+\begin{enumerate}
+    \item 如果在有定义的情形下总有$fh=fh'\to h=h'$, 就称$f$是\textbf{单态射},
+    \item 如果在有定义的情形下总有$hf=h'f\to h=h'$, 就称$f$是\textbf{满态射},
+    \item 如果$f$既是单态射也是满态射, 就称$f$是\textbf{双态射}.
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+任给范畴$\mathbf{C}$和态射$f,g$, 假设$gf$有定义.
+\begin{enumerate}
+    \item 如果$f,g$都是单/满/双态射, 那么在有定义的情形下$gf$也是单/满/双态射,
+    \item 如果$gf$是单态射, 那么$f$是单态射,
+    \item 如果$gf$是满态射, 那么$g$是满态射.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 设$f,g$都是单态射. 如果$gfh=gfh'$,  那么$fh=fh'$, 从而$h=h'$.
+    
+    {\hspace{2.17em}}
+    设$f,g$都是满态射. 如果$hgf=h'gf$, 那么$hg=h'g$, 从而$h=h'$.
+
+    \hspace{2.17em}
+    综上, 设$f,g$都是双态射, 那么$gf$也是双态射.
+
+    \item 如果$fh=fh'$, 那么$gfh=gfh'$, 从而$h=h'$.
+    
+    \item 如果$hg=h'g$, 那么$hgf=h'gf$, 从而$h=h'$. \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (左逆、右逆)}
+
+给定范畴$\mathbf{C}$, 对象$X,Y$,态射$f_1:X\to Y$和$f_2:Y\to X$.
+
+如果$f_2f_1=I_X$, 就称$f_2$是$f_1$的一个\textbf{左逆}, $f_1$是$f_2$的一个\textbf{右逆}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+任给范畴$\mathbf{C}$,对象$X,Y,Z$, 态射$f:X\to Y$和$g:Y\to Z$.
+\begin{enumerate}
+    \item 如果$f$有左逆/有右逆, 那么$f$是单/满态射,
+    \item 如果$f,g$都有左逆/有右逆, 那么$gf$也有左逆/有右逆,
+    \item 如果$gf$有左逆, 那么$f$有左逆,
+    \item 如果$gf$有右逆, 那么$g$有右逆.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 设$f$有左逆$f'$. 如果$fh=fh'$, 那么$h=f'fh=f'fh'=h'$, 即$f$是单态射.
+    
+    \hspace{2.17em}
+    设$f$有右逆$f'$. 如果$hf=h'f$, 那么$h=hff'=h'ff'=h'$, 即$f$是满态射.
+
+    \item 设$f,g$有左逆$f',g'$, 则$f'g'gf=I_X$, 即$gf$有左逆.
+    
+    \hspace{2.17em}
+    设$f,g$有右逆$f',g'$, 则$gff'g'=I_Z$, 即$gf$有右逆.
+
+    \item 设$gf$有左逆$h$, 即$hgf=I_X$, 从而$hg$是$f$的左逆.
+    
+    \item 设$gf$有右逆$h$, 即$gfh=I_Z$, 从而$fh$是$g$的右逆. \hfill $\qedsymbol$
+\end{enumerate}
+
+
+
+
+
+\newpage
+
+\section{同构与骨架}
+
+\hypertarget{sec:定义2.1}{}
+\noindent\textbf{定义2.1 (同构)}
+
+给定范畴$\mathbf{C}$, 对象$X,Y$和态射$f:X\to Y$.
+
+如果存在$f':Y\to X$使得$f'f=I_X,ff'=I_Y$, 就称$f$是\textbf{同构},
+记作$f:X\cong Y$.
+
+\vspace{10pt}
+
+进一步, 这样的$f'$是唯一的, 称作$f$的\textbf{逆态射}, 记作$f^{-1}$.
+
+\noindent{\kaishu 验证.}
+
+假设$f_1',f_2'$都满足此性质, 则$f_1=f_1'ff_2'=f_2'$. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+如果对象$X,Y$之间有同构态射, 也称$X,Y$\textbf{同构}, 记$X\cong Y$.
+同构在对象集中是等价关系.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义2.2}{}
+\noindent\textbf{定义2.2 (骨架范畴)}
+
+给定范畴$\mathbf{S}$, 如果对任意同构的对象$X,Y$有$X=Y$,
+那么称$\mathbf{S}$是一个\textbf{骨架范畴}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义2.3}{}
+\noindent\textbf{定义2.3 (骨架)}
+
+给定范畴$\mathbf{C},\mathbf{S}$. 如果:
+\begin{enumerate}
+    \item $\mathbf{S}$是$\mathbf{C}$的\href{01 范畴#nameddest=sec:定义1.5}{全子范畴},
+    \item $\mathbf{S}$是骨架范畴,
+    \item 对任意的$X_0\in\mathbf{C}$, 存在$X\in\mathbf{S}$使得
+    $X_0,X$在$\mathbf{C}$中同构,
+\end{enumerate}
+就称$\mathbf{S}$是$\mathbf{C}$的一个\textbf{骨架}.
+
+% 毕设答辩终于过了. 真的要毕业了.
+% 2026.06.18
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1}
+
+任意范畴都有骨架.
+
+\noindent{\kaishu 证明.}
+
+对任意的范畴$\mathbf{C}=(O,M,s,t,i,\circ)$,
+取同构关系$(O,\cong)$的选代表函数$\varphi$, 据此:
+\begin{enumerate}
+    \item 定义$O'=\mathrm{Ran}\,\varphi$,
+    $M'=\{\,f\in M\mid s(f)\in O'\land t(f)\in O'\,\}$,
+    \item 对任意的$f\in M'$定义$s'(f)=s(f),\,t'(f)=t(f)$,
+    \item 对任意的$X\in O'$定义$i'(X)=i(X)$,
+    \item 对任意的$f,g\in M$, 在有定义的情形下, 定义$g\circ'f=g\circ f$,
+\end{enumerate}
+则$\mathbf{S}=(O',M',s',t',i',\circ')$是$\mathbf{C}$的全子范畴.
+
+接下来, 任给$\mathbf{S}$中同构的对象$X,Y$, 显然它们在$\mathbf{C}$中也同构.
+此时存在$X_0,Y_0\in O$使得
+\[
+    X=\varphi[X_0],\quad Y=\varphi[Y_0],
+\]
+则$X_0\cong X\cong Y\cong Y_0$, 从而$X=Y$. 即$\mathbf{S}$是骨架范畴.
+
+最后, 对任意的$X_0\in\mathbf{C}$, 存在$X=\varphi[X_0]$使得$X\cong X_0$.
+
+综上, $\mathbf{S}$是$\mathbf{C}$的一个\textbf{骨架}. \hfill $\qedsymbol$
+
+\end{document}
