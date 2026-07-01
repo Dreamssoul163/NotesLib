@@ -1,0 +1,325 @@
+\documentclass[UTF8]{ctexart}
+
+
+\usepackage{abc}
+
+\input{../../../preamble.tex}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{函子}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (协变函子)}
+
+给定\href{01 范畴#nameddest=sec:定义1.1}{范畴}
+$\mathbf{C},\mathbf{D}$. 如果$F=(F_O,F_M)$满足
+\begin{enumerate}
+    \item $F_O:\mathrm{Ob}(\mathbf{C})\to\mathrm{Ob}(\mathbf{D})$,
+    $F_M:\mathrm{Mor}(\mathbf{C})\to\mathrm{Mor}(\mathbf{D})$,
+    \item 对$\mathbf{C}$中任意的$f:X\to Y$, 在$\mathbf{D}$中有
+    $F_M(f):F_O(X)\to F_O(Y)$,
+    \item 对$\mathbf{C}$中任意的对象$X$, $F_M(I_X)=I_{F_O(X)}$,
+    \item 对$\mathbf{C}$中任意的态射$f,g$, 在有定义的情形下
+    $F_M(g\circ f)=F_M(g)\circ F_M(f)$ (即下图是交换图),
+    \begin{center}\begin{tikzpicture}[
+        box/.style={draw, thick, minimum width=5.5cm, minimum height=2.4cm},
+        arrow/.style={-Stealth, thick}]
+        \node[box] (Cbox) at (-4,0) {};
+        \node[anchor=north west, xshift=5, yshift=-5] at (Cbox.north west)
+        {$\mathbf{C}$};
+        \node (X) at (-6, -0.6) {$X$};
+        \node (Y) at (-4, 0.6) {$Y$};
+        \node (Z) at (-2, -0.6) {$Z$};
+        \draw[arrow] (X) -- node[left, pos=0.7, xshift=-5] {$f$} (Y);
+        \draw[arrow] (Y) -- node[right, pos=0.3, xshift=7] {$g$} (Z);
+        \draw[arrow] (X) -- node[below, pos=0.5] {$g\circ f$} (Z);
+        \node[box] (Dbox) at (4,0) {};
+        \node[anchor=north west, xshift=5, yshift=-5] at (Dbox.north west)
+        {$\mathbf{D}$};
+        \node (FX) at (2, -0.6) {$F(X)$};
+        \node (FY) at (4, 0.6) {$F(Y)$};
+        \node (FZ) at (6, -0.6) {$F(Z)$};
+        \draw[arrow] (FX) -- node[left, pos=0.7, xshift=-5] {$F(f)$} (FY);
+        \draw[arrow] (FY) -- node[right, pos=0.3, xshift=5] {$F(g)$} (FZ);
+        \draw[arrow] (FX) -- node[below, pos=0.5] {$F(g\circ f)$} (FZ);
+        \draw[arrow, very thick] ([xshift=10]Cbox.east) -- node[above, pos=0.5]
+        {$F$} ([xshift=-10]Dbox.west);
+    \end{tikzpicture}\end{center}
+\end{enumerate}
+\vspace{-3pt}
+就称$F$是$\mathbf{C}$到$\mathbf{D}$的\textbf{函子}或\textbf{协变函子},
+在不产生歧义的情况下记为$F:\mathbf{C}\to\mathbf{D}$.
+
+\noindent{\kaishu 备注.}
+在不产生歧义的情况下把$F_O$和$F_M$都统一写成$F$.
+
+\vspace{10pt}
+
+记$\mathbf{C}$到$\mathbf{D}$的全体函子组成的集合为$[\mathbf{C},\mathbf{D}]$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (反变函子)}
+
+给定范畴$\mathbf{C},\mathbf{D}$. 如果$F=(F_O,F_M)$满足
+\begin{enumerate}
+    \item $F_O:\mathrm{Ob}(\mathbf{C})\to\mathrm{Ob}(\mathbf{D})$,
+    $F_M:\mathrm{Mor}(\mathbf{C})\to\mathrm{Mor}(\mathbf{D})$,
+    \item 对$\mathbf{C}$中任意的$f:X\to Y$, 在$\mathbf{D}$中有
+    $F_M(f):F_O(Y)\to F_O(X)$,
+    \item 对$\mathbf{C}$中任意的对象$X$, $F_M(I_X)=I_{F_O(X)}$,
+    \item 对$\mathbf{C}$中任意的态射$f,g$, 在有定义的情形下
+    $F_M(g\circ f)=F_M(f)\circ F_M(g)$ (即下图是交换图),
+    \begin{center}\begin{tikzpicture}[
+        box/.style={draw, thick, minimum width=5.5cm, minimum height=2.4cm},
+        arrow/.style={-Stealth, thick}]
+        \node[box] (Cbox) at (-4,0) {};
+        \node[anchor=north west, xshift=5, yshift=-5] at (Cbox.north west)
+        {$\mathbf{C}$};
+        \node (X) at (-6, -0.6) {$X$};
+        \node (Y) at (-4, 0.6) {$Y$};
+        \node (Z) at (-2, -0.6) {$Z$};
+        \draw[arrow] (X) -- node[left, pos=0.7, xshift=-5] {$f$} (Y);
+        \draw[arrow] (Y) -- node[right, pos=0.3, xshift=7] {$g$} (Z);
+        \draw[arrow] (X) -- node[below, pos=0.5] {$g\circ f$} (Z);
+        \node[box] (Dbox) at (4,0) {};
+        \node[anchor=north west, xshift=5, yshift=-5] at (Dbox.north west)
+        {$\mathbf{D}$};
+        \node (FX) at (2, -0.6) {$F(X)$};
+        \node (FY) at (4, 0.6) {$F(Y)$};
+        \node (FZ) at (6, -0.6) {$F(Z)$};
+        \draw[arrow] (FY) -- node[left, pos=0.3, xshift=-5] {$F(f)$} (FX);
+        \draw[arrow] (FZ) -- node[right, pos=0.7, xshift=5] {$F(g)$} (FY);
+        \draw[arrow] (FZ) -- node[below, pos=0.5] {$F(g\circ f)$} (FX);
+        \draw[arrow, very thick] ([xshift=10]Cbox.east) -- node[above, pos=0.5]
+        {$F$} ([xshift=-10]Dbox.west);
+    \end{tikzpicture}\end{center}
+\end{enumerate}
+\vspace{-3pt}
+就称$F$是$\mathbf{C}$到$\mathbf{D}$的\textbf{反变函子}.
+
+\vspace{10pt}
+
+$\mathbf{C}\to\mathbf{D}$的反变函子等同于$\mathbf{C}^{\mathrm{op}}\to\mathbf{D}$
+(或$\mathbf{C}\to\mathbf{D}^{\mathrm{op}}$)的协变函子.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.3}{}
+\noindent\textbf{定义1.3 (忠实、全、本质满)}
+
+给定范畴$\mathbf{C},\mathbf{D}$和函子$F:\mathbf{C}\to\mathbf{D}$.
+\begin{enumerate}
+    \item 如果对$\mathbf{C}$中任意的对象$X,Y$,
+    $F_M\!\!\restriction_{\mathbf{C}(X,Y)}:\mathbf{C}(X,Y)\to\mathbf{D}(F(X),F(Y))$
+    是单射, 就称$F$是\textbf{忠实}的.
+    \item 如果对$\mathbf{C}$中任意的对象$X,Y$,
+    $F_M\!\!\restriction_{\mathbf{C}(X,Y)}:\mathbf{C}(X,Y)\to\mathbf{D}(F(X),F(Y))$
+    是满射, 就称$F$是\textbf{全}的.
+    \item 如果对$\mathbf{D}$中任意的对象$A$, 存在$\mathbf{C}$中的对象$X$
+    使得$F(X)\cong A$, 就称$F$是\textbf{本质满}的.
+\end{enumerate}
+
+
+
+
+
+\newpage
+
+下面给出一些函子的例子.
+
+\vspace{10pt}
+
+\hypertarget{sec:例1.1}{}
+\noindent\textbf{例1.1 (包含函子、恒等函子)}
+
+给定范畴$\mathbf{C}$和它的子范畴$\mathbf{C}'$,
+则$\iota:(X\mapsto X,f\mapsto f)$是$\mathbf{C}'$到$\mathbf{C}$的函子,
+称之为\textbf{包含函子}.
+
+当$\mathbf{C}'=\mathbf{C}$时, 该$\iota$称为$\mathbf{C}$上的\textbf{恒等函子},
+记作$I_{\mathbf{C}}$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+任给范畴$\mathbf{C}$和它的子范畴$\mathbf{C}'$,
+\begin{enumerate}
+    \item $\iota$是忠实的,
+    \item $\mathbf{C}'$是全子范畴当且仅当$\iota$是全的,
+    \item 如果$\mathbf{C}'$是骨架, 那么$\iota$是本质满的.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 任取$X,Y\in\mathbf{C}'$, 显然
+    $\iota\!\restriction_{\mathbf{C'}(X,Y)}:\mathbf{C'}(X,Y)\to\mathbf{C}(X,Y),
+    f\mapsto f$是单射.
+    \item 任取$X,Y\in\mathbf{C}'$, 显然
+    $\iota\!\restriction_{\mathbf{C'}(X,Y)}:\mathbf{C'}(X,Y)\to\mathbf{C}(X,Y),
+    f\mapsto f$是满射当且仅当$\mathbf{C'}(X,Y)=\mathbf{C}(X,Y)$.
+    \item 如果$\mathbf{C}'$是骨架, 那么任取$X_0\in\mathbf{C}$,
+    存在$X\in\mathbf{C}'$使得$\iota(X)=X\cong X_0$, 即$\iota$本质满.
+    \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:例1.2}{}
+\noindent\textbf{例1.2 (Hom函子)}
+
+给定宇宙$\mathcal{U}$和$\mathcal{U}$-局部小范畴$\mathbf{C}$,
+在$\mathbf{C}^{\mathrm{op}}\times\mathbf{C}$中做如下定义:
+\begin{enumerate}
+    \item 对任意的对象$(X,A)$, 定义$\mathrm{Hom}(X,A)=\mathbf{C}(X,A)$,
+    \item 对任意的态射$(f,g):(X,A)\to(Y,B)$, 定义
+    \[
+        \mathrm{Hom}(f,g):\mathbf{C}(X,A)\to\mathbf{C}(Y,B),\quad
+        \varphi\mapsto g\circ\varphi\circ f,
+    \]
+\end{enumerate}
+则$\mathrm{Hom}$是从$\mathbf{C}^{\mathrm{op}}\times\mathbf{C}$到
+$\mathbf{Set}$的函子, 称之为$\mathbf{C}$上的\textbf{Hom函子}.
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 因为$\mathbf{C}$是局部小范畴, 所以所有的$\mathbf{C}(X,A)$都属于$\mathcal{U}$,
+    是$\mathbf{Set}$的对象.
+    \item 对任意的态射$(f,g):(X,A)\to(Y,B)$和$\varphi\in\mathbf{C}(X,A)$,
+    在$\mathbf{C}$中有
+    \[
+        f\in\mathbf{C}(Y,X),\,\,\varphi\in\mathbf{C}(X,A),\,\,g\in\mathbf{C}(A,B)
+        \quad\implies\quad g\circ\varphi\circ f\in\mathbf{C}(Y,B).
+    \]
+    \item 对任意的对象$(X,A)$, 有
+    \[
+        \mathrm{Hom}(I_X,I_A):\,\varphi\,\mapsto\,
+        I_A\circ\varphi\circ I_X=\varphi,\\[-6pt]
+    \]
+    所以$\mathrm{Hom}(I_{(X,A)})=\mathrm{Hom}(I_X,I_A)=I_{\mathrm{Hom}(X,A)}$.
+    \item 对任意的态射$(f,g),(f',g')$, 在有定义的情形下,
+    \vspace{3pt}
+    \[\left\{\begin{aligned}
+        &\mathrm{Hom}(f'\circ^{\mathrm{op}}f,g'\circ g):\quad&&
+        \varphi\mapsto(g'\circ g)\circ\varphi\circ(f'\circ^{\mathrm{op}}f)
+        =g'\circ g\circ\varphi\circ f\circ f',\\[-3pt]
+        &\mathrm{Hom}(f',g')\circ\mathrm{Hom}(f,g):\quad&&
+        \varphi\mapsto g'\circ(g\circ\varphi\circ f)\circ f'
+        =g'\circ g\circ\varphi\circ f\circ f',
+    \end{aligned}\right.\\[3pt]\]
+    所以$\mathrm{Hom}((f',g')\circ(f,g))=\mathrm{Hom}(f'\circ^{\mathrm{op}}f,
+    g'\circ g)=\mathrm{Hom}(f',g')\circ\mathrm{Hom}(f,g)$. \hfill $\qedsymbol$
+\end{enumerate}
+
+\begin{center}\begin{tikzpicture}[
+    arrow/.style={-Stealth, thick}]
+    \node (Cat_C) at (-5, 0.8) {$\mathbf{C}$};
+    \node (Cat_Set) at (-5, -1) {$\mathbf{Set}$};
+    \node (X) at (-3, 1.6) {$X$};
+    \node (Y) at (0, 1.6) {$Y$};
+    \node (Z) at (3, 1.6) {$Z$};
+    \node (A) at (-3, 0) {$A$};
+    \node (B) at (0, 0) {$B$};
+    \node (C) at (3, 0) {$C$};
+    \draw[arrow] (X) -- node[right] {$\varphi$} (A);
+    \draw[arrow] (Y) -- node[right] {$g\varphi f$} (B);
+    \draw[arrow] (Z) -- node[right] {$g'g\varphi ff'$} (C);
+    \draw[arrow] (Z) --node[above] {$f'$} (Y);
+    \draw[arrow] (Y) --node[above] {$f$} (X);
+    \draw[arrow] (A) --node[above] {$g$} (B);
+    \draw[arrow] (B) --node[above] {$g'$} (C);
+    \draw[arrow] (-2.9, -1) --node[below] {$\mathrm{Hom}(f,g)$} (-0.1, -1);
+    \draw[arrow] (0.1, -1) --node[below] {$\mathrm{Hom}(f',g')$} (2.9, -1);
+    \draw[gray, dashed] (-5.5, -0.5) -- (4.5, -0.5);
+\end{tikzpicture}\end{center}
+
+
+
+
+
+\newpage
+
+\section{Cat范畴}
+
+% 这两天作息烂完, 困死了.
+% 写不动了. 晚安.
+% 2026.06.19
+
+% 在清华的最后一个晚上. 再见了.
+% 今当远离, 临表涕零, 不知所言.
+
+% 自强不息  厚德载物
+% 2026.06.29
+
+\hypertarget{sec:定义2.1}{}
+\noindent\textbf{定义2.1 (函子的复合)}
+
+给定范畴$\mathbf{C},\mathbf{D},\mathbf{E}$和函子
+$F:\mathbf{C}\to\mathbf{D},\,G:\mathbf{D}\to\mathbf{E}$, 令
+\[
+    G\circ F\overset{\mathrm{def}}{=}(G_O\circ F_O,\,G_M\circ F_M),
+\]
+它是从$\mathbf{C}$到$\mathbf{E}$的函子.
+
+\vspace{10pt}
+
+用恒等函子和函子的复合, 可以定义$\mathbf{Cat}$范畴.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义2.2}{}
+\noindent\textbf{定义2.2 (Cat范畴)}
+
+给定一些范畴组成的集合$O$:
+\begin{enumerate}
+    \item 定义$\displaystyle M=\bigcup_{\mathbf{C},\mathbf{D}\in O}
+    \{(F,\mathbf{C},\mathbf{D})\mid F:\mathbf{C}\to\mathbf{D}\}$,
+    \vspace{3pt}
+    \item 对任意的$(F,\mathbf{C},\mathbf{D})\in M$, 定义
+    $s(F,\mathbf{C},\mathbf{D})=\mathbf{C}$,
+    $t(F,\mathbf{C},\mathbf{D})=\mathbf{D}$,
+    \item 对任意的$\mathbf{C}\in O$, 定义$i(\mathbf{C})=I_{\mathbf{C}}$,
+    \item 对任意的$(F,\mathbf{C},\mathbf{D}),(G,\mathbf{D},\mathbf{E})\in M$,
+    定义$(G,\mathbf{D},\mathbf{E})\circ(F,\mathbf{C},\mathbf{D})=
+    (G\circ F,\,\mathbf{C},\mathbf{E})$ (函子的复合),
+\end{enumerate}
+则$\mathbf{Cat}_O=(O,M,s,t,i,\circ)$是范畴.
+
+\noindent{\kaishu 备注.
+在明确$\mathbf{C},\mathbf{D}$的时候, 在不产生歧义的情况下不区分函子$F$
+与态射$(F,\mathbf{C},\mathbf{D})$.}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1}
+
+任给一个宇宙$\mathcal{U}$, 记$O$为所有$\mathcal{U}$-小范畴组成的集合,
+则$\mathbf{Cat}_O$是$\mathcal{U}$-局部小范畴, 也简记为$\mathbf{Cat}$.
+
+\noindent{\kaishu 证明.}
+
+对任意的$\mathbf{C},\mathbf{D}\in O$, 有
+$\mathrm{Ob}(\mathbf{C}),\mathrm{Ob}(\mathbf{D}),
+\mathrm{Mor}(\mathbf{C}),\mathrm{Mor}(\mathbf{D})\in\mathcal{U}$, 所以
+\[
+    [\mathbf{C},\mathbf{D}]\subset
+    \,\,\!^{\mathrm{Ob}(\mathbf{C})}\mathrm{Ob}(\mathbf{D})\times
+    \,\,\!^{\mathrm{Mor}(\mathbf{C})}\mathrm{Mor}(\mathbf{D})\in\mathcal{U},
+\]
+从而
+\[
+    \mathbf{Cat}(\mathbf{C},\mathbf{D})=[\mathbf{C},\mathbf{D}]\times
+    \{\mathbf{C}\}\times\{\mathbf{D}\}\in\mathcal{U},
+\]
+即$\mathbf{Cat}$是局部小范畴. \hfill $\qedsymbol$
+
+\end{document}

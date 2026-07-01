@@ -69,10 +69,12 @@
 
 给定范畴$\mathbf{C}=(O,M,s,t,i,\circ)$,
 \begin{enumerate}
-    \item 对任意的$f\in M$定义$s'(f)=t(f)$,$t'(f)=s(f)$,
-    \item 对任意的$f,g\in M$, 当$s'(g)=t'(f)$时定义$g\circ'f=f\circ g$,
+    \item 对任意的$f\in M$定义$s^{\mathrm{op}}(f)=t(f)$, $t^{\mathrm{op}}(f)=s(f)$,
+    \item 对任意的$f,g\in M$, 当$s^{\mathrm{op}}(g)=t^{\mathrm{op}}(f)$时
+    定义$g\circ^{\mathrm{op}}f=f\circ g$,
 \end{enumerate}
-则$\mathbf{C}^{\mathrm{op}}=(O,M,s',t',i,\circ')$是范畴,
+则$\mathbf{C}^{\mathrm{op}}=
+(O,M,s^{\mathrm{op}},t^{\mathrm{op}},i,\circ^{\mathrm{op}})$是范畴,
 称之为$\mathbf{C}$的\textbf{对偶范畴}.
 
 \vspace{10pt}
