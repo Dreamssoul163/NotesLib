@@ -1,0 +1,283 @@
+\documentclass[UTF8]{ctexart}
+\input{../../../preamble.tex}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{自然变换}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (自然变换)}
+
+给定范畴$\mathbf{C},\mathbf{D}$和函子$F,G:\mathbf{C}\to\mathbf{D}$.
+如果$\eta:\mathrm{Ob}(\mathbf{C})\to\mathrm{Mor}(\mathbf{D})$满足:
+\begin{enumerate}
+    \item 对$\mathbf{C}$中任意的对象$X$, 在$\mathbf{D}$中有$\eta_X:F(X)\to G(X)$,
+    \item 对$\mathbf{C}$中任意的$f:X\to Y$, 在$\mathbf{D}$中有
+    $\eta_Y\circ F(f)=G(f)\circ\eta_X$ (记为$\eta_f$),
+\end{enumerate}
+\begin{center}\begin{tikzpicture}[
+    box/.style={draw, thick, minimum width=5.5cm, minimum height=2.9cm},
+    arrow/.style={-Stealth, thick}]
+    \node[box] (Cbox) at (-4,0) {};
+    \node[anchor=north west, xshift=5, yshift=-5] at (Cbox.north west)
+    {$\mathbf{C}$};
+    \node (X) at (-5, 0) {$X$};
+    \node (Y) at (-3, 0) {$Y$};
+    \draw[arrow] (X) -- node[above, pos=0.5] {$f$} (Y);
+    \node[box] (Dbox) at (4,0) {};
+    \node[anchor=north west, xshift=5, yshift=-5] at (Dbox.north west)
+    {$\mathbf{D}$};
+    \node (FX) at (2.5, 0.6) {$F(X)$};
+    \node (FY) at (5.5, 0.6) {$F(Y)$};
+    \node (GX) at (2.5, -0.8) {$G(X)$};
+    \node (GY) at (5.5, -0.8) {$G(Y)$};
+    \draw[arrow] (FX) --node[above, pos=0.5] {$F(f)$} (FY);
+    \draw[arrow] (GX) --node[above, pos=0.5] {$G(f)$} (GY);
+    \draw[arrow] (FX) --node[left, pos=0.5] {$\eta_X$} (GX);
+    \draw[arrow] (FY) --node[left, pos=0.5] {$\eta_Y$} (GY);
+    \draw[arrow, very thick] ([xshift=10, yshift=17]Cbox.east)
+    --node[above, pos=0.25] {$F$} ([xshift=-10, yshift=17]Dbox.west);
+    \draw[arrow, very thick] ([xshift=10, yshift=-23]Cbox.east)
+    --node[above, pos=0.25] {$G$} ([xshift=-10, yshift=-23]Dbox.west);
+    \draw[double, double distance=2pt, thick, -Latex] (0, 0.4)
+    --node[right, pos=0.5] {$\eta$} (0, -0.6);
+\end{tikzpicture}\end{center}
+就称$\eta$是从$F$到$G$的\textbf{自然变换}, 记作$\eta:F\Rightarrow G$.
+记$F$到$G$的全体自然变换组成的集合为$\mathrm{Nat}(F,G)$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (恒等自然变换)}
+
+给定范畴$\mathbf{C},\mathbf{D}$和函子$F:\mathbf{C}\to\mathbf{D}$, 定义
+\[
+    I_F:\,\mathrm{Ob}(\mathbf{C})\to\mathrm{Mor}(\mathbf{D}),
+    \quad X\mapsto I_{F(X)},
+\]
+则$I_F$是$F$到自身的自然变换, 称作$F$上的\textbf{恒等自然变换}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.3}{}
+\noindent\textbf{定义1.3 (自然变换的纵复合)}
+
+给定范畴$\mathbf{C},\mathbf{D}$, 函子$F,G,H:\mathbf{C}\to\mathbf{D}$
+和自然变换$\eta:F\Rightarrow G,\,\theta:G\Rightarrow H$, 定义
+\[
+    \theta\circ\eta:\,\mathrm{Ob}(\mathbf{C})\to\mathrm{Mor}(\mathbf{D}),
+    \quad X\mapsto\theta_X\circ\eta_X,
+\]
+则$\theta\circ\eta$是从$F$到$H$的自然变换, 称作$\eta,\theta$的\textbf{纵复合}.
+
+\noindent{\kaishu 验证.}
+
+\begin{center}\begin{tikzpicture}[
+    box/.style={draw, thick, minimum width=5.5cm, minimum height=4.2cm},
+    arrow/.style={-Stealth, thick}]
+    \node[box] (Cbox) at (-4,0) {};
+    \node[anchor=north west, xshift=5, yshift=-5] at (Cbox.north west)
+    {$\mathbf{C}$};
+    \node (X) at (-5, 0) {$X$};
+    \node (Y) at (-3, 0) {$Y$};
+    \draw[arrow] (X) -- node[above, pos=0.5] {$f$} (Y);
+    \node[box] (Dbox) at (4,0) {};
+    \node[anchor=north west, xshift=5, yshift=-5] at (Dbox.north west)
+    {$\mathbf{D}$};
+    \node (FX) at (2.5, 1.3) {$F(X)$};
+    \node (FY) at (5.5, 1.3) {$F(Y)$};
+    \node (GX) at (2.5, -0.1) {$G(X)$};
+    \node (GY) at (5.5, -0.1) {$G(Y)$};
+    \node (HX) at (2.5, -1.5) {$H(X)$};
+    \node (HY) at (5.5, -1.5) {$H(Y)$};
+    \draw[arrow] (FX) --node[left, pos=0.5] {$\eta_X$} (GX);
+    \draw[arrow] (FY) --node[left, pos=0.5] {$\eta_Y$} (GY);
+    \draw[arrow] (GX) --node[left, pos=0.5] {$\theta_X$} (HX);
+    \draw[arrow] (GY) --node[left, pos=0.5] {$\theta_Y$} (HY);
+    \draw[arrow] (FX) --node[above, pos=0.5] {$F(f)$} (FY);
+    \draw[arrow] (GX) --node[above, pos=0.5] {$G(f)$} (GY);
+    \draw[arrow] (HX) --node[above, pos=0.5] {$H(f)$} (HY);
+    \draw[arrow, very thick] ([xshift=10, yshift=37]Cbox.east)
+    --node[above, pos=0.25] {$F$} ([xshift=-10, yshift=37]Dbox.west);
+    \draw[arrow, very thick] ([xshift=10, yshift=-3]Cbox.east)
+    --node[above, pos=0.25] {$G$} ([xshift=-10, yshift=-3]Dbox.west);
+    \draw[arrow, very thick] ([xshift=10, yshift=-43]Cbox.east)
+    --node[above, pos=0.25] {$H$} ([xshift=-10, yshift=-43]Dbox.west);
+    \draw[double, double distance=2pt, thick, -Latex] (0, 1.1)
+    --node[right, pos=0.5] {$\eta$} (0, 0.1);
+    \draw[double, double distance=2pt, thick, -Latex] (0, -0.3)
+    --node[right, pos=0.5] {$\theta$} (0, -1.3);
+\end{tikzpicture}\end{center}
+
+对$\mathbf{C}$中任意的$f:X\to Y$, 在$\mathbf{D}$中有
+\begin{equation*}
+    (\theta\circ\eta)_Y\circ F(f)=\theta_Y\circ\eta_Y\circ F(f)=
+    \theta_Y\circ G(f)\circ\eta_X=H(f)\circ\theta_X\circ\eta_X=
+    H(f)\circ(\theta\circ\eta)_X.
+\tag*{\qedsymbol}\end{equation*}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+关于自然变换的纵复合, 在有定义的情形下:
+\begin{enumerate}
+    \item $\eta\circ I_F=\eta$, $I_G\circ\eta=\eta$,
+    \item $\kappa\circ(\theta\circ\eta)=(\kappa\circ\theta)\circ\eta$.
+\end{enumerate}
+
+
+
+
+
+\newpage
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.4}{}
+\noindent\textbf{定义1.4 (自然变换的横复合)}
+
+给定范畴$\mathbf{C},\mathbf{D},\mathbf{E}$, 函子
+$F,G:\mathbf{C}\to\mathbf{D}$, $F',G':\mathbf{D}\to\mathbf{E}$
+和自然变换$\eta:F\Rightarrow G$和$\eta':F'\Rightarrow G'$. 定义
+\[
+    \eta'\ast\eta:\mathrm{Ob}(\mathbf{C})\to\mathrm{Mor}(\mathbf{E}),
+    \quad X\mapsto\eta'_{\eta_X},
+\]
+则$\eta'\ast\eta$是$F'\circ F$到$G'\circ G$的自然变换,
+称作$\eta,\eta'$的\textbf{横复合}.
+
+\noindent{\kaishu 验证.}
+
+\begin{center}\begin{tikzpicture}[
+    arrow/.style={-Stealth, thick}]
+    \node (F'FX) at (-7, 1.3) {$F'(F(X))$};
+    \node (F'GX) at (-4, 2.7) {$F'(G(X))$};
+    \node (G'GX) at (-4, -2) {$G'(G(X))$};
+    \node (F'FY) at (1, 1.3) {$F'(F(Y))$};
+    \node (F'GY) at (4, 2.7) {$F'(G(Y))$};
+    \node (G'GY) at (4, -2) {$G'(G(Y))$};
+    \draw[arrow] (F'FX) --node[above, sloped, pos=0.5] {$F'(\eta_X)$} (F'GX);
+    \draw[dashed, arrow] (F'GX) --node[right, pos=0.4] {$\eta'_{G(X)}$} (G'GX);
+    \draw[arrow] (F'FX) --node[left, pos=0.5, yshift=-5] {$(\eta'\ast\eta)_X$} (G'GX);
+    \draw[arrow] (F'FY) --node[above, sloped, pos=0.5] {$F'(\eta_Y)$} (F'GY);
+    \draw[arrow] (F'GY) --node[right, pos=0.4] {$\eta'_{G(Y)}$} (G'GY);
+    \draw[arrow] (F'FY) --node[left, pos=0.5, yshift=-5] {$(\eta'\ast\eta)_Y$} (G'GY);
+    \draw[arrow] (F'FX) --node[above, pos=0.7]
+    {$F'(F(f))$} (F'FY);
+    \draw[arrow] (F'GX) --node[above, pos=0.5]
+    {$F'(G(f))$} (F'GY);
+    \draw[arrow] (G'GX) --node[above, pos=0.5]
+    {$G'(G(f))$} (G'GY);
+\end{tikzpicture}\end{center}
+
+对$\mathbf{C}$中任意的$f:X\to Y$, 在$\mathbf{E}$中有
+\vspace{3pt}
+\begin{equation*}\begin{aligned}
+    &\,(\eta'\ast\eta)_Y\circ(F'\circ F)(f)
+    =\eta'_{G(Y)}\circ F'(\eta_Y)\circ F'(F(f))\\[-2pt]
+    =&\,\eta'_{G(Y)}\circ F'(G(f))\circ F'(\eta_X)\\[-2pt]
+    =&\,G'(G(f))\circ\eta'_{G(X)}\circ F'(\eta_X)=
+    (G'\circ G)(f)\circ(\eta'\ast\eta)_X.
+\end{aligned}\tag*{\qedsymbol}\end{equation*}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+关于自然变换的横复合, 在有定义的情形下:
+\begin{enumerate}
+    \item $(\eta'\ast I_F)_X=\eta'_{F(X)}$, $(I_{F'}\ast\eta)_X=F'(\eta_X)$,
+    \item $(\eta''\ast\eta')\ast\eta=\eta''\ast(\eta'\ast\eta)$,
+    \item $(\theta'\ast\theta)\circ(\eta'\ast\eta)
+=(\theta'\circ\eta')\ast(\theta\circ\eta)$.
+\end{enumerate}
+
+
+
+
+
+\newpage
+
+\section{函子范畴}
+
+两个范畴之间的函子和它们之间的自然变换可以构成函子范畴.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义2.1}{}
+\noindent\textbf{定义2.1 (函子范畴)}
+
+给定范畴$\mathbf{C},\mathbf{D}$ :
+\begin{enumerate}
+    \item 定义$O=[\mathbf{C},\mathbf{D}]$,
+    $\displaystyle M=\bigcup_{F,G\in O}\{(\eta,F,G)\mid \eta:F\Rightarrow G\}$,
+    \vspace{3pt}
+    \item 对任意的$(\eta,F,G)\in M$, 定义$s(\eta,F,G)=F$, $t(\eta,F,G)=G$,
+    \item 对任意的$F\in O$, 定义$i(F)=I_F$,
+    \item 对任意的$(\eta,F,G),(\theta,G,H)\in M$,
+    定义$(\theta,G,H)\circ(\eta,F,G)=(\theta\circ\eta,\,F,H)$ (自然变换的纵复合),
+\end{enumerate}
+则$(O,M,s,t,i,\circ)$是范畴, 也简记为$[\mathbf{C},\mathbf{D}]$.
+
+\noindent{\kaishu 备注.
+在明确$F,G$的时候, 在不产生歧义的情况下不区分自然变换$\eta$与态射$(\eta,F,G)$.}
+
+\vspace{10pt}
+
+函子范畴中的同构称作自然同构.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1}
+
+给定范畴$\mathbf{C},\mathbf{D}$. 对$\mathbf{C},\mathbf{D}$之间任意的自然变换$\eta$,
+$\eta$是自然同构当且仅当每个$\eta_X$都是$\mathbf{D}$中的同构.
+
+\noindent{\kaishu 证明.}
+
+\noindent{\kaishu 必要性.}
+
+设$\eta:F\Rightarrow G$是自然同构, 即存在$\theta:G\Rightarrow F$使得
+\[
+    \theta\circ\eta=I_F,\quad\eta\circ\theta=I_G,
+\]
+则对$\mathbf{C}$中任意的对象$X$, 有
+\[
+    \theta_X\circ\eta_X=(I_F)_X=I_{F(X)},\quad\eta_X\circ\theta_X=(I_G)_X=I_{G(X)},
+\]
+从而$\eta_X:F(X)\to G(X)$在$\mathbf{D}$中是同构.
+
+\noindent{\kaishu 充分性.}
+
+设$\eta:F\Rightarrow G$且每个$\eta_X$都是同构, 则定义
+\[
+    \theta:\,\mathrm{Ob}(\mathbf{C})\to\mathrm{Mor}(\mathbf{D}),\quad
+    X\mapsto(\eta_X)^{-1},
+\]
+先证$\theta$是从$G$到$F$的自然变换:
+\begin{enumerate}
+    \item 对$\mathbf{C}$中任意的对象$X$, 在$\mathbf{D}$中有$\theta_X:G(X)\to F(X)$,
+    \item 对$\mathbf{C}$中任意的$f:X\to Y$, 在$\mathbf{D}$中有
+    \[
+        \theta_Y\circ G(f)=\theta_Y\circ G(f)\circ\eta_X\circ\theta_X=
+        \theta_Y\circ\eta_Y\circ F(f)\circ\theta_X=F(f)\circ\theta_X,
+    \]
+\end{enumerate}
+所以$\theta:G\Rightarrow F$. 进一步, 对$\mathbf{C}$中任意的对象$X$, 有
+\vspace{3pt}
+\[\begin{aligned}
+    (\theta\circ\eta)_X=\theta_X\circ\eta_X=\mathrm{I}_{F(X)}
+    =(\mathrm{I}_F)_X,\\[-3pt]
+    (\eta\circ\theta)_X=\eta_X\circ\theta_X=\mathrm{I}_{G(X)}
+    =(\mathrm{I}_G)_X,
+\end{aligned}\vspace{3pt}\]
+所以$\theta\circ\eta=\mathrm{I}_F,\,\eta\circ\theta=\mathrm{I}_G$,
+即$\eta$是自然同构. \hfill $\qedsymbol$
+
+\end{document}
