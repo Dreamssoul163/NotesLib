@@ -1,0 +1,138 @@
+\documentclass[UTF8]{ctexart}
+\input{../../../preamble.tex}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{范畴的同构与等价}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (范畴的同构)}
+
+给定\href{01 范畴#nameddest=sec:定义1.1}{范畴}
+$\mathbf{C},\mathbf{D}$. 如果存在\href{02 函子#nameddest=sec:定义1.1}{函子}
+$F:\mathbf{C}\to\mathbf{D},\,G:\mathbf{D}\to\mathbf{C}$使得
+\[
+    G\circ F=I_{\mathbf{C}},\quad F\circ G=I_{\mathbf{D}},
+\]
+就称$\mathbf{C},\mathbf{D}$两个范畴\textbf{同构}.
+
+\vspace{10pt}
+
+范畴同构就是它们在$\mathbf{Cat}$范畴中的同构, 显然是等价关系.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (范畴的等价)}
+
+给定范畴$\mathbf{C},\mathbf{D}$. 如果存在函子
+$F:\mathbf{C}\to\mathbf{D},\,G:\mathbf{D}\to\mathbf{C}$使得
+\[
+    G\circ F\cong I_{\mathbf{C}},\quad F\circ G\cong I_{\mathbf{D}},
+\]
+就称$\mathbf{C},\mathbf{D}$两个范畴\textbf{等价}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+给定范畴$\mathbf{C},\mathbf{D}$, 函子$F:\mathbf{C}\to\mathbf{D}$能构成范畴等价
+当且仅当$F$全忠实且本质满.
+
+\noindent{\kaishu 证明.}
+
+\noindent{\kaishu 必要性.}
+
+设$F,G$构成一对范畴等价, 即有自然同构$\eta:GF\cong I_{\mathbf{C}}$和
+$\theta:FG\cong I_{\mathbf{D}}$.
+
+\begin{enumerate}
+    \item 对$\mathbf{C}$中任意的对象$X,Y$和$f_1,f_2\in\mathbf{C}(X,Y)$,
+    如果$Ff_1=Ff_2$, 那么由$\eta$的自然性得
+    \[
+        f_1=\eta_Y\circ GFf_1\circ\eta_X^{-1}=\eta_Y\circ GFf_2\circ\eta_X^{-1}=f_2.
+    \]
+    \item 对$\mathbf{C}$中任意的对象$X,Y$和$f'\in\mathbf{D}(FX,FY)$,
+    令$f=\eta_Y\circ Gf'\circ\eta_X^{-1}\in\mathbf{C}(X,Y)$, 则由$\eta$的自然性得
+    \[
+        GFf=\eta_Y^{-1}\circ f\circ\eta_X=Gf',
+    \]
+    再由$\theta$的自然性得
+    \vspace{-3pt}
+    \[
+        Ff=\theta_{FY}\circ FGFf\circ\theta_{FX}^{-1}=
+        \theta_{FY}\circ FGf'\circ\theta_{FX}^{-1}=f'.\\[-3pt]
+    \]
+    \item 对$\mathbf{D}$中任意的对象$X'$, 令$X=GX'$, 则有$FX=FGX'\cong X'$.
+\end{enumerate}
+
+\noindent{\kaishu 充分性.}
+
+设$F$全忠实且本质满, 为$\mathbf{D}$中每个对象$X'$选取一个$GX'\in\mathbf{C}$
+使得$FGX'\cong X'$, 再选取一个
+\[
+    \theta_{X'}:FGX'\cong X',
+\]
+再据此对$\mathbf{D}$中的态射
+$f':X'\to Y'$定义$Gf'=F^{-1}(\,\theta_{Y'}^{-1}\circ f'\circ \theta_{X'})\in
+\mathbf{C}(GX',GY')$.
+
+首先证明$G$是函子. 第一, 对$\mathbf{D}$中任意的对象$X'$, 有
+\[
+    GI_{X'}=F^{-1}(\,\theta_{X'}^{-1}\circ I_{X'}\circ \theta_{X'})=
+    F^{-1}I_{FGX'}=I_{GX'},
+\]
+第二, 对$\mathbf{D}$中任意的态射$f':X'\to Y'$和$g':Y'\to Z'$, 有
+\[
+    G(g'\circ f')=F^{-1}(\,\theta_{Z'}^{-1}\circ g'\circ f'\circ \theta_{X'})=
+    F^{-1}(\,\theta_{Z'}^{-1}\circ g'\circ \theta_{Y'}\circ \theta_{Y'}^{-1}\circ f'\circ \theta_{X'})=
+    Gg'\circ Gf'.
+\]
+
+然后对$\mathbf{C}$中任意的对象$X$, 定义$\eta_X=F^{-1}(\theta_{FX})\in\mathbf{C}(GFX,X)$.
+则对$\mathbf{C}$中任意的态射$f:X\to Y$有
+\[
+    F(f\circ\eta_X)=Ff\circ \theta_{FX}=\theta_{FY}\circ \theta_{FY}^{-1}\circ Ff\circ \theta_{FX}=
+    F(\eta_Y\circ GFf)\quad\implies\quad f\circ\eta_X=\eta_Y\circ GFf,
+\]
+从而$\eta:GF\cong I_{\mathbf{C}}$. 另外对$\mathbf{D}$中任意的态射$f':X'\to Y'$有
+\[
+    f'\circ\theta_{X'}=\theta_{Y'}\circ\theta_{Y'}^{-1}\circ f'\circ\theta_{X'}=
+    \theta_{Y'}\circ FGf',
+\]
+从而$\theta:FG\cong I_{\mathbf{D}}$. 综上, $F,G$构成一对范畴等价. \hfill $\qedsymbol$
+
+
+
+
+
+\newpage
+
+根据以上定理, 易证范畴等价也是等价关系:
+\begin{enumerate}
+    \item 自反性、对称性显然,
+    \item 如果$\mathbf{C},\mathbf{D}$等价且$\mathbf{D},\mathbf{E}$也等价,
+    则有全忠实且本质满的
+    \[
+        F:\mathbf{C}\to\mathbf{D},\quad F':\mathbf{D}\to\mathbf{E},
+    \]
+    易证$F'\circ F:\mathbf{C}\to\mathbf{E}$也全忠实且本质满,
+    于是$\mathbf{C},\mathbf{E}$等价.
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+任意范畴与其骨架等价.
+
+\noindent{\kaishu 证明.}
+
+设$\mathbf{S}$是$\mathbf{C}$的骨架, 则包含函子$\iota:\mathbf{S}\to\mathbf{C}$
+是全忠实且本质满的, 从而二者等价. \hfill $\qedsymbol$
+
+\end{document}
