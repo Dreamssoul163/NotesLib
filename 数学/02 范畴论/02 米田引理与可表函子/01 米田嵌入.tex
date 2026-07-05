@@ -1,0 +1,182 @@
+\documentclass[UTF8]{ctexart}
+\input{../../../preamble.tex}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{米田嵌入}
+
+这里给定宇宙$\mathcal{U}$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (预层范畴)}
+
+给定\href{../01 范畴、函子与自然变换/01 范畴#nameddest=sec:定义1.2}{局部小范畴}
+$\mathbf{C}$, 称从$\mathbf{C}^{\mathrm{op}}$到$\mathbf{Set}$的函子
+为$\mathbf{C}$上的\textbf{预层}, 定义
+\[
+    \mathbf{PSh}(\mathbf{C})\overset{\mathrm{def}}{=}
+    [\mathbf{C}^{\mathrm{op}},\mathbf{Set}],
+\]
+称之为$\mathbf{C}$上的\textbf{预层范畴}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (表出预层)}
+
+给定局部小范畴$\mathbf{C}$和其中的对象$X$,
+\begin{enumerate}
+    \item 对$\mathbf{C}^{\mathrm{op}}$中任意的对象$A$,
+    定义$h_X(A)=\mathbf{C}(A,X)$,
+    \item 对$\mathbf{C}^{\mathrm{op}}$中任意的态射$u:A\to B$,
+    即$\mathbf{C}$中的态射$u:B\to A$, 定义映射
+    \[
+        h_X(u):\mathbf{C}(A,X)\to\mathbf{C}(B,X),\quad
+        \alpha\mapsto\alpha\circ u,
+    \]
+\end{enumerate}
+则$h_X$是$\mathbf{C}$上的预层, 称之为\textbf{由}$X$\textbf{表出的预层}.
+
+\noindent{\kaishu 验证.}
+
+\begin{enumerate}
+    \item 对$\mathbf{C}^{\mathrm{op}}$中任意的对象$A$, 有
+    \[\left\{\begin{aligned}
+        &h_X(I_A):&&\alpha\mapsto\alpha\circ I_A=\alpha,\\[-3pt]
+        &I_{h_X(A)}=\mathrm{id}_{\mathbf{C}(A,X)}:&&\alpha\mapsto\alpha,
+    \end{aligned}\right.\]
+    从而$h_X(I_A)=I_{h_X(A)}$.
+    \item 对$\mathbf{C}^{\mathrm{op}}$中任意的态射$u,v$, 在有定义的情形下有
+    \[\left\{\begin{aligned}
+        &h_X(u\circ^{\mathrm{op}}v):&&\alpha\mapsto\alpha\circ(v\circ u),\\[-3pt]
+        &h_X(u)\circ h_X(v):&&\alpha\mapsto(\alpha\circ v)\circ u,
+    \end{aligned}\right.\]
+    从而$h_X(u\circ^\mathrm{op}v)=h_X(u)\circ h_X(v)$. \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{50pt}
+
+\begin{center}\begin{tikzpicture}[
+    box1/.style={draw, thick, minimum width=2cm, minimum height=3cm},
+    box2/.style={draw, thick, minimum width=6cm, minimum height=3cm},
+    arrow/.style={-Stealth, thick}]
+    \node[box1] (Copbox) at (-7,0) {};
+    \node[anchor=north west, xshift=5, yshift=-5] at (Copbox.north west)
+    {$\mathbf{C}^{\mathrm{op}}$};
+    \node (A) at (-7.7, 0) {$A$};
+    \node (B) at (-6.3, 0) {$B$};
+    \draw[arrow] (A) -- node[above] {$u$} (B);
+    \node[box2] (Setbox) at (0,0) {};
+    \node[anchor=north west, xshift=5, yshift=-5] at (Setbox.north west)
+    {$\mathbf{Set}$};
+    \node (CAX) at (-2, 0) {$\mathbf{C}(A,X)$};
+    \node (CBX) at (2, 0) {$\mathbf{C}(B,X)$};
+    \draw[arrow] (CAX) -- node[above] {右复合$u$} (CBX);
+    \draw[arrow, very thick] ([xshift=10]Copbox.east)
+    --node[above] {$h_X$} ([xshift=-10]Setbox.west);
+    \node (A_) at (4, 0) {$A$};
+    \node (X_) at (5.5, 1) {$X$};
+    \node (B_) at (7, 0) {$B$};
+    \draw[arrow] (A_) -- node[left, yshift=2] {$\alpha$} (X_);
+    \draw[arrow] (B_) -- node[below] {$u$} (A_);
+    \draw[arrow] (B_) -- node[right, yshift=2] {$\alpha\circ u$} (X_);
+\end{tikzpicture}\end{center}
+
+
+
+
+
+\newpage
+
+\hypertarget{sec:定义1.3}{}
+\noindent\textbf{定义1.3 (米田嵌入)}
+
+给定局部小范畴$\mathbf{C}$, 对$\mathbf{C}$中任意的对象$X$可以由它表出预层$h_X$.
+
+然后对$\mathbf{C}$中任意的态射$f:X\to Y$定义
+\[
+    h_f:\mathrm{Ob}(\mathbf{C}^{\mathrm{op}})\to\mathrm{Mor}(\mathbf{Set}),
+\]
+其中对$\mathbf{C}^{\mathrm{op}}$中任意的对象$A$,
+\[
+    h_f(A):\mathbf{C}(A,X)\to\mathbf{C}(A,Y),\quad
+    \alpha\mapsto f\circ\alpha,
+\]
+则$h_f:h_X\Rightarrow h_Y$.
+
+进一步, $h$是从$\mathbf{C}$到$\mathbf{PSh}(\mathbf{C})$的函子,
+称之为\textbf{米田嵌入}.
+
+\noindent{\kaishu 验证.}
+
+首先验证$h_f:h_X\Rightarrow h_Y$. 对$\mathbf{C}^{\mathrm{op}}$中任意的态射
+$u:A\to B$, 在$\mathbf{Set}$中有
+\[\left\{\begin{aligned}
+    &h_Y(u)\circ h_f(A):&&\alpha\mapsto(f\circ\alpha)\circ u,\\[-3pt]
+    &h_f(B)\circ h_X(u):&&\alpha\mapsto f\circ(\alpha\circ u),
+\end{aligned}\right.\]
+从而$h_Y(u)\circ h_f(A)=h_f(B)\circ h_X(u)$, 即$h_f$是自然变换.
+
+然后验证$h:\mathbf{C}\to\mathbf{PSh}(\mathbf{C})$.
+\begin{enumerate}
+    \item 对$\mathbf{C}$中任意的对象$X$和$A$, 有
+    \[\left\{\begin{aligned}
+        &h_{I(X)}(A):&&\alpha\mapsto I(X)\circ\alpha=\alpha,\\[-3pt]
+        &I_{h_X}(A)=\mathrm{id}_{h_X(A)}:&&\alpha\mapsto\alpha,
+    \end{aligned}\right.\]
+    从而$h_{I(X)}=I_{h_X}$.
+    \item 对$\mathbf{C}$中任意的态射$f,g$,
+    在有定义的情形下对$\mathbf{C}$中任意的对象$A$有
+    \[\left\{\begin{aligned}
+        &h_{g\circ f}(A):&&\alpha\mapsto(g\circ f)\alpha,\\[-3pt]
+        &(h_g\circ h_f)(A):&&\alpha\mapsto g\circ(f\circ\alpha),
+    \end{aligned}\right.\]
+    从而$h_{g\circ f}=h_g\circ h_f$. \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+\begin{center}\begin{tikzpicture}[
+    box1/.style={draw, thick, minimum width=2cm, minimum height=5cm},
+    box2/.style={draw, thick, minimum width=6cm, minimum height=5cm},
+    arrow/.style={-Stealth, thick}]
+    \node[box1] (Copbox) at (-7,0) {};
+    \node[anchor=north west, xshift=5, yshift=-5] at (Copbox.north west)
+    {$\mathbf{C}^{\mathrm{op}}$};
+    \node (A) at (-7.7, 0) {$A$};
+    \node (B) at (-6.3, 0) {$B$};
+    \draw[arrow] (A) -- node[above] {$u$} (B);
+    \node[box2] (Setbox) at (0,0) {};
+    \node[anchor=north west, xshift=5, yshift=-5] at (Setbox.north west)
+    {$\mathbf{Set}$};
+    \node (CAX) at (-2, 1) {$\mathbf{C}(A,X)$};
+    \node (CBX) at (2, 1) {$\mathbf{C}(B,X)$};
+    \draw[arrow] (CAX) -- node[above] {右复合$u$} (CBX);
+    \draw[arrow, very thick] ([xshift=10, yshift=1cm]Copbox.east)
+    --node[above, pos=0.3] {$h_X$} ([xshift=-10, yshift=1cm]Setbox.west);
+    \node (CAY) at (-2, -1) {$\mathbf{C}(A,Y)$};
+    \node (CBY) at (2, -1) {$\mathbf{C}(B,Y)$};
+    \draw[arrow] (CAY) -- node[above] {右复合$u$} (CBY);
+    \draw[arrow, very thick] ([xshift=10, yshift=-1cm]Copbox.east)
+    --node[above, pos=0.3] {$h_Y$} ([xshift=-10, yshift=-1cm]Setbox.west);
+    \draw[arrow] (CAX) -- node[right] {左复合$f$} (CAY);
+    \draw[arrow] (CBX) -- node[left] {左复合$f$} (CBY);
+    \draw[double, double distance=2pt, thick, -Latex] (-4.5, 0.7)
+    --node[right] {$h_f$} (-4.5, -0.7);
+    \node (A_) at (4, 0) {$A$};
+    \node (X_) at (5.5, 1) {$X$};
+    \node (B_) at (7, 0) {$B$};
+    \node (Y_) at (5.5, -1) {$Y$};
+    \draw[arrow] (A_) -- node[left, yshift=2] {$\alpha$} (X_);
+    \draw[arrow] (B_) -- node[below, pos=0.7] {$u$} (A_);
+    \draw[arrow] (B_) -- node[right, yshift=2] {$\alpha\circ u$} (X_);
+    \draw[arrow] (A_) -- node[left, yshift=-4] {$f\circ\alpha$} (Y_);
+    \draw[arrow] (X_) -- node[right, pos=0.3] {$f$} (Y_);
+    \draw[arrow] (B_) -- node[right, yshift=-4] {$f\circ\alpha\circ u$} (Y_);
+\end{tikzpicture}\end{center}
+
+\end{document}
