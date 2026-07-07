@@ -163,12 +163,15 @@ $\mathrm{Nat}(h_X,F)$ ($(X,F)\in\mathbf{D}$)的更大宇宙$\mathcal{V}$.
 
 \vspace{10pt}
 
-米田嵌入的一个直接推论是, 米田嵌入是全忠实的, 从而预层范畴可以直接视为原范畴的扩张.
+米田嵌入的一个直接推论是, 米田嵌入是全忠实的, 从而预层范畴可以直接视为原范畴对象的扩张.
+
+\vspace{10pt}
 
 \hypertarget{sec:定理2.2}{}
 \noindent\textbf{定理2.2}
 
-米田嵌入$h:\mathbf{C}\to\mathbf{PSh}(\mathbf{C})$是全忠实的.
+米田嵌入$h:\mathbf{C}\to\mathbf{PSh}(\mathbf{C})$是全忠实的;
+对$\mathbf{C}$中任意的对象$X,Y$, 如果$h_X\cong h_Y$, 那么$X\cong Y$.
 
 \noindent{\kaishu 证明.}
 
@@ -179,6 +182,13 @@ $\mathrm{Nat}(h_X,F)$ ($(X,F)\in\mathbf{D}$)的更大宇宙$\mathcal{V}$.
     &h_f:&&A,\alpha\mapsto(h_f)_A(\alpha)=f\circ\alpha,
 \end{aligned}\right.\]
 于是$H_{X,h_Y}(f)=h_f$, 从而$h\!\restriction_{\mathbf{C}(X,Y)}=H_{X,h_Y}$
-是从$\mathbf{C}(X,Y)$到$\mathrm{Nat}(h_X,h_Y)$的双射. \hfill $\qedsymbol$
+是从$\mathbf{C}(X,Y)$到$\mathrm{Nat}(h_X,h_Y)$的双射.
+
+进一步, 如果$h_X\cong h_Y$, 即有$h_f:h_X\cong h_Y$, 记它的逆自然同构为$h_g$. 那么
+\[\left\{\begin{aligned}
+    &h_{g\circ f}=h_g\circ h_f=I_{h_X}=h_{I_X},\\[-3pt]
+    &h_{f\circ g}=h_f\circ h_g=I_{h_Y}=h_{I_Y},
+\end{aligned}\right.\]
+从而$g\circ f=I_X,\,f\circ g=I_Y$, 即$X\cong Y$. \hfill $\qedsymbol$
 
 \end{document}
