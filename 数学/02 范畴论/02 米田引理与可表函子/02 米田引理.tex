@@ -1,0 +1,184 @@
+\documentclass[UTF8]{ctexart}
+\input{../../../preamble.tex}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{求值函子与米田函子}
+
+这里给定宇宙$\mathcal{U}$和
+它的\href{../01 范畴、函子与自然变换/01 范畴#nameddest=sec:定义1.2}{局部小范畴}
+$\mathbf{C}$, 令$\mathbf{D}=\mathbf{C}^{\mathrm{op}}\times\mathbf{PSh}(\mathbf{C})$.
+
+此外, 为了叙述严谨, 取一个包含$\mathcal{U}$且含有全体
+$\mathrm{Nat}(h_X,F)$ ($(X,F)\in\mathbf{D}$)的更大宇宙$\mathcal{V}$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (求值函子)}
+
+\begin{enumerate}
+    \item 对$\mathbf{D}$中任意的对象$(X,F)$, 定义
+    \[
+        \mathrm{Ev}(X,F)=F(X),
+    \]
+    \item 对$\mathbf{D}$中任意的态射$(f,\eta):(Y,F)\to(X,G)$, 定义
+    \[
+        \mathrm{Ev}(f,\eta)=\eta_f=\eta_X\circ F(f)=G(f)\circ\eta_Y,
+    \]
+\end{enumerate}
+则$\mathrm{Ev}$是从$\mathbf{D}$到$\mathbf{Set}$的函子, 称为\textbf{求值函子}.
+
+\noindent{\kaishu 验证.}
+
+第一, 对$\mathbf{D}$中任意的对象$(X,F)$, 有
+\[
+    \mathrm{Ev}(I_{X,F})=\mathrm{Ev}(I_X,I_F)=(I_F)_X\circ F(I_X)=
+    I_{F(X)}=I_{\mathrm{Ev}(X,F)}.
+\]
+
+第二, 对$\mathbf{D}$中的态射$(g,\eta):(Z,F)\to(Y,G)$和$(f,\kappa):(Y,G)\to(X,H)$, 有
+\begin{equation*}
+    \mathrm{Ev}((f,\kappa)\circ(g,\eta))
+    =\kappa_X\circ\eta_X\circ F(f)\circ F(g)
+    =\kappa_X\circ G(f)\circ\eta_Y\circ F(g)
+    =\mathrm{Ev}(f,\kappa)\circ\mathrm{Ev}(g,\eta).
+\tag*{\qedsymbol}\end{equation*}
+
+\vspace{10pt}
+
+求值函子把$\mathbf{C}$的对象$X$和预层$F$作用为$F(X)$,
+即$F$在$X$处的值. 这是一种从内部观察$X$与$F$关系的视角.
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (米田函子)}
+
+\begin{enumerate}
+    \item 对$\mathbf{D}$中任意的对象$(X,F)$, 定义
+    \[
+        \mathrm{Ynd}(X,F)=\mathrm{Nat}(h_X,F),
+    \]
+    \item 对$\mathbf{D}$中任意的态射$(f,\eta):(Y,F)\to(X,G)$, 定义
+    \[
+        \mathrm{Ynd}(f,\eta):\mathrm{Nat}(h_Y,F)\to\mathrm{Nat}(h_X,G),
+        \quad\theta\mapsto\eta\circ\theta\circ h_f,
+    \]
+\end{enumerate}
+则$\mathrm{Ynd}$是从$\mathbf{D}$到$\mathbf{Set}_{\mathcal{V}}$的函子,
+称为\textbf{米田函子}.
+
+\noindent{\kaishu 验证.}
+
+第一, 对$\mathbf{D}$中任意的对象$(X,F)$, 有
+\[\left\{\begin{aligned}
+    &\mathrm{Ynd}(I_{X,F})=\mathrm{Ynd}(I_X,I_F):&&\theta\mapsto
+    I_F\circ\theta\circ h_{I_X}=I_F\circ\theta\circ I_{h_X}=\theta,\\[-3pt]
+    &I_{\mathrm{Ynd}(X,F)}=\mathrm{id}_{\mathrm{Nat}(h_X,F)}:
+    &&\theta\mapsto\theta,
+\end{aligned}\right.\]
+从而$\mathrm{Ynd}(I_{X,F})=I_{\mathrm{Ynd}(X,F)}$.
+
+第二, 对$\mathbf{D}$中任意的态射$(g,\eta),(f,\kappa)$, 在有定义的情形下有
+\[\left\{\begin{aligned}
+    &\mathrm{Ynd}((f,\kappa)\circ(g,\eta))=\mathrm{Ynd}(g\circ f,\kappa\circ\eta):
+    \quad&&\theta\mapsto\kappa\circ\eta\circ\theta\circ h_{g\circ f},\\[-3pt]
+    &\mathrm{Ynd}(f,\kappa)\circ\mathrm{Ynd}(g,\eta):\quad&&\theta\mapsto
+    \kappa\circ(\eta\circ\theta\circ h_g)\circ h_f,
+\end{aligned}\right.\]
+从而$\mathrm{Ynd}((f,\kappa)\circ(g,\eta))=\mathrm{Ynd}(f,\kappa)\circ
+\mathrm{Ynd}(g,\eta)$. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+米田函子把$\mathbf{C}$的对象$X$和预层$F$作用为$\mathrm{Nat}(h_X,F)$,
+即$X$表出的预层与$F$之间的自然变换集. 这是一种从外部观察$X$与$F$关系的视角.
+
+
+
+
+
+
+\newpage
+
+\section{米田引理}
+
+米田引理说明, 求值函子与米田函子之间有自然同构, 即以上两种视角是同构的.
+
+% 纯抽象.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1 (米田引理)}
+
+对$\mathbf{C}$中任意的对象$X$和预层$F$,
+定义$H_{X,F}:F(X)\to\mathrm{Nat}(h_X,F)$如下:
+\[
+    \forall s\in F(X),\,\forall A\in\mathbf{C}^{\mathrm{op}},
+    \forall\alpha\in h_X(A):\quad H_{X,F}(s)_A(\alpha)=F(\alpha)(s),
+\]
+则$H:\mathrm{Ev}\cong\mathrm{Ynd}$.
+
+\noindent{\kaishu 证明.}
+
+首先验证$H_{X,F}(s)$是从$h_X$到$F$的自然变换.
+对$\mathbf{C}^{\mathrm{op}}$中任意的态射$u:A\to B$, 有
+\[\left\{\begin{aligned}
+    &F(u)\circ H_{X,F}(s)_A:&&\alpha\mapsto F(u)(F(\alpha)(s)),\\[-3pt]
+    &H_{X,F}(s)_B\circ h_X(u):&&\alpha\mapsto F(\alpha\circ u)(s),
+\end{aligned}\right.\]
+从而有$H_{X,F}(s)\in\mathrm{Nat}(h_X,F)$.
+
+其次, 对$\mathbf{D}$中任意的态射$(f,\eta):(Y,F)\to(X,G)$, 有
+\[\left\{\begin{aligned}
+    &\mathrm{Ynd}(f,\eta)\circ H_{Y,F}:&&s,A,\alpha\mapsto
+    (\eta\circ H_{Y,F}(s)\circ h_f)(\alpha)=(\eta_A\circ F(f\circ\alpha))(s),\\[-3pt]
+    &H_{X,G}\circ\mathrm{Ev}(f,\eta):&&s,A,\alpha\mapsto
+    G(\alpha)((G(f)\circ\eta_Y)(s))=(G(f\circ\alpha)\circ\eta_Y)(s),
+\end{aligned}\right.\]
+从而$H:\mathrm{Ev}\Rightarrow\mathrm{Ynd}$.
+
+最后, 对$\mathbf{D}$中任意的对象$(X,F)$ :
+\begin{enumerate}
+    \item 任取$s\in F(X)$有
+    \[
+        (H_{X,F}(s))_X(I_X)=F(I_X)(s)=\mathrm{id}_{F(X)}(s)=s,
+    \]
+    从而当$H_{X,F}(s)=H_{X,F}(s')$时显然$s=s'$, 即$H_{X,F}$是单射.
+    \item 任取$\theta:h_X\Rightarrow F$, 有$\eta_X(I_X)\in F(X)$, 同时
+    \[\left\{\begin{aligned}
+        &H_{X,F}(\theta_X(I_X)):\quad&&A,\alpha\mapsto
+        F(\alpha)(\theta_X(I_X))=(F(\alpha)\circ\theta_X)(I_X),\\[-3pt]
+        &\theta:\quad&&A,\alpha\mapsto
+        \theta_A(\alpha)=(\theta_A\circ h_X(\alpha))(I_X),
+    \end{aligned}\right.\]
+    从而$H_{X,F}(\theta_X(I_X))=\theta$, 即$H_{X,F}$是满射.
+\end{enumerate}
+
+综上, $H:\mathrm{Ev}\Rightarrow\mathrm{Ynd}$并且每个$H_{X,F}$都是双射,
+从而$H:\mathrm{Ev}\cong\mathrm{Ynd}$. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+米田嵌入的一个直接推论是, 米田嵌入是全忠实的, 从而预层范畴可以直接视为原范畴的扩张.
+
+\hypertarget{sec:定理2.2}{}
+\noindent\textbf{定理2.2}
+
+米田嵌入$h:\mathbf{C}\to\mathbf{PSh}(\mathbf{C})$是全忠实的.
+
+\noindent{\kaishu 证明.}
+
+任取$\mathbf{C}$中的对象$X,Y$, 对任意的$f\in\mathbf{C}(X,Y)=h_Y(X)$有
+以下两个从$h_X$到$h_Y$的自然变换:
+\[\left\{\begin{aligned}
+    &H_{X,h_Y}(f):&&A,\alpha\mapsto h_Y(\alpha)(f)=f\circ\alpha,\\[-3pt]
+    &h_f:&&A,\alpha\mapsto(h_f)_A(\alpha)=f\circ\alpha,
+\end{aligned}\right.\]
+于是$H_{X,h_Y}(f)=h_f$, 从而$h\!\restriction_{\mathbf{C}(X,Y)}=H_{X,h_Y}$
+是从$\mathbf{C}(X,Y)$到$\mathrm{Nat}(h_X,h_Y)$的双射. \hfill $\qedsymbol$
+
+\end{document}
