@@ -1,0 +1,84 @@
+\documentclass[UTF8]{ctexart}
+\input{../../../preamble.tex}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{可表函子}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (可表函子)}
+
+给定范畴$\mathbf{C}$和其上的预层$F$. 如果存在$\mathbf{C}$中的对象$X$使得
+\[
+    h_X\cong F,
+\]
+就称$F$是\textbf{可表函子}, 称$X$是它的一个\textbf{表示对象}.
+
+\vspace{10pt}
+
+显然一个可表函子的不同表示对象在$\mathbf{C}$中同构.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (泛元素)}
+
+给定范畴$\mathbf{C}$和其上的预层$F$.
+对$\mathbf{C}$中任意的对象$X$和任意的$s\in F(X)$, 如果
+\[
+    H_{X,F}(s):h_X\cong F,
+\]
+就称$(X,s)$是$F$的\textbf{泛元素}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+任给范畴$\mathbf{C}$和其上的预层$F$, $F$可表当且仅当它有泛元素.
+
+\noindent{\kaishu 证明.}
+
+\noindent{\kaishu 必要性.}
+
+如果有$h_X\cong F$, 那么取一个自然同构$\theta:h_X\cong F$, 令$s=\theta_X(I_X)$.
+则由\href{02 米田引理#nameddest=sec:定理2.1}{米田引理}得
+\[
+    H_{X,F}(s)=\theta:h_X\cong F,
+\]
+即$(X,s)$是$F$的泛元素.
+
+\noindent{\kaishu 充分性.} 显然. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2 (泛性质)}
+
+给定范畴$\mathbf{C}$, 对象$X$, 预层$F$和$s\in F(X)$.
+$(X,s)$是$F$的泛元素当且仅当它们具有\textbf{泛性质}:
+
+对$\mathbf{C}$中任意的对象$A$和任意的$t\in F(A)$,
+存在唯一的$\alpha\in\mathbf{C}(A,X)$使得$F(\alpha)(s)=t$.
+
+\noindent{\kaishu 证明.}
+
+\noindent{\kaishu 必要性.}
+
+如果$(X,s)$是泛元素, 即$H_{X,F}(s):h_X\cong F$, 那么对$\mathbf{C}$中任意的对象$A$,
+\[
+    H_{X,F}(s)_A:\,\mathbf{C}(A,X)\to F(A),\quad\alpha\mapsto F(\alpha)(s)
+\]
+是双射. 从而对任意的$t\in F(A)$,
+存在唯一的$\alpha\in\mathbf{C}(A,X)$使得$F(\alpha)(s)=t$.
+
+\noindent{\kaishu 充分性.}
+
+泛性质同样可以说明$H_{X,F}(s)_A$是双射, 即$H_{X,F}(s)$是自然同构,
+$(X,s)$是泛元素. \hfill $\qedsymbol$
+
+% 逻辑非常简洁, 但不知道这些是不是正确的思想.
+
+\end{document}
