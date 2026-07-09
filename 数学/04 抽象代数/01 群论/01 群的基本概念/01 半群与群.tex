@@ -1,0 +1,148 @@
+\documentclass[UTF8]{ctexart}
+\input{../../../../preamble.tex}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{半群与群}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (半群)}
+
+给定集合$G$和$G$上的二元运算$\cdot$\,, 如果
+\[
+    \forall x,y,z\in G:\,x(yz)=(xy)z,
+\]
+就称$(G,\cdot)$是一个\textbf{半群}, 有时简写为$G$. 进一步,
+\begin{enumerate}
+    \item 如果$\forall x,y\in G:\,xy=yx$, 就称$(G,\cdot)$是一个\textbf{交换半群},
+    \item 如果存在$e\in G$使得$\forall x\in G:\,xe=ex=x$,
+    就称$(G,e,\cdot)$是一个\textbf{幺半群}, 称$e$为其\textbf{单位元}.
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+幺半群的单位元唯一, 即如果$(G,e,\cdot)$和$(G,e',\cdot)$都是幺半群, 那么$e=e'$.
+
+\noindent{\kaishu 证明.}
+
+如果$e,e'$都是单位元, 那么$e=ee'=e'$. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+幺半群对应于
+单点\href{../../../02 范畴论/01 范畴、函子与自然变换/01 范畴#nameddest=sec:定义1.1}
+{范畴}. 一方面, 任给幺半群$(G,e,\cdot)$,
+\begin{enumerate}
+    \item 定义$O=1$, $M=G$, $i(0)=e$,
+    \item 对任意的$x\in G$, 定义$s(f)=t(f)=0$,
+    \item 对任意的$x,y\in G$, 定义$x\circ y=xy$,
+\end{enumerate}
+则$\mathbf{C}=(O,M,s,t,i,\circ)$是一个单点范畴.
+
+另一方面, 任给范畴$\mathbf{C}$和对象$A$,
+$(\,\mathbf{C}(A,A),I_A,\circ\,)$是一个幺半群.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (群)}
+
+给定幺半群$(G,e,\cdot)$, 如果
+\[
+    \forall x\in G,\,\exists y\in G:xy=yx=e,
+\]
+那么称$(G,e,\cdot)$是一个\textbf{群}. 交换的群也叫\textbf{Abel群}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+群中元素$x$的逆元唯一, 记为$x^{-1}$.
+
+\noindent{\kaishu 证明.}
+
+任给群$(G,e,\cdot)$和$x\in G$. 如果$y,y'$都是$x$的逆元, 那么
+$y=yxy'=y'$. \hfill $\qedsymbol$
+
+
+
+
+
+\newpage
+
+群有以下等价的定义方式.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.3}{}
+\noindent\textbf{定理1.3}
+
+任给半群$G$, 它能构成群当且仅当
+\begin{enumerate}
+    \item 存在左单位元$e$, 使得对任意的$x$有$ex=x$,
+    \item 对任意的$x$, 存在左逆元$y$, 使得$yx=e$.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\noindent{\kaishu 必要性.} 显然.
+
+\noindent{\kaishu 充分性.}
+
+首先可证左逆元就是逆元: 对任意的$x$, 取它的左逆元$y$, 再取$y$的左逆元$z$, 则
+\[
+    xy=(zy)xy=z(yx)y=zy=e,
+\]
+其次可证左单位元就是单位元: 对任意的$x$,
+\begin{equation*}
+    xe=x(yx)=(xy)x=ex=x.
+\tag*{\qedsymbol}\end{equation*}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.4}{}
+\noindent\textbf{定理1.4}
+
+任给半群$G$, 它能构成群当且仅当对任意的$a,b$, 存在$x,y$使得$ax=ya=b$.
+
+\noindent{\kaishu 证明.}
+
+\noindent{\kaishu 必要性.} 显然取$x=a^{-1}b,\,y=ba^{-1}$即可.
+
+\noindent{\kaishu 充分性.}
+
+任取$a$, 并取$e$使得$ea=a$. 此时可证$e$是左单位元: 对任意的$b$, 取$x$使得$ax=b$, 则
+\[
+    eb=e(ax)=(ea)x=ax=b,
+\]
+其次, 显然任意元素都有左逆元. 所以由上述定理得$G$是群. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.5}{}
+\noindent\textbf{定理1.5}
+
+任给有限半群$G$, 它能构成群当且仅当两侧消去律都成立.
+
+\noindent{\kaishu 证明.}
+
+\noindent{\kaishu 必要性.} 显然.
+
+\noindent{\kaishu 充分性.}
+
+如果左消去律成立, 那么对任意的$a,b$, 映射
+\[
+    G\to G,\quad x\mapsto ax
+\]
+是单射, 从而一定是满射, 即存在$x$使得$ax=b$.
+
+同理如果右消去律成立, 那么对任意的$a,b$, 存在$y$使得$ya=b$.
+所以由上述定理得$G$是群. \hfill $\qedsymbol$
+
+\end{document}
