@@ -5,7 +5,7 @@
 \setlength{\abovedisplayskip}{1pt}
 \setlength{\belowdisplayskip}{1pt}
 
-\section{半群与群}
+\section{半群}
 
 \hypertarget{sec:定义1.1}{}
 \noindent\textbf{定义1.1 (半群)}
@@ -49,26 +49,24 @@ $(\,\mathbf{C}(A,A),I_A,\circ\,)$是一个幺半群.
 
 \vspace{10pt}
 
-\hypertarget{sec:定义1.2}{}
-\noindent\textbf{定义1.2 (群)}
-
-给定幺半群$(G,e,\cdot)$, 如果
-\[
-    \forall x\in G,\,\exists y\in G:xy=yx=e,
-\]
-那么称$(G,e,\cdot)$是一个\textbf{群}. 交换的群也叫\textbf{Abel群}.
+半群的子集之间也可以做运算成为半群, 即收集它们所有元素的积.
 
 \vspace{10pt}
 
-\hypertarget{sec:定理1.2}{}
-\noindent\textbf{定理1.2}
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2}
 
-群中元素$x$的逆元唯一, 记为$x^{-1}$.
+给定半群$(G,\cdot)$, 对任意的$A,B\subset G$定义
+\[
+    A\ast B=\{ab\mid a\in A,b\in B\},
+\]
+则$(\,\mathcal{P}(G),\ast)$也是半群.
 
-\noindent{\kaishu 证明.}
+进一步, 如果$(G,e,\circ)$是幺半群, 那么这里$(\,\mathcal{P}(G),\{e\},\ast)$也是幺半群.
 
-任给群$(G,e,\cdot)$和$x\in G$. 如果$y,y'$都是$x$的逆元, 那么
-$y=yxy'=y'$. \hfill $\qedsymbol$
+\vspace{10pt}
+
+在子集之间的运算中, 通常把单点集$\{x\}$简写为$x$, 省略$\ast$符号.
 
 
 
@@ -76,12 +74,25 @@ $y=yxy'=y'$. \hfill $\qedsymbol$
 
 \newpage
 
+\section{群}
+
+\hypertarget{sec:定义2.1}{}
+\noindent\textbf{定义2.1 (群)}
+
+给定幺半群$(G,e,\cdot)$, 如果任意的$x\in G$都有逆元$y\in G$, 即
+\[
+    xy=yx=e,
+\]
+那么称$(G,e,\cdot)$是一个\textbf{群}, 显然逆元是唯一的. 交换的群也叫\textbf{Abel群}.
+
+\vspace{10pt}
+
 群有以下等价的定义方式.
 
 \vspace{10pt}
 
-\hypertarget{sec:定理1.3}{}
-\noindent\textbf{定理1.3}
+\hypertarget{sec:定理2.2}{}
+\noindent\textbf{定理2.2}
 
 任给半群$G$, 它能构成群当且仅当
 \begin{enumerate}
@@ -106,8 +117,8 @@ $y=yxy'=y'$. \hfill $\qedsymbol$
 
 \vspace{10pt}
 
-\hypertarget{sec:定理1.4}{}
-\noindent\textbf{定理1.4}
+\hypertarget{sec:定理2.3}{}
+\noindent\textbf{定理2.3}
 
 任给半群$G$, 它能构成群当且仅当对任意的$a,b$, 存在$x,y$使得$ax=ya=b$.
 
@@ -125,8 +136,8 @@ $y=yxy'=y'$. \hfill $\qedsymbol$
 
 \vspace{10pt}
 
-\hypertarget{sec:定理1.5}{}
-\noindent\textbf{定理1.5}
+\hypertarget{sec:定理2.4}{}
+\noindent\textbf{定理2.4}
 
 任给有限半群$G$, 它能构成群当且仅当两侧消去律都成立.
 
