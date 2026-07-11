@@ -1,0 +1,177 @@
+\documentclass[UTF8]{ctexart}
+\input{../../../../preamble.tex}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{群同态}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (群同态)}
+
+给定群$G,H$. 如果映射$\varphi:G\to H$满足
+\[
+    \forall g_1,g_2\in G:\quad\varphi(g_1g_2)=\varphi(g_1)\,\varphi(g_2),
+\]
+就称$\varphi$是从$G$到$H$的\textbf{群同态}.
+记从$G$到$H$的所有群同态组成的集合为$\mathrm{Hom}(G,H)$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+任给群同态$\varphi:G\to H$, 则
+\begin{enumerate}
+    \item $\varphi(1_G)=1_H$,
+    \item 对任意的$g\in G$, $\varphi(g^{-1})=\varphi(g)^{-1}$.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item $\varphi(1_G)^2=\varphi(1_G^2)=\varphi(1_G)$, 所以$\varphi(1_G)=1_H$.
+    \item 对任意的$g\in G$, $\varphi(g)\,\varphi(g^{-1})=\varphi(gg^{-1})
+    =\varphi(1_G)=1_H$, 所以$\varphi(g^{-1})=\varphi(g)^{-1}$. \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+群同态正是群作为\href{../../../05 数理逻辑/02 模型论/01 一阶语言的结构/02 结构的同态#nameddest=sec:定义1.1}
+{一阶结构的同态}, 从而一些群及它们间的群同态可以组成范畴, 记作$\mathbf{Grp}$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (群同态的核与像)}
+
+给定群同态$\varphi:G\to H$, 定义
+\[
+    \mathrm{Ker}\,\varphi\overset{\mathrm{def}}{=}\{\,g\in G\mid\varphi(g)=1_H\,\},
+    \quad\mathrm{Im}\,\varphi\overset{\mathrm{def}}{=}\mathrm{Ran}\,\varphi,
+\]
+分别称为$\varphi$的\textbf{核}与\textbf{像}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+任给群同态$\varphi:G\to H$, 有$\mathrm{Ker}\,\varphi<G$, $\mathrm{Im}\,\varphi<H$.
+
+\noindent{\kaishu 证明.}
+
+第一, 对任意的$g_1,g_2\in\mathrm{Ker}\,\varphi$,
+有$\varphi(g_1)=\varphi(g_2)=1_H$, 从而
+\[
+    \varphi(g_1g_2^{-1})=\varphi(g_1)\,\varphi(g_2)^{-1}=1_H,
+\]
+即$g_1g_2^{-1}\in\mathrm{Ker}\,\varphi$.
+显然$\mathrm{Ker}\,\varphi$非空, 所以$\mathrm{Ker}\,\varphi<G$.
+
+第二, 对任意的$h_1,h_2\in\mathrm{Im}\,\varphi$, 存在$g_1,g_2\in G$使得
+\[
+    \varphi(g_1)=h_1,\,\varphi(g_2)=h_2\quad\implies\quad
+    \varphi(g_1g_2^{-1})=\varphi(g_1)\,\varphi(g_2)^{-1}=h_1h_2^{-1},
+\]
+即$h_1h_2^{-1}\in\mathrm{Im}\,\varphi$.
+显然$\mathrm{Im}\,\varphi$非空, 所以$\mathrm{Im}\,\varphi<H$.
+\hfill $\qedsymbol$
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.3}{}
+\noindent\textbf{定理1.3}
+
+任给群同态$\varphi:G\to H$, $\varphi$是单同态当且仅当$\mathrm{Ker}\,\varphi=\{1_G\}$.
+
+\noindent{\kaishu 证明.}
+
+一方面, 如果$\varphi$是单同态, 那么对任意的$g\in\mathrm{Ker}\,\varphi$有
+\[
+    \varphi(g)=1_H=\varphi(1_G)\quad\implies\quad g=1_G,
+\]
+所以$\mathrm{Ker}\,\varphi=\{1_G\}$.
+
+另一方面, 如果$\mathrm{Ker}\,\varphi=\{1_G\}$, 那么对任意的$g_1,g_2\in G$,
+如果$\varphi(g_1)=\varphi(g_2)$, 那么
+\[
+    \varphi(g_1g_2^{-1})=\varphi(g_1)\,\varphi(g_2)^{-1}=1_H\quad\implies\quad
+    g_1g_2^{-1}=1_G\quad\implies\quad g_1=g_2,
+\]
+所以$\varphi$是单同态. \hfill $\qedsymbol$
+
+
+
+
+
+\newpage
+
+\section{群同构}
+
+\hypertarget{sec:定义2.1}{}
+\noindent\textbf{定义2.1 (群同构)}
+
+给定群同态$\varphi:G\to H$, 如果$\varphi$是双射,
+就称$\varphi$是从$G$到$H$的\textbf{群同构}, 记作$\varphi:G\cong H$.
+
+\vspace{10pt}
+
+群同构恰好是一阶结构的同构, 也恰好是$\mathbf{Grp}$范畴中的同构.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义2.2}{}
+\noindent\textbf{定义2.2 (自同构群)}
+
+给定群$G$, 记从$G$到自身的所有群同构组成的集合为
+\[
+    \mathrm{Aut}(G)\overset{\mathrm{def}}{=}\{\,\varphi:G\cong G\,\},
+\]
+则$(\,\mathrm{Aut}(G),\mathrm{id}_G,\circ\,)$是群, 称为$G$的\textbf{自同构群}.
+
+\noindent{\kaishu 证明.}
+
+显然复合满足结合律; $\mathrm{id}_G$是复合的单位元; 每个自同构的逆映射也是自同构.
+\hfill $\qedsymbol$
+
+\vspace{10pt}
+
+\hypertarget{sec:定义2.3}{}
+\noindent\textbf{定义2.3 (内自同构)}
+
+给定群$G$和$g\in G$, 定义
+\vspace{-3pt}
+\[
+    \mathrm{Int}(g):G\to G,\quad h\mapsto ghg^{-1},\\[-3pt]
+\]
+它是$G$的自同构, 称为一个\textbf{内自同构}.
+
+进一步, 映射$\mathrm{Int}:G\to\mathrm{Aut}(G)$是群同态, 称它的像
+$\mathrm{Int}(G)$为$G$的\textbf{内自同构群}.
+
+\noindent{\kaishu 验证.}
+
+首先, 对任意的$h_1,h_2\in G$, 有
+\[
+    \mathrm{Int}(g)(h_1h_2)=gh_1h_2g^{-1}=(gh_1g^{-1})(gh_2g^{-1})
+    =\mathrm{Int}(g)(h_1)\,\mathrm{Int}(g)(h_2),
+\]
+所以$\mathrm{Int}(g):G\to G$是群同态. 其次, 显然
+\[
+    \mathrm{Int}(g^{-1}):G\to G,\quad h\mapsto g^{-1}hg
+\]
+是$\mathrm{Int}(g)$的逆映射, 即$\mathrm{Int}(g)$是双射.
+于是$\mathrm{Int}(g):G\cong G$.
+
+进一步, 对任意的$g_1,g_2\in G$, 有
+\[\left\{\begin{aligned}
+    &\mathrm{Int}(g_1g_2):&&h\mapsto
+    g_1g_2h(g_1g_2)^{-1}=g_1g_2hg_2g_1^{-1},\\[-3pt]
+    &\mathrm{Int}(g_1)\circ\mathrm{Int}(g_2):&&h\mapsto
+    g_1(g_2hg_2^{-1})g_1^{-1},
+\end{aligned}\right.\]
+所以$\mathrm{Int}:G\to\mathrm{Aut}(G)$是群同态. \hfill $\qedsymbol$
+
+\end{document}
