@@ -1,0 +1,83 @@
+\documentclass[UTF8]{ctexart}
+\input{../../../preamble.tex}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{有序求和}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (有序求和)}
+
+给定\href{../../05 抽象代数/01 群论/01 群的基本概念/01 半群与群#nameddest=sec:定义1.1}{半群}
+$(A,+)$, 对任意的自然数$m,k$和映射$f:[\,m,m+k\,]\to A$, 对$j\leqslant k$递归定义
+\vspace{3pt}
+\[\sum_{i=m}^{m+j}f(i)=\left\{\begin{aligned}
+    &f(m),&&j=0,\\
+    &\sum_{i=m}^{m+j-1}f(i)+f(m+j),&&0<j\leqslant k.
+\end{aligned}\right.\]
+
+\vspace{15pt}
+
+一个序列的求和可以拆成两段子序列的求和之和.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+任给半群$(A,+)$, 自然数$m,p,k$ ($p<k$)和映射$f:[\,m,m+k\,]\to A$, 有
+\vspace{3pt}
+\[
+    \sum_{i=m}^{m+k}f(i)=\sum_{i=m}^{m+p}f(i)+\sum_{i=m+p+1}^{m+k}f(i).
+\]
+
+\noindent{\kaishu 证明.}
+
+对$k>p$归纳证明. 首先, 当$k=p+1$时依定义即得
+\vspace{3pt}
+\[
+    \sum_{i=m}^{m+p+1}f(i)=\sum_{i=m}^{m+p}f(i)+f(m+p+1);\\[3pt]
+\]
+其次, 如果命题对$k$成立, 那么对$k+1$有
+\vspace{3pt}
+\begin{equation*}\begin{aligned}
+    \sum_{i=m}^{m+k+1}f(i)&=\sum_{i=m}^{m+k}f(i)+f(m+k+1)\\
+    &=\sum_{i=m}^{m+p}f(i)+\sum_{i=m+p+1}^{m+k}f(i)+f(m+k+1)=
+    \sum_{i=m}^{m+p}f(i)+\sum_{i=m+p+1}^{m+k+1}f(i).
+\end{aligned}\tag*{\qedsymbol}\end{equation*}
+
+\vspace{15pt}
+
+如果两个序列逐位相同, 那么求和相等.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+任给半群$(A,+)$, 自然数$m,n,k$和映射$f:[\,m,m+k\,]\to A$,
+$g:[\,n,n+k\,]\to A$. 如果
+\[
+    \forall p\leqslant k:\quad f(m+p)=g(n+p),
+\]
+那么$\displaystyle\sum_{i=m}^{m+k}f(i)=\sum_{j=n}^{n+k}g(j)$.
+
+\vspace{3pt}
+\noindent{\kaishu 证明.}
+
+对$p\leqslant k$归纳证明$\displaystyle\sum_{i=m}^{m+p}f(i)=\sum_{j=n}^{n+p}g(j)$.
+
+首先显然$\displaystyle\sum_{i=m}^{m}f(i)=f(m)=g(n)=\sum_{j=n}^{n}g(j)$;
+其次当$p+1\leqslant k$时,
+假设$\displaystyle\sum_{i=m}^{m+p}f(i)=\sum_{j=n}^{n+p}g(j)$, 则
+\vspace{3pt}
+\[
+    \sum_{i=m}^{m+p+1}f(i)=\sum_{i=m}^{m+p}f(i)+f(m+p+1)=
+    \sum_{j=n}^{n+p}g(j)+g(n+p+1)=\sum_{j=n}^{n+p+1}g(j).\\[3pt]
+\]
+
+于是归纳成立, 取$p=k$即证. \hfill $\qedsymbol$
+
+\end{document}
