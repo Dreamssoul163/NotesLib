@@ -1,0 +1,132 @@
+\documentclass[UTF8]{ctexart}
+\input{../../../preamble.tex}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{无序求和}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (无序求和)}
+
+给定半群$(A,+)$, 交换子集$B$, 非空有限集$X$和映射$f:X\to B$, 则存在唯一的$a\in A$使得
+\vspace{3pt}
+\[
+    \forall\,\text{双射}\,\varphi:|X|\to X:\quad
+    a=\sum_{i=0}^{|X|-1}f(\varphi(i)),
+\]
+把$a$记为$\displaystyle\sum_{x\in X}f(x)$, 有时也记作$\displaystyle\sum f$.
+
+\noindent{\kaishu 验证.}
+
+任取双射$\psi:|X|\to X$, 令$\displaystyle a=\sum_{i=0}^{|X|-1}f(\psi(i))$.
+那么对任意的双射$\varphi:|X|\to X$,
+\[
+    \psi^{-1}\circ\varphi:|X|\to|X|
+\]
+是双射, 从而由\href{01 有序求和#nameddest=sec:定理2.2}{排列不变性定理}得
+\vspace{3pt}
+\begin{equation*}
+    a=\sum_{i=0}^{|X|-1}f\psi(i)=\sum_{i=0}^{|X|-1}f\psi\psi^{-1}\varphi(i)
+    =\sum_{i=0}^{|X|-1}f\varphi(i).
+\tag*{\qedsymbol}\end{equation*}
+
+\vspace{13pt}
+
+特别地, 如果$(A,0_A,+)$是幺半群, 那么约定$\displaystyle\sum\varnothing=0_A$.
+
+\vspace{13pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+任给半群$(A,+)$的交换子集$B$, 非空有限集$X,Y$, 双射$\sigma:Y\to X$
+和映射$f:X\to B$, 有
+\vspace{3pt}
+\[
+    \sum_{x\in X}f(x)=\sum_{y\in Y}f(\sigma(y)).
+\]
+
+\noindent{\kaishu 证明.}
+
+取双射$\varphi:|X|\to X$, 则
+\begin{equation*}
+    \sum_{x\in X}f(x)=\sum_{i=0}^{|X|-1}f\varphi(i)=
+    \sum_{i=0}^{|Y|-1}f\sigma\sigma^{-1}\varphi(i)=
+    \sum_{y\in Y}f\sigma(y).
+\tag*{\qedsymbol}\end{equation*}
+
+
+
+
+
+\newpage
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+任给半群$(A,+)$的交换子集$B$, 非空有限集$X$和映射$f:X\to B$.
+
+\vspace{3pt}
+如果非空的$X_1,X_2\subset X$且不相交, 那么
+$\displaystyle\sum_{x\in X_1\cup X_2}f(x)=\sum_{x\in X_1}f(x)+\sum_{x\in X_2}f(x)$.
+
+\noindent{\kaishu 证明.}
+
+取双射$p:|X_1|\to X_1$和$q:|X_2|\to X_2$, 对任意的$i<|X|$定义
+\[\varphi(i)=\left\{\begin{aligned}
+    &p(i),&&i<|X_1|,\\[-3pt]
+    &q(i-|X_1|),&&i\geqslant|X_1|,
+\end{aligned}\right.\]
+易证$\varphi:|X_1|+|X_2|\to X_1\cup X_2$是双射. 从而
+\vspace{5pt}
+\begin{equation*}\begin{aligned}
+    \sum_{x\in X_1\cup X_2}f(x)&=\sum_{i=0}^{|X_1|+|X_2|-1}f\varphi(i)=
+    \sum_{i=0}^{|X_1|-1}fp(i)+\sum_{i=|X_1|}^{|X_1|+|X_2|-1}fq(i-|X_1|)\\[3pt]
+    &=\sum_{i=0}^{|X_1|-1}fp(i)+\sum_{i=0}^{|X_2|-1}fq(i)=
+    \sum_{x\in X_1}f(x)+\sum_{x\in X_2}f(x).
+\end{aligned}\tag*{\qedsymbol}\end{equation*}
+
+\vspace{13pt}
+
+\hypertarget{sec:定理1.3}{}
+\noindent\textbf{定理1.3}
+
+任给半群$(A,+)$的交换子集$B$, 非空有限集$X$和映射$f:X\to B$.
+
+\vspace{3pt}
+如果$S$是$X$的一个划分, 则$\displaystyle\sum_{x\in X}f(x)=
+\sum_{s\in S}\sum_{x\in s}f(x)$.
+
+\noindent{\kaishu 证明.}
+
+取双射$p:|S|\to S$, 对任意的正整数$n<|S|$定义$\displaystyle X_n=\bigcup p[n]$,
+显然有定义时
+\vspace{1pt}
+\begin{enumerate}
+    \item $p[n+1]=p[n]\cup\{p(n)\}$, 且$p[n],\{p(n)\}$不相交,
+    \vspace{1pt}
+    \item $X_{n+1}=X_n\cup p(n)$, 且$X_n,p(n)$不相交,
+\end{enumerate}
+\vspace{3pt}
+据此对正整数$n\leqslant|S|$归纳证明$\displaystyle
+\sum_{x\in X_n}f(x)=\sum_{s\in p[n]}\sum_{x\in s}f(x)$.
+
+首先, $n=1$时
+\[
+    \sum_{x\in X_1}f(x)=\sum_{x\in p(0)}f(x)=
+    \sum_{s\in\{p(0)\}}\sum_{x\in s}f(x)=
+    \sum_{s\in p[1]}\sum_{x\in s}f(x)\,;\\[3pt]
+\]
+其次, 假设命题对$n$成立且$n+1\leqslant|S|$, 那么
+\vspace{3pt}
+\[
+    \sum_{x\in X_{n+1}}f(x)=\sum_{x\in X_n}f(x)+\sum_{x\in p(n)}f(x)=
+    \sum_{s\in p[n]}\sum_{x\in s}f(x)+\sum_{s\in\{p(n)\}}\sum_{x\in s}f(x)=
+    \sum_{s\in p[n+1]}\sum_{x\in s}f(x),\\[5pt]
+\]
+归纳成立. 取$n=|S|$即得$\displaystyle\sum_{x\in X}f(x)=
+\sum_{s\in S}\sum_{x\in s}f(x)$. \hfill $\qedsymbol$
+
+\end{document}
