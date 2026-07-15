@@ -1,0 +1,89 @@
+\documentclass[UTF8]{ctexart}
+\input{../../../../preamble.tex}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{加法原理}
+
+加法原理用于计算不交并的势.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+任给集合$A,B$, 如果$A\cap B=\varnothing$, 那么$|A\cup B|=|A|+|B|$.
+
+\noindent{\kaishu 证明.}
+
+记$A,B$的势分别为$\kappa,\lambda$, 则显然$
+A\cup B\,\approx\,A\sqcup B\,\approx\,\kappa\sqcup\lambda\,
+\approx\,\kappa+\lambda$. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+任给有限集$X$和$X$上的映射$f$, 有$\displaystyle
+\left|\bigsqcup_{x\in X}f(x)\right|=\sum_{x\in X}|f(x)|$.
+
+\noindent{\kaishu 证明.}
+
+不妨设$X$非空, 取双射$\varphi:|X|\to X$. 对$n<|X|$归纳证明
+$\displaystyle\left|\,\bigcup_{i=0}^nf\varphi(i)\times\{\varphi(i)\}\,\right|=
+\sum_{i=0}^n|f\varphi(i)|$.
+
+首先, $n=0$时
+\[
+    \left|\,\bigcup_{i=0}^0f\varphi(i)\times\{\varphi(i)\}\,\right|=
+    |\,f\varphi(0)\times\{\varphi(0)\}\,|=|f\varphi(0)|=
+    \sum_{i=0}^0|f\varphi(i)|\,;\\[5pt]
+\]
+其次, 假设命题对$n$成立且$n+1<|X|$, 那么
+\vspace{3pt}
+\[\begin{aligned}
+    \left|\,\bigcup_{i=0}^{n+1}f\varphi(i)\times\{\varphi(i)\}\,\right|&=
+    \left|\,\bigcup_{i=0}^nf\varphi(i)\times\{\varphi(i)\}\,\right|+
+    |\,f\varphi(n+1)\times\{\varphi(n+1)\}\,|\\[3pt]&=
+    \sum_{i=0}^n|f\varphi(i)|+|f\varphi(n+1)|=
+    \sum_{i=0}^{n+1}|f\varphi(i)|,\\[6pt]
+\end{aligned}\]
+归纳成立. 取$n=|X|-1$即得$\displaystyle\left|\bigsqcup_{x\in X}f(x)\right|=
+\left|\bigcup_{i=0}^{|X|-1}f\varphi(i)\times\{\varphi(i)\}\right|=
+\sum_{i=0}^{|X|-1}|f\varphi(i)|=\sum_{x\in X}|f(x)|$. \hfill $\qedsymbol$
+
+\vspace{13pt}
+
+\hypertarget{sec:定理1.3}{}
+\noindent\textbf{定理1.3}
+
+任给集合$X$和它的一个划分$S$, 如果$S$有限, 那么$\displaystyle|X|=\sum_{s\in S}|s|$.
+
+\noindent{\kaishu 证明.}
+
+对任意的$\displaystyle(x,s)\in\bigsqcup_{s\in S}s$定义
+$\varphi(x,s)=x$, 易证$\displaystyle\varphi:\bigsqcup_{s\in S}s\to X$是双射. 从而
+\vspace{3pt}
+\begin{equation*}
+    |X|=\left|\bigsqcup_{s\in S}s\right|=\sum_{s\in S}|s|.
+\tag*{\qedsymbol}\end{equation*}
+
+\vspace{13pt}
+
+\hypertarget{sec:定理1.4}{}
+\noindent\textbf{定理1.4}
+
+任给有限集$X$, 有$\displaystyle|X|=\sum_{x\in X}1$.
+
+\noindent{\kaishu 证明.}
+
+取$X$的离散划分$S=\{\,\{x\}\mid x\in X\}$, 显然$X\to S,\,x\mapsto\{x\}$是双射, 从而
+\vspace{3pt}
+\begin{equation*}
+    |X|=\sum_{s\in S}|s|=\sum_{s\in S}1=\sum_{x\in X}1.
+\tag*{\qedsymbol}\end{equation*}
+
+\end{document}
