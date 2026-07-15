@@ -1,0 +1,87 @@
+\documentclass[UTF8]{ctexart}
+\input{../../../preamble.tex}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{有限Fubini定理}
+
+对二元关系上映射的求和等同于对其两个坐标的二重求和.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+任给交换半群$(A,+)$, 非空有限的二元关系$r$和映射$f:r\to A$, 有
+\vspace{3pt}
+\[
+    \sum_{p\in r}f(p)=\sum_{x\in\mathrm{Dom}\,r}\sum_{y\in r\{x\}}f(x,y).
+\]
+
+\noindent{\kaishu 证明.}
+
+对任意的$x\in\mathrm{Dom}\,r$, 记$s_x=\{p\in r\mid p_L=x\}$,
+再记$S=\{s_x\mid x\in\mathrm{Dom}\,r\}$.
+
+易证$S$是$r$的一个划分, 从而由\href{02 无序求和#nameddest=sec:定理1.3}{引理}得
+\[
+    \sum_{p\in r}f(p)=\sum_{s\in S}\sum_{p\in s}f(p),\\[3pt]
+\]
+然后因为有双射$\sigma:\mathrm{Dom}\,r\to S,\,x\mapsto s_x$, 所以
+\vspace{3pt}
+\[
+    \sum_{s\in S}\sum_{p\in s}f(p)=
+    \sum_{x\in\mathrm{Dom}\,r}\sum_{p\in s_x}f(p),\\[3pt]
+\]
+又因为对任意的$x\in\mathrm{Dom}\,r$, 有双射
+$\tau:r\{x\}\to s_x,\,y\mapsto(x,y)$, 所以
+\vspace{3pt}
+\[
+    \sum_{p\in s_x}f(p)=\sum_{y\in r\{x\}}f(x,y),\\[3pt]
+\]
+综上即得$\displaystyle\sum_{p\in r}f(p)=
+\sum_{x\in\mathrm{Dom}\,r}\sum_{y\in r\{x\}}f(x,y)$. \hfill $\qedsymbol$
+
+\vspace{13pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2 (换序求和)}
+
+任给交换半群$(A,+)$, 非空有限的二元关系$r$和映射$f:r\to A$, 有
+\vspace{3pt}
+\[
+    \sum_{x\in\mathrm{Dom}\,r}\sum_{y\in r\{x\}}f(x,y)=
+    \sum_{y\in\mathrm{Ran}\,r}\sum_{x\in r^{-1}\{y\}}f(x,y).
+\]
+
+\noindent{\kaishu 证明.}
+
+\vspace{-9pt}
+\begin{equation*}
+    \sum_{x\in\mathrm{Dom}\,r}\sum_{y\in r\{x\}}f(x,y)=
+    \sum_{p\in r}f(p)=\sum_{q\in r^{-1}}f(q^{\mathrm{C}})=
+    \sum_{y\in\mathrm{Ran}\,r}\sum_{x\in r^{-1}\{y\}}f(x,y).
+\tag*{\qedsymbol}\end{equation*}
+
+\vspace{13pt}
+
+\hypertarget{sec:定理1.3}{}
+\noindent\textbf{定理1.3 (分类求和)}
+
+任给交换半群$(A,+)$, 非空有限集$X,Y$, 映射$q:X\to Y$和$f:X\to A$, 有
+\vspace{3pt}
+\[
+    \sum_{x\in X}f(x)=\sum_{y\in\mathrm{Ran}\,q}\sum_{x\in q^{-1}\{y\}}f(x).
+\]
+
+\noindent{\kaishu 证明.}
+
+\vspace{-9pt}
+\begin{equation*}
+    \sum_{x\in X}f(x)=\sum_{x\in X}\sum_{y\in q\{x\}}f(x)=
+    \sum_{y\in\mathrm{Ran}\,q}\sum_{x\in q^{-1}\{y\}}f(x).
+\tag*{\qedsymbol}\end{equation*}
+
+\end{document}
