@@ -1,0 +1,64 @@
+\documentclass[UTF8]{ctexart}
+\input{../../../../preamble.tex}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{乘法原理}
+
+乘法原理用于计算Descartes积的势. 为了区分Descartes积,
+这里用$\displaystyle\bigotimes$表示对基数的求积.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+任给集合$A,B$, 有$|A\times B|=|A|\cdot|B|$.
+
+\noindent{\kaishu 证明.}
+
+记$A,B$的势分别为$\kappa,\lambda$, 则显然$A\times B\,\approx\,
+\kappa\times\lambda\,\approx\,\kappa\lambda$. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+任给有限集$X$和$X$上的映射$f$, 有$\displaystyle
+\left|\prod_{x\in X}f(x)\right|=\bigotimes_{x\in X}|f(x)|$.
+
+\noindent{\kaishu 证明.}
+
+不妨设$X$非空, 取双射$\varphi:|X|\to X$. 对$n<|X|$归纳证明$\displaystyle
+\left|\,\prod_{i=0}^nf\varphi(i)\,\right|=\bigotimes_{i=0}^n|f\varphi(i)|$.
+
+首先, $n=0$时
+\[
+    \left|\,\prod_{i=0}^0f\varphi(i)\,\right|=\left|\,^1f\varphi(0)\right|=
+    |f\varphi(0)|=\bigotimes_{i=0}^0|f\varphi(i)|\,;\\[3pt]
+\]
+其次, 假设命题对$n$成立且$n+1<|X|$, 那么易证
+\vspace{3pt}
+\[
+    \prod_{i=0}^{n+1}f\varphi(i)\to\prod_{i=0}^nf\varphi(i)\times f\varphi(n+1),
+    \quad p\mapsto(p\!\restriction_{n+1},p(n+1))\\[3pt]
+\]
+是双射, 从而
+\vspace{3pt}
+\[
+    \left|\prod_{i=0}^{n+1}f\varphi(i)\right|=
+    \left|\prod_{i=0}^nf\varphi(i)\times f\varphi(n+1)\right|=
+    \bigotimes_{i=0}^n|f\varphi(i)|\cdot|f\varphi(n+1)|=
+    \bigotimes_{i=0}^{n+1}|f\varphi(i)|,\\[6pt]
+\]
+归纳成立, 取$n=|X|-1$即得$\displaystyle\left|\prod_{x\in X}f(x)\right|=
+\left|\prod_{i=0}^{|X|-1}f\varphi(i)\right|=
+\bigotimes_{i=0}^{|X|-1}|f\varphi(i)|=\bigotimes_{x\in X}|f(x)|$.
+\hfill $\qedsymbol$
+
+\vspace{13pt} % 暂停.
+
+\end{document}
