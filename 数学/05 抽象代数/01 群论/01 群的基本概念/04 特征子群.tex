@@ -1,0 +1,98 @@
+\documentclass[UTF8]{ctexart}
+\input{../../../../preamble.tex}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{特征子群}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (特征子群)}
+
+给定群$G$和它的子群$H$, 如果
+\vspace{-3pt}
+\[
+    \forall\varphi\in\mathrm{Aut}(G):\quad\varphi[H]=H,\\[-3pt]
+\]
+就称$H$是$G$的\textbf{特征子群}, 记作$H\,\mathrm{char}\,G$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+如果$K\,\mathrm{char}\,H$, $H\,\mathrm{char}\,G$, 那么$K\,\mathrm{char}\,G$.
+
+\noindent{\kaishu 证明.}
+
+对任意的$\varphi\in\mathrm{Aut}(G)$, 有$\varphi[H]=H$,
+显然$\varphi\!\restriction_{H}\,\in\mathrm{Aut}(H)$, 从而
+$\varphi[K]=\varphi\!\restriction_{H}[K]=K$. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+任给$H<G$, 如果对任意的$\varphi\in\mathrm{Aut}(G)$和$h\in H$
+都有$\varphi(h)\in H$, 那么$H\,\mathrm{char}\,G$.
+
+\noindent{\kaishu 证明.}
+
+对任意的$\varphi\in\mathrm{Aut}(G)$ :
+\begin{enumerate}
+    \item 依假设即得$\varphi[H]\subset H$,
+    \item 因为$\varphi^{-1}$也是自同构, 所以$\varphi^{-1}[H]\subset H$,
+    从而$H\subset\varphi[H]$,
+\end{enumerate}
+综上$\varphi[H]=H$. \hfill $\qedsymbol$
+
+\vspace{15pt}
+
+下面举一些特征子群的例子.
+
+\vspace{10pt}
+
+\hypertarget{sec:例1.1}{}
+\noindent\textbf{例1.1}
+
+任给群$G$, 它的中心$Z(G)$是$G$的特征子群.
+
+\noindent{\kaishu 证明.}
+
+对任意的$\varphi\in\mathrm{Aut}(G)$, $g\in Z(G)$和$h\in G$, 有
+\[
+    \varphi(g)\cdot h=\varphi(g\cdot\varphi^{-1}h)=
+    \varphi(\varphi^{-1}h\cdot g)=h\cdot\varphi(g),
+\]
+从而$\varphi(g)\in Z(G)$. 所以$Z(G)\,\mathrm{char}\,G$. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+\hypertarget{sec:例1.2}{}
+\noindent\textbf{例1.2}
+
+任给群$G$, 对任意的$g,h\in G$, 定义
+\vspace{-3pt}
+\[
+    [g,h]\overset{\mathrm{def}}{=}g^{-1}h^{-1}gh,\\[-3pt]
+\]
+再定义$G'\overset{\mathrm{def}}{=}\langle\,\{[g,h]\mid g,h\in G\}\,\rangle$,
+称为$G$的\textbf{换位子群}. 它是$G$的特征子群.
+
+\noindent{\kaishu 证明.}
+
+首先, 显然对任意的$\varphi\in\mathrm{Aut}(G)$和$g,h\in G$有
+\[
+    \varphi[g,h]=[\varphi(g),\varphi(h)],\quad[g,h]^{-1}=[h,g],
+\]
+从而对任意的$z\in G'$, 存在自然数$n$和$x,y:n\to G$使得
+\vspace{3pt}
+\[
+    z=\prod_{i=0}^n\,[x_i,y_i]\quad\implies\quad
+    \varphi(z)=\prod_{i=0}^n\,[\varphi(x_i),\varphi(y_i)]\in G',
+\]
+所以$G'\,\mathrm{char}\,G$. \hfill $\qedsymbol$
+
+\end{document}
