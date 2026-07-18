@@ -15,24 +15,19 @@
 \[
     \forall g\in G:\quad gH=Hg,\\[-3pt]
 \]
-就称$H$是$G$的\textbf{正规子群}, 记作$H\lhd G$.
-
-\vspace{10pt}
-
-正规子群有如下等价的定义.
+就称$H$是$G$的\textbf{正规子群}, 记作$H\lhd G$. 显然以下是等价的定义:
+\begin{enumerate}
+    \item 对任意的$g\in G$, 有$gHg^{-1}=H$.
+    \item 对任意的$g\in G$和$h\in H$, 有$ghg^{-1}\in H$.
+    \item 对任意的$\varphi\in\mathrm{Int}(G)$, 有$\varphi[H]=H$.
+\end{enumerate}
 
 \vspace{10pt}
 
 \hypertarget{sec:定理1.1}{}
 \noindent\textbf{定理1.1}
 
-任给群$G$和它的子群$H$, 以下等价:
-\begin{enumerate}
-    \item $H\lhd G$.
-    \item 对任意的$g\in G$, 有$gHg^{-1}=H$.
-    \item 对任意的$g\in G$和$h\in H$, 有$ghg^{-1}\in H$.
-    \item 对任意的$\varphi\in\mathrm{Int}(G)$, 有$\varphi[H]=H$.
-\end{enumerate}
+任给群$K<H<G$, 如果$K\lhd G$, 那么$K\lhd H$.
 
 \vspace{10pt}
 
@@ -43,16 +38,16 @@
 \hypertarget{sec:定理1.2}{}
 \noindent\textbf{定理1.2}
 
-任给群同态$\varphi:G\to H$, 它的核$\mathrm{Ker}\,\varphi$是$G$的正规子群.
+任给群同态$\varphi:G\to G'$, 它的核$\mathrm{Ker}\,\varphi$是$G$的正规子群.
 
 \noindent{\kaishu 证明.}
 
-对任意的$g\in G$和$k\in\mathrm{Ker}\,\varphi$, 有
+对任意的$g\in G$和$h\in\mathrm{Ker}\,\varphi$, 有
 \[
-    \varphi(k)=1_H\quad\implies\quad
-    \varphi(gkg^{-1})=\varphi(g)\cdot1_H\cdot\varphi(g)^{-1}=1_H,
+    \varphi(h)=1_{G'}\quad\implies\quad
+    \varphi(ghg^{-1})=\varphi(g)\cdot1_{G'}\cdot\varphi(g)^{-1}=1_{G'},
 \]
-即$gkg^{-1}\in\mathrm{Ker}\,\varphi$. \hfill $\qedsymbol$
+即$ghg^{-1}\in\mathrm{Ker}\,\varphi$. \hfill $\qedsymbol$
 
 \vspace{10pt}
 
@@ -119,19 +114,6 @@ $\mathrm{Im}\,\pi=\,\!^{\displaystyle G}\!/_{\displaystyle H}$.
 \hypertarget{sec:定理2.1}{}
 \noindent\textbf{定理2.1}
 
-如果$K\,\mathrm{char}\,H$, $H\,\mathrm{char}\,G$, 那么$K\,\mathrm{char}\,G$.
-
-\noindent{\kaishu 证明.}
-
-对任意的$\varphi\in\mathrm{Aut}(G)$, 有$\varphi[H]=H$,
-显然$\varphi\!\restriction_{H}\,\in\mathrm{Aut}(H)$, 从而
-$\varphi[K]=\varphi\!\restriction_{H}[K]=K$. \hfill $\qedsymbol$
-
-\vspace{10pt}
-
-\hypertarget{sec:定理2.2}{}
-\noindent\textbf{定理2.2}
-
 任给$H<G$, 如果对任意的$\varphi\in\mathrm{Aut}(G)$和$h\in H$
 都有$\varphi(h)\in H$, 那么$H\,\mathrm{char}\,G$.
 
@@ -144,6 +126,19 @@ $\varphi[K]=\varphi\!\restriction_{H}[K]=K$. \hfill $\qedsymbol$
     从而$H\subset\varphi[H]$,
 \end{enumerate}
 综上$\varphi[H]=H$. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.2}{}
+\noindent\textbf{定理2.2}
+
+如果$K\,\mathrm{char}\,H$, $H\,\mathrm{char}\,G$, 那么$K\,\mathrm{char}\,G$.
+
+\noindent{\kaishu 证明.}
+
+对任意的$\varphi\in\mathrm{Aut}(G)$, 有$\varphi[H]=H$,
+显然$\varphi\!\restriction_{H}\,\in\mathrm{Aut}(H)$, 从而
+$\varphi[K]=\varphi\!\restriction_{H}[K]=K$. \hfill $\qedsymbol$
 
 \vspace{15pt}
 

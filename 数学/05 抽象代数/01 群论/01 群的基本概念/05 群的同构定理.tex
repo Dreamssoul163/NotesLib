@@ -1,0 +1,230 @@
+\documentclass[UTF8]{ctexart}
+\input{../../../../preamble.tex}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{群的同构定理}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1 (投影同态的泛性质)}
+
+任给群同态$\varphi:G\to G'$, 如果有$H\lhd G$且$H<\mathrm{Ker}\,\varphi$,
+那么存在唯一的群同态
+\vspace{3pt}
+\[
+    \overline{\varphi}:\,\!^{\displaystyle G}\!/_{\displaystyle H}\to G'\\[3pt]
+\]
+使得$\varphi=\overline{\varphi}\circ\pi$, 并且
+$\mathrm{Ker}\,\overline{\varphi}=
+\,\!^{\displaystyle\mathrm{Ker}\,\varphi}\!/_{\displaystyle H}$,
+$\mathrm{Im}\,\overline{\varphi}=\mathrm{Im}\,\varphi$.
+
+\noindent{\kaishu 证明.}
+
+对任意的$g_1,g_2\in G$, 如果$\pi(g_1)=\pi(g_2)$, 那么
+\vspace{3pt}
+\[
+    g_1H=g_2H\implies g_2^{-1}g_1\in H\subset\mathrm{Ker}\,\varphi\implies
+    \varphi(g_2^{-1}g_1)=1_{G'}\implies\varphi(g_1)=\varphi(g_2),\\[3pt]
+\]
+从而存在唯一的映射$\overline{\varphi}:\,\!^{\displaystyle G}\!/_{\displaystyle H}
+\to G'$使得$\varphi=\overline{\varphi}\circ\pi$, 即对任意的$g\in G$有
+$\overline{\varphi}(gH)=\varphi(g)$.
+
+此时对任意的$g_1,g_2\in G$, 有
+\[
+    \overline{\varphi}(g_1g_2H)=\varphi(g_1g_2)=\varphi(g_1)\cdot\varphi(g_2)=
+    \overline{\varphi}(g_1H)\cdot\overline{\varphi}(g_2H),\\[3pt]
+\]
+从而$\overline{\varphi}:\,\!^{\displaystyle G}\!/_{\displaystyle H}
+\to G'$是群同态. 最后,
+\vspace{5pt}
+\begin{equation*}\left\{\begin{aligned}
+    &\mathrm{Ker}\,\overline{\varphi}=\{gH\mid\overline{\varphi}(gH)=1_{G'}\}=
+    \{gH\mid\varphi(g)=1_{G'}\}=\{gH\mid g\in\mathrm{Ker}\,\varphi\}=\,
+    \,\!^{\displaystyle\mathrm{Ker}\,\varphi}\!/_{\displaystyle H},\\[3pt]
+    &\mathrm{Im}\,\overline{\varphi}=\{\overline{\varphi}(gH)\mid g\in G\}=
+    \{\varphi(g)\mid g\in G\}=\mathrm{Im}\,\varphi.
+\end{aligned}\right.\tag*{\qedsymbol}\end{equation*}
+
+\vspace{15pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2 (群同构第一定理)}
+
+任给群同态$\varphi:G\to G'$, 有群同构
+\[
+    \overline{\varphi}:\,\!^{\displaystyle G}\!
+    /_{\displaystyle\mathrm{Ker}\,\varphi}\cong\mathrm{Im}\,\varphi,
+\]
+并且对任意的$g\in G$有
+$\overline{\varphi}(\,g\cdot\mathrm{Ker}\,\varphi)=\varphi(g)$.
+
+\noindent{\kaishu 证明.}
+
+因为$\mathrm{Ker}\,\varphi\lhd G$, 据泛性质, 有唯一的群同态
+$\overline{\varphi}:\,\!^{\displaystyle G}\!
+/_{\displaystyle\mathrm{Ker}\,\varphi}\to G'$, 并且
+\vspace{3pt}
+\[
+    \mathrm{Ker}\,\overline{\varphi}=\,\!^{\displaystyle\mathrm{Ker}\,\varphi}\!
+    /_{\displaystyle\mathrm{Ker}\,\varphi}=\{\mathrm{Ker}\,\varphi\},\quad
+    \mathrm{Im}\,\overline{\varphi}=\mathrm{Im}\,\overline{\varphi},
+\]
+所以$\overline{\varphi}:\,\!^{\displaystyle G}\!
+/_{\displaystyle\mathrm{Ker}\,\varphi}\cong\mathrm{Im}\,\varphi$.
+\hfill $\qedsymbol$
+
+\vspace{15pt}
+
+\hypertarget{sec:定理1.3}{}
+\noindent\textbf{定理1.3 (群同构第二定理)}
+
+任给群$G$, $H<G$和$K\lhd G$, 有$H\cap K\lhd H$, $K\lhd HK$以及群同构
+\vspace{3pt}
+\[
+    \psi:\,\!^{\displaystyle H}\!/_{\displaystyle H\cap K}
+    \cong\,\!^{\displaystyle HK}\!/_{\displaystyle K},\\[3pt]
+\]
+并且对任意的$h\in H$有$\psi(h\cdot(H\cap K))=hK$.
+
+\noindent{\kaishu 证明.}
+
+对任意的$h_1,h_2\in H$和$k_1,k_2\in K$, 有
+\[
+    (h_1k_1)(h_2k_2)^{-1}=h_1k_1k_2^{-1}h_2^{-1}=
+    (h_1h_2^{-1})(h_2k_1k_2^{-1}h_2^{-1})\in H\cdot h_2Kh_2^{-1}=HK,
+\]
+所以$HK<G$, 从而$K\lhd HK$. 考虑群同态
+\[
+    \varphi:H\to\,\!^{\displaystyle HK}\!/_{\displaystyle K},
+    \quad h\mapsto hK,\\[3pt]
+\]
+显然$\mathrm{Ker}\,\varphi=H\cap K$, $\mathrm{Im}\,\varphi=
+\,\!^{\displaystyle HK}\!/_{\displaystyle K}$. 应用群同构第一定理即得
+$\psi:\,\!^{\displaystyle H}\!/_{\displaystyle H\cap K}
+\cong\,\!^{\displaystyle HK}\!/_{\displaystyle K}$. \hfill $\qedsymbol$
+
+
+
+
+
+\newpage
+
+\hypertarget{sec:定理1.4}{}
+\noindent\textbf{定理1.4 (群同构第三定理)}
+
+任给群$G$, $H\lhd G$, 以及$H,G$的公共正规子群$N$, 有
+$\,\!^{\displaystyle H}\!/_{\displaystyle N}\lhd
+\,\!^{\displaystyle G}\!/_{\displaystyle N}$以及群同构
+\vspace{6pt}
+\[
+    \psi:\,\!^{\displaystyle G/N}\!/_{\displaystyle H/N}
+    \cong\,\!^{\displaystyle G}\!/_{\displaystyle H},\\[3pt]
+\]
+并且对任意的$g\in G$有$\psi\left(gN\cdot
+\,\!^{\displaystyle H}\!/_{\displaystyle N}\right)=gH$.
+
+\noindent{\kaishu 证明.}
+
+首先有投影同态$\pi:G\to\,\!^{\displaystyle G}\!/_{\displaystyle H}$, 满足
+\vspace{3pt}
+\[
+    \mathrm{Ker}\,\pi=H,\quad
+    \mathrm{Im}\,\pi=\,\!^{\displaystyle G}\!/_{\displaystyle H},\quad
+    \forall g\in G:\pi(g)=gH,\\[3pt]
+\]
+因为$N<H$, 据泛性质, 有群同态$\varphi:\,\!^{\displaystyle G}\!/_{\displaystyle N}\to
+\,\!^{\displaystyle G}\!/_{\displaystyle H}$, 满足
+\vspace{6pt}
+\[
+    \mathrm{Ker}\,\varphi=\,\!^{\displaystyle H}\!/_{\displaystyle N},\quad
+    \mathrm{Im}\,\varphi=\,\!^{\displaystyle G}\!/_{\displaystyle H},\quad
+    \forall g\in G:\varphi(gN)=\pi(g)=gH,\\[6pt]
+\]
+再应用群同构第一定理即得群同构$\psi:\,\!^{\displaystyle G/N}\!/_{\displaystyle H/N}
+\cong\,\!^{\displaystyle G}\!/_{\displaystyle H}$. \hfill $\qedsymbol$
+
+\vspace{15pt}
+
+\hypertarget{sec:定理1.5}{}
+\noindent\textbf{定理1.5 (子群对应定理)}
+
+任给群$G$和$N\lhd G$, 则有双射
+\vspace{3pt}
+\[
+    \{H<G\mid N<H\}\to\left\{\,\,\!^{\displaystyle G}\!
+    /_{\displaystyle N}\text{\,的子群\,}\right\},\quad H\mapsto
+    \,\!^{\displaystyle H}\!/_{\displaystyle N},
+\]
+并且该对应满足:
+\begin{enumerate}
+    \item 对任意的包含$N$的$G$的子群$H_1,H_2$, $H_1<H_2$当且仅当
+    $\,\!^{\displaystyle H_1}\!/_{\displaystyle N}<
+    \,\!^{\displaystyle H_2}\!/_{\displaystyle N}$,
+    \vspace{3pt}
+    \item 对任意的包含$N$的$G$的子群$H_1,H_2$, $H_1\lhd H_2$当且仅当
+    $\,\!^{\displaystyle H_1}\!/_{\displaystyle N}\lhd
+    \,\!^{\displaystyle H_2}\!/_{\displaystyle N}$,
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 显然$H_1<H_2$时有
+    $\,\!^{\displaystyle H_1}\!/_{\displaystyle N}<
+    \,\!^{\displaystyle H_2}\!/_{\displaystyle N}$, 反之当
+    $\,\!^{\displaystyle H_1}\!/_{\displaystyle N}<
+    \,\!^{\displaystyle H_2}\!/_{\displaystyle N}$时, 对任意的$h_1\in H$有
+    \vspace{3pt}
+    \[
+        h_1N\in\,\!^{\displaystyle H_1}\!/_{\displaystyle N}\subset
+        \,\!^{\displaystyle H_2}\!/_{\displaystyle N},
+    \]
+    从而$h_1\in H_2$, 即$H_1<H_2$.
+
+    \item 当$H_1\lhd H_2$时, 由群同构第三定理得
+    $\,\!^{\displaystyle H_1}\!/_{\displaystyle N}\lhd
+    \,\!^{\displaystyle H_2}\!/_{\displaystyle N}$,
+    
+    \vspace{3pt}\hspace{2.17em}
+    反之当$\,\!^{\displaystyle H_1}\!/_{\displaystyle N}\lhd
+    \,\!^{\displaystyle H_2}\!/_{\displaystyle N}$时,
+    对任意的$h_1\in H_1$和$h_2\in H_2$有
+    \[
+        h_2h_1h_2^{-1}N=h_2N\cdot h_1N\cdot(h_2N)^{-1}\in
+        \,\!^{\displaystyle H_1}\!/_{\displaystyle N},
+    \]
+    从而$h_2h_1h_2^{-1}\in H_1$, 即$H_1\lhd H_2$.
+
+    \vspace{3pt}
+    \item 由第一条, 显然$H\mapsto\,\!^{\displaystyle H}\!/_{\displaystyle N}$
+    是单射,
+
+    \vspace{3pt}
+    \item 对$\,\!^{\displaystyle G}\!/_{\displaystyle N}$的任意子群$K$,
+    令$\displaystyle H=\bigcup K$.
+
+    \vspace{3pt}\hspace{2.17em}
+    第一, 对任意的$h_1,h_2\in H$, 有$h_1N,h_2N\in K$, 从而
+    \[
+        h_1h_2^{-1}N=(h_1N)(h_2N)^{-1}\in K\quad\implies\quad h_1h_2^{-1}\in H,
+    \]
+    即$H<G$.
+
+    \hspace{2.17em}
+    第二, 对任意的$n\in N$, 有$nN=N\in K$, 从而$n\in H$. 即$N<H$.
+
+    \hspace{2.17em}
+    第三, 对任意的$g\in G$有
+    \[
+        gN\in\,\!^{\displaystyle H}\!/_{\displaystyle N}\iff
+        g\in H\iff g\in\bigcup K\iff gN\in K,\\[3pt]
+    \]
+    即$\,\!^{\displaystyle H}\!/_{\displaystyle N}=K$, 所以
+    $H\mapsto\,\!^{\displaystyle H}\!/_{\displaystyle N}$是满射. \hfill $\qedsymbol$
+\end{enumerate}
+
+\end{document}
