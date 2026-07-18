@@ -149,16 +149,17 @@ $\varphi[K]=\varphi\!\restriction_{H}[K]=K$. \hfill $\qedsymbol$
 \hypertarget{sec:例2.1}{}
 \noindent\textbf{例2.1}
 
-任给群$G$, 它的中心$Z(G)$是$G$的特征子群.
+任给群$G$, 它的中心$\mathrm{Z}(G)$是$G$的特征子群.
 
 \noindent{\kaishu 证明.}
 
-对任意的$\varphi\in\mathrm{Aut}(G)$, $g\in Z(G)$和$h\in G$, 有
+对任意的$\varphi\in\mathrm{Aut}(G)$, $g\in\mathrm{Z}(G)$和$h\in G$, 有
 \[
     \varphi(g)\cdot h=\varphi(g\cdot\varphi^{-1}h)=
     \varphi(\varphi^{-1}h\cdot g)=h\cdot\varphi(g),
 \]
-从而$\varphi(g)\in Z(G)$. 所以$Z(G)\,\mathrm{char}\,G$. \hfill $\qedsymbol$
+从而$\varphi(g)\in\mathrm{Z}(G)$. 所以$\mathrm{Z}(G)\,\mathrm{char}\,G$.
+\hfill $\qedsymbol$
 
 \vspace{10pt}
 
@@ -170,7 +171,8 @@ $\varphi[K]=\varphi\!\restriction_{H}[K]=K$. \hfill $\qedsymbol$
 \[
     [g,h]\overset{\mathrm{def}}{=}g^{-1}h^{-1}gh,\\[-3pt]
 \]
-再定义$G'\overset{\mathrm{def}}{=}\langle\,\{[g,h]\mid g,h\in G\}\,\rangle$,
+再定义$\mathrm{D}(G)\overset{\mathrm{def}}{=}
+\langle\,\{[g,h]\mid g,h\in G\}\,\rangle$,
 称为$G$的\textbf{换位子群}. 它是$G$的特征子群.
 
 \noindent{\kaishu 证明.}
@@ -185,6 +187,6 @@ $\varphi[K]=\varphi\!\restriction_{H}[K]=K$. \hfill $\qedsymbol$
     z=\prod_{i=0}^n\,[x_i,y_i]\quad\implies\quad
     \varphi(z)=\prod_{i=0}^n\,[\varphi(x_i),\varphi(y_i)]\in G',
 \]
-所以$G'\,\mathrm{char}\,G$. \hfill $\qedsymbol$
+所以$\mathrm{D}(G)\,\mathrm{char}\,G$. \hfill $\qedsymbol$
 
 \end{document}
