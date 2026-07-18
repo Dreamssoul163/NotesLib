@@ -10,7 +10,7 @@
 \hypertarget{sec:定义1.1}{}
 \noindent\textbf{定义1.1 (群同态)}
 
-给定群$G,H$. 如果映射$\varphi:G\to H$满足
+给定\href{01 半群与群#nameddest=sec:定义2.1}{群} $G,H$. 如果映射$\varphi:G\to H$满足
 \[
     \forall g_1,g_2\in G:\quad\varphi(g_1g_2)=\varphi(g_1)\,\varphi(g_2),
 \]
@@ -173,24 +173,5 @@ $\mathrm{Int}(G)$为$G$的\textbf{内自同构群}.
     g_1(g_2hg_2^{-1})g_1^{-1},
 \end{aligned}\right.\]
 所以$\mathrm{Int}:G\to\mathrm{Aut}(G)$是群同态. \hfill $\qedsymbol$
-
-\vspace{10pt}
-
-\hypertarget{sec:定义2.4}{}
-\noindent\textbf{定义2.4 (群的中心)}
-
-任给群$G$, 定义其\textbf{中心}为
-\[
-    \mathrm{Z}(G)\overset{\mathrm{def}}{=}\{g\in G\mid\forall h\in G:gh=hg\},
-\]
-它恰好是$\mathrm{Int}$的核.
-
-\noindent{\kaishu 验证.}
-
-对任意的$g\in G$, $\mathrm{Int}(g)=\mathrm{id}_{G}$当且仅当
-\[
-    \forall h\in G:ghg^{-1}=h,
-\]
-即$g\in \mathrm{Z}(G)$. \hfill $\qedsymbol$
 
 \end{document}
