@@ -146,8 +146,8 @@ $\varphi[K]=\varphi\!\restriction_{H}[K]=K$. \hfill $\qedsymbol$
 
 \vspace{10pt}
 
-\hypertarget{sec:例2.1}{}
-\noindent\textbf{例2.1}
+\hypertarget{sec:定理2.3}{}
+\noindent\textbf{定理2.3}
 
 任给群$G$, 它的中心$\mathrm{Z}(G)$是$G$的特征子群.
 
@@ -161,10 +161,14 @@ $\varphi[K]=\varphi\!\restriction_{H}[K]=K$. \hfill $\qedsymbol$
 从而$\varphi(g)\in\mathrm{Z}(G)$. 所以$\mathrm{Z}(G)\,\mathrm{char}\,G$.
 \hfill $\qedsymbol$
 
-\vspace{10pt}
 
-\hypertarget{sec:例2.2}{}
-\noindent\textbf{例2.2}
+
+
+
+\newpage
+
+\hypertarget{sec:定义2.2}{}
+\noindent\textbf{定义2.2 (换位子群)}
 
 任给群$G$, 对任意的$g,h\in G$, 定义
 \vspace{-3pt}
@@ -172,8 +176,14 @@ $\varphi[K]=\varphi\!\restriction_{H}[K]=K$. \hfill $\qedsymbol$
     [g,h]\overset{\mathrm{def}}{=}g^{-1}h^{-1}gh,\\[-3pt]
 \]
 再定义$\mathrm{D}(G)\overset{\mathrm{def}}{=}
-\langle\,\{[g,h]\mid g,h\in G\}\,\rangle$,
-称为$G$的\textbf{换位子群}. 它是$G$的特征子群.
+\langle\,\{[g,h]\mid g,h\in G\}\,\rangle$, 称为$G$的\textbf{换位子群}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.4}{}
+\noindent\textbf{定理2.4}
+
+任给群$G$, 它的换位子群$\mathrm{D}(G)$是$G$的特征子群.
 
 \noindent{\kaishu 证明.}
 
@@ -188,5 +198,37 @@ $\varphi[K]=\varphi\!\restriction_{H}[K]=K$. \hfill $\qedsymbol$
     \varphi(z)=\prod_{i=0}^n\,[\varphi(x_i),\varphi(y_i)]\in G',
 \]
 所以$\mathrm{D}(G)\,\mathrm{char}\,G$. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+换位子群是使商群交换的最小正规子群.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.5}{}
+\noindent\textbf{定理2.5}
+
+任给群$G$, $\,\!^{\displaystyle G}\!/_{\displaystyle\mathrm{D}(G)}$
+是Abel群. 进一步, 如果$H\lhd G$使得$\,\!^{\displaystyle G}\!/_{\displaystyle H}$
+是Abel群, 那么$\mathrm{D}(G)<H$.
+
+\noindent{\kaishu 证明.}
+
+对任意的$g_1,g_2\in G$, 有$(g_2g_1)^{-1}(g_1g_2)=[g_1,g_2]\in\mathrm{D}(G)$, 所以
+\[
+    g_1\mathrm{D}(G)\cdot g_2\mathrm{D}(G)=g_1g_2\mathrm{D}(G)=
+    g_2g_1\mathrm{D}(G)=g_2\mathrm{D}(G)\cdot g_1\mathrm{D}(G),
+\]
+即$\,\!^{\displaystyle G}\!/_{\displaystyle\mathrm{D}(G)}$是Abel群.
+
+\vspace{6pt}
+进一步, 如果$H\lhd G$使得$\,\!^{\displaystyle G}\!/_{\displaystyle H}$是Abel群,
+那么对任意的$g_1,g_2\in G$有
+\[
+    g_1g_2H=g_1H\cdot g_2H=g_2H\cdot g_1H=g_2g_1H\implies
+    [g_1,g_2]=(g_2g_1)^{-1}(g_1g_2)\in H,
+\]
+即$H$包含$\langle\,\{[g_1,g_2]\mid g_1,g_2\in G\}\,\rangle$,
+从而$H$包含$\mathrm{D}(G)$. \hfill $\qedsymbol$
 
 \end{document}
