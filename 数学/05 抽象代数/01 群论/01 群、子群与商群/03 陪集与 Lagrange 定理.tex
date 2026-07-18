@@ -1,0 +1,93 @@
+\documentclass[UTF8]{ctexart}
+\input{../../../../preamble.tex}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{陪集与Lagrange定理}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (陪集)}
+
+给定群$G$与\href{02 子群#nameddest=sec:定义1.1}{子群} $H$,
+对任意的$g\in G$, 分别称
+\[
+    gH=\{gh\mid h\in H\},\quad Hg=\{hg\mid h\in H\}\\[1pt]
+\]
+为$H$的\textbf{左陪集}和\textbf{右陪集}. 显然陪集与原子群等势.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2}
+
+给定群$G$与子群$H$, 定义$G$上的二元关系$\sim$:
+\[
+    \forall g_1,g_2\in G:\quad g_1\sim g_2\,\iff\,g_1H=g_2H,\\[5pt]
+\]
+显然$\sim$是等价关系, 记其商集为$\,\!^{\displaystyle G}
+\!/_{\displaystyle H}$.
+
+\vspace{5pt}
+任意的$g\in G$的等价类恰好为$gH$, 所以$\,\!^{\displaystyle G}
+\!/_{\displaystyle H}=\{gH\mid g\in G\}$.
+
+\noindent{\kaishu 验证.}
+
+任取$g\in G$ :
+\begin{enumerate}
+    \item 对任意的$g'\sim g$, 有$g'\in g'H=gH$,
+    \item 对任意的$g'\in gH$, 存在$h\in H$使得$g'=gh$,
+    从而$g'H=ghH=gH$, 即$g'\sim g$. \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{15pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1 (Lagrange定理)}
+
+任给群$G$与子群$H$, 有
+$|G|=\left|\,\!^{\displaystyle G}\!/_{\displaystyle H}\right|\cdot|H|$.
+
+\vspace{3pt}
+\noindent{\kaishu 证明.}
+
+\vspace{3pt}
+取$\,\!^{\displaystyle G}\!/_{\displaystyle H}$上的选择函数$f$,
+然后定义映射
+\vspace{3pt}
+\[
+    \,\!^{\displaystyle G}\!/_{\displaystyle H}\times H\to G,\quad
+    (P,h)\mapsto f(P)\cdot h,
+\]
+下证它是双射.
+
+\begin{enumerate}
+    \item 如果$f(P_1)\cdot h_1=f(P_2)\cdot h_2$,
+    那么它同时属于$P_1$和$P_2$, 所以$P_1=P_2$,
+    \vspace{3pt}
+    \item 对任意的$g\in G$, 由$f(gH)=gH$, 存在$h\in H$使得
+    $f(gH)=gh$, 从而$g=f(gH)\cdot h^{-1}$.
+\end{enumerate}
+
+\vspace{6pt}
+所以$|G|=\left|\,\!^{\displaystyle G}\!/_{\displaystyle H}\times H\right|
+=\left|\,\!^{\displaystyle G}\!/_{\displaystyle H}\right|\cdot|H|$.
+\hfill $\qedsymbol$
+
+\vspace{15pt}
+
+\hypertarget{sec:定义1.3}{}
+\noindent\textbf{定义1.3 (指标)}
+
+给定群$G$与子群$H$, 定义
+\[
+    [G:H]\,\overset{\mathrm{def}}{=}\,
+    \left|\,\!^{\displaystyle G}\!/_{\displaystyle H}\right|,
+\]
+称之为$H$在$G$中的\textbf{指标}.
+
+显然当$G$有限时, $[G:H]=|G|\,/\,|H|$.
+
+\end{document}
