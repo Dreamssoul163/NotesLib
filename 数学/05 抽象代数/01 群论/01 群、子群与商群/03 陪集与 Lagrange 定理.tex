@@ -22,24 +22,24 @@
 \hypertarget{sec:定义1.2}{}
 \noindent\textbf{定义1.2}
 
-给定群$G$与子群$H$, 定义$G$上的二元关系$\sim$:
+给定群$G$与子群$H$, 定义商集
 \[
-    \forall g_1,g_2\in G:\quad g_1\sim g_2\,\iff\,g_1H=g_2H,\\[5pt]
+    \,\!^{\displaystyle G}\!/_{\displaystyle H}
+    \overset{\mathrm{def}}{=}\{gH\mid g\in G\},
 \]
-显然$\sim$是等价关系, 记其商集为$\,\!^{\displaystyle G}
-\!/_{\displaystyle H}$.
-
-\vspace{5pt}
-任意的$g\in G$的等价类恰好为$gH$, 所以$\,\!^{\displaystyle G}
-\!/_{\displaystyle H}=\{gH\mid g\in G\}$.
+它恰好是$G$的一个划分.
 
 \noindent{\kaishu 验证.}
 
-任取$g\in G$ :
 \begin{enumerate}
-    \item 对任意的$g'\sim g$, 有$g'\in g'H=gH$,
-    \item 对任意的$g'\in gH$, 存在$h\in H$使得$g'=gh$,
-    从而$g'H=ghH=gH$, 即$g'\sim g$. \hfill $\qedsymbol$
+    \item 显然任意的$gH$非空,
+    \item 如果$g_1H\neq g_2H$, 再假设存在$g\in g_1H\cap g_2H$, 那么
+    存在$h_1,h_2\in H$使得
+    \[
+        g=g_1h_1=g_2h_2\quad\implies\quad g_1H=g_2h_2h_1^{-1}H=g_2H,
+    \]
+    矛盾,
+    \item 对任意的$g\in G$, 有$g\in gH$. \hfill $\qedsymbol$
 \end{enumerate}
 
 \vspace{15pt}

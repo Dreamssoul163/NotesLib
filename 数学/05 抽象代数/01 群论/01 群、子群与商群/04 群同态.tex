@@ -43,41 +43,45 @@
 
 \vspace{10pt}
 
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+任给群同态$\varphi:G\to H$,
+\begin{enumerate}
+    \item 对任意的$G'<G$, 有$\varphi[G']<H$,
+    \item 对任意的$H'<H$, 有$\varphi^{-1}[H']<G$.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 对任意的$h_1,h_2\in\varphi[G']$, 存在$g_1,g_2\in G'$使得
+    \[
+        \varphi(g_1)=h_1,\,\varphi(g_2)=h_2\quad\implies\quad
+        \varphi(g_1g_2^{-1})=\varphi(g_1)\,\varphi(g_2)^{-1}=h_1h_2^{-1},
+    \]
+    从而$h_1h_2^{-1}\in\varphi[G']$. 显然$\varphi[G']$非空, 所以是$H$的子群.
+    \item 对任意的$g_1,g_2\in\varphi^{-1}[H']$, 有
+    \[
+        \varphi(g_1)\in H',\,\varphi(g_2)\in H'\quad\implies\quad
+        \varphi(g_1g_2^{-1})=\varphi(g_1)\,\varphi(g_2)^{-1}\in H',
+    \]
+    从而$g_1g_2^{-1}\in\varphi^{-1}[H']$.
+    显然$\varphi^{-1}[H']$非空, 所以是$G$的子群. \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
 \hypertarget{sec:定义1.2}{}
 \noindent\textbf{定义1.2 (群同态的核与像)}
 
 给定群同态$\varphi:G\to H$, 定义
 \[
-    \mathrm{Ker}\,\varphi\overset{\mathrm{def}}{=}\{\,g\in G\mid\varphi(g)=1_H\,\},
-    \quad\mathrm{Im}\,\varphi\overset{\mathrm{def}}{=}\mathrm{Ran}\,\varphi,
+    \mathrm{Ker}\,\varphi\overset{\mathrm{def}}{=}\varphi^{-1}\{1_H\},
+    \quad\mathrm{Im}\,\varphi\overset{\mathrm{def}}{=}\varphi[G],
 \]
 分别称为$\varphi$的\textbf{核}与\textbf{像}.
-
-\vspace{10pt}
-
-\hypertarget{sec:定理1.2}{}
-\noindent\textbf{定理1.2}
-
-任给群同态$\varphi:G\to H$, 有$\mathrm{Ker}\,\varphi<G$, $\mathrm{Im}\,\varphi<H$.
-
-\noindent{\kaishu 证明.}
-
-第一, 对任意的$g_1,g_2\in\mathrm{Ker}\,\varphi$,
-有$\varphi(g_1)=\varphi(g_2)=1_H$, 从而
-\[
-    \varphi(g_1g_2^{-1})=\varphi(g_1)\,\varphi(g_2)^{-1}=1_H,
-\]
-即$g_1g_2^{-1}\in\mathrm{Ker}\,\varphi$.
-显然$\mathrm{Ker}\,\varphi$非空, 所以$\mathrm{Ker}\,\varphi<G$.
-
-第二, 对任意的$h_1,h_2\in\mathrm{Im}\,\varphi$, 存在$g_1,g_2\in G$使得
-\[
-    \varphi(g_1)=h_1,\,\varphi(g_2)=h_2\quad\implies\quad
-    \varphi(g_1g_2^{-1})=\varphi(g_1)\,\varphi(g_2)^{-1}=h_1h_2^{-1},
-\]
-即$h_1h_2^{-1}\in\mathrm{Im}\,\varphi$.
-显然$\mathrm{Im}\,\varphi$非空, 所以$\mathrm{Im}\,\varphi<H$.
-\hfill $\qedsymbol$
+据上述定理, 它们分别是$G$和$H$的子群.
 
 \vspace{10pt}
 
@@ -88,19 +92,15 @@
 
 \noindent{\kaishu 证明.}
 
-一方面, 如果$\varphi$是单同态, 那么对任意的$g\in\mathrm{Ker}\,\varphi$有
-\[
-    \varphi(g)=1_H=\varphi(1_G)\quad\implies\quad g=1_G,
-\]
-所以$\mathrm{Ker}\,\varphi=\{1_G\}$.
+一方面, 如果$\varphi$是单同态, 那么显然
+$\mathrm{Ker}\,\varphi=\{\varphi^{-1}(1_H)\}=\{1_G\}$.
 
 另一方面, 如果$\mathrm{Ker}\,\varphi=\{1_G\}$, 那么对任意的$g_1,g_2\in G$,
 如果$\varphi(g_1)=\varphi(g_2)$, 那么
-\[
+\begin{equation*}
     \varphi(g_1g_2^{-1})=\varphi(g_1)\,\varphi(g_2)^{-1}=1_H\quad\implies\quad
-    g_1g_2^{-1}=1_G\quad\implies\quad g_1=g_2,
-\]
-所以$\varphi$是单同态. \hfill $\qedsymbol$
+    g_1g_2^{-1}=1_G\quad\implies\quad g_1=g_2.
+\tag*{\qedsymbol}\end{equation*}
 
 
 

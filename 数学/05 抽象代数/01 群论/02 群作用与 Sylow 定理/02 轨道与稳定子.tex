@@ -1,0 +1,150 @@
+\documentclass[UTF8]{ctexart}
+\input{../../../../preamble.tex}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{轨道与稳定子}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (轨道)}
+
+给定\href{01 群作用与 G-集#nameddest=sec:定义1.1}{群作用}
+$\cdot:G\curvearrowright X$. 对任意的$x\in X$, 它生成的$G$-子集是
+\[
+    \langle x\rangle=\{gx\mid g\in G\},
+\]
+记为$\mathrm{orb}(x)$, 称作$x$在该作用下的\textbf{轨道}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+任给群作用$\cdot:G\curvearrowright X$, 所有轨道的全体
+\[
+    \{\mathrm{orb}(x)\mid x\in X\}
+\]
+组成$X$的一个划分.
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 显然任意的$\mathrm{orb}(x)$非空,
+    \item 如果$\mathrm{orb}(x_1)=\mathrm{orb}(x_2)$,
+    再假设存在$x\in\mathrm{orb}(x_1)\cap\mathrm{orb}(x_2)$,
+    那么存在$g_1,g_2\in G$使得
+    \[
+        x=g_1x_1=g_2x_2\quad\implies\quad x_1=g_1^{-1}g_2x_2\in\mathrm{orb}(x_2),
+    \]
+    于是$\mathrm{orb}(x_1)\subset\mathrm{orb}(x_2)$,
+    同理$\mathrm{orb}(x_2)\subset\mathrm{orb}(x_1)$, 矛盾,
+    \item 对任意的$x\in X$, 有$x\in\mathrm{orb}(x)$. \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2}
+
+给定群作用$\cdot:G\curvearrowright X$和$x\in X$, 定义
+\[
+    \mathrm{Stab}(x)=\{g\in G\mid gx=x\},
+\]
+称之为$x$在该作用中的\textbf{稳定子}, 它是$G$的子群.
+
+\noindent{\kaishu 验证.}
+
+任取$g_1,g_2\in\mathrm{Stab}(x)$, 有$g_1g_2^{-1}x=g_1g_2^{-1}g_2x=g_1x=x$,
+即$g_1g_2^{-1}\in\mathrm{Stab}(x)$. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+任给群作用$\cdot:G\curvearrowright X$, $g\in X$和$x\in X$, 有
+\[
+    \mathrm{Stab}(gx)=g\,\mathrm{Stab}(x)\,g^{-1}.
+\]
+
+\noindent{\kaishu 证明.}
+
+一方面, 对任意的$g'\in\mathrm{Stab}(gx)$, 有$g^{-1}g'gx=g^{-1}gx=x$,
+从而$g'=g(g^{-1}g'g)g^{-1}\in g\,\mathrm{Stab}(x)\,g^{-1}$.
+
+另一方面, 对任意的$h\in\mathrm{Stab}(x)$, 有$ghg^{-1}gx=ghx=gx$,
+即$ghg^{-1}\in\mathrm{Stab}(gx)$. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.3}{}
+\noindent\textbf{定义1.3}
+
+给定群作用$\cdot:G\curvearrowright X$, 如果所有$x\in X$同属一个轨道, 即
+\[
+    \forall x,x'\in X\,\exists g\in G:x'=gx,
+\]
+就称$\cdot$是\textbf{传递}的. 如果
+\[
+    \forall x\in X:\quad\mathrm{Stab}(x)=\{1_G\},\\[-3pt]
+\]
+即只有$1_G$保持某元素不动, 就称$\cdot$是\textbf{自由}的.
+显然这时它也是忠实的.
+
+
+
+
+
+\newpage
+
+\hypertarget{sec:定理1.3}{}
+\noindent\textbf{定理1.3 (轨道-稳定子定理)}
+
+任给群作用$\cdot:G\curvearrowright X$和$x\in X$,
+对任意的$y\in\mathrm{orb}(x)$定义
+\[
+    \varphi(y)=\{g\in G\mid gx=y\},\\[3pt]
+\]
+则$\varphi:\mathrm{orb}(x)\cong\,\!^{\displaystyle G}\!
+/_{\displaystyle\mathrm{Stab}(x)}$, 是这两个$G$-集之间的等变同构.
+
+\vspace{5pt}
+特别地, $|\mathrm{orb}(x)|=[G:\mathrm{Stab}(x)]$.
+
+\vspace{3pt}
+\noindent{\kaishu 证明.}
+
+首先, 对任意的$g,h\in G$, 有
+\[
+    h\in\varphi(gx)\iff g^{-1}hx=g^{-1}gx=x\iff
+    g^{-1}h\in\mathrm{Stab}(x)\iff h\in g\,\mathrm{Stab}(x),\\[3pt]
+\]
+即$\varphi(gx)=g\,\mathrm{Stab}(x)$.
+于是有$\varphi:\mathrm{orb}(x)\to\,\!^{\displaystyle G}\!
+/_{\displaystyle\mathrm{Stab}(x)}$且是满射.
+
+\vspace{3pt}
+另外, 如果$\varphi(y)=\varphi(y')$, 取其中的一个$h$,
+则$y=hx=y'$. 所以$\varphi$是双射.
+
+最后, 对任意的$g\in G$和$y\in\mathrm{orb}(x)$, 取一个$h\in\varphi(y)$, 则有
+\[
+    \varphi(gy)=\varphi(ghx)=gh\,\mathrm{Stab}(x)=g\varphi(hx)=g\varphi(y),
+\]
+从而$\varphi$是等变映射. \hfill $\qedsymbol$
+
+\vspace{15pt}
+
+由轨道-稳定子定理, 如果$\cdot:G\curvearrowright X$是传递的,
+那么任取$x\in X$有
+\vspace{3pt}
+\[
+    X=\mathrm{orb}(x)\cong\,\!^{\displaystyle G}\!
+    /_{\displaystyle\mathrm{Stab}(x)},\\[3pt]
+\]
+进一步, 不同的$x\in X$给出的陪集空间$\,\!^{\displaystyle G}\!
+/_{\displaystyle\mathrm{Stab}(x)}$之间也是等变同构的.
+
+\end{document}
