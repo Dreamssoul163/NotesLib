@@ -1,0 +1,159 @@
+\documentclass[UTF8]{ctexart}
+\input{../../../../preamble.tex}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{\texorpdfstring{$G$}{G}-集与等变映射}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 ($G$-集范畴)}
+
+给定群$G$. 对任意的集合$X$和其上的群作用$\cdot:G\curvearrowright X$,
+称$(X,\cdot)$或$X$是一个$G$-\textbf{集}.
+
+给定$G$-集$(X,\cdot_X)$, $(Y,\cdot_Y)$和映射$f:X\to Y$. 如果
+\[
+    \forall g\in G,\,\forall x\in X:\quad f(g\cdot_X x)=g\cdot_Y f(x),
+\]
+就称$f$是从$(X,\cdot_X)$到$(Y,\cdot_Y)$的\textbf{等变映射}.
+
+若干$G$-集与它们之间的等变映射可以组成范畴, 称作$G$-\textbf{集范畴}.
+
+% 忽然意识到, 这是线性空间和线性映射的最简单版本.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+任给群$G$, $G$-集$(X,\cdot_X)$, $(Y,\cdot_Y)$和它们之间的等变映射$f$.
+如果$f$是双射, 那么$f^{-1}$也是等变映射.
+
+\noindent{\kaishu 证明.}
+
+对任意的$g\in G$和$y\in Y$, 记$x=f^{-1}(y)$, 则有
+\begin{equation*}
+    g\cdot_Y y=g\cdot_Y f(x)=f(g\cdot_X x)\quad\implies\quad
+    f^{-1}(g\cdot_Y y)=g\cdot_X x=g\cdot_X f^{-1}(y).
+\tag*{\qedsymbol}\end{equation*}
+
+\vspace{10pt}
+
+据上述定理, 如果两个$G$-集之间有等变的双射, 那么它们在$G$-集范畴中同构.
+
+\vspace{15pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (子$G$-集)}
+
+给定群$G$, $G$-集$X$和$X'\subset X$, 如果
+\[
+    \forall g\in G,\,\forall x\in X':\quad gx\in X',
+\]
+那么显然$X'$也是$G$-集, 称之为$X$的\textbf{子}$G$-\textbf{集}.
+显然这时$X'$到$X$的嵌入映射是等变映射.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+任给群$G$, $G$-集$X,Y$和它们之间的等变映射$f$, 则
+\begin{enumerate}
+    \item 对$X$的任意子$G$-集$X'$, $f[X']$是$Y$的子$G$-集,
+    \item 对$Y$的任意子$G$-集$Y'$, $f^{-1}[Y']$是$X$的子$G$-集.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 对任意的$g\in G$和$y\in f[X']$, 存在$x\in X'$使得$y=f(x)$, 从而
+    $gy=gf(x)=f(gx)\in f[X']$,
+    \item 对任意的$g\in G$和$x\in f^{-1}[Y']$, 有$f(x)\in Y'$, 从而
+    $f(gx)=gf(x)\in Y'$, 即$gx\in f^{-1}[Y']$. \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.3}{}
+\noindent\textbf{定义1.3 (生成子$G$-集)}
+
+任给群$G$, $G$-集$X$和$S\subset X$, 定义它的\textbf{生成}$G$-\textbf{子集}为
+\[
+    \langle S\rangle\overset{\mathrm{def}}{=}\{gs\mid g\in G,s\in S\},
+\]
+它是$X$的包含$S$的最小子$G$-集.
+
+\noindent{\kaishu 验证.}
+
+一方面, 对任意的$h\in G$和$gs\in\langle S\rangle$, 都有
+$h(gs)=(hg)s\in\langle S\rangle$, 所以$S$是子$G$-集且显然包含$S$.
+
+另一方面, 如果$X'$是$X$的包含$S$的子$G$-集, 那么对任意的$g\in G$和$s\in S$都有
+\[
+    s\in X'\quad\implies\quad gs\in X',
+\]
+从而$\langle S\rangle\subset X'$. \hfill $\qedsymbol$
+
+
+
+
+
+\newpage
+
+\hypertarget{sec:定义1.3}{}
+\noindent\textbf{定义1.3 (商$G$-集)}
+
+给定群$G$, $G$-集$X$和$X$上的等价关系$\sim$, 如果
+\[
+    \forall g\in G,\,\forall x,x'\in X:\quad x\sim x'\rightarrow gx\sim gx',
+\]
+就称$\sim$是一个\textbf{同余关系}. 进一步, 此时存在群作用
+\[
+    \times:G\curvearrowright\,\!^{\displaystyle X}\!/_{\displaystyle\sim}\\[3pt]
+\]
+使得对任意的$x\in X$有$g\times[x]=[gx]$,
+称$\left(\,\!^{\displaystyle X}\!/_{\displaystyle\sim},\times\right)$为
+$X$的\textbf{商}-$G$\textbf{集}. 显然投影映射是等变映射.
+
+\noindent{\kaishu 证明.}
+
+考虑映射$G\times X\to\,\!^{\displaystyle X}\!/_{\displaystyle\sim},
+(g,x)\mapsto[gx]$, 当$x\sim x'$时总有
+\[
+    gx\sim gx'\quad\implies\quad[gx]=[gx'],
+\]
+所以它可以诱导商映射$\times$, 它满足:
+\begin{enumerate}
+    \item 对任意的$x\in X$, 有$1_G\times[x]=[1_G\,x]=[x]$,
+    \item 对任意的$g_1,g_2\in G$和$x\in X$, 有
+    $g_1\times(g_2\times[x])=g_1\times[g_2x]=[g_1g_2x]=g_1g_2\times[x]$,
+\end{enumerate}
+\vspace{3pt}
+所以$\times$是$G$在$\,\!^{\displaystyle X}\!/_{\displaystyle\sim}$上的
+群作用. \hfill $\qedsymbol$
+
+\vspace{15pt}
+
+\hypertarget{sec:定理1.3}{}
+\noindent\textbf{定理1.3 ($G$-集第一同构定理)}
+
+任给群$G$, $G$-集$X,Y$和它们之间的等变映射$f$, 有等变同构
+\vspace{3pt}
+\[
+    \overline{f}:\,\!^{\displaystyle X}\!/_{\displaystyle\sim_f}
+    \cong\mathrm{Ran}\,f,
+\]
+使得对任意的$x\in X$有$\overline{f}[x]=f(x)$.
+
+\noindent{\kaishu 证明.}
+
+取$f$在$\sim_f$下的商映射$\overline{f}$即可, 对任意的$g\in G$和$x\in X$有
+\[
+    \overline{f}(g[x])=\overline{f}[gx]=f(gx)=gf(x)=g\overline{f}[x],
+\]
+即$\overline{f}$是等变映射. \hfill $\qedsymbol$
+
+\end{document}

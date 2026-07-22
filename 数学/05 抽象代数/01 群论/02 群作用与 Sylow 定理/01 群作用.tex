@@ -1,0 +1,111 @@
+\documentclass[UTF8]{ctexart}
+\input{../../../../preamble.tex}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{群作用}
+
+% 收到了博士生录取通知书, 大概是此生的最后一张录取通知书.
+% 很巧, 正好是结束推研面试的一年之后.
+% 2026.07.18
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (群作用)}
+
+给定\href{../01 群、子群与商群/01 半群与群#nameddest=sec:定义2.1}{群}
+$G$和集合$X$, 以及映射$\cdot:G\times X\to X$. 如果
+\begin{enumerate}
+    \item 对任意的$x\in X$, 有$1_G\,x=x$,
+    \item 对任意的$g_1,g_2\in G$和$x\in X$, 有$g_1(g_2x)=(g_1g_2)x$,
+\end{enumerate}
+就称$\cdot$是$G$在$X$上的一个\textbf{群作用}, 记作$\cdot:G\curvearrowright X$.
+
+% 只睡了两个多小时...
+% 恭喜西班牙! 早安.
+% 2026.07.20
+
+\vspace{10pt}
+
+如果此时有$H<G$, 显然$\cdot\!\restriction_{H\times X}$可以给出$H$在$X$上的群作用.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+任给群$G$和集合$X$, 对任意的$\cdot:G\curvearrowright X$, 有群同态
+\[
+    \overline{\cdot}:G\to S_X,\quad g\mapsto(x\mapsto gx),
+\]
+并且$\cdot\mapsto\overline{\cdot}$是
+$G$在$X$上的群作用与$G$到$S_X$的群同态之间的一一对应.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2}
+
+给定群作用$\cdot:G\curvearrowright X$, 如果$\overline{\cdot}$是单同态, 即
+\[
+    \{g\in G\mid\forall x\in X:gx=x\}=\mathrm{Ker}\,\overline{\cdot}=\{1_G\},
+\]
+那么称$\cdot$是\textbf{忠实}的.
+
+\vspace{10pt}
+
+对于一般的群作用$\cdot$\,, $\mathrm{Ker}\,\overline{\cdot}$表示群中
+不产生任何作用的元素, 其商群就可以产生忠实的群作用.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+对任意的群作用$\cdot:G\curvearrowright X$, 由商群的泛性质, 有群同态
+\vspace{3pt}
+\[
+    \overline{\times}:\,\!^{\displaystyle G}\!
+    /_{\displaystyle\mathrm{Ker}\,\overline{\cdot}}\,\to S_X,\\[3pt]
+\]
+它对应了忠实的群作用$\times:\,\!^{\displaystyle G}\!
+/_{\displaystyle\mathrm{Ker}\,\overline{\cdot}}\curvearrowright X$, 并且
+对任意的$g\in G$和$x\in X$有$g\mathrm{Ker}\,\overline{\cdot}\times x=gx$.
+
+\vspace{3pt}
+\noindent{\kaishu 证明.}
+
+由商群的泛性质, $\mathrm{Ker}\,\overline{\times}=
+\,\!^{\displaystyle\mathrm{Ker}\,\overline{\cdot}}\!/_
+{\displaystyle\mathrm{Ker}\,\overline{\cdot}}=\{\mathrm{Ker}\,\overline{\cdot}\}$,
+从而$\times$忠实, 并且对任意的$g\in G$和$x\in X$有
+\vspace{5pt}
+\begin{equation*}
+    g\mathrm{Ker}\,\overline{\cdot}\times x=
+    \overline{\times}(g\mathrm{Ker}\,\overline{\cdot})(x)=
+    \overline{\cdot}(g)(x)=gx.
+\tag*{\qedsymbol}\end{equation*}
+
+\vspace{15pt}
+
+下面举一些常见的群作用的例子.
+
+\vspace{10pt}
+
+\hypertarget{sec:例1.1}{}
+\noindent\textbf{例1.1}
+
+\begin{enumerate}
+    \item 任给群$G$, 它在$G$自身上有群作用$(g,g')\mapsto gg'$, 称之为左乘作用.
+    \item 任给群$G$和它的正规子群$H$, $G$在$H$
+    上有群作用$(g,h)\mapsto ghg^{-1}$, 称之为共轭作用.
+    \vspace{3pt}
+    \item 任给群$G$和它的子群$H$, $G$在$\,\!^{\displaystyle G}\!/_{\displaystyle H}$
+    上有群作用$(g,P)\mapsto gP$, 称之为对陪集的左乘作用.
+    \vspace{3pt}
+    \item 任给群$G$, $G$在它所有子群组成的集合
+    上有群作用$(g,H)\mapsto gHg^{-1}$, 称之为对子群的共轭作用.
+\end{enumerate}
+
+\end{document}
