@@ -24,7 +24,8 @@ $\cdot:G\curvearrowright X$. 对任意的$x\in X$, 它生成的子$G$-集是
 
 任给群作用$\cdot:G\curvearrowright X$, 所有轨道的全体
 \[
-    \{\mathrm{orb}(x)\mid x\in X\}
+    \,_{\displaystyle G}\backslash\!^{\displaystyle X}
+    \overset{\mathrm{def}}{=}\{\mathrm{orb}(x)\mid x\in X\}
 \]
 组成$X$的一个划分.
 
@@ -142,10 +143,55 @@ $\cdot:G\curvearrowright X$. 对任意的$x\in X$, 它生成的子$G$-集是
 
 \vspace{3pt}
 如果$\cdot:G\curvearrowright X$是传递的, 那么任取$x\in X$有
+$X=\mathrm{orb}(x)\cong\,\!^{\displaystyle G}\!/_{\displaystyle\mathrm{Stab}(x)}$.
+
+\vspace{15pt}
+
+\hypertarget{sec:定理1.4}{}
+\noindent\textbf{定理1.4}
+
+任给群作用$\cdot:G\curvearrowright X$,
+对每个轨道$o\in\,_{\displaystyle G}\backslash\!^{\displaystyle X}$
+选取$x_o\in o$. 如果$G,X$都有限, 那么
+\vspace{5pt}
+\[
+    \frac{|X|}{|G|}=\sum_{o\in G\backslash X}\frac{1}{|\mathrm{Stab}(x_o)|}.
+\]
+
+\noindent{\kaishu 证明.}
+
+$\displaystyle|X|=\sum_{o\in G\backslash X}|o|=
+\sum_{o\in G\backslash X}\frac{|G|}{|\mathrm{Stab}(x_o)|}$. \hfill $\qedsymbol$
+
+\vspace{15pt}
+
+\hypertarget{sec:定理1.5}{}
+\noindent\textbf{定理1.5 (Burnside引理)}
+
+任给群作用$\cdot:G\curvearrowright X$, 如果$G,X$都有限, 那么轨道数
 \vspace{3pt}
 \[
-    X=\mathrm{orb}(x)\cong\,\!^{\displaystyle G}\!
-    /_{\displaystyle\mathrm{Stab}(x)},\\[3pt]
+    \left|\,_{\displaystyle G}\backslash\!^{\displaystyle X}\right|=
+    \frac{1}{|G|}\sum_{g\in G}|X^g|,\\[-3pt]
 \]
+其中$X^g\overset{\mathrm{def}}{=}\{x\in X\mid gx=x\}$, 称作$g$的不动点集.
+
+\noindent{\kaishu 证明.}
+
+考虑$T=\{(g,x)\in G\times X\mid gx=x\}$.
+根据\href{../../../01 基础集合论/03 自然数/04 有限求和/03 有限 Fubini 定理#nameddest=sec:定理1.1}
+{有限Fubini定理}, 一方面,
+\[
+    |T|=\sum_{g\in G}|X^g|,
+\]
+另一方面,
+\[
+    |T|=\sum_{x\in X}|\mathrm{Stab}(x)|=
+    \sum_{o\in G\backslash X}\sum_{x\in o}\frac{|G|}{|\mathrm{orb}(x)|}=
+    |G|\sum_{o\in G\backslash X}|o|\cdot\frac{1}{|o|}=
+    |G|\cdot\left|\,_{\displaystyle G}\backslash\!^{\displaystyle X}\right|,
+\]
+所以$\displaystyle\left|\,_{\displaystyle G}\backslash\!^{\displaystyle X}\right|=
+\frac{1}{|G|}\sum_{g\in G}|X^g|$. \hfill $\qedsymbol$
 
 \end{document}
