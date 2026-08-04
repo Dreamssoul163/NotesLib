@@ -1,0 +1,184 @@
+\documentclass[UTF8]{ctexart}
+\input{../../preamble.tex}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{多类一阶语言}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (多类一阶语言)}
+
+称\vspace{-3pt}
+\[
+\mathcal{L}=(\mathcal{S},(\mathcal{V}_s,\mathcal{C}_s)_{s\in\mathcal{S}},
+(s^f_1,\cdots,s^f_{n_f},s_f)_{f\in\mathcal{F}},
+(s^r_1,\cdots,s^r_{n_r})_{r\in\mathcal{R}})\\[-3pt]
+\]
+是一个\textbf{多类一阶语言}, 如果:
+\begin{enumerate}
+    \item $\mathcal{S}$是非空集合, 称其中的元素为类型,
+    \item 对任意的$s\in\mathcal{S}$, $\mathcal{V}_s$是无限集,
+    \item $\mathcal{V}_s,\mathcal{C}_s(s\in\mathcal{S}),
+    \mathcal{F},\mathcal{R}$这些集合两两不相交,
+    \item 对任意的$f\in\mathcal{F}$有$n_f\in\mathbb{N}^+$,
+    $s^f_1,\cdots,s^f_{n_f},s_f\in\mathcal{S}$, 通常记
+    $f:s^f_1\times\cdots\times s^f_{n_f}\to s_f$,
+
+    \hspace{2.17em}
+    对任意的$r\in\mathcal{R}$有$n_r\in\mathbb{N}^+$,
+    $s^r_1,\cdots,s^r_{n_r}\in\mathcal{S}$, 通常记
+    $r:s^r_1\times\cdots\times s^r_{n_r}$.
+\end{enumerate}
+
+% \vspace{10pt}
+
+% \hypertarget{sec:定义1.2}{}
+% \noindent\textbf{定义1.2 (多类一阶语言的字母表)}
+
+% 给定多类一阶语言$\mathcal{L}$, 称
+% \[
+%     \Sigma_{\mathcal{L}}\overset{\mathrm{def}}{=}
+%     \bigcup_{s\in\mathcal{S}}\mathcal{V}_s\;\cup\;
+%     \bigcup_{s\in\mathcal{S}}\mathcal{C}_s\;\cup\;
+%     \mathcal{F}\;\cup\;\mathcal{R}\;\cup\;\mathrm{Log}\\[3pt]
+% \]
+% 为$\mathcal{L}$的\textbf{字母表}, 其中
+% $\mathrm{Log}=\{\ \neg\ ,\ \to\ ,\ \exists\ ,\ \equiv\ ,\ (\ ,\ )\ \}$.
+
+% 默认$\mathrm{Log}$也与$\mathcal{L}$中的各集合均不相交.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (多类一阶语言的项)}
+
+给定多类一阶语言$\mathcal{L}$,
+归纳定义项集$T^{\mathcal{L}}$及项的类型:
+\begin{enumerate}
+    \item 原子项: 对任意的类型$s$, $\mathcal{V}_s\cup\mathcal{C}_s$
+    的元素都属于$T^{\mathcal{L}}$, 且类型为$s$,
+    \item 归纳规则: 对任意的函数符号
+    \[
+        f:s_1\times\cdots\times s_n\to s_f\in\mathcal{F}\\[-3pt]
+    \]
+    和类型为$s_1,\cdots,s_n$的项$t_1,\cdots,t_n$,
+    $ft_1\cdots t_n$是$s_f$类的项.
+\end{enumerate}
+
+\vspace{10pt}
+
+记$T^{\mathcal{L}}_s$为所有$s$类项的集合,
+当$t$的类型是$s$时, 记$t:s$. 显然每个项有唯一的类型.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.3}{}
+\noindent\textbf{定义1.3 (多类一阶语言的公式)}
+
+给定多类一阶语言$\mathcal{L}$, 归纳定义公式集$F^{\mathcal{L}}$:
+\begin{enumerate}
+    \item 原子公式:
+    
+    \hspace{3em}
+    对任意的类$s$和$s$类的项$t_1,t_2$,
+    $t_1\equiv t_2\in F^{\mathcal{L}}$,
+
+    \hspace{3em}
+    对任意的关系符号$r:s_1\times\cdots\times s_n$
+    和类型为$s_1,\cdots,s_n$的项$t_1,\cdots,t_n$,
+    $rt_1\cdots t_n\in F^{\mathcal{L}}$,
+
+    \item 归纳规则:
+    
+    \hspace{3em}
+    对任意的$\varphi\in F^{\mathcal{L}}$, 有$\neg\varphi\in F^{\mathcal{L}}$,
+
+    \hspace{3em}
+    对任意的$\varphi,\psi\in F^{\mathcal{L}}$,
+    有$(\varphi\to\psi)\in F^{\mathcal{L}}$,
+
+    \hspace{3em}
+    对任意的变元$x$和$\varphi\in F^{\mathcal{L}}$,
+    有$\exists x\varphi\in F^{\mathcal{L}}$.
+\end{enumerate}
+
+
+
+
+
+\newpage
+
+\section{数组类型}
+
+\hypertarget{sec:定义2.1}{}
+\noindent\textbf{定义2.1 (数组类型)}
+
+假设对任意的类型$\iota,s\in\mathcal{S}$, 指定一个类型
+\[
+    A(\iota,s),\\[-3pt]
+\]
+称之为$\iota$到$s$的\textbf{数组类型}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义2.2}{}
+\noindent\textbf{定义2.2 (数组的读写公理)}
+
+对任意的类型$\iota,s$, 假设在$\mathcal{F}$中有固定的函数符号
+\[
+    \mathrm{read}:A(\iota,s)\times\iota\to s,\qquad
+    \mathrm{update}:A(\iota,s)\times\iota\times s\to A(\iota,s),
+\]
+并假设模型满足以下两个公理:
+\begin{enumerate}
+    \item $\forall a:A(\iota,s),\,\,\forall i:\iota,\,\,\forall t:s,\,\,
+    \mathrm{read}(\mathrm{update}(a,i,t),i)\equiv t$,
+    \item $\forall a:A(\iota,s),\,\,\forall i,j:\iota,\,\,\forall t:s,\,\,
+    i\not\equiv j\to\mathrm{read}(\mathrm{update}(a,i,t),j)
+    \equiv\mathrm{read}(a,j)$.
+\end{enumerate}
+
+\vspace{10pt}
+
+通常把项$\mathrm{read}(a,i)$记作$a[i]$, 可以用于构造其他的项或公式.
+
+\vspace{10pt}
+
+\section{Bool类型}
+
+\hypertarget{sec:定义3.1}{}
+\noindent\textbf{定义3.1 (Bool类型)}
+
+设$\mathrm{Bool}\in\mathcal{S}$是一个指定的类型, 并假设$\mathcal{C}_{\mathrm{Bool}}$
+中有两个不同的常元
+\[
+    \mathrm{true},\mathrm{false}:\mathrm{Bool},
+\]
+且模型满足以下两个公理:
+\begin{enumerate}
+    \item $\mathrm{true}\not\equiv\mathrm{false}$,
+    \item $\forall\,b:\mathrm{Bool},\,\,
+    b\equiv\mathrm{true}\lor b\equiv\mathrm{false}$.
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定义3.2}{}
+\noindent\textbf{定义3.2 (Bool函数符号)}
+
+假设在$\mathcal{F}$中:
+\begin{enumerate}
+    \item 有固定的
+    \[
+        \neg:\mathrm{Bool}\to\mathrm{Bool},\qquad
+        \to:\mathrm{Bool}\times\mathrm{Bool}\to\mathrm{Bool},\\[-3pt]
+    \]
+    \item 对任意的类型$s\in\mathcal{S}$有固定的
+    $\equiv_s:s\times s\to\mathrm{Bool}$,
+    \item 对任意的关系符号$r:s_1\times\cdots\times s_n$, 有同名的
+    $r:s_1\times\cdots\times s_n\to\mathrm{Bool}$.
+\end{enumerate}
+
+\end{document}

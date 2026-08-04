@@ -1,0 +1,55 @@
+\documentclass[UTF8]{ctexart}
+\input{../../preamble.tex}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{while 程序语法}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (while 程序)}
+
+给定\href{01 多类一阶语言#nameddest=sec:定义1.1}{多类一阶语言},
+归纳定义while程序集$\mathcal{C}$:
+\begin{enumerate}
+    \item 原子程序:
+    
+    \hspace{3em}$\mathrm{skip}\in\mathcal{C}$,
+
+    \hspace{3em}对任意同类型的变量$u$和项$t$, $u:=t\in\mathcal{C}$,
+
+    \item 归纳规则:
+    
+    \hspace{3em}对任意的$S_1,S_2\in\mathcal{C}$, $S_1;S_2\in\mathcal{C}$,
+
+    \hspace{3em}对任意的$B:\mathrm{Bool}$和$S_1,S_2\in\mathcal{C}$,
+    $\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1\,\,\mathbf{else}\,\,S_2
+    \,\,\mathbf{fi}\in\mathcal{C}$,
+
+    \hspace{3em}对任意的$B:\mathrm{Bool}$和$S\in\mathcal{C}$,
+    $\mathbf{while}\,\,B\,\,\mathbf{do}\,\,S\,\,\mathbf{od}\in\mathcal{C}$.
+\end{enumerate}
+
+\vspace{10pt}
+
+特别地, 把$a:=\mathrm{update}(a,i,t)$简记为$a[i]:=t$.
+
+\vspace{30pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (修改变元集)}
+
+定义while程序$S$的\textbf{修改变元集}$\mathrm{change}(S)$:
+\begin{enumerate}
+    \item $\mathrm{change}(\mathrm{skip})=\varnothing$,
+    \item $\mathrm{change}(u:=t)=\{u\}$,
+    \item $\mathrm{change}(S_1;S_2)=\mathrm{change}(S_1)\cup\mathrm{change}(S_2)$,
+    \item $\mathrm{change}(\,\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1\,\,
+    \mathbf{else}\,\,S_2\,\,\mathbf{fi}\,)=
+    \mathrm{change}(S_1)\cup\mathrm{change}(S_2)$,
+    \item $\mathrm{change}(\,\mathbf{while}\,\,B\,\,\mathbf{do}\,\,S
+    \,\,\mathbf{od}\,)=\mathrm{change}(S)$,
+\end{enumerate}
+
+\end{document}
