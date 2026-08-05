@@ -20,7 +20,7 @@
 \vspace{10pt}
 
 \hypertarget{sec:定义1.2}{}
-\noindent\textbf{定义1.2 (一步转移)}
+\noindent\textbf{定义1.2 (一步转移操作语义)}
 
 递归定义未终止的配置上的一步转移关系
 $\mathcal{C}\times\Sigma\to(\,\mathcal{C}\cup\{\mathrm{E}\}\,)\times\Sigma$ :
@@ -88,7 +88,7 @@ $\mathcal{C}\times\Sigma\to(\,\mathcal{C}\cup\{\mathrm{E}\}\,)\times\Sigma$ :
     \[
         \langle S_i,\sigma_i\rangle\to\langle S_{i+1},\sigma_{i+1}\rangle,
     \]
-    就称它是从$\sigma_0$开始的$S_0$的一个\textbf{有限转移序列}.
+    就称它是从$\langle S_0,\sigma_0\rangle$开始的一个\textbf{有限转移序列}.
 
     \hspace{2.17em}
     当$S_{n-1}=\mathrm{E}$时也称作一个\textbf{计算},
@@ -99,7 +99,7 @@ $\mathcal{C}\times\Sigma\to(\,\mathcal{C}\cup\{\mathrm{E}\}\,)\times\Sigma$ :
     \[
         \langle S_i,\sigma_i\rangle\to\langle S_{i+1},\sigma_{i+1}\rangle,
     \]
-    就称它是从$\sigma_0$开始的$S_0$的一个\textbf{无限转移序列},
+    就称它是从$\langle S_0,\sigma_0\rangle$开始的一个\textbf{无限转移序列},
     也称作一个发散的\textbf{计算}.
 \end{enumerate}
 
@@ -108,7 +108,7 @@ $\mathcal{C}\times\Sigma\to(\,\mathcal{C}\cup\{\mathrm{E}\}\,)\times\Sigma$ :
 \hypertarget{sec:定理1.1}{}
 \noindent\textbf{定理1.1}
 
-任给程序$S$和状态$\sigma$, 存在唯一的从$\sigma$开始的$S$的计算.
+任给程序$S$和状态$\sigma$, 存在唯一的从$\langle S,\sigma\rangle$开始的计算.
 
 \noindent{\kaishu 证明.}
 
