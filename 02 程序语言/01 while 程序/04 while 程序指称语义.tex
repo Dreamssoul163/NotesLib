@@ -10,123 +10,200 @@
 \hypertarget{sec:定义1.1}{}
 \noindent\textbf{定义1.1 (指称语义)}
 
-程序$S$的\textbf{部分正确性语义}定义为
+对程序$S$, 定义其\textbf{指称语义}
 \[
-    \mathcal{M}[\![S]\!]:\Sigma\to\mathcal{P}(\Sigma),\quad\sigma\mapsto
-    \{\,\tau\,|\,\langle S,\sigma\rangle\text{终止于}\tau\,\},
+    [\![S]\!]\overset{\mathrm{def}}{=}\{(\sigma,\tau)\in\Sigma^2
+    \mid\langle S,\sigma\rangle\text{终止于}\tau\},
 \]
-其\textbf{完全正确性语义}定义为
-\[
-    \mathcal{M}_{\mathrm{tot}}[\![S]\!]:\Sigma\to\mathcal{P}(\Sigma\cup\{\bot\}),
-    \quad\sigma\mapsto\mathcal{M}[\![S]\!](\sigma)\cup
-    \{\,\bot\,|\,\langle S,\sigma\rangle\text{发散}\,\}.
-\]
+显然$[\![S]\!]$是$\Sigma$上的部分函数.
 
 \vspace{10pt}
 
-当$\langle S,\sigma\rangle$终止于$\tau$时, $\mathcal{M}[\![S]\!](\sigma)=
-\mathcal{M}_{\mathrm{tot}}[\![S]\!](\sigma)=\{\tau\}$,
+考虑$\Sigma$上的所有部分函数集$[\Sigma\rightharpoonup\Sigma]$的包含偏序,
+显然是一个CPO.
 
-当$\langle S,\sigma\rangle$发散时,
-$\mathcal{M}[\![S]\!](\sigma)=\varnothing$,
-$\mathcal{M}_{\mathrm{tot}}[\![S]\!](\sigma)=\{\bot\}$.
-
-\noindent{\kaishu 备注.}
-
-\begin{enumerate}
-    \item 把$\bot$视为一个始终发散的扩展状态,
-    从而把上述两个语义映射的定义域扩充到$\Sigma\cup\{\bot\}$.
-    \vspace{3pt}
-    \item 对$X\subset\Sigma\cup\{\bot\}$, 定义
-    $\displaystyle\mathcal{N}[\![S]\!](X)=
-    \bigcup_{\sigma\in X}\mathcal{N}[\![S]\!](\sigma)$,
-    这里$\mathcal{N}$指代$\mathcal{M}$或$\mathcal{M}_{\mathrm{tot}}$
-    (下文同理). 显然这两个函数是单调的.
-\end{enumerate}
-
-\vspace{10pt}
+\vspace{15pt}
 
 \hypertarget{sec:定理1.1}{}
-\noindent\textbf{定理1.1 (seq语句的指称语义)}
+\noindent\textbf{定理1.1 (skip与assign语句的指称语义)}
 
-\begin{enumerate}
-    \item 对任意的程序$S_1,S_2$和$X\subset\Sigma\cup\{\bot\}$, 有
-    $\mathcal{N}[\![S_1;S_2]\!](X)=\mathcal{N}[\![S_2]\!]\,
-    \mathcal{N}[\![S_1]\!](X)$,
-    \item 对任意的程序$S_1,S_2,S_3$和$X\subset\Sigma\cup\{\bot\}$, 有
-    $\mathcal{N}[\![(S_1;S_2);S_3]\!](X)=
-    \mathcal{N}[\![S_1;(S_2;S_3)]\!](X)$.
-\end{enumerate}
+对任意的同类型的变量$u$和项$t$, 以及状态$\sigma$, 有
+\[
+    [\![\mathrm{skip}]\!](\sigma)=\sigma,\qquad
+    [\![u:=t]\!](\sigma)=\sigma[u:=\sigma(t)],
+\]
+
+\vspace{15pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2 (seq语句的指称语义)}
+
+对任意的程序$S_1,S_2$有$[\![S_1;S_2]\!]=[\![S_2]\!]\circ[\![S_1]\!]$.
 
 \noindent{\kaishu 证明.}
 
+任取状态$\sigma$和从$\langle S_1,\sigma\rangle$开始的计算
+$\langle S_1\,\!\!^i,\sigma^i\rangle$,
+归纳易证$\langle S_1\,\!\!^i;S_2\,,\sigma^i\rangle$是一个转移序列.
+
+如果$\langle S_1,\sigma\rangle$终止于$\sigma'$
+且$\langle S_2,\sigma'\rangle$终止于$\tau$, 那么
+\[
+    \langle S_1,\sigma\rangle\to^*\langle\mathrm{E},\sigma'\rangle
+    \quad\implies\quad
+    \langle S_1;S_2,\sigma\rangle\to^*\langle\mathrm{E};S_2,\sigma'\rangle=
+    \langle S_2,\sigma'\rangle\to^*\langle\mathrm{E},\tau\rangle,
+\]
+此时$[\![S_1;S_2]\!](\sigma)=\tau=[\![S_2]\!](\sigma')=
+[\![S_2]\!][\![S_1]\!](\sigma)$.
+
+如果$\langle S_1,\sigma\rangle$终止于$\sigma'$
+且$\langle S_2,\sigma'\rangle$发散, 那么
+\[
+    \langle S_1,\sigma\rangle\to^*\langle\mathrm{E},\sigma'\rangle
+    \quad\implies\quad
+    \langle S_1;S_2,\sigma\rangle\to^*\langle\mathrm{E};S_2,\sigma'\rangle=
+    \langle S_2,\sigma'\rangle\,\text{发散},
+\]
+此时$[\![S_1;S_2]\!](\sigma)$无定义, 同时$[\![S_2]\!][\![S_1]\!](\sigma)=
+[\![S_2]\!](\sigma')$无定义.
+
+如果$\langle S_1,\sigma\rangle$发散, 那么
+$\langle S_1;S_2,\sigma\rangle$也发散, 此时两边也都无定义. \hfill $\qedsymbol$
+
+\vspace{15pt}
+
+\hypertarget{sec:定理1.3}{}
+\noindent\textbf{定理1.3 (if语句的指称语义)}
+
+对任意的$B:\mathrm{Bool}$和程序$S_1,S_2$, 有
+\[
+    [\![\,\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1\,\,\mathbf{else}\,\,S_2
+    \,\,\mathbf{fi}\,]\!]=[\![S_1]\!]\!\restriction_B\cup\,
+    [\![S_2]\!]\!\restriction_{\neg\,B}.
+\]
+
+\noindent{\kaishu 证明.}
+
+任取状态$\sigma$, 如果$\sigma\models B$, 则有
+\[
+    \langle\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1\,\,\mathbf{else}\,\,S_2
+    \,\,\mathbf{fi},\sigma\rangle\to\langle S_1,\sigma\rangle,
+\]
+二者终止于相同状态或同时发散; 如果$\sigma\not\models B$, 则有
+\[
+    \langle\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1\,\,\mathbf{else}\,\,S_2
+    \,\,\mathbf{fi},\sigma\rangle\to\langle S_2,\sigma\rangle,
+\]
+二者终止于相同状态或同时发散. \hfill $\qedsymbol$
+
+\newpage
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (while的迭代程序与算子)}
+
+给定$B:\mathrm{Bool}$和程序$S$.
 \begin{enumerate}
-    \item 任取$\sigma\in\Sigma\cup\{\bot\}$和
-    从$\langle S_1,\sigma\rangle$开始的计算$\langle S_1\,\!\!^i,\sigma^i\rangle$,
-    归纳易证$\langle S_1\,\!\!^i;S_2,\sigma^i\rangle$是一个转移序列.
-
-    \hspace{2.17em}
-    如果$\langle S_1,\sigma\rangle$终止于$\sigma'$
-    且$\langle S_2,\sigma'\rangle$终止于$\tau$, 那么
+    \item 递归定义程序$A^k$ ($k\in\mathbb{N}$):
+    \vspace{-3pt}
     \[
-        \langle S_1,\sigma\rangle\to^*\langle\mathrm{E},\sigma'\rangle
-        \quad\implies\quad
-        \langle S_1;S_2,\sigma\rangle\to^*\langle\mathrm{E};S_2,\sigma'\rangle=
-        \langle S_2,\sigma'\rangle\to^*\langle\mathrm{E},\tau\rangle,
+        A^k=\begin{cases}
+            \mathbf{while}\,\,\mathrm{true}\,\,\mathbf{do}\,\,\mathrm{skip}
+            \,\,\mathbf{od}, & k=0,\\[-3pt]
+            \mathbf{if}\,\,B\,\,\mathbf{then}\,\,S;A^{k-1}
+            \,\,\mathbf{else}\,\,\mathrm{skip}\,\,\mathbf{fi}, & k>0.
+        \end{cases}
     \]
-    此时
-    \[\left\{\begin{aligned}
-        &\mathcal{M}[\![S_1;S_2]\!](\sigma)=\{\tau\}=
-        \mathcal{M}[\![S_2]\!](\sigma')=
-        \mathcal{M}[\![S_2]\!]\mathcal{M}[\![S_1]\!](\sigma),\\
-        &\mathcal{M}_{\mathrm{tot}}[\![S_1;S_2]\!](\sigma)=\{\tau\}=
-        \mathcal{M}_{\mathrm{tot}}[\![S_2]\!](\sigma')=
-        \mathcal{M_{\mathrm{tot}}}[\![S_2]\!]
-        \mathcal{M}_{\mathrm{tot}}[\![S_1]\!](\sigma),\\
-    \end{aligned}\right.\]
-
-    \hspace{2.17em}
-    如果$\langle S_1,\sigma\rangle$终止于$\sigma'$
-    且$\langle S_2,\sigma'\rangle$发散, 那么
+    \item 定义算子$\Phi:(\Sigma\rightharpoonup\Sigma)\to
+    (\Sigma\rightharpoonup\Sigma)$: 对任意部分函数$f:\Sigma\rightharpoonup\Sigma$,
     \[
-        \langle S_1,\sigma\rangle\to^*\langle\mathrm{E},\sigma'\rangle
-        \quad\implies\quad
-        \langle S_1;S_2,\sigma\rangle\to^*\langle\mathrm{E};S_2,\sigma'\rangle=
-        \langle S_2,\sigma'\rangle\text{发散},
+        \Phi(f)=f\circ[\![S]\!]\!\restriction_B\cup\,\mathrm{id}_{\neg\,B},
     \]
-    此时
-    \[\left\{\begin{aligned}
-        &\mathcal{M}[\![S_1;S_2]\!](\sigma)=\varnothing=
-        \mathcal{M}[\![S_2]\!](\sigma')=
-        \mathcal{M}[\![S_2]\!]\mathcal{M}[\![S_1]\!](\sigma),\\
-        &\mathcal{M}_{\mathrm{tot}}[\![S_1;S_2]\!](\sigma)=\{\bot\}=
-        \mathcal{M}_{\mathrm{tot}}[\![S_2]\!](\sigma')=
-        \mathcal{M_{\mathrm{tot}}}[\![S_2]\!]
-        \mathcal{M}_{\mathrm{tot}}[\![S_1]\!](\sigma),\\
-    \end{aligned}\right.\]
+    易证它单调且保上确界, 从而$\displaystyle
+    \bigcup_{k\in\mathbb{N}}\Phi^k(\varnothing)=\mathrm{fix}\,\Phi$.
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.4}{}
+\noindent\textbf{定理1.4 (while语句的指称语义)}
+
+对任意的$B:\mathrm{Bool}$和程序$S$, 有
+\[
+    [\![\,\mathbf{while}\,\,B\,\,\mathbf{do}\,\,S\,\,\mathbf{od}\,]\!]=
+    \bigcup_{k\in\mathbb{N}}[\![A^k]\!]=
+    \bigcup_{k\in\mathbb{N}}\Phi^k(\varnothing)=\mathrm{fix}\,\Phi.
+\]
+
+\noindent{\kaishu 证明.}
+
+记$W=\mathbf{while}\,\,B\,\,\mathbf{do}\,\,S\,\,\mathbf{od}$.
+
+\begin{enumerate}
+    \item 对任意的$\tau=[\![W]\!](\sigma)$, 记该计算中$W$出现次数为
+    $n\geqslant 1$, 对$n$归纳证明$\tau=[\![A^n]\!](\sigma)$.
 
     \hspace{2.17em}
-    如果$\langle S_1,\sigma\rangle$发散(包括$\sigma=\bot$), 那么
-    $\langle S_1;S_2,\sigma\rangle$也发散, 此时
-    \vspace{3pt}
-    \[\left\{\begin{aligned}
-        &\mathcal{M}[\![S_1;S_2]\!](\sigma)=\varnothing=
-        \mathcal{M}[\![S_2]\!](\varnothing)=
-        \mathcal{M}[\![S_2]\!]\mathcal{M}[\![S_1]\!](\sigma),\\
-        &\mathcal{M}_{\mathrm{tot}}[\![S_1;S_2]\!](\sigma)=\{\bot\}=
-        \mathcal{M}_{\mathrm{tot}}[\![S_2]\!](\bot)=
-        \mathcal{M_{\mathrm{tot}}}[\![S_2]\!]
-        \mathcal{M}_{\mathrm{tot}}[\![S_1]\!](\sigma),\\
-    \end{aligned}\right.\]
+    首先, 如果计算中$W$只出现$1$次, 则一定有$\sigma\not\models B$,
+    从而$\tau=\sigma=[\![A^1]\!](\sigma)$;
 
+    \hspace{2.17em}
+    其次假设命题对$n$成立, 并且计算中$W$出现了$n+1$次, 则一定有$\sigma\models B$.
+    此时$\langle W,\sigma\rangle\to\langle S;W,\sigma\rangle$终止,
+    从而$\langle S,\sigma\rangle$一定终止, 设其终止于$\sigma'$, 则
+    \[
+        \langle W,\sigma\rangle\to\langle S;W,\sigma\rangle\to^*
+        \langle W,\sigma'\rangle,\quad
+        \langle A^{n+1},\sigma\rangle\to\langle S;A^n,\sigma\rangle\to^*
+        \langle A^n,\sigma'\rangle
+    \]
+    此时$\tau=[\![W]\!](\sigma')$, 易证$\langle W,\sigma'\rangle$的计算中
+    $W$出现$n$次, 依假设有$\tau=[\![A^n]\!](\sigma')=[\![A^{n+1}]\!](\sigma)$.
+
+    \vspace{3pt}\hspace{2.17em}
+    归纳成立, 从而$\displaystyle[\![W]\!]\subset
+    \bigcup_{k\in\mathbb{N}}[\![A^k]\!]$.
+
+    \vspace{5pt}
+    \item 对$k$归纳证明$[\![A^k]\!]\subset[\![W]\!]$.
+    显然$k=0$时$[\![A^0]\!]=\varnothing$\,; 假设命题对$k$成立,
+    任取$\tau=[\![A^{k+1}]\!](\sigma)$.
+
+    \hspace{2.17em}
+    如果$\sigma\models B$, 此时$\langle A^{k+1},\sigma\rangle\to
+    \langle S;A^k,\sigma\rangle$终止于$\tau$, 从而$\langle S,\sigma\rangle$
+    一定终止, 设其终止于$\sigma'$, 则
+    \[
+        \langle A^{k+1},\sigma\rangle\to\langle S;A^k,\sigma\rangle\to^*
+        \langle A^k,\sigma'\rangle,\quad
+        \langle W,\sigma\rangle\to\langle S;W,\sigma\rangle\to^*
+        \langle W,\sigma'\rangle,
+    \]
+    从而依假设有$\tau=[\![A^k]\!](\sigma')=[\![W]\!](\sigma')=[\![W]\!](\sigma)$.
+
+    \hspace{2.17em}
+    如果$\sigma\not\models B$, 则$\tau=\sigma=[\![W]\!](\sigma)$.
+    所以始终有$[\![A^{k+1}]\!]\subset[\![W]\!]$.
+
+    \vspace{3pt}\hspace{2.17em}
+    归纳成立, 从而$\displaystyle\bigcup_{k\in\mathbb{N}}[\![A^k]\!]
+    \subset[\![W]\!]$. 综上可得二者相等.
+
+    \vspace{5pt}
+    \item 对$k$归纳证明$[\![A^k]\!]=\Phi^k(\varnothing)$.
+    显然$[\![A^0]\!]=\varnothing=\Phi^0(\varnothing)$, 假设命题对$k$成立, 则
     \vspace{3pt}
-    \item \hspace*{\fill}$\begin{aligned}[t]
-        \mathcal{N}[\![(S_1;S_2);S_3]\!](X)=\,&
-        \mathcal{N}[\![S_3]\!]\mathcal{N}[\![S_1;S_2]\!](X)=
-        \mathcal{N}[\![S_3]\!]\mathcal{N}[\![S_2]\!]\mathcal{N}[\![S_1]\!](X)\\
-        =\,&\mathcal{N}[\![S_2;S_3]\!]\mathcal{N}[\![S_1]\!](X)=
-        \mathcal{N}[\![S_1;(S_2;S_3)]\!](X).
-    \end{aligned}$ \hspace*{\fill}\null
+    \[\begin{aligned}\relax
+        [\![A^{k+1}]\!]=\,&[\![\,\mathbf{if}\,\,B\,\,\mathbf{then}\,\,
+        S;A^k\,\,\mathbf{else}\,\,\mathrm{skip}\,\,\mathbf{fi}\,]\!]\\
+        =\,&[\![S;A^k]\!]\!\restriction_B\cup\,
+        [\![\mathrm{skip}]\!]\!\restriction_{\neg\,B}\\
+        =\,&[\![A^k]\!]\circ[\![S]\!]\!\restriction_B\cup\,
+        \mathrm{id}_{\neg\,B}\\
+        =\,&\Phi([\![A^k]\!])=\Phi^{k+1}(\varnothing),
+    \end{aligned}\]
+    归纳成立, 从而$\displaystyle\bigcup_{k\in\mathbb{N}}[\![A^k]\!]=
+    \bigcup_{k\in\mathbb{N}}\Phi^k(\varnothing)$. \hfill $\qedsymbol$
 \end{enumerate}
 
 
@@ -135,129 +212,95 @@ $\mathcal{M}_{\mathrm{tot}}[\![S]\!](\sigma)=\{\bot\}$.
 
 \newpage
 
-\hypertarget{sec:定理1.2}{}
-\noindent\textbf{定理1.2 (if语句的指称语义)}
+\section{指称语义的其他形式}
 
-对任意的$B:\mathrm{Bool}$, 程序$S_1,S_2$和$X\subset\Sigma\cup\{\bot\}$, 有
-$\mathcal{N}[\![\,\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1\,\,
-\mathbf{else}\,\,S_2\,\,\mathbf{fi}\,]\!](X)=$
-\[
-    \mathcal{N}[\![S_1]\!](X\cap[\![B]\!])\,\cup\,
-    \mathcal{N}[\![S_2]\!](X\cap[\![\neg\,B]\!])\,\cup\,
-    \{\,\bot\,\mid\,\bot\in X\land\mathcal{N}=\mathcal{M}_{\mathrm{tot}}\,\}.
-\]
+\hypertarget{sec:定义2.1}{}
+\noindent\textbf{定义2.1 (全函数形式)}
 
-\noindent{\kaishu 证明.}
-
-任取$\sigma\in\Sigma\cup\{\bot\}$.
-如果$\sigma\models B$, 那么$\langle
-\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1\,\,\mathbf{else}\,\,S_2\,\,\mathbf{fi},
-\sigma\rangle\to\langle S_1,\sigma\rangle$, 所以
+程序$S$的全函数形式的指称语义定义为
 \[
-    \mathcal{N}[\![\,\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1\,\,
-    \mathbf{else}\,\,S_2\,\,\mathbf{fi}\,]\!](\sigma)=
-    \mathcal{N}[\![S_1]\!](\sigma),
+    [\![S]\!]_{\mathrm{tot}}:\Sigma\cup\{\bot\}\to\Sigma\cup\{\bot\},\quad
+    \sigma\mapsto\left\{\begin{aligned}
+        &[\![S]\!](\sigma),&&\sigma\in\Sigma
+        \,\text{且}\,[\![S]\!](\sigma)\,\text{有定义},\\
+        &\bot,&&\text{其它}.
+    \end{aligned}\right.
 \]
-如果$\sigma\not\models B$, 那么$\langle
-\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1\,\,\mathbf{else}\,\,S_2\,\,\mathbf{fi},
-\sigma\rangle\to\langle S_2,\sigma\rangle$, 所以
-\[
-    \mathcal{N}[\![\,\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1\,\,
-    \mathbf{else}\,\,S_2\,\,\mathbf{fi}\,]\!](\sigma)=
-    \mathcal{N}[\![S_2]\!](\sigma),
-\]
-如果$\sigma=\bot$, 那么
-\begin{equation*}
-    \mathcal{N}[\![\,\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1\,\,
-    \mathbf{else}\,\,S_2\,\,\mathbf{fi}\,]\!](\sigma)=
-    \{\,\bot\,\mid\,\mathcal{N}=\mathcal{M}_{\mathrm{tot}}\}.
-\tag*{\qedsymbol}\end{equation*}
 
 \vspace{10pt}
 
-\hypertarget{sec:定理1.3}{}
-\noindent\textbf{定理1.3 (while语句的指称语义)}
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1}
 
-对任意的$B:\mathrm{Bool}$和程序$S$, 递归定义程序
-\[A^k=\left\{\begin{aligned}
-    &\mathbf{while}\,\,\mathrm{true}\,\,\mathbf{do}\,\,\mathrm{skip}
-    \,\,\mathbf{od},\quad k=0,\\
-    &\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S;A^{k-1}\,\,\mathbf{else}
-    \,\,\mathrm{skip}\,\,\mathbf{fi},\quad k>0,
-\end{aligned}\right.\]
-则对任意的$X\subset\Sigma\cup\{\bot\}$有
-\[
-    \mathcal{M}[\![\,\mathbf{while}\,\,B\,\,\mathbf{do}
-    \,\,S\,\,\mathbf{od}\,]\!](X)=\bigcup_k\mathcal{M}[\![A^k]\!](X).
-\]
-
-
-\noindent{\kaishu 证明.}
-
-记$W=\mathbf{while}\,\,B\,\,\mathbf{do}\,\,S\,\,\mathbf{od}$.
-第一, 对$k$归纳证明, 对任意$\sigma\in\Sigma\cup\{\bot\}$有
-$\mathcal{M}[\![A^k]\!](\sigma)\subset\mathcal{M}[\![W]\!](\sigma)$.
-
-显然$k=0$时$\mathcal{M}[\![A^0]\!](\sigma)=\varnothing$\,;
-假设命题对$k$成立, 任取$\sigma$, 那么
 \begin{enumerate}
-    \item 如果$\sigma\models B$, 此时$\langle A^{k+1},\sigma\rangle\to
-    \langle S;A^k,\sigma\rangle$终止, 从而$\langle S,\sigma\rangle$
-    一定终止, 设其终止于$\sigma'$, 则
+    \item 对任意的程序$S_1,S_2$, $[\![S_1;S_2]\!]_{\mathrm{tot}}=
+    [\![S_2]\!]_{\mathrm{tot}}\circ[\![S_1]\!]_{\mathrm{tot}}$,
+    \item 对任意的$B:\mathrm{Bool}$和程序$S_1,S_2$, 有
     \[
-        \langle A^{k+1},\sigma\rangle\to\langle S;A^k,\sigma\rangle\to^*
-        \langle A^k,\sigma'\rangle,\quad
-        \langle W,\sigma\rangle\to\langle S;W,\sigma\rangle\to^*
-        \langle W,\sigma'\rangle,
+        [\![\,\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1\,\,\mathbf{else}\,\,S_2
+        \,\,\mathbf{fi}\,]\!]_{\mathrm{tot}}=
+        [\![S_1]\!]_{\mathrm{tot}}\!\restriction_B\cup\,
+        [\![S_2]\!]_{\mathrm{tot}}\!\restriction_{\neg\,B}\cup\,\{(\bot,\bot)\}.
     \]
-    从而$\mathcal{M}[\![A^{k+1}]\!](\sigma)=\mathcal{M}[\![A^k]\!](\sigma')\subset
-    \mathcal{M}[\![W]\!](\sigma')=\mathcal{M}[\![W]\!](\sigma)$.
-    \item 如果$\sigma\not\models B$, 则$\mathcal{M}[\![A^{k+1}]\!](\sigma)=
-    \{\sigma\}=\mathcal{M}[\![W]\!](\sigma)$.
-    \item 如果$\sigma=\bot$, 则$\mathcal{M}[\![A^{k+1}]\!](\sigma)=\varnothing$.
 \end{enumerate}
 
-综上归纳成立, 对任意的$k$和$\sigma$有
-$\mathcal{M}[\![A^k]\!](\sigma)\subset\mathcal{M}[\![W]\!](\sigma)$,
-从而$\displaystyle\bigcup_k\mathcal{M}[\![A^k]\!](\sigma)\subset
-\mathcal{M}[\![W]\!](\sigma)$.
+\vspace{10pt}
 
-\vspace{3pt}
-第二, 对任意的$\sigma$和$\tau\in\mathcal{M}[\![W]\!](\sigma)$,
-记该计算中$W$出现次数为$n\geqslant 1$,
-对$n$归纳证明$\tau\in\mathcal{M}[\![A^n]\!](\sigma)$.
+\hypertarget{sec:定义2.2}{}
+\noindent\textbf{定义2.2 (集合值形式)}
 
-首先, 如果计算中$W$只出现$1$次, 则一定有$\sigma\not\models B$, 即
-$\tau=\sigma\in\mathcal{M}[\![A^1]\!](\sigma)$;
-
-其次假设命题对$n$成立, 并且计算中$W$出现了$n+1$次, 则一定有$\sigma\models B$.
-此时$\langle W,\sigma\rangle\to\langle S;W,\sigma\rangle$终止,
-从而$\langle S,\sigma\rangle$一定终止, 设其终止于$\sigma'$, 则
+程序$S$的集合值形式的\textbf{部分正确性语义}定义为
 \[
-    \langle W,\sigma\rangle\to\langle S;W,\sigma\rangle\to^*
-    \langle W,\sigma'\rangle,\quad
-    \langle A^{n+1},\sigma\rangle\to\langle S;A^n,\sigma\rangle\to^*
-    \langle A^n,\sigma'\rangle
+    \mathcal{M}[\![S]\!]:\mathcal{P}(\Sigma)\to\mathcal{P}(\Sigma),\quad
+    X\mapsto\{\tau\in\Sigma\mid\exists\sigma\in X:\langle S,\sigma\rangle
+    \,\text{终止于}\,\tau\},
 \]
-易证$\langle W,\sigma'\rangle$的计算中$W$出现$n$次, 依假设有
-$\tau\in\mathcal{M}[\![A^n]\!](\sigma')=\mathcal{M}[\![A^{n+1}]\!](\sigma)$.
-
-\vspace{3pt}
-综上归纳成立, 对任意的$\sigma$有$\displaystyle
-\mathcal{M}[\![W]\!](\sigma)\subset\bigcup_k\mathcal{M}[\![A^k]\!](\sigma)$.
-\hfill $\qedsymbol$
+其\textbf{完全正确性语义}定义为
+\[
+    \mathcal{M}_{\mathrm{tot}}[\![S]\!]:\mathcal{P}(\Sigma\cup\{\bot\})\to
+    \mathcal{P}(\Sigma\cup\{\bot\}),\quad
+    X\mapsto\mathcal{M}[\![S]\!](X\cap\Sigma)\cup\,\{\bot\mid\bot\in X\lor
+    \exists\sigma\in X:\langle S,\sigma\rangle\,\text{发散}\,\}.
+\]
 
 \vspace{10pt}
 
-\hypertarget{sec:定理1.4}{}
-\noindent\textbf{定理1.4}
+\hypertarget{sec:定理2.2}{}
+\noindent\textbf{定理2.2}
 
 \begin{enumerate}
-    \item 任给$\tau\in\mathcal{M}[\![S]\!](\sigma)$,
-    则$\sigma,\tau$在$\mathrm{Var}-\mathrm{change}(S)$上相同.
-    \item 任给$\tau\in\mathcal{M}[\![S]\!](\sigma)$
-    和$\tau'\in\mathcal{M}[\![S]\!](\sigma')$,
-    如果$\sigma,\sigma'$在$\mathrm{var}(S)$上相同, 则$\tau,\tau'$也如此.
+    \item 对任意的程序$S$和$X\subset\Sigma$,
+    $\mathcal{M}[\![S]\!](X)=[\![S]\!][X]$,
+    \item 对任意的程序$S$和$X\subset\Sigma\cup\{\bot\}$,
+    $\mathcal{M}_{\mathrm{tot}}[\![S]\!](X)=[\![S]\!]_{\mathrm{tot}}[X]$.
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.3}{}
+\noindent\textbf{定理2.3}
+
+下文$\mathcal{N}$指代$\mathcal{M}$或$\mathcal{M}_{\mathrm{tot}}$,
+其中$\mathcal{M}$自动忽略输入的$\bot$.
+
+\begin{enumerate}
+    \item 对任意的程序$S_1,S_2$, 有
+    $\mathcal{N}[\![S_1;S_2]\!](X)=\mathcal{N}[\![S_2]\!]\circ
+    \mathcal{N}[\![S_1]\!]$,
+    \item 对任意的$B:\mathrm{Bool}$, 程序$S_1,S_2$和
+    $X\subset\Sigma\cup\{\bot\}$, 有
+    $\mathcal{N}[\![\,\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1\,\,
+    \mathbf{else}\,\,S_2\,\,\mathbf{fi}\,]\!](X)=$
+    \[
+        \mathcal{N}[\![S_1]\!](X\cap B)\,\cup\,
+        \mathcal{N}[\![S_2]\!](X\cap\neg\,B)\,\cup\,
+        \{\,\bot\,\mid\,\bot\in X\land\mathcal{N}=\mathcal{M}_{\mathrm{tot}}\,\}.
+    \]
+    \item 对任意的$B:\mathrm{Bool}$和程序$S$和$X\subset\Sigma\cup\{\bot\}$, 有
+    \[
+        \mathcal{M}[\![\,\mathbf{while}\,\,B\,\,\mathbf{do}
+        \,\,S\,\,\mathbf{od}\,]\!](X)=\bigcup_k\mathcal{M}[\![A^k]\!](X).
+    \]
 \end{enumerate}
 
 \end{document}
