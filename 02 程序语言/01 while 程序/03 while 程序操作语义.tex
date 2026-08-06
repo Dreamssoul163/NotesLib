@@ -23,61 +23,34 @@
 \noindent\textbf{定义1.2 (一步转移操作语义)}
 
 递归定义未终止的配置上的一步转移关系
+\vspace{3pt}
 $\mathcal{C}\times\Sigma\to(\,\mathcal{C}\cup\{\mathrm{E}\}\,)\times\Sigma$ :
 \begin{enumerate}
-    \item 对任意的状态$\sigma$,
-    \vspace{-3pt}
-    \[
-        \langle\mathrm{skip},\sigma\rangle\overset{\mathrm{def}}{\to}
-        \langle\mathrm{E},\sigma\rangle,\\[-3pt]
-    \]
-    \item 对任意同类型的变元$u$, 项$t$和状态$\sigma$,
-    \[
-        \langle u:=t,\sigma\rangle\overset{\mathrm{def}}{\to}
-        \langle\mathrm{E},\sigma[u:=\sigma(t)]\rangle,\\[3pt]
-    \]
-    \item 对任意的$S_1,S_2$和状态$\sigma$,
-    记$\langle S_1,\sigma\rangle\to\langle S_1',\sigma'\rangle$, 则
-    \vspace{3pt}
-    \[
-        \langle S_1;S_2,\sigma\rangle\overset{\mathrm{def}}{\to}
-        \langle S_1';S_2,\sigma'\rangle,\\[3pt]
-    \]
-    其中$\mathrm{E};S_2$定义为$S_2$.
-    \item 对任意的$B:\mathrm{Bool}$和$S_1,S_2\in\mathcal{C}$,
-    如果$\sigma\models B$, 则
-    \[
-        \langle\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1\,\,\mathbf{else}\,\,S_2
-        \,\,\mathbf{fi},\sigma\rangle\overset{\mathrm{def}}{\to}
-        \langle S_1,\sigma\rangle,
-    \]
-    \item 对任意的$B:\mathrm{Bool}$和$S_1,S_2\in\mathcal{C}$,
-    如果$\sigma\not\models B$, 则
-    \[
-        \langle\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1\,\,\mathbf{else}\,\,S_2
-        \,\,\mathbf{fi},\sigma\rangle\overset{\mathrm{def}}{\to}
-        \langle S_2,\sigma\rangle,
-    \]
-    \item 对任意的$B:\mathrm{Bool}$和$S\in\mathcal{C}$,
-    如果$\sigma\models B$, 则
-    \[
-        \langle\mathbf{while}\,\,B\,\,\mathbf{do}\,\,S\,\,\mathbf{od},\sigma\rangle
-        \overset{\mathrm{def}}{\to}\langle S;
-        \,\mathbf{while}\,\,B\,\,\mathbf{do}\,\,S\,\,\mathbf{od},\sigma\rangle,
-    \]
-    \item 对任意的$B:\mathrm{Bool}$和$S\in\mathcal{C}$,
-    如果$\sigma\not\models B$, 则
-    \[
-        \langle\mathbf{while}\,\,B\,\,\mathbf{do}\,\,S\,\,\mathbf{od},\sigma\rangle
-        \overset{\mathrm{def}}{\to}\langle\mathrm{E},\sigma\rangle.
-    \]
+    \item $\langle\mathrm{skip},\sigma\rangle\overset{\mathrm{def}}{\to}
+    \langle\mathrm{E},\sigma\rangle$,
+    \item $\langle u:=t,\sigma\rangle\overset{\mathrm{def}}{\to}
+    \langle\mathrm{E},\sigma[u:=\sigma(t)]\rangle$,
+    \item 记$\langle S_1,\sigma\rangle\to\langle S_1',\sigma'\rangle$, 则
+    $\langle S_1;S_2,\sigma\rangle\overset{\mathrm{def}}{\to}
+    \langle S_1';S_2,\sigma'\rangle$, 其中$\mathrm{E};S_2$定义为$S_2$.
+    \item 如果$\sigma\models B$, 则
+    $\langle\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1\,\,\mathbf{else}\,\,S_2
+    \,\,\mathbf{fi},\sigma\rangle\overset{\mathrm{def}}{\to}
+    \langle S_1,\sigma\rangle$,
+    \item 如果$\sigma\not\models B$, 则
+    $\langle\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1\,\,\mathbf{else}\,\,S_2
+    \,\,\mathbf{fi},\sigma\rangle\overset{\mathrm{def}}{\to}
+    \langle S_2,\sigma\rangle$,
+    \item 如果$\sigma\models B$, 则
+    $\langle\mathbf{while}\,\,B\,\,\mathbf{do}\,\,S\,\,\mathbf{od},\sigma\rangle
+    \overset{\mathrm{def}}{\to}\langle S;
+    \,\mathbf{while}\,\,B\,\,\mathbf{do}\,\,S\,\,\mathbf{od},\sigma\rangle$,
+    \item 如果$\sigma\not\models B$, 则
+    $\langle\mathbf{while}\,\,B\,\,\mathbf{do}\,\,S\,\,\mathbf{od},\sigma\rangle
+    \overset{\mathrm{def}}{\to}\langle\mathrm{E},\sigma\rangle$.
 \end{enumerate}
 
-
-
-
-
-\newpage
+\vspace{10pt}
 
 \hypertarget{sec:定义1.3}{}
 \noindent\textbf{定义1.3 (转移序列与计算)}
@@ -122,7 +95,7 @@ $\mathcal{C}\times\Sigma\to(\,\mathcal{C}\cup\{\mathrm{E}\}\,)\times\Sigma$ :
 \end{aligned}\right.\]
 
 \vspace{3pt}
-如果序列中出现了$\mathrm{E}$, 则取最小的使得$S_n=\mathrm{E}$的$n$,
+如果序列中出现了$\mathrm{E}$, 则取首次出现的$S_n=\mathrm{E}$,
 易证$\langle S_i,\sigma_i\rangle$ ($i\leqslant n$)是有限的计算;
 
 如果序列中没有出现$\mathrm{E}$, 则易证整个序列是无限的计算.
@@ -130,5 +103,234 @@ $\mathcal{C}\times\Sigma\to(\,\mathcal{C}\cup\{\mathrm{E}\}\,)\times\Sigma$ :
 \noindent{\kaishu 唯一性.}
 
 归纳证明转移序列的每一位都确定即可. \hfill $\qedsymbol$
+
+
+
+
+
+\newpage
+
+\section{框架引理与重合引理}
+
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1 (框架引理)}
+
+对任意的有限配置序列$\langle S_i,\sigma_i\rangle$ ($i<n,\,n\geqslant 1$), 有
+$\sigma_{n-1}\!\restriction_{\mathrm{Var}-\mathrm{change}(S_0)}=
+\sigma_0\!\restriction_{\mathrm{Var}-\mathrm{change}(S_0)}$.
+
+\noindent{\kaishu 证明.}
+
+\vspace{1pt}\hspace{-1em}\noindent{\kaishu 命题1.}
+对任意的一步转移$\langle S,\sigma\rangle\to\langle T,\tau\rangle$,
+有$\mathrm{var}(T)\subset\mathrm{var}(S)$,
+$\mathrm{change}(T)\subset\mathrm{change}(S)$.
+
+(约定$\mathrm{var}(\mathrm{E})=\mathrm{change}(\mathrm{E})=\varnothing$)
+
+\vspace{3pt}
+对$S$归纳证明, 在每一步任取$\langle S,\sigma\rangle\to\langle T,\tau\rangle$.
+\begin{enumerate}
+    \item $S=\mathrm{skip}$或$S=u:=t$, 则$T=\mathrm{E}$, 显然成立.
+    \item $S=S_1;S_2$, 假设$S_1$满足命题. 记$\langle S_1,\sigma\rangle\to
+    \langle S_1',\tau\rangle$, 则依假设有
+    \[
+        \mathrm{var}(S_1')\subset\mathrm{var}(S_1),\quad
+        \mathrm{change}(S_1')\subset\mathrm{change}(S_1),
+    \]
+    此时$\langle S,\sigma\rangle\to\langle S_1';S_2,\tau\rangle$, 并且
+    \[
+        \mathrm{var}(S_1';S_2)\subset\mathrm{var}(S),\quad
+        \mathrm{change}(S_1';S_2)\subset\mathrm{change}(S).
+    \]
+    \item $S=\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1\,\,\mathbf{else}\,\,
+    S_2\,\,\mathbf{fi}$, 则$T=S_1$或$T=S_2$, 显然成立.
+    \item $S=\mathbf{while}\,\,B\,\,\mathbf{do}\,\,S_1\,\,\mathbf{od}$,
+    则$T=S_1;S$或$T=\mathrm{E}$, 显然成立.
+\end{enumerate}
+
+\vspace{5pt}\hspace{-1em}\noindent{\kaishu 命题2.}
+对任意的一步转移$\langle S,\sigma\rangle\to\langle T,\tau\rangle$,
+有$\tau\!\restriction_{\mathrm{Var}-\mathrm{change}(S)}=
+\sigma\!\restriction_{\mathrm{Var}-\mathrm{change}(S)}$.
+
+\vspace{3pt}
+对$S$归纳证明, 在每一步任取$\langle S,\sigma\rangle\to\langle T,\tau\rangle$.
+\begin{enumerate}
+    \item $S=\mathrm{skip}$, $S=\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1\,\,
+    \mathbf{else}\,\,S_2\,\,\mathbf{fi}$或
+    $S=\mathbf{while}\,\,B\,\,\mathbf{do}\,\,S_1\,\,\mathbf{od}$,
+    则$\tau=\sigma$, 显然成立.
+
+    \item $S=u:=t$, 则$\tau=\sigma[u:=\sigma(t)]$.
+    对任意变元$x\notin\mathrm{change}(S)=\{u\}$, 即$x\neq u$,
+    显然$\tau(x)=\sigma(x)$.
+
+    \item $S=S_1;S_2$, 假设$S_1$满足命题. 记$\langle S_1,\sigma\rangle\to
+    \langle S_1',\tau\rangle$, 则$\langle S,\sigma\rangle\to
+    \langle S_1';S_2,\tau\rangle$.
+    
+    \hspace{2.17em}
+    对任意变元$x\notin\mathrm{change}(S)$,
+    一定有$x\notin\mathrm{change}(S_1)$, 依假设有$\tau(x)=\sigma(x)$.
+\end{enumerate}
+
+\vspace{5pt}
+
+综上, 对有限配置序列$\langle S_i,\sigma_i\rangle$ ($i<n,\,n\geqslant 1$),
+对$i<n$归纳证明
+\[
+    \mathrm{change}(S_i)\subset\mathrm{change}(S_0)\quad\land\quad
+    \sigma_i\!\restriction_{\mathrm{Var}-\mathrm{change}(S_0)}=
+    \sigma_0\!\restriction_{\mathrm{Var}-\mathrm{change}(S_0)}.
+\]
+
+首先$i=0$显然; 其次假设命题对$i$成立且$i+1<n$,
+由于$\langle S_i,\sigma_i\rangle\to\langle S_{i+1},\sigma_{i+1}\rangle$,
+由命题1得
+\[
+    \mathrm{change}(S_{i+1})\subset\mathrm{change}(S_i)
+    \subset\mathrm{change}(S_0),
+\]
+再由命题2得
+\[
+    \sigma_{i+1}\!\restriction_{\mathrm{Var}-\mathrm{change}(S_i)}=
+    \sigma_i\!\restriction_{\mathrm{Var}-\mathrm{change}(S_i)},
+\]
+因为$\mathrm{Var}-\mathrm{change}(S_0)\subset
+\mathrm{Var}-\mathrm{change}(S_i)$, 所以
+\[
+    \sigma_{i+1}\!\restriction_{\mathrm{Var}-\mathrm{change}(S_0)}=
+    \sigma_i\!\restriction_{\mathrm{Var}-\mathrm{change}(S_0)}=
+    \sigma_0\!\restriction_{\mathrm{Var}-\mathrm{change}(S_0)}.
+\]
+
+归纳成立, 取$i=n-1$即可. \hfill $\qedsymbol$
+
+
+
+
+
+\newpage
+
+\hypertarget{sec:定理2.2}{}
+\noindent\textbf{定理2.2 (重合引理)}
+
+对任意的两个有限配置序列$\langle S_i,\sigma_i\rangle,
+\langle\widetilde{S_i},\widetilde{\sigma_i}\rangle$
+($i<n,\,n\geqslant 1$)和变元集$X\supset\mathrm{var}(S_0)$,
+
+\vspace{1pt}
+如果$\widetilde{S_0}=S_0$且
+$\widetilde{\sigma_0}\!\restriction_X=\sigma_0\!\restriction_X$,
+那么$\widetilde{S_{n-1}}=S_{n-1}$并且
+$\widetilde{\sigma_{n-1}}\!\restriction_X=\sigma_{n-1}\!\restriction_X$.
+
+\noindent{\kaishu 证明.}
+
+\vspace{1pt}\hspace{-1em}\noindent{\kaishu 命题3.}
+对任意的一步转移$\langle S,\sigma\rangle\to\langle T,\tau\rangle$,
+$\langle S,\widetilde{\sigma}\rangle\to
+\langle\widetilde{T},\widetilde{\tau}\rangle$和变元集$X\supset\mathrm{var}(S)$,
+
+\vspace{1pt}\hspace{2.17em}
+如果$\widetilde{\sigma}\!\restriction_X=\sigma\!\restriction_X$, 那么
+$\widetilde{T}=T$并且$\widetilde{\tau}\!\restriction_X=\tau\!\restriction_X$.
+
+\vspace{3pt}
+
+对$S$归纳证明, 在每一步任取$\langle S,\sigma\rangle\to\langle T,\tau\rangle$,
+$\langle S,\widetilde{\sigma}\rangle\to
+\langle\widetilde{T},\widetilde{\tau}\rangle$和变元集$X\supset\mathrm{var}(S)$,
+假设$\widetilde{\sigma}\!\restriction_X=\sigma\!\restriction_X$.
+\begin{enumerate}
+    \item $S=\mathrm{skip}$, 则$\widetilde{T}=T=\mathrm{E}$, 并且
+    $\widetilde{\tau}\!\restriction_X=\widetilde{\sigma}\!\restriction_X=
+    \sigma\!\restriction_X=\tau\!\restriction_X$.
+
+    \item $S=u:=t$, 则$\widetilde{T}=T=\mathrm{E}$, 并且
+    $\widetilde{\tau}=\widetilde{\sigma}[u:=\widetilde{\sigma}(t)]$,
+    $\tau=\sigma[u:=\sigma(t)]$.
+
+    \hspace{2.17em}
+    对任意变元$x\in X$, 如果$x=u$, 因为$\widetilde{\sigma},\sigma$在
+    $\mathrm{var}(t)$上一致, 所以
+    \[
+        \widetilde{\tau}(x)=\widetilde{\sigma}(t)=\sigma(t)=\tau(x),
+    \]
+    如果$x\neq u$, 因为$\widetilde{\sigma},\sigma$在$X$上一致, 所以
+    \[
+        \widetilde{\tau}(x)=\widetilde{\sigma}(x)=\sigma(x)=\tau(x),
+    \]
+    即$\widetilde{\tau},\tau$在$X$上一致.
+
+    \item $S=S_1;S_2$, 假设$S_1$满足命题. 记$\langle S_1,\sigma\rangle\to
+    \langle S_1',\tau\rangle$, $\langle S_1,\widetilde{\sigma}\rangle\to
+    \langle\widetilde{S_1'},\widetilde{\tau}\rangle$, 则
+    \[
+        \langle S,\sigma\rangle\to\langle S_1;S_2,\tau\rangle,\quad
+        \langle S,\widetilde{\sigma}\rangle\to
+        \langle\widetilde{S_1'};S_2,\widetilde{\tau}\rangle.\\[3pt]
+    \]
+    因为$X\supset\mathrm{var}(S)\supset\mathrm{var}(S_1)$,
+    所以可以依假设得$\widetilde{S_1'}=S_1'$并且
+    $\widetilde{\tau}\!\restriction_X=\tau\!\restriction_X$.
+    于是$\widetilde{T}=\widetilde{S_1'};S_2=S_1';S_2=T$.
+
+    \vspace{3pt}
+    \item $S=\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1\,\,\mathbf{else}\,\,
+    S_2\,\,\mathbf{fi}$. 如果$\sigma\models B$, 则因为
+    $\widetilde{\sigma},\sigma$在$\mathrm{var}(B)$上一致,
+    所以也有$\widetilde{\sigma}\models B$, 此时
+    \[
+        \widetilde{T}=T=S_1,\quad
+        \widetilde{\tau}\!\restriction_X=\widetilde{\sigma}\!\restriction_X=
+        \sigma\!\restriction_X=\tau\!\restriction_X,
+    \]
+    如果$\sigma\not\models B$, 同理.
+
+    \item $S=\mathbf{while}\,\,B\,\,\mathbf{do}\,\,S_1\,\,\mathbf{od}$.
+    如果$\sigma\models B$, 也有$\widetilde{\sigma}\models B$, 此时
+    \[
+        \widetilde{T}=T=S_1;S,\quad
+        \widetilde{\tau}\!\restriction_X=\widetilde{\sigma}\!\restriction_X=
+        \sigma\!\restriction_X=\tau\!\restriction_X,
+    \]
+    如果$\sigma\not\models B$, 也有$\widetilde{\sigma}\not\models B$, 此时
+    \[
+        \widetilde{T}=T=\mathrm{E},\quad
+        \widetilde{\tau}\!\restriction_X=\widetilde{\sigma}\!\restriction_X=
+        \sigma\!\restriction_X=\tau\!\restriction_X.
+    \]
+\end{enumerate}
+
+\vspace{5pt}
+
+对有限配置序列$\langle S_i,\sigma_i\rangle,
+\langle\widetilde{S_i},\widetilde{\sigma_i}\rangle$
+($i<n,\,n\geqslant 1$)和变元集$X\supset\mathrm{var}(S_0)$,
+
+如果$\widetilde{S_0}=S_0$且
+$\widetilde{\sigma_0}\!\restriction_X=\sigma_0\!\restriction_X$,
+对$i<n$归纳证明
+\[
+    \widetilde{S_i}=S_i\quad\land\quad X\supset\mathrm{var}(S_i)\quad\land\quad
+    \widetilde{\sigma_i}\!\restriction_X=\sigma_i\!\restriction_X.
+\]
+
+首先$i=0$显然; 其次假设命题对$i$成立且$i+1<n$, 有
+\[
+    \langle S_i,\sigma_i\rangle\to\langle S_{i+1},\sigma_{i+1}\rangle,\quad
+    \langle\widetilde{S_i},\widetilde{\sigma_i}\rangle\to
+    \langle\widetilde{S_{i+1}},\widetilde{\sigma_{i+1}}\rangle,
+\]
+由命题3得
+\[
+    \widetilde{S_{i+1}}=S_{i+1}\quad\land\quad
+    \widetilde{\sigma_{i+1}}\!\restriction_X=\sigma_{i+1}\!\restriction_X,
+\]
+并且由命题1得$X\supset\mathrm{var}(S_i)\supset\mathrm{var}(S_{i+1})$.
+
+归纳成立, 取$i=n-1$即可. \hfill $\qedsymbol$
 
 \end{document}

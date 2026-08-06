@@ -46,10 +46,10 @@
     \item $\mathrm{var}(u:=t)=\{u\}\cup\mathrm{var}(t)$,
     \item $\mathrm{var}(S_1;S_2)=\mathrm{var}(S_1)\cup\mathrm{var}(S_2)$,
     \item $\mathrm{var}(\,\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1\,\,
-    \mathbf{else}\,\,S_2\,\,\mathbf{fi}\,)=
+    \mathbf{else}\,\,S_2\,\,\mathbf{fi}\,)=\mathrm{var}(B)\cup
     \mathrm{var}(S_1)\cup\mathrm{var}(S_2)$,
     \item $\mathrm{var}(\,\mathbf{while}\,\,B\,\,\mathbf{do}\,\,S
-    \,\,\mathbf{od}\,)=\mathrm{var}(S)$,
+    \,\,\mathbf{od}\,)=\mathrm{var}(B)\cup\mathrm{var}(S)$,
 \end{enumerate}
 
 \vspace{10pt}
@@ -68,5 +68,9 @@
     \item $\mathrm{change}(\,\mathbf{while}\,\,B\,\,\mathbf{do}\,\,S
     \,\,\mathbf{od}\,)=\mathrm{change}(S)$,
 \end{enumerate}
+
+\vspace{10pt}
+
+归纳易证: 对任意程序$S$, $\mathrm{change}(S)\subset\mathrm{var}(S)$.
 
 \end{document}
