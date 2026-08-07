@@ -1,0 +1,191 @@
+\documentclass[UTF8]{ctexart}
+\input{../../preamble.tex}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{完全正确性公式}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (完全正确性公式)}
+
+对任意的断言(即公式)$P,Q$和while程序$S$, 称
+\[
+    [P]\,S\,[Q]
+\]
+为一个\textbf{完全正确性公式}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (完全正确性公式的语义)}
+
+给定断言$P,Q$和程序$S$, 如果$\mathcal{M}_{\mathrm{tot}}[\![S]\!](P)\subset Q$, 即
+\[
+    \forall\sigma\in\Sigma:\quad\,\sigma\models P
+    \quad\to\quad[\![S]\!](\sigma)\models Q\,,
+\]
+就记$\models[P]\,S\,[Q]$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.3}{}
+\noindent\textbf{定义1.3 (TW证明系统)}
+
+while程序完全正确性公式的TW(total, while)证明系统:
+\begin{enumerate}
+    \item \textbf{skip公理}:
+    \[
+        [P]\,\mathrm{skip}\,[P],
+    \]
+    \item \textbf{assignment公理}: 当$P[u:=t]$是自由替换时,
+    \[
+        [\,P[u:=t]\,]\,u:=t\,[P],
+    \]
+    \item \textbf{composition规则}:
+    \[
+        \frac{[P]\,S_1\,[R],\,[R]\,S_2\,[Q]}
+        {[P]\,S_1;S_2\,[Q]},
+    \]
+    \item \textbf{conditional规则}:
+    \[
+        \frac{[P\land B]\,S_1\,[Q],\,[P\land\neg\,B]\,S_2\,[Q]}
+        {[P]\,\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1\,\,\mathbf{else}
+        \,\,S_2\,\,\mathbf{fi}[Q]},
+    \]
+    \item \textbf{loop规则II}: 当$t,z$是整型变量且$z$不出现在$t,B,P,S$中时,
+    \vspace{5pt}
+    \[
+        \frac{[P\land B]\,S\,[P],\,[P\land B\land t=z]\,S\,[t<z],\,
+        P\to t\geqslant 0}
+        {[P]\,\mathbf{while}\,\,B\,\,\mathbf{do}\,\,S\,\,\mathbf{od}\,
+        [P\land\neg\,B]}\,,
+    \]
+    \item \textbf{consequence规则}:
+    \[
+        \frac{P\to P_1,\,[P_1]\,S\,[Q_1],\,Q_1\to Q}
+        {[P]\,S\,[Q]}.
+    \]
+\end{enumerate}
+
+\vspace{15pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+对任意的断言$P,Q$和程序$S$, 如果$\vdash_{\mathrm{TW}}[P]\,S\,[Q]$,
+那么$\vdash_{\mathrm{PW}}\{P\}\,S\,\{Q\}$.
+
+\noindent{\kaishu 证明.}
+
+对TW规则归纳证明, 显然. \hfill $\qedsymbol$
+
+
+
+
+
+\newpage
+
+\section{TW的可靠性}
+
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1 (TW证明系统的可靠性)}
+
+对任意的断言$P,Q$和程序$S$, 如果$\vdash_{\mathrm{TW}}[P]\,S\,[Q]$,
+那么$\models[P]\,S\,[Q]$.
+
+\noindent{\kaishu 证明.}
+
+对TW规则归纳证明.
+
+\begin{enumerate}
+    \item $\mathcal{M}_{\mathrm{tot}}[\![\mathrm{skip}]\!](P)=P$,
+    所以$\models[P]\,\mathrm{skip}\,[P]$,
+
+    \item 当$P[u:=t]$是自由替换时, 如果$\sigma\models P[u:=t]$,
+    则根据替换定理有
+    \[
+        [\![u:=t]\!](\sigma)=\sigma[u:=\sigma(t)]\models P,
+    \]
+    所以$\models[\,P[u:=t]\,]\,u:=t\,[P]$.
+
+    \item 假设$\models[P]\,S_1\,[R]$, $\models[R]\,S_2\,[Q]$, 则
+    \[
+        \mathcal{M}_{\mathrm{tot}}[\![S_1;S_2]\!](P)=
+        \mathcal{M}_{\mathrm{tot}}[\![S_2]\!]
+        \mathcal{M}_{\mathrm{tot}}[\![S_1]\!](P)\subset
+        \mathcal{M}_{\mathrm{tot}}[\![S_2]\!](R)\subset Q,
+    \]
+    所以$\models[P]\,S_1;S_2\,[Q]$.
+
+    \item 假设$\models[P\land B]\,S_1\,[Q]$,
+    $\models[P\land\neg\,B]\,S_2\,[Q]$, 则
+    \[
+        \mathcal{M}_{\mathrm{tot}}[\![\,\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1\,\,
+        \mathbf{else}\,\,S_2\,\,\mathbf{fi}\,]\!](P)=
+        \mathcal{M}_{\mathrm{tot}}[\![S_1]\!](P\land B)\cup
+        \mathcal{M}_{\mathrm{tot}}[\![S_2]\!](P\land\neg B)\subset Q,
+    \]
+    所以$\models[P]\,\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1\,\,
+    \mathbf{else}\,\,S_2\,\,\mathbf{fi}\,[Q]$.
+
+    \item 当$t,z$是整型变量且$z$不出现在$t,B,P,S$中时, 假设
+    \vspace{-3pt}
+    \[
+        \models[P\land B]\,S\,[P],\quad
+        \models[P\land B\land t=z]\,S\,[t<z], \\[-2pt]
+    \]
+    用反证法证明任意的$\sigma\models P$在$\mathbf{while}\,\,B\,\,
+    \mathbf{do}\,\,S\,\,\mathbf{od}$下终止.
+
+    \hspace{2.17em}
+    假设存在循环下不终止的$\sigma\models P$, 在其中取使得$\sigma(t)\geqslant 0$
+    最小的$\sigma$, 然后定义
+    \[
+        \tau=\sigma[z:=\sigma(t)],
+    \]
+    显然$\sigma\models B$. 又因为$\sigma,\tau$在$t,B,P,S$的变元上一致,
+    所以根据重合引理,
+    \[
+        \tau\,\text{在循环下不终止}\,,\quad \tau\models P,\quad\tau\models B,\quad
+        \tau(t)=\sigma(t)=\tau(z).
+    \]
+    此时
+    \[
+        \langle\,\mathbf{while}\,\,B\,\,\mathbf{do}\,\,S\,\,
+        \mathbf{od},\tau\rangle\to\langle S;\,\mathbf{while}\,\,B
+        \,\,\mathbf{do}\,\,S\,\,\mathbf{od},\tau\rangle\to^*
+        \langle\,\mathbf{while}\,\,B\,\,\mathbf{do}\,\,S\,\,
+        \mathbf{od},[\![S]\!](\tau)\rangle\to\cdots,\\[-1pt]
+    \]
+    由于$\tau\models P\land B\land t=z$,
+    依假设有$[\![S]\!](\tau)\models P\land t<z$. 所以根据框架引理,
+    \vspace{1pt}
+    \[
+        [\![S]\!](\tau)(t)<[\![S]\!](\tau)(z)=\tau(z)=\sigma(t),\\[1pt]
+    \]
+    即$[\![S]\!](\tau)$也在循环下不终止且满足$P$,
+    但是$[\![S]\!](\tau)(t)<\sigma(t)$, 矛盾.
+
+    \vspace{1pt}\hspace{2.17em}
+    所以任意的$\sigma\models P$在$\mathbf{while}\,\,B\,\,
+    \mathbf{do}\,\,S\,\,\mathbf{od}$下终止, 同时(在PW一节)已证
+    \[
+        \models\{P\land B\}\,S\,\{P\}\quad\implies\quad
+        \models\{P\}\,\mathbf{while}\,\,B\,\,
+        \mathbf{do}\,\,S\,\,\mathbf{od}\,\{P\land\neg\,B\},
+    \]
+    所以$[\![\,\mathbf{while}\,\,B\,\,\mathbf{do}\,\,S\,\,\mathbf{od}\,]\!]
+    (\sigma)\models P\land\neg\,B$, 即$\models[P]\,\mathbf{while}\,\,B\,\,
+    \mathbf{do}\,\,S\,\,\mathbf{od}\,[P\land\neg\,B]$.
+
+    \item 假设$P\to P_1$, $\models[P_1]\,S\,[Q_1]$且$Q\to Q_1$, 则
+    \[
+        \mathcal{M}[\![S]\!]_{\mathrm{tot}}(P)\subset
+        \mathcal{M}[\![S]\!]_{\mathrm{tot}}(P_1)\subset Q_1\subset Q,
+    \]
+    即$\models[P]\,S\,[Q]$. \hfill $\qedsymbol$
+\end{enumerate}
+
+\end{document}

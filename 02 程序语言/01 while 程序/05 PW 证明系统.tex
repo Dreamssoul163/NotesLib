@@ -1,0 +1,168 @@
+\documentclass[UTF8]{ctexart}
+\input{../../preamble.tex}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{部分正确性公式}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (部分正确性公式)}
+
+对任意的断言(即公式)$P,Q$和while程序$S$, 称
+\[
+    \{P\}\,S\,\{Q\}
+\]
+为一个\textbf{部分正确性公式}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (部分正确性公式的语义)}
+
+给定断言$P,Q$和程序$S$, 如果$\mathcal{M}[\![S]\!](P)\subset Q$, 即
+\[
+    \forall\sigma,\tau\in\Sigma:\quad
+    \,\sigma\models P\land [\![S]\!](\sigma)=\tau\quad\to\quad\tau\models Q\,,
+\]
+就记$\models\{P\}\,S\,\{Q\}$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.3}{}
+\noindent\textbf{定义1.3 (PW证明系统)}
+
+while程序部分正确性公式的PW(partial, while)证明系统:
+\begin{enumerate}
+    \item \textbf{skip公理}:
+    \[
+        \{P\}\,\mathrm{skip}\,\{P\},
+    \]
+    \item \textbf{assignment公理}(后向形式): 当$P[u:=t]$是自由替换时,
+    \[
+        \{\,P[u:=t]\,\}\,u:=t\,\{P\},
+    \]
+    \item \textbf{composition规则}:
+    \[
+        \frac{\{P\}\,S_1\,\{R\},\,\{R\}\,S_2\,\{Q\}}
+        {\{P\}\,S_1;S_2\,\{Q\}},
+    \]
+    \item \textbf{conditional规则}:
+    \[
+        \frac{\{P\land B\}\,S_1\,\{Q\},\,\{P\land\neg\,B\}\,S_2\,\{Q\}}
+        {\{P\}\,\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1\,\,\mathbf{else}
+        \,\,S_2\,\,\mathbf{fi}\{Q\}},
+    \]
+    \item \textbf{loop规则}:
+    \[
+        \frac{\{P\land B\}\,S\,\{P\}}
+        {\{P\}\,\mathbf{while}\,\,B\,\,\mathbf{do}\,\,S\,\,\mathbf{od}\,
+        \{P\land\neg\,B\}},
+    \]
+    \item \textbf{consequence规则}:
+    \[
+        \frac{P\to P_1,\,\{P_1\}\,S\,\{Q_1\},\,Q_1\to Q}
+        {\{P\}\,S\,\{Q\}}.
+    \]
+\end{enumerate}
+
+\vspace{15pt}
+
+assignment公理有前向形式: 当与$u$同类型的变元$v$不出现在$u,t,P$中时,
+\[
+    \vdash_{\mathrm{PW}}
+    \{P\}\,u:=t\,\{\,\exists v\,(\,u\equiv t[u:=v]\land P[u:=v]\,)\,\}.
+\]
+它可由后向形式推出: 记$Q=\exists v\,(\,u\equiv t[u:=v]\land P[u:=v]\,)$, 则易证
+\begin{enumerate}
+    \item $P\to t\equiv t[u:=u]\land P[u:=u]\to
+    \exists v\,(\,t\equiv t[u:=v]\land P[u:=v]\,)$,
+    \item $Q[u:=t]=\exists v\,(\,t\equiv t[u:=v]\land P[u:=v]\,)$,
+    并且是自由替换,
+\end{enumerate}
+所以$P\to Q[u:=t]$且$\vdash_{\mathrm{PW}}\{Q[u:=t]\}\,u:=t\,\{Q\}$,
+依consequence规则得$\vdash_{\mathrm{PW}}\{P\}\,u:=t\,\{Q\}$.
+
+
+
+
+
+\newpage
+
+\section{PW的可靠性}
+
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1 (PW证明系统的可靠性)}
+
+对任意的断言$P,Q$和程序$S$, 如果$\vdash_{\mathrm{PW}}\{P\}\,S\,\{Q\}$,
+那么$\models\{P\}\,S\,\{Q\}$.
+
+\noindent{\kaishu 证明.}
+
+对PW规则归纳证明.
+
+\begin{enumerate}
+    \item $\mathcal{M}[\![\mathrm{skip}]\!](P)=P$, 所以$\models
+    \{P\}\,\mathrm{skip}\,\{P\}$,
+
+    \item 当$P[u:=t]$是自由替换时, 如果$\sigma\models P[u:=t]$
+    且$[\![u:=t]\!](\sigma)=\tau$, 那么根据替换定理有
+    \[
+        \tau=\sigma[u:=\sigma(t)]\models P,
+    \]
+    所以$\models\{\,P[u:=t]\,\}\,u:=t\,\{P\}$.
+
+    \item 假设$\models\{P\}\,S_1\,\{R\}$, $\models\{R\}\,S_2\,\{Q\}$, 则
+    \[
+        \mathcal{M}[\![S_1;S_2]\!](P)=\mathcal{M}[\![S_2]\!]
+        \mathcal{M}[\![S_1]\!](P)\subset\mathcal{M}[\![S_2]\!](R)\subset Q,
+    \]
+    所以$\models\{P\}\,S_1;S_2\,\{Q\}$.
+
+    \item 假设$\models\{P\land B\}\,S_1\,\{Q\}$,
+    $\models\{P\land\neg\,B\}\,S_2\,\{Q\}$, 则
+    \[
+        \mathcal{M}[\![\,\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1\,\,
+        \mathbf{else}\,\,S_2\,\,\mathbf{fi}\,]\!](P)=
+        \mathcal{M}[\![S_1]\!](P\land B)\cup
+        \mathcal{M}[\![S_2]\!](P\land\neg B)\subset Q,
+    \]
+    所以$\models\{P\}\,\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1\,\,
+    \mathbf{else}\,\,S_2\,\,\mathbf{fi}\,\{Q\}$.
+
+    \item 假设$\models\{P\land B\}\,S\,\{P\}$,
+    对$k$归纳证明$\mathcal{M}[\![A^k]\!](P)\subset P\land\neg\,B$.
+
+    \hspace{2.17em}
+    首先$\mathcal{M}[\![A^0]\!](P)=\varnothing$; 假设命题对$k$成立, 那么
+    \vspace{3pt}
+    \[\begin{aligned}
+        \mathcal{M}[\![A^{k+1}]\!](P)=\,&
+        \mathcal{M}[\![\,\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S;A^k\,\,
+        \mathbf{else}\,\,\mathrm{skip}\,\,\mathbf{fi}\,]\!](P)\\
+        =\,&\mathcal{M}[\![S;A^k]\!](P\land B)\cup
+        \mathcal{M}[\![\mathrm{skip}]\!](P\land\neg\,B)\\
+        =\,&\mathcal{M}[\![A^k]\!]\mathcal{M}[\![S]\!](P\land B)
+        \cup(P\land\neg\,B)\\
+        \subset\,&\mathcal{M}[\![A^k]\!](P)\cup(P\land\neg\,B)
+        =P\land\neg\,B,\\[3pt]
+    \end{aligned}\]
+    归纳成立, 所以
+    \[
+        \mathcal{M}[\![\,\mathbf{while}\,\,B\,\,\mathbf{do}\,\,
+        S\,\,\mathbf{od}\,]\!](P)=\bigcup_{k\in\mathbb{N}}\mathcal{M}
+        [\![A^k]\!](P)\subset P\land\neg\,B,\\[-5pt]
+    \]
+    即$\models\{P\}\,\mathbf{while}\,\,B\,\,\mathbf{do}\,\,S
+    \,\,\mathbf{od}\,\{P\land\neg\,B\}$.
+    
+    \item 假设$P\to P_1$, $\models\{P_1\}\,S\,\{Q_1\}$且$Q\to Q_1$, 则
+    \[
+        \mathcal{M}[\![S]\!](P)\subset\mathcal{M}[\![S]\!](P_1)
+        \subset Q_1\subset Q,
+    \]
+    即$\models\{P\}\,S\,\{Q\}$. \hfill $\qedsymbol$
+\end{enumerate}
+
+\end{document}
