@@ -131,10 +131,10 @@ while程序完全正确性公式的TW(total, while)证明系统:
     \mathbf{else}\,\,S_2\,\,\mathbf{fi}\,[Q]$.
 
     \item 当$t,z$是整型变量且$z$不出现在$t,B,P,S$中时, 假设
-    \vspace{-3pt}
     \[
         \models[P\land B]\,S\,[P],\quad
-        \models[P\land B\land t=z]\,S\,[t<z], \\[-2pt]
+        \models[P\land B\land t=z]\,S\,[t<z],\quad
+        P\to t\geqslant 0,
     \]
     用反证法证明任意的$\sigma\models P$在$\mathbf{while}\,\,B\,\,
     \mathbf{do}\,\,S\,\,\mathbf{od}$下终止.
