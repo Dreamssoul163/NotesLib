@@ -39,7 +39,7 @@ while程序部分正确性公式的PW(partial, while)证明系统:
     \[
         \{P\}\,\mathrm{skip}\,\{P\},
     \]
-    \item \textbf{assignment公理}(后向形式): 当$P[u:=t]$是自由替换时,
+    \item \textbf{assignment公理}(后向形式):
     \[
         \{\,P[u:=t]\,\}\,u:=t\,\{P\},
     \]
@@ -79,7 +79,6 @@ assignment公理有前向形式: 当与$u$同类型的变元$v$不出现在$u,t,
     \item $P\to t\equiv t[u:=u]\land P[u:=u]\to
     \exists v\,(\,t\equiv t[u:=v]\land P[u:=v]\,)$,
     \item $Q[u:=t]=\exists v\,(\,t\equiv t[u:=v]\land P[u:=v]\,)$,
-    并且是自由替换,
 \end{enumerate}
 所以$P\to Q[u:=t]$且$\vdash_{\mathrm{PW}}\{Q[u:=t]\}\,u:=t\,\{Q\}$,
 依consequence规则得$\vdash_{\mathrm{PW}}\{P\}\,u:=t\,\{Q\}$.
@@ -124,7 +123,7 @@ while程序完全正确性公式的TW(total, while)证明系统:
     \[
         [P]\,\mathrm{skip}\,[P],
     \]
-    \item \textbf{assignment公理}: 当$P[u:=t]$是自由替换时,
+    \item \textbf{assignment公理}:
     \[
         [\,P[u:=t]\,]\,u:=t\,[P],
     \]

@@ -14,18 +14,15 @@
 \[
     \{P\}\,S^*\,\{Q\}\ \vdash_{\mathrm{PO}}\ \{P\}\,S\,\{Q\},
 \]
-称$\{P\}\,S^*\,\{Q\}$是$\{P\}\,S\,\{Q\}$的\textbf{注释程序},
+称$\{P\}\,S^*\,\{Q\}$是$\{P\}\,S\,\{Q\}$的\textbf{部分正确性注释程序},
 $\{P\},\{Q\}$分别为前后断言($\mathrm{pre},\mathrm{post}$),
 $S$为骨架程序($\mathrm{sk}$):
 \vspace{1pt}
 \begin{enumerate}
     \item 当$P\to Q$时, $\{P\}\,\mathrm{skip}\,\{Q\}\vdash_{\mathrm{PO}}
     \{P\}\,\mathrm{skip}\,\{Q\}$,
-    \item 如果有$Q_1$使得$Q_1[u:=t]$是自由替换, $P\to Q_1[u:=t]$
-    且$Q_1\to Q$, 那么
-    \[
-        \{P\}\,u:=t\,\{Q\}\vdash_{\mathrm{PO}}\{P\}\,u:=t\,\{Q\},
-    \]
+    \item 当$P\to Q[u:=t]$时, $\{P\}\,u:=t\,\{Q\}\vdash_{\mathrm{PO}}
+    \{P\}\,u:=t\,\{Q\}$,
     \item 如果$\{P\}\,S_1^*\,\{R\}\vdash_{\mathrm{PO}}\{P\}\,S_1\,\{R\}$且
     $\{R\}\,S_2^*\,\{Q\}\vdash_{\mathrm{PO}}\{R\}\,S_2\,\{Q\}$, 则
     \vspace{1pt}
@@ -286,11 +283,8 @@ $G=\{P\}\{\mathbf{inv}:I\}\,\mathbf{while}\,\,B\,\,
 \begin{enumerate}
     \item 当$P\to Q$时, $\{P\}\,\mathrm{skip}\,\{Q\}\vdash_{\mathrm{TO}}
     [P]\,\mathrm{skip}\,[Q]$,
-    \item 如果有$Q_1$使得$Q_1[u:=t]$是自由替换, $P\to Q_1[u:=t]$
-    且$Q_1\to Q$, 那么
-    \[
-        \{P\}\,u:=t\,\{Q\}\vdash_{\mathrm{TO}}[P]\,u:=t\,[Q],
-    \]
+    \item 当$P\to Q[u:=t]$时, $\{P\}\,u:=t\,\{Q\}\vdash_{\mathrm{TO}}
+    \{P\}\,u:=t\,\{Q\}$,
     \item 如果$\{P\}\,S_1^*\,\{R\}\vdash_{\mathrm{TO}}[P]\,S_1\,[R]$且
     $\{R\}\,S_2^*\,\{Q\}\vdash_{\mathrm{TO}}[R]\,S_2\,[Q]$, 则
     \vspace{1pt}
