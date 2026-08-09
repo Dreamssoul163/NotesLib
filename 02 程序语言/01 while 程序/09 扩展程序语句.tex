@@ -1,0 +1,91 @@
+\documentclass[UTF8]{ctexart}
+\input{../../preamble.tex}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{并行赋值语句}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (并行赋值语句)}
+
+对两两不同的变量$u_1,\cdots,u_n$ ($n\geqslant1$)和同类型的项
+$t_1,\cdots,t_n$, 加入\textbf{并行赋值语句}：
+\[
+    u_1,\cdots,u_n:=t_1,\cdots,t_n.
+\]
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (并行赋值语句的语义)}
+
+定义并行赋值语句的一步转移:
+\[
+    \langle u_1,\cdots,u_n:=t_1,\cdots,t_n,\sigma\rangle
+    \overset{\mathrm{def}}{\to}
+    \langle\mathrm{E},\sigma[u_1:=\sigma(t_1),\cdots,u_n:=\sigma(t_n)]\rangle,
+\]
+所有右端项在旧状态$\sigma$下同时求值更新. 显然
+\[
+    [\![u_1,\cdots,u_n:=t_1,\cdots,t_n]\!](\sigma)
+    =\sigma[u_1:=\sigma(t_1),\cdots,u_n:=\sigma(t_n)].
+\]
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.4}{}
+\noindent\textbf{定义1.4 (并行赋值公理)}
+
+把assignment公理推广为\textbf{并行赋值公理}(同时替换形式):
+\[
+    \{\,P[\vec{u}:=\vec{t}]\,\}\,u_1,\cdots,u_n:=t_1,\cdots,t_n\,\{P\},
+\]
+\[
+    [\,P[\vec{u}:=\vec{t}]\,]\,u_1,\cdots,u_n:=t_1,\cdots,t_n\,[P],\\[-3pt]
+\]
+其中$P[\vec{u}:=\vec{t}]$是$P$的一次性同时替换.
+
+
+
+
+
+\vspace{30pt}
+
+\section{守卫语句}
+
+\hypertarget{sec:定义2.1}{}
+\noindent\textbf{定义2.1 (守卫语句)}
+
+对$B:\mathrm{Bool}$和$S\in\mathcal{C}$, 加入\textbf{守卫语句}:
+$\mathbf{if}\,\,B\to S\,\,\mathbf{fi}\in\mathcal{C}$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定义2.2}{}
+\noindent\textbf{定义2.2 (守卫语句的语义)}
+
+用$\textbf{fail}$表示失败状态, 守卫语句的一步转移是:
+\begin{enumerate}
+    \item 当$\sigma\models B$时, $\langle\mathbf{if}\,\,B\to S
+    \,\,\mathbf{fi}\rangle\to\langle S,\sigma\rangle$,
+    \item 当$\sigma\not\models B$时, $\langle\mathbf{if}\,\,B\to S
+    \,\,\mathbf{fi}\rangle\to\langle\mathrm{E},\textbf{fail}\rangle$.
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定义2.3}{}
+\noindent\textbf{定义2.3 (守卫语句规则)}
+
+守卫语句的部分正确性和完全正确性公式的推导规则是:
+\vspace{5pt}
+\[
+    \mathrm{PW}:\,\frac{\{P\land B\}\,S\,\{Q\}}
+    {\{P\}\,\mathbf{if}\,\,B\to S\,\,\mathbf{fi}\,\{Q\}},\quad
+    \mathrm{TW}:\,\frac{P\to B,\,\{P\}\,S\,\{Q\}}
+    {\{P\}\,\mathbf{if}\,\,B\to S\,\,\mathbf{fi}\,\{Q\}}.
+\]
+
+\end{document}

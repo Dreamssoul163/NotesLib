@@ -1,0 +1,92 @@
+\documentclass[UTF8]{ctexart}
+\input{../../preamble.tex}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{辅助证明规则}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1 (部分正确性的辅助证明规则)}
+
+\begin{enumerate}
+    \item 如果$\mathrm{free}(P)$与$\mathrm{change}(S)$不相交,
+    那么$\{P\}\,S\,\{P\}$,
+    \item 如果$\{P\}\,S\,\{Q\}$且$\{R\}\,S\,\{Q\}$,
+    那么$\{P\lor R\}\,S\,\{Q\}$,
+    \item 如果$\{P_1\}\,S\,\{Q_1\}$且$\{P_2\}\,S\,\{Q_2\}$,
+    那么$\{P_1\land P_2\}\,S\,\{Q_1\land Q_2\}$,
+    \item 如果变量$x$不在$\mathrm{free}(Q)$和$S$中出现, 并且
+    $\{P\}\,S\,\{Q\}$, 那么$\{\exists xP\}\,S\,\{Q\}$,
+    \item 如果$\mathrm{free}(P)$与$\mathrm{change}(S)$不相交, 并且
+    $\{R\}\,S\,\{Q\}$, 那么$\{P\land R\}\,S\,\{P\land Q\}$,
+    \item 如果$\bar{z}$与$\mathrm{var}(S)$不相交,
+    $\mathrm{var}(\bar{t})$与$\mathrm{change}(S)$不相交, 并且
+    $\{P\}\,S\,\{Q\}$, 那么$\{P[\bar{z}:=\bar{t}]\}\,S\,\{Q[\bar{z}:=\bar{t}]\}$.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 如果$\sigma\models P$且$\tau=[\![S]\!](\sigma)$, 那么
+    $\sigma,\tau$在$\mathrm{free}(P)$上一致, 从而$\tau\models P$.
+    \item 如果$\sigma\models P\land R$且$\tau=[\![S]\!](\sigma)$, 那么
+    无论$\sigma\models P$还是$\sigma\models R$都有$\tau\models Q$.
+    \item 如果$\sigma\models P_1\land P_2$且$\tau=[\![S]\!](\sigma)$,
+    那么同时有$\tau\models Q_1$和$\tau\models Q_2$, 即$\tau\models Q_1\land Q_2$.
+    \item 如果$\sigma\models\exists xP$且$\tau=[\![S]\!](\sigma)$,
+    那么存在$\sigma'=\sigma[x:=a]\models P$. 记$\tau'=[\![S]\!](\sigma')$, 有
+    \[
+        \sigma\!\restriction_{\mathrm{Var}-\{x\}}=
+        \sigma'\!\restriction_{\mathrm{Var}-\{x\}}\quad\implies\quad
+        \tau\!\restriction_{\mathrm{Var}-\{x\}}=
+        \tau'\!\restriction_{\mathrm{Var}-\{x\}}\quad\implies\quad
+        \tau\!\restriction_{\mathrm{free}(Q)}=
+        \tau'\!\restriction_{\mathrm{free}(Q)},
+    \]
+    由于$\tau'\models Q$, 所以$\tau\models Q$.
+    \vspace{3pt}
+    \item 由$\{P\}\,S\,\{P\}$即得.
+    \item 如果$\sigma\models P[\bar{z}:=t]$且$\tau=[\![S]\!](\sigma)$, 那么
+    $\sigma'=\sigma[\bar{z}:=\sigma(\bar{t})]\models P$.
+    记$\tau'=[\![S]\!](\sigma')\models Q$.
+
+    \hspace{2.17em}
+    第一, $\bar{z}$, $\mathrm{var}(\bar{t})$都不被$S$修改,
+    所以$\tau(\bar{t})=\sigma(\bar{t})=\sigma'(\bar{z})=\tau'(\bar{z})$, 进一步
+    \[
+        \tau[\bar{z}:=\tau(\bar{t})](z)=\tau(\bar{t})=\tau'(z),
+    \]
+    第二, $\mathrm{Var}-\bar{z}$包含$\mathrm{var}(S)$,
+    且在$\sigma,\sigma'$上相同, 所以在$\tau,\tau'$上也相同, 进一步
+    \[
+        \tau[\bar{z}:=\tau(\bar{t})]\!\restriction_{\mathrm{Var}-\bar{z}}\,=
+        \tau\!\restriction_{\mathrm{Var}-\bar{z}}\,=
+        \tau'\!\restriction_{\mathrm{Var}-\bar{z}},
+    \]
+    综上$\tau[\bar{z}:=\tau(\bar{t})]=\tau'\models Q$,
+    所以$\tau\models Q[u:=t]$. \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{20pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2 (完全正确性的辅助证明规则)}
+
+\begin{enumerate}
+    \item 如果$\{P\}\,S\,\{Q\}$且$[P]\,S\,[\mathrm{true}]$, 那么$[P]\,S\,[Q]$,
+    \item 如果$[P]\,S\,[Q]$且$[R]\,S\,[Q]$,
+    那么$[P\lor R]\,S\,[Q]$,
+    \item 如果$[P_1]\,S\,[Q_1]$且$[P_2]\,S\,[Q_2]$,
+    那么$[P_1\land P_2]\,S\,[Q_1\land Q_2]$,
+    \item 如果变量$x$不在$\mathrm{free}(Q)$和$S$中出现, 并且
+    $[P]\,S\,[Q]$, 那么$[\exists xP]\,S\,[Q]$,
+    \item 如果$\mathrm{free}(P)$与$\mathrm{change}(S)$不相交, 并且
+    $[R]\,S\,[Q]$, 那么$[P\land R]\,S\,[P\land Q]$,
+    \item 如果$\bar{z}$与$\mathrm{var}(S)$不相交,
+    $\mathrm{var}(\bar{t})$与$\mathrm{change}(S)$不相交, 并且
+    $[P]\,S\,[Q]$, 那么$[P[\bar{z}:=\bar{t}]]\,S\,[Q[\bar{z}:=\bar{t}]]$.
+\end{enumerate}
+
+\end{document}
