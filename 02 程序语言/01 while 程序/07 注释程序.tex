@@ -1,0 +1,340 @@
+\documentclass[UTF8]{ctexart}
+\input{../../preamble.tex}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{部分正确性注释程序}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (部分正确性注释程序)}
+
+对断言$P,Q$, 程序$S$和某字符串$S^*$, 递归定义
+\[
+    \{P\}\,S^*\,\{Q\}\ \vdash_{\mathrm{PO}}\ \{P\}\,S\,\{Q\},
+\]
+称$\{P\}\,S^*\,\{Q\}$是$\{P\}\,S\,\{Q\}$的\textbf{注释程序},
+$\{P\},\{Q\}$分别为前后断言($\mathrm{pre},\mathrm{post}$),
+$S$为骨架程序($\mathrm{sk}$):
+\vspace{1pt}
+\begin{enumerate}
+    \item 当$P\to Q$时, $\{P\}\,\mathrm{skip}\,\{Q\}\vdash_{\mathrm{PO}}
+    \{P\}\,\mathrm{skip}\,\{Q\}$,
+    \item 如果有$Q_1$使得$Q_1[u:=t]$是自由替换, $P\to Q_1[u:=t]$
+    且$Q_1\to Q$, 那么
+    \[
+        \{P\}\,u:=t\,\{Q\}\vdash_{\mathrm{PO}}\{P\}\,u:=t\,\{Q\},
+    \]
+    \item 如果$\{P\}\,S_1^*\,\{R\}\vdash_{\mathrm{PO}}\{P\}\,S_1\,\{R\}$且
+    $\{R\}\,S_2^*\,\{Q\}\vdash_{\mathrm{PO}}\{R\}\,S_2\,\{Q\}$, 则
+    \vspace{1pt}
+    \[
+        \{P\}\,S_1^*\,\{R\}\,S_2^*\,\{Q\}\vdash_{\mathrm{PO}}
+        \{P\}\,S_1;S_2\,\{Q\},\\[1pt]
+    \]
+    \item 如果$\{P\land B\}\,S_1^*\,\{Q\}\vdash_{\mathrm{PO}}
+    \{P\land B\}\,S_1\,\{Q\}$且$\{P\land\neg\,B\}\,S_2^*\,\{Q\}
+    \vdash_{\mathrm{PO}}\{P\land\neg\,B\}\,S_2\,\{Q\}$, 则
+    \vspace{1pt}
+    \[\begin{aligned}
+        &\,\,\{P\}\,\mathbf{if}\,\,B\,\,\mathbf{then}\,\,
+        \{P\land B\}\,S_1^*\,\{Q\}\,\,\mathbf{else}\,\,\{P\land\neg\,B\}\,S_2^*
+        \,\{Q\}\,\,\mathbf{fi}\,\,\{Q\}\\[-3pt]
+        \,&\vdash_{\mathrm{PO}}\{P\}\,\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1
+        \,\,\mathbf{else}\,\,S_2\,\,\mathbf{fi}\,\{Q\},\\[2pt]
+    \end{aligned}\]
+    \item 如果$P\to I$, $\{I\land B\}\,S^*\,\{I\}
+    \vdash_{\mathrm{PO}}\{I\land B\}\,S\,\{I\}$且$I\land\neg\,B\to Q$, 则
+    \vspace{1pt}
+    \[\begin{aligned}
+        &\,\,\{P\}\{\mathbf{inv}:I\}\,\mathbf{while}\,\,B\,\,
+        \mathbf{do}\,\,\{I\land B\}\,S^*\,\{I\}
+        \,\,\mathbf{od}\,\{Q\}\,\\[-3pt]
+        \,&\vdash_{\mathrm{PO}}\,\{P\}\,\mathbf{while}\,\,B
+        \,\,\mathbf{do}\,\,S\,\,\mathbf{od}\,\{Q\}.
+    \end{aligned}\]
+\end{enumerate}
+
+\vspace{15pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1 (正规形定理)}
+
+对任意的断言$P,Q$和程序$S$, $\vdash_{\mathrm{PW}}\{P\}\,S\,\{Q\}$
+当且仅当存在$\{P\}\,S^*\,\{Q\}\vdash_{\mathrm{PO}}\{P\}\,S\,\{Q\}$.
+
+\vspace{15pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (部分正确性注释程序上的操作)}
+
+把$\{P\}\,\mathrm{E}\,\{P\}$也视为自身的注释程序,
+递归定义注释程序带状态的一步转移关系:
+\begin{enumerate}
+    \item $\langle\{P\}\,\mathrm{skip}\,\{Q\},\sigma\rangle
+    \overset{\mathrm{def}}{\to}
+    \langle\{Q\}\,\mathrm{E}\,\{Q\},\sigma\rangle$,
+    \item $\langle\{P\}\,u:=t\,\{Q\},\sigma\rangle\overset{\mathrm{def}}{\to}
+    \langle\{Q\}\,\mathrm{E}\,\{Q\},\sigma[u:=\sigma(t)]\rangle$,
+    \vspace{3pt}
+    \item 任给注释程序$\{P\}\,S_1^*\,\{R\}$和$\{R\}\,S_2^*\,\{Q\}$,
+    如果$\langle\{P\}\,S_1^*\,\{R\},\sigma\rangle\to
+    \langle\{P'\}\,S_1'\,^*\,\{R\},\sigma'\rangle$, 那么
+    \vspace{1pt}
+    \[
+        \langle\{P\}\,S_1^*\{R\}\,S_2^*\,\{Q\},\sigma\rangle
+        \overset{\mathrm{def}}{\to}
+        \langle\{P'\}\,S_1'\,^*\,\{R\}\,S_2^*\,\{Q\},\sigma'\rangle,\\[1pt]
+    \]
+    \item 任给注释程序$\{P\}\,S_1^*\,\{R\}$和$\{R\}\,S_2^*\,\{Q\}$,
+    如果$\langle\{P\}\,S_1^*\,\{R\},\sigma\rangle\to
+    \langle\{R\}\,\mathrm{E}\,\{R\},\sigma'\rangle$, 那么
+    \vspace{1pt}
+    \[
+        \langle\{P\}\,S_1^*\{R\}\,S_2^*\,\{Q\},\sigma\rangle
+        \overset{\mathrm{def}}{\to}
+        \langle\{R\}\,S_2^*\,\{Q\},\sigma'\rangle,\\[1pt]
+    \]
+    \item 任给注释程序$\{P\land B\}\,S_1^*\,\{Q\}$和
+    $\{P\land\neg\,B\}\,S_2^*\,\{Q\}$, 如果$\sigma\models B$, 则
+    \vspace{1pt}
+    \[
+        \,\,\langle\{P\}\,\mathbf{if}\,\,B\,\,\mathbf{then}\,\,
+        \{P\land B\}\,S_1^*\,\{Q\}\,\,\mathbf{else}\,\,\{P\land\neg\,B\}\,S_2^*
+        \,\{Q\}\,\,\mathbf{fi}\,\,\{Q\},\sigma\rangle\overset{\mathrm{def}}{\to}
+        \langle\{P\land B\}\,S_1^*\,\{Q\},\sigma\rangle,\\[1pt]
+    \]
+    \item 任给注释程序$\{P\land B\}\,S_1^*\,\{Q\}$和
+    $\{P\land\neg\,B\}\,S_2^*\,\{Q\}$, 如果$\sigma\not\models B$, 则
+    \vspace{1pt}
+    \[
+        \,\,\langle\{P\}\,\mathbf{if}\,\,B\,\,\mathbf{then}\,\,
+        \{P\land B\}\,S_1^*\,\{Q\}\,\,\mathbf{else}\,\,\{P\land\neg\,B\}\,S_2^*
+        \,\{Q\}\,\,\mathbf{fi}\,\,\{Q\},\sigma\rangle\overset{\mathrm{def}}{\to}
+        \langle\{P\land\neg\,B\}\,S_2^*\,\{Q\},\sigma\rangle,\\[1pt]
+    \]
+    \item 任给$P\to I$, 注释程序$\{I\land B\}\,S^*\,\{I\}$和
+    $I\land\neg\,B\to Q$, 如果$\sigma\models B$, 则
+    \vspace{1pt}
+    \[\begin{aligned}
+        &\langle\{P\}\{\mathbf{inv}:I\}\,\mathbf{while}\,\,B\,\,\mathbf{do}\,\,
+        \{I\land B\}\,S^*\,\{I\}\,\,\mathbf{od}\,\{Q\},
+        \sigma\rangle\overset{\mathrm{def}}{\to}\\[-3pt]
+        &\langle\{I\land B\}\,S^*\,\{I\}\{\mathbf{inv}:I\}\,
+        \mathbf{while}\,\,B\,\,\mathbf{do}\,\,
+        \{I\land B\}\,S^*\,\{I\}\,\,\mathbf{od}\,\{Q\},
+        \sigma\rangle,\\[1pt]
+    \end{aligned}\]
+    \item 任给$P\to I$, 注释程序$\{I\land B\}\,S^*\,\{I\}$和
+    $I\land\neg\,B\to Q$, 如果$\sigma\not\models B$, 则
+    \vspace{1pt}
+    \[
+        \langle\{P\}\{\mathbf{inv}:I\}\,\mathbf{while}\,\,B\,\,\mathbf{do}\,\,
+        \{I\land B\}\,S^*\,\{I\}\,\,\mathbf{od}\,\{Q\},
+        \sigma\rangle\overset{\mathrm{def}}{\to}
+        \langle\{Q\}\,\mathrm{E}\,\{Q\},\sigma\rangle.
+    \]
+\end{enumerate}
+
+
+
+
+
+\newpage
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+对任意的$\langle G,\sigma\rangle\to\langle G',\sigma'\rangle$,
+
+\begin{enumerate}
+    \item $\mathrm{post}(G')=\mathrm{post}(G)$,
+    \item 如果$\mathrm{sk}(G')=\mathrm{E}$,
+    那么$G$一定形如$\{P\}\,\mathrm{E}\,\{P\}$,
+    \item $\langle\mathrm{sk}(G),\sigma\rangle\to
+    \langle\mathrm{sk}(G'),\sigma'\rangle$,
+    \item 如果$\sigma\models\mathrm{pre}(G)$,
+    那么$\sigma'\models\mathrm{pre}(G')$.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\hspace{-0.71em} {\kaishu 1. 2.} 显然. \,\, {\kaishu 3. 4.} 对转移操作归纳证明.
+
+\hspace{0.5em} i) $P\to Q$且$G=\{P\}\,\mathrm{skip}\,\{Q\}$,
+则$G'=\{Q\}\,\mathrm{E}\,\{Q\}$, $\sigma'=\sigma$. 显然
+\[
+    \langle\mathrm{skip},\sigma\rangle\to
+    \langle\mathrm{E},\sigma\rangle,
+\]
+并且如果$\sigma\models P$, 那么$\sigma\models Q$.
+
+\hspace{0.5em} ii) 有$Q_1$使得$Q_1[u:=t]$是自由替换,
+$P\to Q_1[u:=t]$且$Q_1\to Q$, $G=\{P\}\,u:=t\,\{Q\}$, 则
+\[
+    G'=\{Q\}\,\mathrm{E}\,\{Q\},\quad\sigma'=\sigma[u:=\sigma(t)],
+\]
+
+显然$\langle u:=t,\sigma\rangle\to
+\langle\mathrm{E},\sigma[u:=\sigma(t)]\rangle$,
+并且如果$\sigma\models P$, 那么$\sigma\models Q_1[u:=t]$, 从而
+$\sigma'=\sigma[u:=t]\models Q_1$, 即$\sigma'\models Q$.
+
+\vspace{1pt}
+\hspace{0.5em} iii) $G=\{P\}\,S_1^*\,\{R\}\,S_2^*\{Q\}$,
+假设$\langle\{P\}\,S_1^*\,\{R\},\sigma\rangle\to
+\langle\{P'\}\,S_1'\,^*\,\{R\},\sigma'\rangle$并且
+\[
+    \langle S_1,\sigma\rangle\to\langle S_1',\sigma'\rangle,\quad
+    \sigma\models P\to\sigma'\models P',
+\]
+那么$G'=\{P'\}\,S_1'\,^*\,\{R\}\,S_2^*\,\{Q\}$, 此时
+$\langle S_1;S_2,\sigma\rangle\to\langle S_1';S_2,\sigma'\rangle$.
+
+\hspace{0.5em} iv) $G=\{P\}\,S_1^*\,\{R\}\,S_2^*\{Q\}$,
+假设$\langle\{P\}\,S_1^*\,\{R\},\sigma\rangle\to
+\langle\{R\}\mathrm{E}\,\{R\},\sigma'\rangle$并且
+\[
+    \langle S_1,\sigma\rangle\to\langle\mathrm{E},\sigma'\rangle,\quad
+    \sigma\models P\to\sigma'\models R,
+\]
+那么$G'=\{R\}\,S_2^*\,\{Q\}$, 此时
+$\langle S_1;S_2,\sigma\rangle\to\langle S_2,\sigma'\rangle$.
+
+\vspace{1pt}
+\hspace{0.5em} v) $G=\{P\}\,\mathbf{if}\,\,B\,\,\mathbf{then}\,\,
+\{P\land B\}\,S_1^*\,\{Q\}\,\,\mathbf{else}\,\,\{P\land\neg\,B\}\,S_2^*
+\,\{Q\}\,\,\mathbf{fi}\,\,\{Q\}$且$\sigma\models B$, 则
+\[
+    G'=\{P\land B\}\,S_1^*\,\{Q\},\quad\sigma'=\sigma,
+\]
+显然$\langle\,\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1\,\,\mathbf{else}\,\,
+S_2\,\,\mathbf{fi},\sigma\rangle\to\langle S_1,\sigma\rangle$,
+并且如果$\sigma\models P$, 那么$\sigma'=\sigma\models P\land B$.
+
+\vspace{1pt}
+\hspace{0.5em} vi) $G=\{P\}\,\mathbf{if}\,\,B\,\,\mathbf{then}\,\,
+\{P\land B\}\,S_1^*\,\{Q\}\,\,\mathbf{else}\,\,\{P\land\neg\,B\}\,S_2^*
+\,\{Q\}\,\,\mathbf{fi}\,\,\{Q\}$且$\sigma\not\models B$, 则
+\[
+    G'=\{P\land\neg\,B\}\,S_2^*\,\{Q\},\quad\sigma'=\sigma,
+\]
+显然$\langle\,\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1\,\,\mathbf{else}\,\,
+S_2\,\,\mathbf{fi},\sigma\rangle\to\langle S_2,\sigma\rangle$,
+并且如果$\sigma\models P$, 那么$\sigma'=\sigma\models P\land\neg\,B$.
+
+\vspace{1pt}
+\hspace{0.5em} vii) $P\to I$, $I\land\neg\,B\to Q$,
+$G=\{P\}\{\mathbf{inv}:I\}\,\mathbf{while}\,\,B\,\,
+\mathbf{do}\,\,\{I\land B\}\,S^*\,\{I\}\,\,\mathbf{od}\,\{Q\}$
+且$\sigma\models B$, 则
+\[
+    G'=\{I\land B\}\,S^*\,\{I\}\{\mathbf{inv}:I\}\,
+    \mathbf{while}\,\,B\,\,\mathbf{do}\,\,
+    \{I\land B\}\,S^*\,\{I\}\,\,\mathbf{od}\,\{Q\},\quad
+    \sigma'=\sigma,
+\]
+显然
+\vspace{-5pt}
+\[
+    \langle\,\mathbf{while}\,\,B\,\,\mathbf{do}\,\,S\,\,\mathbf{od},
+    \sigma\rangle\to
+    \langle S;\mathbf{while}\,\,B\,\,\mathbf{do}\,\,S\,\,\mathbf{od},
+    \sigma\rangle,\\[-5pt]
+\]
+并且如果$\sigma\models P$, 那么$\sigma\models I$,
+从而$\sigma'=\sigma\models I\land B$.
+
+\vspace{1pt}
+\hspace{0.5em} viii) $P\to I$, $I\land\neg\,B\to Q$,
+$G=\{P\}\{\mathbf{inv}:I\}\,\mathbf{while}\,\,B\,\,
+\mathbf{do}\,\,\{I\land B\}\,S^*\,\{I\}\,\,\mathbf{od}\,\{Q\}$
+且$\sigma\not\models B$, 则
+\[
+    G'=\{Q\}\,\mathrm{E}\,\{Q\},\quad\sigma'=\sigma,
+\]
+显然
+\vspace{-5pt}
+\[
+    \langle\,\mathbf{while}\,\,B\,\,\mathbf{do}\,\,S\,\,\mathbf{od},
+    \sigma\rangle\to
+    \langle\mathrm{E},\sigma\rangle,\\[-5pt]
+\]
+并且如果$\sigma\models P$, 那么$\sigma\models I$,
+从而$\sigma'=\sigma\models I\land\neg\,B$, 即$\sigma'\models Q$.
+\hfill $\qedsymbol$
+
+
+
+
+
+\newpage
+
+\section{完全正确性注释程序}
+
+\hypertarget{sec:定义2.1}{}
+\noindent\textbf{定义2.1 (完全正确性注释程序)}
+
+对断言$P,Q$, 程序$S$和某字符串$S^*$, 递归定义
+\[
+    \{P\}\,S^*\,\{Q\}\ \vdash_{\mathrm{TO}}\ [P]\,S\,[Q],
+\]
+称$\{P\}\,S^*\,\{Q\}$是$[P]\,S\,[Q]$的\textbf{完全正确性注释程序},
+前后断言与骨架程序的记法$\mathrm{pre},\mathrm{post},\mathrm{sk}$同上节:
+\vspace{1pt}
+\begin{enumerate}
+    \item 当$P\to Q$时, $\{P\}\,\mathrm{skip}\,\{Q\}\vdash_{\mathrm{TO}}
+    [P]\,\mathrm{skip}\,[Q]$,
+    \item 如果有$Q_1$使得$Q_1[u:=t]$是自由替换, $P\to Q_1[u:=t]$
+    且$Q_1\to Q$, 那么
+    \[
+        \{P\}\,u:=t\,\{Q\}\vdash_{\mathrm{TO}}[P]\,u:=t\,[Q],
+    \]
+    \item 如果$\{P\}\,S_1^*\,\{R\}\vdash_{\mathrm{TO}}[P]\,S_1\,[R]$且
+    $\{R\}\,S_2^*\,\{Q\}\vdash_{\mathrm{TO}}[R]\,S_2\,[Q]$, 则
+    \vspace{1pt}
+    \[
+        \{P\}\,S_1^*\,\{R\}\,S_2^*\,\{Q\}\vdash_{\mathrm{TO}}
+        [P]\,S_1;S_2\,[Q],\\[1pt]
+    \]
+    \item 如果$\{P\land B\}\,S_1^*\,\{Q\}\vdash_{\mathrm{TO}}
+    [P\land B]\,S_1\,[Q]$且$\{P\land\neg\,B\}\,S_2^*\,\{Q\}
+    \vdash_{\mathrm{TO}}[P\land\neg\,B]\,S_2\,[Q]$, 则
+    \vspace{1pt}
+    \[\begin{aligned}
+        &\,\,\{P\}\,\mathbf{if}\,\,B\,\,\mathbf{then}\,\,
+        \{P\land B\}\,S_1^*\,\{Q\}\,\,\mathbf{else}\,\,\{P\land\neg\,B\}\,S_2^*
+        \,\{Q\}\,\,\mathbf{fi}\,\,\{Q\}\\[-3pt]
+        \,&\vdash_{\mathrm{TO}}[P]\,\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1
+        \,\,\mathbf{else}\,\,S_2\,\,\mathbf{fi}\,[Q],\\[2pt]
+    \end{aligned}\]
+    \item 如果$P\to I$, $\{I\land B\}\,S^*\,\{I\}
+    \vdash_{\mathrm{TO}}[I\land B]\,S\,[I]$, $t,z$是整型变量,
+    $z$不出现在$t,B,I,S$中, $\{I\land B\land t=z\}\,S^{**}\,\{t<z\}
+    \vdash_{\mathrm{TO}}[I\land B\land t=z]\,S\,[t<z]$,
+    $I\to t\geqslant 0$且$I\land\neg\,B\to Q$, 则
+    \vspace{1pt}
+    \[\begin{aligned}
+        &\,\,\{P\}\{\mathbf{inv}:I\}\{\mathbf{bd}:t\}\,\mathbf{while}\,\,B\,\,
+        \mathbf{do}\,\,\{I\land B\}\,S^*\,\{I\}
+        \,\,\mathbf{od}\,\{Q\}\,\\[-3pt]
+        \,&\vdash_{\mathrm{TO}}\,[P]\,\mathbf{while}\,\,B
+        \,\,\mathbf{do}\,\,S\,\,\mathbf{od}\,[Q].
+    \end{aligned}\]
+\end{enumerate}
+
+\vspace{15pt}
+
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1 (正规形定理)}
+
+对任意的断言$P,Q$和程序$S$, $\vdash_{\mathrm{TW}}[P]\,S\,[Q]$
+当且仅当存在$\{P\}\,S^*\,\{Q\}\vdash_{\mathrm{TO}}[P]\,S\,[Q]$.
+
+\vspace{15pt}
+
+完全正确性注释程序上的操作几乎与定义1.1相同(只是多了$\mathbf{bd}$标记),
+定理1.2的四条性质对完全正确性注释程序也依旧成立.
+
+\end{document}
