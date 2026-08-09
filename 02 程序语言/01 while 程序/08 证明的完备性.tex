@@ -1,0 +1,211 @@
+\documentclass[UTF8]{ctexart}
+\input{../../preamble.tex}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{PW的完备性}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (最弱自由前提)}
+
+给定程序$S$和状态集$\Phi$, 定义$S$关于$\Phi$的\textbf{最弱自由前提}为
+\[
+    \mathrm{wlp}(S,\Phi)\overset{\mathrm{def}}{=}\{\sigma\mid
+    \mathcal{M}[\![S]\!](\sigma)\subset\Phi\}.
+\]
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1 (最弱自由前提的结构)}
+
+对任意的断言$Q$, 有
+\begin{enumerate}
+    \item $\mathrm{wlp}(\mathrm{skip},Q)=Q$,
+    \item $\mathrm{wlp}(u:=t,Q)=Q[u:=t]$,
+    \item $\mathrm{wlp}(S_1;S_2,Q)=\mathrm{wlp}(S_1,\mathrm{wlp}(S_2,Q))$,
+    \item $\mathrm{wlp}(\,\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1\,\,
+        \mathbf{else}\,\,S_2\,\,\mathbf{fi}\,,Q)
+        =(B\cap\mathrm{wlp}(S_1,Q))\cup(\neg B\cap\mathrm{wlp}(S_2,Q))$,
+    \item 记$S=\mathbf{while}\,\,B\,\,\mathbf{do}\,\,S_1\,\,\mathbf{od}$, 则
+    $\mathrm{wlp}(S,Q)=(B\cap\mathrm{wlp}(S_1,\mathrm{wlp}(S,Q)))
+    \cup(\neg B\cap Q)$,
+    \item $\models\{P\}\,S\,\{Q\}$当且仅当$P\to\mathrm{wlp}(S,Q)$.
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2 (可定义性)}
+
+对任意的程序$S$和断言$Q$, $\mathrm{wlp}(S,Q)$
+可以被断言定义, 从而直接看作断言(逻辑等价下唯一).
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.3}{}
+\noindent\textbf{定理1.3 (PW证明系统的完备性)}
+
+对任意的断言$P,Q$和程序$S$, 如果$\models\{P\}\,S\,\{Q\}$,
+那么$\vdash_{\mathrm{PW}}\{P\}\,S\,\{Q\}$.
+
+\noindent{\kaishu 证明.}
+
+\vspace{1pt}\hspace{-1em}\noindent{\kaishu 命题1.}
+对任意的程序$S$和断言$Q$,
+$\vdash_{\mathrm{PW}}\{\mathrm{wlp}(S,Q)\}\,S\,\{Q\}$.
+
+\vspace{3pt}
+对$S$的结构归纳证明.
+
+\begin{enumerate}
+    \item $S=\mathrm{skip}$: $\mathrm{wlp}(\mathrm{skip},Q)=Q$,
+    显然$\vdash_{\mathrm{PW}}\{Q\}\,\mathrm{skip}\,\{Q\}$.
+    \item $S=u:=t$: $\mathrm{wlp}(u:=t,Q)=Q[u:=t]$,
+    显然$\vdash_{\mathrm{PW}}\{Q[u:=t]\}\,u:=t\,\{Q\}$.
+    \item $S=S_1;S_2$, 假设
+    $\vdash_{\mathrm{PW}}\{\mathrm{wlp}(S_1,\mathrm{wlp}(S_2,Q))\}\,S_1\,
+    \{\mathrm{wlp}(S_2,Q)\}$且
+    $\vdash_{\mathrm{PW}}\{\mathrm{wlp}(S_2,Q)\}\,S_2\,\{Q\}$, 则
+    \[
+        \vdash_{\mathrm{PW}}\{\mathrm{wlp}(S_1,\mathrm{wlp}(S_2,Q))\}
+        \,S_1;S_2\,\{Q\}\quad\text{i.e.}\quad
+        \vdash_{\mathrm{PW}}\{\mathrm{wlp}(S_1;S_2,Q)\}\,S_1;S_2\,\{Q\}.
+    \]
+    \item $S=\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1\,\,\mathbf{else}\,\,S_2\,\,
+    \mathbf{fi}$, 假设$\vdash_{\mathrm{PW}}\{\mathrm{wlp}(S_1,Q)\}\,S_1\,\{Q\}$
+    和$\vdash_{\mathrm{PW}}\{\mathrm{wlp}(S_2,Q)\}\,S_2\,\{Q\}$. 因为
+    \[
+        \mathrm{wlp}(S,Q)\land B\to\mathrm{wlp}(S_1,Q),\quad
+        \mathrm{wlp}(S,Q)\land\neg\,B\to\mathrm{wlp}(S_2,Q),
+    \]
+    所以$\vdash_{\mathrm{PW}}\{\mathrm{wlp}(S,Q)\land B\}\,S_1\,\{Q\}$,
+    $\vdash_{\mathrm{PW}}\{\mathrm{wlp}(S,Q)\land\neg\,B\}\,S_2\,\{Q\}$,
+    从而$\vdash_{\mathrm{PW}}\{\mathrm{wlp}(S,Q)\}\,S\,\{Q\}$.
+    \item $S=\mathbf{while}\,\,B\,\,\mathbf{do}\,\,S_1\,\,\mathbf{od}$,
+    假设$\vdash_{\mathrm{PW}}\{\mathrm{wlp}(S_1,\mathrm{wlp}(S,Q))\}\,
+    S_1\,\{\mathrm{wlp}(S,Q)\}$. 记$I=\mathrm{wlp}(S,Q)$, 因为
+    \[
+        I\land B\to\mathrm{wlp}(S_1,I),\quad I\land\neg\,B\to Q,
+    \]
+    所以$\vdash_{\mathrm{PW}}\{I\land B\}\,S_1\,\{I\}$,
+    从而$\vdash_{\mathrm{PW}}\{I\}\,S\,\{I\land\neg\,B\}$,
+    从而$\vdash_{\mathrm{PW}}\{I\}\,S\,\{Q\}$.
+\end{enumerate}
+
+\vspace{5pt}
+
+如果$\models\{P\}\,S\,\{Q\}$, 即$P\to\mathrm{wlp}(S,Q)$,
+再由命题1的$\vdash_{\mathrm{PW}}\{\mathrm{wlp}(S,Q)\}\,S\,\{Q\}$即得
+\begin{equation*}
+    \vdash_{\mathrm{PW}}\{P\}\,S\,\{Q\}.
+\tag*{\qedsymbol}\end{equation*}
+
+
+
+
+
+\newpage
+
+\section{TW的完备性}
+
+\hypertarget{sec:定义2.1}{}
+\noindent\textbf{定义2.1 (最弱前提)}
+
+给定程序$S$和状态集$\Phi$, 定义$S$关于$\Phi$的\textbf{最弱前提}为
+\[
+    \mathrm{wp}(S,\Phi)\overset{\mathrm{def}}{=}\{\sigma\mid
+    \mathcal{M}_{\mathrm{tot}}[\![S]\!](\sigma)\subset\Phi\}.
+\]
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1 (最弱前提的结构)}
+
+对任意的断言$Q$, 有
+\begin{enumerate}
+    \item $\mathrm{wp}(\mathrm{skip},Q)=Q$,
+    \item $\mathrm{wp}(u:=t,Q)=Q[u:=t]$,
+    \item $\mathrm{wp}(S_1;S_2,Q)=\mathrm{wp}(S_1,\mathrm{wp}(S_2,Q))$,
+    \item $\mathrm{wp}(\,\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1\,\,
+        \mathbf{else}\,\,S_2\,\,\mathbf{fi}\,,Q)
+        =(B\cap\mathrm{wp}(S_1,Q))\cup(\neg B\cap\mathrm{wp}(S_2,Q))$,
+    \item 记$S=\mathbf{while}\,\,B\,\,\mathbf{do}\,\,S_1\,\,\mathbf{od}$, 则
+    $\mathrm{wp}(S,Q)=(B\cap\mathrm{wp}(S_1;S,Q))\cup(\neg B\cap Q)$,
+    \item $\models[P]\,S\,[Q]$当且仅当$P\to\mathrm{wp}(S,Q)$.
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.2}{}
+\noindent\textbf{定理2.2 (可定义性)}
+
+对任意的程序$S$和断言$Q$, $\mathrm{wp}(S,Q)$
+可以被断言定义, 从而直接看作断言(逻辑等价下唯一).
+
+\vspace{10pt}
+
+\hypertarget{sec:定义2.2}{}
+\noindent\textbf{定义2.2 (可表性)}
+
+所有整型项是可表的, 如果对任意的
+$\mathbf{while}\,\,B\,\,\mathbf{do}\,\,S_1\,\,\mathbf{od}$,
+存在整型项$t$, 使得对任意终止的状态$\sigma$, 循环迭代次数恰为$\sigma(t)$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.3}{}
+\noindent\textbf{定理2.3 (TW证明系统的完备性)}
+
+假设所有整型项是可表的. 那么
+对任意的断言$P,Q$和程序$S$, 如果$\models[P]\,S\,[Q]$,
+那么$\vdash_{\mathrm{TW}}[P]\,S\,[Q]$.
+
+\noindent{\kaishu 证明.}
+
+对$S$的结构归纳证明. 除了loop程序外的TW证明与PW相同,
+下面只考虑loop程序的归纳步骤.
+
+$S=\mathbf{while}\,\,B\,\,\mathbf{do}\,\,S_1\,\,\mathbf{od}$,
+假设$\models[P]\,S\,[Q]$, 且$S_1$的完全正确性公式都可证. 记$I=\mathrm{wp}(S,Q)$.
+\vspace{1pt}
+\begin{enumerate}
+    \item 因为$\models[\mathrm{wp}(S_1,I)]\,S_1\,[I]$,
+    所以依假设$\vdash_{\mathrm{TW}}[\mathrm{wp}(S_1,I)]\,S_1\,[I]$.
+
+    \hspace{2.17em}
+    再由$I\land B\to\mathrm{wlp}(S_1,I)$得
+    $\vdash_{\mathrm{TW}}[I\land B]\,S_1\,[I]$.
+
+    \item 取表示$S$迭代次数的整型项$t$, 以及不出现在$t,B,I,S$中的整型变量$z$.
+    
+    \hspace{2.17em}
+    对任意的$\sigma\models I\land B\land t=z$, $\sigma$在循环下终止,
+    所以迭代次数为$\sigma(t)$. 转移序列是
+    \[
+        \langle S,\sigma\rangle\to\langle S_1;S,\sigma\rangle\to^*
+        \langle S,[\![S_1]\!](\sigma)\rangle\to\cdots\to
+        \langle\mathrm{E},[\![S]\!](\sigma)\rangle,
+    \]
+    这里$[\![S_1]\!](\sigma)$的迭代次数更小, 再由框架引理得
+    \[
+        [\![S_1]\!](\sigma)(t)<\sigma(t)=\sigma(z)=[\![S_1]\!](\sigma)(z),
+    \]
+    即$[\![S_1]\!](\sigma)\models t<z$. 于是$\models[I\land B\land t=z]\,S_1\,
+    [t<z]$, 依假设$\vdash_{\mathrm{TW}}[I\land B\land t=z]\,S_1\,[t<z]$.
+
+    \item 对任意的$\sigma\models I$, $\sigma$在循环下终止,
+    所以$\sigma(t)$是其迭代次数$\geqslant 0$. 即$I\to t\geqslant 0$.
+\end{enumerate}
+
+\vspace{3pt}
+综上可得$\vdash_{\mathrm{TW}}[I]\,S\,[I\land\neg\,B]$. 再由
+\[
+    P\to I,\quad I\land\neg\,B\to Q
+\]
+得$\vdash_{\mathrm{TW}}[P]\,S\,[Q]$. \hfill $\qedsymbol$
+
+\end{document}

@@ -138,7 +138,8 @@ while程序完全正确性公式的TW(total, while)证明系统:
         {[P]\,\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1\,\,\mathbf{else}
         \,\,S_2\,\,\mathbf{fi}[Q]},
     \]
-    \item \textbf{loop规则II}: 当$t,z$是整型变量且$z$不出现在$t,B,P,S$中时,
+    \item \textbf{loop规则II}: 当$t$是整型项, $z$是整型变量,
+    且$z$不出现在$t,B,P,S$中时,
     \vspace{5pt}
     \[
         \frac{[P\land B]\,S\,[P],\,[P\land B\land t=z]\,S\,[t<z],\,
