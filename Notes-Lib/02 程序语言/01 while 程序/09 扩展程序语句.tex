@@ -25,7 +25,7 @@ $t_1,\cdots,t_n$, 加入\textbf{并行赋值语句}：
 \[
     \langle u_1,\cdots,u_n:=t_1,\cdots,t_n,\sigma\rangle
     \overset{\mathrm{def}}{\to}
-    \langle\mathrm{E},\sigma[u_1:=\sigma(t_1),\cdots,u_n:=\sigma(t_n)]\rangle,
+    \langle\downarrow\,,\sigma[u_1:=\sigma(t_1),\cdots,u_n:=\sigma(t_n)]\rangle,
 \]
 所有右端项在旧状态$\sigma$下同时求值更新. 显然
 \[
@@ -71,7 +71,7 @@ $\mathbf{if}\,\,B\to S\,\,\mathbf{fi}\in\mathcal{C}$.
     \item 当$\sigma\models B$时, $\langle\mathbf{if}\,\,B\to S
     \,\,\mathbf{fi}\rangle\to\langle S,\sigma\rangle$,
     \item 当$\sigma\not\models B$时, $\langle\mathbf{if}\,\,B\to S
-    \,\,\mathbf{fi}\rangle\to\langle\mathrm{E},\textbf{fail}\rangle$.
+    \,\,\mathbf{fi}\rangle\to\langle\downarrow\,,\textbf{fail}\rangle$.
 \end{enumerate}
 
 \vspace{10pt}

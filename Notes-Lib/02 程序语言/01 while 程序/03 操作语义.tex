@@ -12,10 +12,10 @@
 
 固定一个模型$M$, 记$\Sigma$为所有变量赋值(状态)的集合, 定义
 \[
-    (\,\mathcal{C}\cup\{\mathrm{E}\}\,)\times\Sigma
+    (\,\mathcal{C}\cup\{\downarrow\,\}\,)\times\Sigma
 \]
 为\textbf{配置集}, 其中$\langle S,\sigma\rangle$($S\in\mathcal{C}$)
-称作未终止的配置, $\langle\mathrm{E},\sigma\rangle$称作已终止的配置.
+称作未终止的配置, $\langle\downarrow\,,\sigma\rangle$称作已终止的配置.
 
 \vspace{10pt}
 
@@ -24,15 +24,15 @@
 
 递归定义未终止的配置上的一步转移关系
 \vspace{3pt}
-$\mathcal{C}\times\Sigma\to(\,\mathcal{C}\cup\{\mathrm{E}\}\,)\times\Sigma$ :
+$\mathcal{C}\times\Sigma\to(\,\mathcal{C}\cup\{\downarrow\,\}\,)\times\Sigma$ :
 \begin{enumerate}
     \item $\langle\mathrm{skip},\sigma\rangle\overset{\mathrm{def}}{\to}
-    \langle\mathrm{E},\sigma\rangle$,
+    \langle\downarrow\,,\sigma\rangle$,
     \item $\langle u:=t,\sigma\rangle\overset{\mathrm{def}}{\to}
-    \langle\mathrm{E},\sigma[u:=\sigma(t)]\rangle$,
+    \langle\downarrow\,,\sigma[u:=\sigma(t)]\rangle$,
     \item 记$\langle S_1,\sigma\rangle\to\langle S_1',\sigma'\rangle$, 则
     $\langle S_1;S_2,\sigma\rangle\overset{\mathrm{def}}{\to}
-    \langle S_1';S_2,\sigma'\rangle$, 其中$\mathrm{E};S_2$定义为$S_2$.
+    \langle S_1';S_2,\sigma'\rangle$, 其中$\downarrow\,;S_2$定义为$S_2$.
     \item 如果$\sigma\models B$, 则
     $\langle\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1\,\,\mathbf{else}\,\,S_2
     \,\,\mathbf{fi},\sigma\rangle\overset{\mathrm{def}}{\to}
@@ -47,7 +47,7 @@ $\mathcal{C}\times\Sigma\to(\,\mathcal{C}\cup\{\mathrm{E}\}\,)\times\Sigma$ :
     \,\mathbf{while}\,\,B\,\,\mathbf{do}\,\,S\,\,\mathbf{od},\sigma\rangle$,
     \item 如果$\sigma\not\models B$, 则
     $\langle\mathbf{while}\,\,B\,\,\mathbf{do}\,\,S\,\,\mathbf{od},\sigma\rangle
-    \overset{\mathrm{def}}{\to}\langle\mathrm{E},\sigma\rangle$.
+    \overset{\mathrm{def}}{\to}\langle\downarrow\,,\sigma\rangle$.
 \end{enumerate}
 
 \vspace{10pt}
@@ -64,7 +64,7 @@ $\mathcal{C}\times\Sigma\to(\,\mathcal{C}\cup\{\mathrm{E}\}\,)\times\Sigma$ :
     就称它是从$\langle S_0,\sigma_0\rangle$开始的一个\textbf{有限转移序列}.
 
     \hspace{2.17em}
-    当$S_{n-1}=\mathrm{E}$时也称作一个\textbf{计算},
+    当$S_{n-1}=\downarrow\,$时也称作一个\textbf{计算},
     称其终止于$\sigma_{n-1}$.
 
     \item 给定无限的配置序列$\langle S_i,\sigma_i\rangle$ ($i\in\mathbb{N}$),
@@ -91,14 +91,14 @@ $\mathcal{C}\times\Sigma\to(\,\mathcal{C}\cup\{\mathrm{E}\}\,)\times\Sigma$ :
 \[\langle S_i,\sigma_i\rangle=\left\{\begin{aligned}
     &\langle S,\sigma\rangle,&&i=0,\\
     &\to\langle S_{i-1},\sigma_{i-1}\rangle,&&i>0\,\land\,S_{i-1}\in\mathcal{C},\\
-    &\langle\mathrm{E},\sigma_{i-1}\rangle,&&i>0\,\land\,S_{i-1}=\mathrm{E}.
+    &\langle\downarrow\,,\sigma_{i-1}\rangle,&&i>0\,\land\,S_{i-1}=\downarrow\,.
 \end{aligned}\right.\]
 
 \vspace{3pt}
-如果序列中出现了$\mathrm{E}$, 则取首次出现的$S_n=\mathrm{E}$,
+如果序列中出现了$\downarrow\,$, 则取首次出现的$S_n=\,\downarrow\,$,
 易证$\langle S_i,\sigma_i\rangle$ ($i\leqslant n$)是有限的计算;
 
-如果序列中没有出现$\mathrm{E}$, 则易证整个序列是无限的计算.
+如果序列中没有出现$\downarrow\,$, 则易证整个序列是无限的计算.
 
 \noindent{\kaishu 唯一性.}
 
@@ -126,12 +126,12 @@ $\sigma_{n-1}\!\restriction_{\mathrm{Var}-\mathrm{change}(S_0)}=
 有$\mathrm{var}(T)\subset\mathrm{var}(S)$,
 $\mathrm{change}(T)\subset\mathrm{change}(S)$.
 
-(约定$\mathrm{var}(\mathrm{E})=\mathrm{change}(\mathrm{E})=\varnothing$)
+(约定$\mathrm{var}(\downarrow\,)=\mathrm{change}(\downarrow\,)=\varnothing$)
 
 \vspace{3pt}
 对$S$归纳证明, 在每一步任取$\langle S,\sigma\rangle\to\langle T,\tau\rangle$.
 \begin{enumerate}
-    \item $S=\mathrm{skip}$或$S=u:=t$, 则$T=\mathrm{E}$, 显然成立.
+    \item $S=\mathrm{skip}$或$S=u:=t$, 则$T=\downarrow\,$, 显然成立.
     \item $S=S_1;S_2$, 假设$S_1$满足命题. 记$\langle S_1,\sigma\rangle\to
     \langle S_1',\tau\rangle$, 则依假设有
     \[
@@ -146,7 +146,7 @@ $\mathrm{change}(T)\subset\mathrm{change}(S)$.
     \item $S=\mathbf{if}\,\,B\,\,\mathbf{then}\,\,S_1\,\,\mathbf{else}\,\,
     S_2\,\,\mathbf{fi}$, 则$T=S_1$或$T=S_2$, 显然成立.
     \item $S=\mathbf{while}\,\,B\,\,\mathbf{do}\,\,S_1\,\,\mathbf{od}$,
-    则$T=S_1;S$或$T=\mathrm{E}$, 显然成立.
+    则$T=S_1;S$或$T=\downarrow\,$, 显然成立.
 \end{enumerate}
 
 \vspace{5pt}\hspace{-1em}\noindent{\kaishu 命题2.}
@@ -245,11 +245,11 @@ $\langle S,\widetilde{\sigma}\rangle\to
 \langle\widetilde{T},\widetilde{\tau}\rangle$和变元集$X\supset\mathrm{var}(S)$,
 假设$\widetilde{\sigma}\!\restriction_X=\sigma\!\restriction_X$.
 \begin{enumerate}
-    \item $S=\mathrm{skip}$, 则$\widetilde{T}=T=\mathrm{E}$, 并且
+    \item $S=\mathrm{skip}$, 则$\widetilde{T}=T=\downarrow\,$, 并且
     $\widetilde{\tau}\!\restriction_X=\widetilde{\sigma}\!\restriction_X=
     \sigma\!\restriction_X=\tau\!\restriction_X$.
 
-    \item $S=u:=t$, 则$\widetilde{T}=T=\mathrm{E}$, 并且
+    \item $S=u:=t$, 则$\widetilde{T}=T=\downarrow\,$, 并且
     $\widetilde{\tau}=\widetilde{\sigma}[u:=\widetilde{\sigma}(t)]$,
     $\tau=\sigma[u:=\sigma(t)]$.
 
@@ -299,7 +299,7 @@ $\langle S,\widetilde{\sigma}\rangle\to
     \]
     如果$\sigma\not\models B$, 也有$\widetilde{\sigma}\not\models B$, 此时
     \[
-        \widetilde{T}=T=\mathrm{E},\quad
+        \widetilde{T}=T=\downarrow\,,\quad
         \widetilde{\tau}\!\restriction_X=\widetilde{\sigma}\!\restriction_X=
         \sigma\!\restriction_X=\tau\!\restriction_X.
     \]

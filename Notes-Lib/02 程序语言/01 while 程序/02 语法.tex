@@ -38,9 +38,9 @@
 \vspace{30pt}
 
 \hypertarget{sec:定义1.2}{}
-\noindent\textbf{定义1.2 (读变元集)}
+\noindent\textbf{定义1.2 (变元集)}
 
-定义while程序$S$的\textbf{读变元集}$\mathrm{var}(S)$:
+定义while程序$S$的\textbf{变元集}$\mathrm{var}(S)$:
 \begin{enumerate}
     \item $\mathrm{var}(\mathrm{skip})=\varnothing$,
     \item $\mathrm{var}(u:=t)=\{u\}\cup\mathrm{var}(t)$,
@@ -55,9 +55,9 @@
 \vspace{10pt}
 
 \hypertarget{sec:定义1.3}{}
-\noindent\textbf{定义1.3 (写变元集)}
+\noindent\textbf{定义1.3 (修改变元集)}
 
-定义while程序$S$的\textbf{写变元集}$\mathrm{change}(S)$:
+定义while程序$S$的\textbf{修改变元集}$\mathrm{change}(S)$:
 \begin{enumerate}
     \item $\mathrm{change}(\mathrm{skip})=\varnothing$,
     \item $\mathrm{change}(u:=t)=\{u\}$,

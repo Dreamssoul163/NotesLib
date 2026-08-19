@@ -66,14 +66,14 @@ $S$为骨架程序($\mathrm{sk}$):
 \hypertarget{sec:定义1.2}{}
 \noindent\textbf{定义1.2 (部分正确性注释程序上的操作)}
 
-把$\{P\}\,\mathrm{E}\,\{P\}$也视为自身的注释程序,
+把$\{P\}\,\downarrow\,\,\{P\}$也视为自身的注释程序,
 递归定义注释程序带状态的一步转移关系:
 \begin{enumerate}
     \item $\langle\{P\}\,\mathrm{skip}\,\{Q\},\sigma\rangle
     \overset{\mathrm{def}}{\to}
-    \langle\{Q\}\,\mathrm{E}\,\{Q\},\sigma\rangle$,
+    \langle\{Q\}\,\downarrow\,\,\{Q\},\sigma\rangle$,
     \item $\langle\{P\}\,u:=t\,\{Q\},\sigma\rangle\overset{\mathrm{def}}{\to}
-    \langle\{Q\}\,\mathrm{E}\,\{Q\},\sigma[u:=\sigma(t)]\rangle$,
+    \langle\{Q\}\,\downarrow\,\,\{Q\},\sigma[u:=\sigma(t)]\rangle$,
     \vspace{3pt}
     \item 任给注释程序$\{P\}\,S_1^*\,\{R\}$和$\{R\}\,S_2^*\,\{Q\}$,
     如果$\langle\{P\}\,S_1^*\,\{R\},\sigma\rangle\to
@@ -86,7 +86,7 @@ $S$为骨架程序($\mathrm{sk}$):
     \]
     \item 任给注释程序$\{P\}\,S_1^*\,\{R\}$和$\{R\}\,S_2^*\,\{Q\}$,
     如果$\langle\{P\}\,S_1^*\,\{R\},\sigma\rangle\to
-    \langle\{R\}\,\mathrm{E}\,\{R\},\sigma'\rangle$, 那么
+    \langle\{R\}\,\downarrow\,\,\{R\},\sigma'\rangle$, 那么
     \vspace{1pt}
     \[
         \langle\{P\}\,S_1^*\{R\}\,S_2^*\,\{Q\},\sigma\rangle
@@ -130,7 +130,7 @@ $S$为骨架程序($\mathrm{sk}$):
         \langle\{P\}\{\mathbf{inv}:I\}\,\mathbf{while}\,\,B\,\,\mathbf{do}\,\,
         \{I\land B\}\,S^*\,\{I\}\,\,\mathbf{od}\,\{Q\},
         \sigma\rangle\overset{\mathrm{def}}{\to}
-        \langle\{Q\}\,\mathrm{E}\,\{Q\},\sigma\rangle.
+        \langle\{Q\}\,\downarrow\,\,\{Q\},\sigma\rangle.
     \]
 \end{enumerate}
 
@@ -147,8 +147,8 @@ $S$为骨架程序($\mathrm{sk}$):
 
 \begin{enumerate}
     \item $\mathrm{post}(G')=\mathrm{post}(G)$,
-    \item 如果$\mathrm{sk}(G')=\mathrm{E}$,
-    那么$G$一定形如$\{P\}\,\mathrm{E}\,\{P\}$,
+    \item 如果$\mathrm{sk}(G')=\downarrow\,$,
+    那么$G$一定形如$\{P\}\,\downarrow\,\,\{P\}$,
     \item $\langle\mathrm{sk}(G),\sigma\rangle\to
     \langle\mathrm{sk}(G'),\sigma'\rangle$,
     \item 如果$\sigma\models\mathrm{pre}(G)$,
@@ -160,21 +160,21 @@ $S$为骨架程序($\mathrm{sk}$):
 \hspace{-0.71em} {\kaishu 1. 2.} 显然. \,\, {\kaishu 3. 4.} 对转移操作归纳证明.
 
 \hspace{0.5em} i) $P\to Q$且$G=\{P\}\,\mathrm{skip}\,\{Q\}$,
-则$G'=\{Q\}\,\mathrm{E}\,\{Q\}$, $\sigma'=\sigma$. 显然
+则$G'=\{Q\}\,\downarrow\,\,\{Q\}$, $\sigma'=\sigma$. 显然
 \[
     \langle\mathrm{skip},\sigma\rangle\to
-    \langle\mathrm{E},\sigma\rangle,
+    \langle\downarrow\,,\sigma\rangle,
 \]
 并且如果$\sigma\models P$, 那么$\sigma\models Q$.
 
 \hspace{0.5em} ii) 有$Q_1$使得$Q_1[u:=t]$是自由替换,
 $P\to Q_1[u:=t]$且$Q_1\to Q$, $G=\{P\}\,u:=t\,\{Q\}$, 则
 \[
-    G'=\{Q\}\,\mathrm{E}\,\{Q\},\quad\sigma'=\sigma[u:=\sigma(t)],
+    G'=\{Q\}\,\downarrow\,\,\{Q\},\quad\sigma'=\sigma[u:=\sigma(t)],
 \]
 
 显然$\langle u:=t,\sigma\rangle\to
-\langle\mathrm{E},\sigma[u:=\sigma(t)]\rangle$,
+\langle\downarrow\,,\sigma[u:=\sigma(t)]\rangle$,
 并且如果$\sigma\models P$, 那么$\sigma\models Q_1[u:=t]$, 从而
 $\sigma'=\sigma[u:=t]\models Q_1$, 即$\sigma'\models Q$.
 
@@ -191,9 +191,9 @@ $\langle S_1;S_2,\sigma\rangle\to\langle S_1';S_2,\sigma'\rangle$.
 
 \hspace{0.5em} iv) $G=\{P\}\,S_1^*\,\{R\}\,S_2^*\{Q\}$,
 假设$\langle\{P\}\,S_1^*\,\{R\},\sigma\rangle\to
-\langle\{R\}\mathrm{E}\,\{R\},\sigma'\rangle$并且
+\langle\{R\}\downarrow\,\,\{R\},\sigma'\rangle$并且
 \[
-    \langle S_1,\sigma\rangle\to\langle\mathrm{E},\sigma'\rangle,\quad
+    \langle S_1,\sigma\rangle\to\langle\downarrow\,,\sigma'\rangle,\quad
     \sigma\models P\to\sigma'\models R,
 \]
 那么$G'=\{R\}\,S_2^*\,\{Q\}$, 此时
@@ -249,14 +249,14 @@ $G=\{P\}\{\mathbf{inv}:I\}\,\mathbf{while}\,\,B\,\,
 \mathbf{do}\,\,\{I\land B\}\,S^*\,\{I\}\,\,\mathbf{od}\,\{Q\}$
 且$\sigma\not\models B$, 则
 \[
-    G'=\{Q\}\,\mathrm{E}\,\{Q\},\quad\sigma'=\sigma,
+    G'=\{Q\}\,\downarrow\,\,\{Q\},\quad\sigma'=\sigma,
 \]
 显然
 \vspace{-5pt}
 \[
     \langle\,\mathbf{while}\,\,B\,\,\mathbf{do}\,\,S\,\,\mathbf{od},
     \sigma\rangle\to
-    \langle\mathrm{E},\sigma\rangle,\\[-5pt]
+    \langle\downarrow\,,\sigma\rangle,\\[-5pt]
 \]
 并且如果$\sigma\models P$, 那么$\sigma\models I$,
 从而$\sigma'=\sigma\models I\land\neg\,B$, 即$\sigma'\models Q$.
