@@ -118,23 +118,16 @@ $\mathrm{Ker}\,\varphi=\{\varphi^{-1}(1_H)\}=\{1_G\}$.
 
 \vspace{10pt}
 
-群同构恰好是一阶结构的同构, 也恰好是$\mathbf{Grp}$范畴中的同构.
+群同构恰好是一阶结构的同构, 也恰好是$\mathbf{Grp}$范畴中的同构,
+从而有自同构群.
 
 \vspace{10pt}
 
 \hypertarget{sec:定义2.2}{}
 \noindent\textbf{定义2.2 (自同构群)}
 
-给定群$G$, 记从$G$到自身的所有群同构组成的集合为
-\[
-    \mathrm{Aut}(G)\overset{\mathrm{def}}{=}\{\,\varphi:G\cong G\,\},
-\]
-则$(\,\mathrm{Aut}(G),\mathrm{id}_G,\circ\,)$是群, 称为$G$的\textbf{自同构群}.
-
-\noindent{\kaishu 证明.}
-
-显然复合满足结合律; $\mathrm{id}_G$是复合的单位元; 每个自同构的逆映射也是自同构.
-\hfill $\qedsymbol$
+群$G$的\textbf{自同构群}记为$\mathrm{Aut}(G)$.
+它的单位元是$\mathrm{id}_G$, 运算是复合.
 
 \vspace{10pt}
 
@@ -166,12 +159,13 @@ $\mathrm{Int}(G)$为$G$的\textbf{内自同构群}.
 于是$\mathrm{Int}(g):G\cong G$.
 
 进一步, 对任意的$g_1,g_2\in G$, 有
+\vspace{3pt}
 \[\left\{\begin{aligned}
     &\mathrm{Int}(g_1g_2):&&h\mapsto
     g_1g_2h(g_1g_2)^{-1}=g_1g_2hg_2g_1^{-1},\\[-3pt]
     &\mathrm{Int}(g_1)\circ\mathrm{Int}(g_2):&&h\mapsto
     g_1(g_2hg_2^{-1})g_1^{-1},
-\end{aligned}\right.\]
+\end{aligned}\right.\\[3pt]\]
 所以$\mathrm{Int}:G\to\mathrm{Aut}(G)$是群同态. \hfill $\qedsymbol$
 
 \end{document}

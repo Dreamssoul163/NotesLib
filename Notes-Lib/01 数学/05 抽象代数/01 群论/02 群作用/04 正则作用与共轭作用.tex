@@ -1,0 +1,143 @@
+\documentclass[UTF8]{ctexart}
+\input{../../../../preamble.tex}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{正则作用}
+
+群$G$在自身上的左乘作用
+\[
+    \cdot:G\curvearrowright G,\quad(g,x)\mapsto gx
+\]
+也称左正则作用.
+
+对任意的$x_1,x_2\in G$, 有$(x_2x_1^{-1})x_1=x_2$, 所以作用是传递的;
+
+如果某个$gx=x$, 那么$g=1_G$, 所以作用是自由的.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1 (Cayley定理)}
+
+任意的群可以嵌入一个对称群.
+
+\noindent{\kaishu 证明.}
+
+任取群$G$, 考虑$G$的左正则作用$\cdot$ , 对应群同态
+\[
+    \overline{\cdot}:G\to S_G,\quad g\mapsto(x\mapsto gx),
+\]
+因为作用是自由的, 所以$\overline{\cdot}$是单同态, 即$G$嵌入$S_G$.
+\hfill $\qedsymbol$
+
+
+
+
+
+\vspace{20pt}
+
+\section{对元素的共轭作用}
+
+考虑群$G$在自身上的共轭作用
+\[
+    \cdot:G\curvearrowright G,\quad(g,x)\mapsto gxg^{-1}.\\[-3pt]
+\]
+对任意的$x\in G$,
+\begin{enumerate}
+    \item 称其轨道$\mathrm{orb}(x)=\{gxg^{-1}\mid g\in G\}$
+    为$x$所在的\textbf{共轭类},
+    \item 称其稳定子$\mathrm{Stab}(x)=\{g\in G\mid gxg^{-1}=x\}$
+    为$x$的\textbf{中心化子}, 记为$C_G(x)$.
+\end{enumerate}
+
+\vspace{10pt}
+
+定义$S\subset G$的中心化子为$\displaystyle C_G(S)=
+\bigcap_{x\in S}C_G(x)=\{g\in G\mid\forall x\in S:gxg^{-1}=x\}$.
+显然$C_G(G)=\mathrm{Z}(G)$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1 (类方程)}
+
+任给群$G$, 如果某个共轭类$o$含中心元素, 即存在$x\in o\cap\mathrm{Z}(G)$,
+那么称$o$是中心类, 此时
+\[
+    o=\mathrm{orb}(x)=\{gxg^{-1}\mid g\in G\}=\{x\},
+\]
+即中心类是单元素类. 从而有类方程
+\vspace{3pt}
+\[
+    |G|=\sum_{o:\,\text{轨道}\,}|o|=\sum_{o:\,\text{中心类}\,}|o|+
+    \sum_{o:\,\text{非中心类}\,}|o|=|\mathrm{Z}(G)|+\sum_{o:\,\text{非中心类}\,}
+    [\,G:C_G(x_o)\,],\\[3pt]
+\]
+其中$x_o$从非中心类$o$中任取.
+
+
+
+
+
+\newpage
+
+\section{对子群的共轭作用}
+
+考虑群$G$对子群的共轭作用
+\[
+    \cdot:G\curvearrowright\{\,G\,\text{的子群}\,\},\quad
+    (g,H)\mapsto gHg^{-1}.\\[3pt]
+\]
+对任意的$H<G$, 称其稳定子$\mathrm{Stab}(H)=\{g\in G\mid gHg^{-1}=H\}$
+为$H$的\textbf{正规化子}, 记为$N_G(H)$.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理3.1}{}
+\noindent\textbf{定理3.1}
+
+任给群$G$和子群$H$, 其正规化子$N_G(H)$是$G$的正规包含$H$的最大子群.
+
+\noindent{\kaishu 证明.}
+
+对任意的$h\in H$, 显然$hHh^{-1}=H$, 所以$H<N_G(H)$.
+
+然后对任意的$g\in N_G(H)$, 依定义有$gHg^{-1}=H$, 所以$H\lhd N_G(H)$.
+
+最后, 假设$H\lhd K<G$, 那么对任意的$k\in K$, 有$kHk^{-1}=H$, 即$k\in N_G(H)$.
+从而有$K<N_G(H)$, 即$N_G(H)$是$G$的正规包含$H$的最大子群.
+\hfill $\qedsymbol$
+
+\vspace{10pt}
+
+\hypertarget{sec:定理3.2}{}
+\noindent\textbf{定理3.2 (N/C定理)}
+
+任给群$G$和子群$H$, 有$C_G(H)\lhd N_G(H)$并且商群
+$^{\displaystyle N_G(H)}\!/_{}\displaystyle C_G(H)$可以嵌入
+$\mathrm{Aut}(H)$.
+
+\noindent{\kaishu 证明.}
+
+首先显然$C_G(H)<N_G(H)$. 然后考虑$N_G(H)$在$H$的元素上的共轭作用
+\[
+    \cdot:N_G(H)\curvearrowright H,\quad(g,h)\mapsto ghg^{-1},
+\]
+它对应群同态
+\[
+    \varphi:N_G(H)\to S_H,\quad g\mapsto(h\mapsto ghg^{-1}).
+\]
+
+注意到它的核是
+\[
+    \mathrm{Ker}\,\varphi=\{g\in N_G(H)\mid\forall h\in H:ghg^{-1}=h\}=C_G(H),
+\]
+所以$^{\displaystyle N_G(H)}\!/_{}\displaystyle C_G(H)\cong
+\mathrm{Im}\,\varphi$, 同时易证$\mathrm{Im}\,\varphi<\mathrm{Aut}(H)$,
+即$^{\displaystyle N_G(H)}\!/_{}\displaystyle C_G(H)$可以嵌入
+$\mathrm{Aut}(H)$. \hfill $\qedsymbol$
+
+\end{document}
