@@ -1,0 +1,123 @@
+\documentclass[UTF8]{ctexart}
+\input{../../../../preamble.tex}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{环}
+
+{\kaishu 备注.
+这里只考虑含幺元的环.}
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (环)}
+
+给定集合$R$, 它的元素$0,1$和二元运算$+,\cdot$ , 如果:
+\begin{enumerate}
+    \item $(R,0,+)$是交换群,
+    \item $(R,1,\cdot)$是幺半群,
+    \item 对任意的$x,y,z\in R$, 有$z(x+y)=zx+zy$, $(x+y)z=xz+yz$,
+\end{enumerate}
+就称$(R,0,1,+,\cdot)$是一个\textbf{环}, 有时简写为$R$.
+进一步, 如果乘法是交换的, 就称$R$是一个\textbf{交换环}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+任给环$R$,
+\begin{enumerate}
+    \item 对任意的$x\in R$, 有$0x=x0=0$,
+    \item 对任意的$x,y,z\in R$, 有$z(x-y)=zx-zy$, $(x-y)z=xz-yz$.
+\end{enumerate}
+
+\noindent{\kaishu 证明.}
+
+\begin{enumerate}
+    \item 对任意的$x\in R$, $0x+0x=(0+0)x=0x$, 所以$0x=0$. 同理$x0=0$.
+    \item 对任意的$x,y,z\in R$,
+    \begin{equation*}\begin{aligned}
+        &z(x-y)+zy=z(x-y+y)=zx\quad\implies\quad z(x-y)=zx-zy,\\[-3pt]
+        &(x-y)z+yz=(x-y+y)z=xz\quad\implies\quad(x-y)z=xz-yz.
+    \end{aligned}\tag*{\qedsymbol}\end{equation*}
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (可逆元)}
+
+给定幺环$R$和$x\in R$, 如果存在$y\in R$使得$xy=yx=1$, 就称$x$是\textbf{可逆元}.
+
+记$R$的所有可逆元组成的集合为$R^\times$, 则显然$(R^\times,1,\cdot)$是群.
+
+
+
+
+
+\newpage
+
+\section{子环}
+
+\hypertarget{sec:定义2.1}{}
+\noindent\textbf{定义2.1 (子环)}
+
+给定环$(R,0,1,+,\cdot)$和$S\subset R$.
+如果$(S,0,1,+,\cdot)$也是环, 就称它是$R$的子环.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1}
+
+任给环$R$和它的子集$S$, $S$是子环当且仅当$1\in S$且$S$对减法、乘法封闭.
+
+\noindent{\kaishu 证明.}
+
+\noindent{\kaishu 必要性.} 显然.
+
+\noindent{\kaishu 充分性.}
+\begin{enumerate}
+    \item 因为$S$对减法封闭, 所以$(S,0,+)$是$(R,0,+)$的子群, 显然是交换群,
+    \item $1\in S$且$S$对乘法封闭, 从而$(S,1,\cdot)$是幺半群,
+    \item 分配律自然成立. \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理2.2}{}
+\noindent\textbf{定理2.2}
+
+任给环$R$和它的一族子集$\mathcal{S}$, 它们的交集
+$\displaystyle\bigcap\mathcal{S}$也是$R$的子环.
+
+\noindent{\kaishu 证明.}
+
+如果$\displaystyle x,y\in\bigcap\mathcal{S}$, 那么
+对任意的$S\in\mathcal{S}$都有
+\[
+    x,y\in S\quad\implies\quad x-y\in S,\,\,xy\in S,\\[3pt]
+\]
+所以$\displaystyle x-y\in\bigcap\mathcal{S}$,
+$\displaystyle xy\in\bigcap\mathcal{S}$.
+同时显然$\displaystyle 1\in\bigcap\mathcal{S}$. \hfill $\qedsymbol$
+
+\vspace{15pt}
+
+\hypertarget{sec:定义2.2}{}
+\noindent\textbf{定义2.2 (生成子环)}
+
+给定环$R$和它的子集$A$, 定义
+\vspace{2pt}
+\[
+    \langle A\rangle\overset{\mathrm{def}}{=}
+    \bigcap\,\{S\subset R\mid S\,\text{是}\,R\,\text{的子环}\,
+    \,\land\,S\supset A\},\\[2pt]
+\]
+它是$R$的包含$A$的最小子环, 称之为$A$在$R$中的\textbf{生成子环}.
+
+\end{document}
