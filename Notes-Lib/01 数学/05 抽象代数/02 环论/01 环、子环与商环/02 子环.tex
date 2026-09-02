@@ -1,0 +1,65 @@
+\documentclass[UTF8]{ctexart}
+\input{../../../../preamble.tex}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{子环}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (子环)}
+
+给定\href{01 半环与环#nameddest=sec:定义1.2}{环} $(R,0,+,\cdot)$
+和$S\subset R$. 如果$(S,0,+,\cdot)$也是环, 就称它是$R$的子环.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+任给环$R$和它的子集$S$, $S$是子环当且仅当$(S,0,+)<(R,0,+)$且$S$对乘法封闭.
+
+\noindent{\kaishu 证明.}
+
+\noindent{\kaishu 必要性.} 显然.
+
+\noindent{\kaishu 充分性.}
+\begin{enumerate}
+    \item $(S,0,+)<(R,0,+)$显然是交换群,
+    \item $S$对乘法封闭, 从而$(S,\cdot)$是半群,
+    \item 分配律自然成立. \hfill $\qedsymbol$
+\end{enumerate}
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.2}{}
+\noindent\textbf{定理1.2}
+
+任给环$R$和它的一族子集$\mathcal{S}$, 它们的交集$\displaystyle\bigcap\mathcal{S}$
+也是$R$的子环.
+
+\noindent{\kaishu 证明.}
+
+如果$\displaystyle x,y\in\bigcap\mathcal{S}$, 那么
+对任意的$S\in\mathcal{S}$都有
+\[
+    x,y\in S\quad\implies\quad x-y\in S,\,xy\in S,
+\]
+所以$\displaystyle x-y\in\bigcap\mathcal{S}$,
+$\displaystyle xy\in\bigcap\mathcal{S}$. \hfill $\qedsymbol$
+
+\vspace{15pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (生成子环)}
+
+给定环$R$和它的子集$A$, 定义
+\[
+    \langle A\rangle\overset{\mathrm{def}}{=}
+    \bigcap\,\{S\subset R\mid S\,\text{是}\,R\,\text{的子环}\,
+    \,\land\,S\supset A\},\\[1pt]
+\]
+它是$R$的包含$A$的最小子环, 称之为$A$在$R$中的\textbf{生成子环}.
+
+\end{document}

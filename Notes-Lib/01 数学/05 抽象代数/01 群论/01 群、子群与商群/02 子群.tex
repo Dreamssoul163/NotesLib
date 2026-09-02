@@ -36,8 +36,8 @@
 \hypertarget{sec:定理1.2}{}
 \noindent\textbf{定理1.2}
 
-任给群$G$和它的一族子集$\mathcal{H}$, 它们的交集$\displaystyle\bigcap\mathcal{H}$
-也是$G$的子集.
+任给群$G$和它的一族子群$\mathcal{H}$, 它们的交集$\displaystyle\bigcap\mathcal{H}$
+也是$G$的子群.
 
 \noindent{\kaishu 证明.}
 
@@ -50,25 +50,12 @@
 \hypertarget{sec:定义1.2}{}
 \noindent\textbf{定义1.2 (生成子群)}
 
-给定群$G$和它的子集$S$, 定义
+给定群$G$和它的子集$A$, 定义
 \[
-    \langle S\rangle\overset{\mathrm{def}}{=}
-    \bigcap\,\{H\subset G\mid H<G\,\land\,H\supset S\},\\[1pt]
+    \langle A\rangle\overset{\mathrm{def}}{=}
+    \bigcap\,\{H\subset G\mid H<G\,\land\,H\supset A\},\\[1pt]
 \]
-它是$G$的包含$S$的最小子群, 称之为$S$在$G$中的\textbf{生成子群}.
-
-\noindent{\kaishu 验证.}
-
-第一, 记$\mathcal{H}=\{H\subset G\mid H<G\,\land\,H\supset S\}$,
-它的元素都是$G$的子群,
-从而$\displaystyle\langle S\rangle=\bigcap\mathcal{H}$是$G$的子群.
-
-第二, $\mathcal{H}$的元素都包含$S$,
-从而$\displaystyle\langle S\rangle=\bigcap\mathcal{H}$包含$S$.
-
-第三, 如果$H$也是$G$的包含$S$的子群, 那么$H\in\mathcal{H}$,
-从而$\displaystyle\langle S\rangle=\bigcap\mathcal{H}$包含于$H$.
-\hfill $\qedsymbol$
+它是$G$的包含$A$的最小子群, 称之为$A$在$G$中的\textbf{生成子群}.
 
 \vspace{10pt}
 
@@ -102,68 +89,67 @@
 \hypertarget{sec:定理1.4}{}
 \noindent\textbf{定理1.4}
 
-任给群$G$和非空子集$S$, 有
+任给群$G$和非空子集$A$, 有
 \[
-    \langle S\rangle=\left\{\,\prod_{i=0}^nx_i\,\,\middle\vert\,
-    n\in\mathbb{N},\,\,x:n\to S\cup S^{-1}\right\},
+    \langle A\rangle=\left\{\,\prod_{i=0}^nx_i\,\,\middle\vert\,
+    n\in\mathbb{N},\,\,x:n\to A\cup A^{-1}\right\},
 \]
-这里记$S^{-1}=\{s^{-1}\mid s\in S\}$.
+这里记$A^{-1}=\{a^{-1}\mid a\in A\}$.
 
 \noindent{\kaishu 证明.}
 
 记$H=\displaystyle\left\{\,\prod_{i=0}^nx_i\,\,\middle\vert\,
-n\in\mathbb{N},\,\,x:n\to S\cup S^{-1}\right\}$.
-第一, 证明$H$是包含$S$的子群.
+n\in\mathbb{N},\,\,x:n\to A\cup A^{-1}\right\}$.
+第一, 证明$H$是包含$A$的子群.
 
 \vspace{6pt}
-首先, 对任意的$h_1,h_2\in H$, 存在自然数$n,m$和$x:n\to S\cup S^{-1},
-y:m\to S\cup S^{-1}$使得
+首先, 对任意的$h_1,h_2\in H$, 存在自然数$n,m$和$x:n\to A\cup A^{-1},
+y:m\to A\cup A^{-1}$使得
 \vspace{3pt}
 \[
     h_1=\prod_{i=0}^nx_i\,,\quad h_2=\prod_{j=0}^my_j\quad\implies\quad
     h_1h_2=\prod_{i=0}^{n+m+1}\wideparen{xy}(i)\in H\,,\\[3pt]
 \]
-其次, 对任意的$h\in H$, 存在自然数$n$和$x:n\to S\cup S^{-1}$使得
+其次, 对任意的$h\in H$, 存在自然数$n$和$x:n\to A\cup A^{-1}$使得
 \vspace{3pt}
 \[
     h=\prod_{i=0}^nx_i\quad\implies\quad
     h^{-1}=\prod_{i=0}^nx_{n-i}^{-1}\in H,\\[3pt]
 \]
-从而$H<G$. 最后, 对任意的$s\in S$, 有$\displaystyle
-s=\prod_{i=0}^0s\in H$.
+从而$H<G$. 最后, 对任意的$a\in A$, 有$\displaystyle a=\prod_{i=0}^0a\in H$.
 
 \vspace{3pt}
-综上, $H$是包含$S$的子群, 所以$\langle S\rangle\subset H$.
+综上, $H$是包含$A$的子群, 所以$\langle A\rangle\subset H$.
 
 \vspace{3pt}
-第二, 证明$H\subset\langle S\rangle$. 对任意的$h\in H$,
-存在自然数$n$和$x:n\to S\cup S^{-1}$使得$\displaystyle h=\prod_{i=0}^nx_i$.
-接下来对$k\leqslant n$归纳证明$\displaystyle\prod_{i=0}^kx_i\in\langle S\rangle$.
+第二, 证明$H\subset\langle A\rangle$. 对任意的$h\in H$,
+存在自然数$n$和$x:n\to A\cup A^{-1}$使得$\displaystyle h=\prod_{i=0}^nx_i$.
+接下来对$k\leqslant n$归纳证明$\displaystyle\prod_{i=0}^kx_i\in\langle A\rangle$.
 首先, 当$k=0$时$\displaystyle
-\prod_{i=0}^0x_i=x_0\in S\cup S^{-1}\subset\langle S\rangle$;
+\prod_{i=0}^0x_i=x_0\in A\cup A^{-1}\subset\langle A\rangle$;
 
-其次, 假设$\displaystyle\prod_{i=0}^kx_i\in\langle S\rangle$
+其次, 假设$\displaystyle\prod_{i=0}^kx_i\in\langle A\rangle$
 且$k+1\leqslant n$, 那么
 \[
-    \prod_{i=0}^{k+1}x_i=\prod_{i=0}^kx_i\cdot x_{k+1}\in\langle S\rangle,
+    \prod_{i=0}^{k+1}x_i=\prod_{i=0}^kx_i\cdot x_{k+1}\in\langle A\rangle,
 \]
-归纳成立. 取$k=n$即得$\displaystyle h=\prod_{i=0}^nx_i\in\langle S\rangle$,
-即$H\subset\langle S\rangle$. \hfill $\qedsymbol$
+归纳成立. 取$k=n$即得$\displaystyle h=\prod_{i=0}^nx_i\in\langle A\rangle$,
+即$H\subset\langle A\rangle$. \hfill $\qedsymbol$
 
 \vspace{13pt}
 
 \hypertarget{sec:定理1.5}{}
 \noindent\textbf{定理1.5}
 
-任给群$G$和非空子集$S$, 如果$\forall x,y\in S:\,xy=yx$, 那么
-$\langle S\rangle$是交换群.
+任给群$G$和非空子集$A$, 如果$\forall x,y\in A:\,xy=yx$, 那么
+$\langle A\rangle$是交换群.
 
 \noindent{\kaishu 证明.}
 
-如果$S$是交换子集, 易证$S\cup S^{-1}$也是交换子集.
+如果$A$是交换子集, 易证$A\cup A^{-1}$也是交换子集.
 
-对任意的$h_1,h_2\in\langle S\rangle$, 存在自然数$n,m$和$x:n\to S\cup S^{-1},
-y:m\to S\cup S^{-1}$使得
+对任意的$h_1,h_2\in\langle A\rangle$, 存在自然数$n,m$和$x:n\to A\cup A^{-1},
+y:m\to A\cup A^{-1}$使得
 \vspace{3pt}
 \[
     h_1=\prod_{i=0}^nx_i\,,\quad h_2=\prod_{j=0}^my_j\,,
