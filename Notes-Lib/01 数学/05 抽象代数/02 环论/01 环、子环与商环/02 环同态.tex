@@ -1,0 +1,26 @@
+\documentclass[UTF8]{ctexart}
+\input{../../../../preamble.tex}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{环同态}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (环同态)}
+
+给定\href{01 环与子环#nameddest=sec:定义1.1}{环} $R,S$.
+如果映射$\varphi:R\to S$满足
+\[
+    \forall x,y\in R:\quad\varphi(x+y)=\varphi(x)+\varphi(y),\,\,
+    \varphi(xy)=\varphi(x)\,\varphi(y),\\[1pt]
+\]
+且$\varphi(1_R)=1_S$, 就称$\varphi$是从$R$到$S$的\textbf{环同态}.
+
+\vspace{10pt}
+
+环同态正是环作为\href{../../../06 数理逻辑/01 一阶逻辑/02 一阶模型论/01 一阶语言的结构/02 结构的同态#nameddest=sec:定义1.1}
+{一阶结构的同态}, 从而一些环及它们间的环同态可以组成范畴, 记作$\mathbf{Ring}$.
+
+\end{document}

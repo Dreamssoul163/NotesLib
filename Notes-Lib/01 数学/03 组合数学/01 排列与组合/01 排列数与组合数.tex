@@ -1,0 +1,190 @@
+\documentclass[UTF8]{ctexart}
+\input{../../../preamble.tex}
+
+\begin{document}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+\section{排列数}
+
+\hypertarget{sec:定义1.1}{}
+\noindent\textbf{定义1.1 (排列数)}
+
+给定自然数$n,r$, 记
+\[
+    \mathrm{Inj}(r,n)=\{f:r\to n\mid f\,\text{是单射}\,\},\\[-3pt]
+\]
+定义$P_{n,r}\overset{\mathrm{def}}{=}|\,\mathrm{Inj}(r,n)\,|$ ,
+称为$r$在$n$内的\textbf{排列数}.
+
+\vspace{10pt}
+
+\hypertarget{sec:定理1.1}{}
+\noindent\textbf{定理1.1}
+
+任给自然数$n,r$, 当$r\leqslant n$时$\displaystyle P_{n,r}=\frac{n!}{(n-r)!}$ ,
+当$r>n$时$P_{n,r}=0$.
+
+\noindent{\kaishu 证明.}
+
+当$r\leqslant n$时, 考虑$S_n$在$\mathrm{Inj}(r,n)$上
+的\href{../../05 抽象代数/01 群论/02 群作用/01 群作用#nameddest=sec:定义1.1}{群作用}
+\[
+    (\sigma,f)\mapsto\sigma\circ f,
+\]
+首先验证它是群作用:
+\begin{enumerate}
+    \item 对任意的$f\in\mathrm{Inj}(r,n)$, $\mathrm{id}_n\circ f=f$,
+    \item 对任意的$\sigma_1,\sigma_2\in S_n$和$f\in\mathrm{Inj}(r,n)$,
+    $\sigma_1\circ(\sigma_2\circ f)=(\sigma_1\circ\sigma_2)\circ f$.
+\end{enumerate}
+
+\vspace{3pt}
+然后证明它是传递的. 对任意的$f\in\mathrm{Inj}(r,n)$,
+可以取一个双射$g:n\!\setminus\!r\to n\!\setminus\!\mathrm{Ran}\,f$, 此时易证
+\[
+    f\cup g\in S_n,
+\]
+并且$(f\cup g)\circ\mathrm{id}_r=f$.
+从而$\mathrm{orb}(\mathrm{id}_r)=\mathrm{Inj}(r,n)$.
+
+\vspace{3pt}
+最后, 考察$\mathrm{Stab}(\mathrm{id}_r)=
+\{\sigma\in S_n\mid\sigma\!\!\restriction_r=\mathrm{id}_r\}$, 易证有以下的双射
+\vspace{3pt}
+\[
+    \mathrm{Stab}(\mathrm{id}_r)\to S_{n\setminus r},
+    \quad\sigma\mapsto\sigma\!\!\restriction_{n\setminus r},
+\]
+所以由\href{../../05 抽象代数/01 群论/02 群作用/03 轨道与稳定子#nameddest=sec:定理1.3}
+{轨道-稳定子定理}得
+\[
+    P_{n,r}=|\mathrm{Inj}(r,n)|=\frac{|S_n|}{|\mathrm{Stab}(\mathrm{id}_r)|}=
+    \frac{|S_n|}{|S_{n\setminus r}|}=\frac{n!}{(n-r)!}.
+\]
+
+\vspace{5pt}
+当$r>n$时, 不存在从$r$到$n$的单射, 从而$P_{n,r}=0$. \hfill $\qedsymbol$
+
+\vspace{10pt}
+
+\hypertarget{sec:定义1.2}{}
+\noindent\textbf{定义1.2 (广义排列数)}
+
+给定一个环$R$, $n\in R$和自然数$r$, 定义广义排列数
+\vspace{3pt}
+\[
+    P_{n,r}\overset{\mathrm{def}}{=}\prod_{i<r}(n-i),
+\]
+其中$i$指代$i\cdot 1_R$. 它是上述排列数的推广.
+
+\noindent{\kaishu 验证.}
+
+考虑整数环$\mathbb{Z}$和自然数$n,r$. 当$r\leqslant n$时, 排列数
+\vspace{3pt}
+\[
+    P_{n,r}=\frac{n!}{(n-r)!}=\prod_{j=1}^nj\bigg/\,
+    \prod_{j=1}^{n-r}j=\prod_{i=0}^{n-1}(n-i)\bigg/\,
+    \prod_{i=r}^{n-1}(n-i)=\prod_{i<r}(n-i),\\[3pt]
+\]
+当$r>n$时, 排列数
+\[
+    P_{n,r}=0=\prod_{i<n}(n-i)\cdot 0\cdot\prod_{n<i<r}(n-i)
+    =\prod_{i<r}(n-i),
+\]
+即原来的排列数$P_{n,r}$始终等于$\displaystyle\prod_{i<r}(n-i)$.
+\hfill $\qedsymbol$
+
+
+
+
+
+\newpage
+
+\section{组合数}
+
+\hypertarget{sec:定义2.1}{}
+\noindent\textbf{定义2.1 (组合数)}
+
+给定自然数$n,r$, 记
+\[
+    \mathrm{Sub}(r,n)=\{R\subset n\mid\#R=r\},\\[-6pt]
+\]
+定义$\displaystyle\binom{n}{r}\overset{\mathrm{def}}{=}
+|\,\mathrm{Sub}(r,n)\,|$ ,称为$r$在$n$内的\textbf{组合数}.
+
+\vspace{13pt}
+
+\hypertarget{sec:定理2.1}{}
+\noindent\textbf{定理2.1}
+
+任给自然数$n,r$, 当$r\leqslant n$时$\displaystyle\binom{n}{r}=
+\frac{n!}{r!\,(n-r)!}$, 当$r>n$时$\displaystyle\binom{n}{r}=0$.
+
+\noindent{\kaishu 证明.}
+
+当$r\leqslant n$时, 考虑$S_n$在$\mathrm{Sub}(r,n)$上的群作用
+\[
+    (\sigma,R)\mapsto \sigma[R],
+\]
+首先验证它是群作用:
+\begin{enumerate}
+    \item 对任意的$R\in\mathrm{Sub}(r,n)$, $\mathrm{id}_r[R]=R$,
+    \item 对任意的$\sigma_1,\sigma_2\in S_n$和$R\in\mathrm{Sub}(r,n)$,
+    $\sigma_1[\sigma_2[R]]=(\sigma_1\circ\sigma_2)[R]$.
+\end{enumerate}
+
+\vspace{3pt}
+然后证明它是传递的. 对任意的$R\in\mathrm{Sub}(r,n)$,
+可以取双射$f:r\to R$和$g:n\!\setminus\!r\to n\!\setminus\!R$, 此时易证
+\[
+    f\cup g\in S_n,
+\]
+并且$(f\cup g)[r]=R$. 从而$\mathrm{orb}(r)=\mathrm{Sub}(r,n)$.
+
+\vspace{3pt}
+最后, 考察$\mathrm{Stab}(r)=\{\sigma\in S_n\mid\sigma[r]=r\}$,
+易证有以下的双射
+\vspace{3pt}
+\[
+    \mathrm{Stab}(r)\to S_r\times S_{n\setminus r},\quad\sigma\mapsto
+    (\sigma\!\!\restriction_r,\sigma\!\!\restriction_{n\setminus r}),
+\]
+所以由轨道-稳定子定理得
+\vspace{3pt}
+\[
+    \binom{n}{r}=|\mathrm{Sub}(r,n)|=\frac{|S_n|}{|\mathrm{Stab}(r)|}=
+    \frac{|S_n|}{|S_r\times S_{n\setminus r}|}=\frac{n!}{r!\,(n-r)!}.
+\]
+
+\vspace{5pt}
+当$r>n$时, 不存在$n$的$r$元子集, 所以$\displaystyle\binom{n}{r}=0$.
+\hfill $\qedsymbol$
+
+\vspace{10pt}
+
+\hypertarget{sec:定义2.2}{}
+\noindent\textbf{定义2.2 (广义组合数)}
+
+给定一个$\mathbb{Q}$-代数$A$, $n\in A$和自然数$r$, 定义广义组合数
+\vspace{3pt}
+\[
+    \binom{n}{r}\overset{\mathrm{def}}{=}\frac{P_{n,r}}{r!}.
+\]
+它是上述组合数的推广.
+
+\noindent{\kaishu 验证.}
+
+考虑$\mathbb{Q}$-代数$\mathbb{Q}$和自然数$n,r$. 当$r\leqslant n$时, 组合数
+\vspace{3pt}
+\[
+    \binom{n}{r}=\frac{n!}{r!\,(n-r)!}=\frac{P_{n,r}}{r!},
+\]
+当$r>n$时, 组合数
+\[
+    \binom{n}{r}=0=\frac{0}{r!}=\frac{P_{n,r}}{r!},
+\]
+即原来的组合数$\displaystyle\binom{n}{r}$始终等于
+$\displaystyle\frac{P_{n,r}}{r!}$. \hfill $\qedsymbol$
+
+\end{document}
